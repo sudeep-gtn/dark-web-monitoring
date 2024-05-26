@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import CustomUser
-
+from django.contrib.auth import authenticate,login,logout
 
 class RegisterView(View):
     def get(self, request):
@@ -29,11 +29,19 @@ class RegisterView(View):
         else:
             return render(request, "register.html", {"error": "Registration failed"})
 
-# class Login(View):
-#     def get(self,request):
-#         return render(request, "login.html")
+class LoginView(View):
+    def get(self,request):
+        return render(request, "login.html")
     
-#     def post(self, request):
-#         email = request.POST.get("email")
-#         password = request.POST.get("password")
+    def post(self, request):
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+    
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
 
+class HomeView(View):
+    def get(self, request):
+        return render(request, "home.html")
