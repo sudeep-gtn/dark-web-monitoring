@@ -102,3 +102,7 @@ class EmailView(View):
 class OrganizationDetailsView(View):
     def get(self, request):
         return render(request,"organization-details.html")
+    
+class NotificationsView(View):
+    def get(self, request):
+        return render(request,'notifications.html')
