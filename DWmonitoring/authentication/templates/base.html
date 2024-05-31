@@ -18,12 +18,9 @@
             <div class="p-4">
               <ul class="space-y-2">
                 <li>
-
-                  <a class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dashboard' %}border-l-4 border-green-500{% endif %}" href="{% url 'dashboard' %}">
+                  <a class="block w-full text-left p-3 rounded hover:bg-gray-700" href="{% url 'dashboard' %}">
                     Dashboard
                   </a>
-                  
-                  
                 </li>
                 <li>
                   <div class="w-full text-left p-3 rounded text-gray-300 cursor-pointer">
@@ -31,22 +28,22 @@
                   </div>
                   <ul id="detailsMenu" class="ml-4 mt-2 space-y-2">
                     <li>
-                      <a href="{% url 'domain' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/domain' %}border-l-4 border-green-500{% endif %}">
+                      <a href="{% url 'domain' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700">
                         Domain
                       </a>
                     </li>
                     <li>
-                      <a href="{% url 'cards' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/cards' %}border-l-4 border-green-500{% endif %}">
+                      <a href="{% url 'cards' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700">
                         Cards
                       </a>
                     </li>
                     <li>
-                      <a href="{% url 'users' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/user' %}border-l-4 border-green-500{% endif %}">
+                      <a href="{% url 'users' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700">
                         User
                       </a>
                     </li>
                     <li>
-                      <a href="{% url 'email' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/email' %}border-l-4 border-green-500{% endif %}">
+                      <a href="{% url 'email' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700">
                         Email
                       </a>
                     </li>
@@ -54,7 +51,7 @@
                 </li>
                 
                 <li>
-                    <a class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/org-details' %}border-l-4 border-green-500{% endif %}" href="{% url 'org-details' %}">Organization Details</a>
+                    <a class="block w-full text-left p-3 rounded hover:bg-gray-700" href="{% url 'org-details' %}">Organization Details</a>
                 </li>
               </ul>
             </div>
@@ -66,15 +63,15 @@
           </div>
         </div>
 
-        <div class="fixed inset-0 z-20 flex items-center justify-center min-h-full overflow-hidden">
-          <!-- <div aria-hidden="true" class="fixed bg-black inset-0 opacity-60">
+        <div id="confirm-popup" class="fixed inset-0 z-20 flex items-center justify-center min-h-full overflow-hidden">
+          <div aria-hidden class="fixed bg-black inset-0 opacity-60">
 
-          </div> -->
-          <div id="confirm-popup" class="border-2 border-gray-200 rounded w-[700px] h-[300px] hidden mx-auto flex-col items-center justify-around my-auto relative shadow-lg translate-y-4 bg-gray-200">
+          </div>
+          <div  class="border-2 border-gray-200 rounded w-96 h-48 hidden mx-auto flex-col items-center justify-around my-auto relative shadow-lg translate-y-4 bg-gray-200">
             <h1 class="text-center text-red-500 text-2xl my-4">Are you sure to logout?</h1>
-            <div class="flex items-center justify-around w-full py-2 px-6">
-              <a href="{% url 'logout' %}" class="w-fit px-8 py-2 bg-red-500 text-white rounded-full hover:bg-white hover:text-red-500 trasition-all duration-300 ease-in-out">Yes</a>
-              <button onclick="cancelLogout()" class="w-fit px-8 py-2 bg-red-500 text-white rounded-full hover:bg-white hover:text-red-500">Cancel</button>
+            <div class="flex items-center justify-between w-full p-2 mt-6">
+              <a href="{% url 'logout' %}" class="w-fit px-4 py-2 bg-red-500 text-white rounded-full">Yes</a>
+              <button onclick="cancelLogout()" class="w-fit px-4 py-2 bg-red-500 text-white rounded-full">Cancel</button>
             </div>
           </div>
         </div>
