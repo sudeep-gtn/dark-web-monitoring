@@ -81,3 +81,24 @@ class DashboardView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "dashboard.html")
+    
+class DomainView(View):
+    def get(self, request):
+        return render(request,"domain.html")
+    
+class CardsView(View):
+    def get(self, request):
+        return render(request,"cards.html")
+    
+class UsersView(View):
+    def get(self, request):
+        return render(request,"users.html")
+    
+
+class EmailView(View):
+    def get(self,request):
+        return render(request, "email.html")
+    
+class OrganizationDetailsView(View):
+    def get(self, request):
+        return render(request,"organization-details.html")
