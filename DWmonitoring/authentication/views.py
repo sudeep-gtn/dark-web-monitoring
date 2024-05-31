@@ -59,7 +59,7 @@ class LoginView(View):
         try:
             user = CustomUser.objects.get(email=email)
         except CustomUser.DoesNotExist:
-            return render(request, "login.html", {"error": "User does not exist"})
+            return render(request, "login.html", {"error": "User with the provided email does not exist"})
 
         user = authenticate(request, email=email, password=password)
         if user is not None:
