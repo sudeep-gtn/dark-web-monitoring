@@ -18,41 +18,40 @@
             <div class="p-4">
               <ul class="space-y-2">
                 <li>
-                  <button class="w-full text-left p-3 rounded hover:bg-gray-700 active-tab" onclick="showTab('dashboard')">
+                  <a class="block w-full text-left p-3 rounded hover:bg-gray-700" href="{% url 'dashboard' %}">
                     Dashboard
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <div class="w-full text-left p-3 rounded text-gray-300">
+                  <div class="w-full text-left p-3 rounded text-gray-300 cursor-pointer">
                     Details
                   </div>
                   <ul id="detailsMenu" class="ml-4 mt-2 space-y-2">
                     <li>
-                      <button class="w-full text-left p-3 rounded hover:bg-gray-700" onclick="showTab('domainDetails')">
+                      <a href="{% url 'domain' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700">
                         Domain
-                      </button>
+                      </a>
                     </li>
                     <li>
-                      <button class="w-full text-left p-3 rounded hover:bg-gray-700" onclick="showTab('creditCardDetails')">
-                        Credit Card
-                      </button>
+                      <a href="{% url 'cards' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700">
+                        Cards
+                      </a>
                     </li>
                     <li>
-                      <button class="w-full text-left p-3 rounded hover:bg-gray-700" onclick="showTab('userDetails')">
+                      <a href="{% url 'users' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700">
                         User
-                      </button>
+                      </a>
                     </li>
                     <li>
-                      <button class="w-full text-left p-3 rounded hover:bg-gray-700" onclick="showTab('emailDetails')">
+                      <a href="{% url 'email' %}" class="block w-full text-left p-3 rounded hover:bg-gray-700">
                         Email
-                      </button>
+                      </a>
                     </li>
                   </ul>
                 </li>
+                
                 <li>
-                  <button class="w-full text-left p-3 rounded hover:bg-gray-700" onclick="showTab('organizationDetails')">
-                    Organization Details
-                  </button>
+                    <a class="block w-full text-left p-3 rounded hover:bg-gray-700" href="{% url 'org-details' %}">Organization Details</a>
                 </li>
               </ul>
             </div>
@@ -104,7 +103,7 @@
                 class="hidden absolute right-0 mt-14 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1">
                 <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
                 <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
-                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a>
+                <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a>
               </div>
             </div>
           </header>
@@ -114,4 +113,9 @@
 </div>
 </div>
 </body>
+<script>
+    function toggleDropdown(dropdownId) {
+      document.getElementById(dropdownId).classList.toggle("hidden");
+    }
+</script>
 </html>
