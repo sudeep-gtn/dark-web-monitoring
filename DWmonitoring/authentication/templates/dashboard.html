@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+<div class="p-6 overflow-auto">
+    <!-- Dashboard section -->
+    <div id="dashboard" class="tab-content active">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-2xl transition-all duration-200 ease-in-out">
+          <div class="text-gray-500">Domain</div>
+          <div class="text-3xl font-bold text-gray-900">85</div>
+          <div class="text-gray-500">domain breaches</div>
+          <button class="mt-2 text-blue-500 hover:underline">
+            See details
+          </button>
+        </div>
+        <div class="shadow-md hover:shadow-2xl transition-all duration-200 ease-in-out bg-white p-6 rounded-lg">
+          <div class="text-gray-500">Credit card</div>
+          <div class="text-3xl font-bold text-gray-900">85</div>
+          <div class="text-gray-500">card breaches</div>
+          <button class="mt-2 text-blue-500 hover:underline">
+            See details
+          </button>
+        </div>
+        <div class="shadow-md hover:shadow-2xl transition-all duration-200 ease-in-out bg-white p-6 rounded-lg">
+          <div class="text-gray-500">User</div>
+          <div class="text-3xl font-bold text-gray-900">12</div>
+          <div class="text-gray-500">user breaches</div>
+          <button class="mt-2 text-blue-500 hover:underline">
+            See details
+          </button>
+        </div>
+        <div class="shadow-md hover:shadow-2xl transition-all duration-200 ease-in-out bg-white p-6 rounded-lg">
+          <div class="text-gray-500">Email</div>
+          <div class="text-3xl font-bold text-gray-900">54</div>
+          <div class="text-gray-500">breaches</div>
+          <button class="mt-2 text-blue-500 hover:underline">
+            See details
+          </button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div class="bg-white p-6 rounded-lg shadow-lg flex items-center justify-center">
+          Domain pie chart
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg flex items-center justify-center">
+          Credit card Chart
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg flex items-center justify-center">
+          User pie chart
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg flex items-center justify-center">
+          Email pie chart
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-lg flex items-center justify-center">
+        bar graph - overall 3 dimensional
+      </div>
+    </div>
+{% endblock content %}

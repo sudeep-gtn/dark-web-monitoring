@@ -64,7 +64,7 @@ class LoginView(View):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('dashboard')
         else:
             return render(request, "login.html", {"error": "Invalid Password"})
 
@@ -73,7 +73,11 @@ class LogoutView(View):
         logout(request)
         return redirect('login')
 
-class HomeView(LoginRequiredMixin, View):
-    login_url = "login"
+class HomeView(View):
     def get(self, request):
         return render(request, "home.html")
+
+class DashboardView(LoginRequiredMixin, View):
+    login_url = "login"
+    def get(self, request):
+        return render(request, "dashboard.html")
