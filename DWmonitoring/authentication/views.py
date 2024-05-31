@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.contrib.auth.password_validation import validate_password
 import re
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class RegisterView(View):
     def get(self, request):
@@ -48,24 +49,31 @@ class RegisterView(View):
             return render(request, "register.html", {"error": "Registration failed"})
 
 class LoginView(View):
-    def get(self,request):
+    def get(self, request):
         return render(request, "login.html")
-    
+
     def post(self, request):
         email = request.POST.get("email")
         password = request.POST.get("password")
-    
+
+        try:
+            user = CustomUser.objects.get(email=email)
+        except CustomUser.DoesNotExist:
+            return render(request, "login.html", {"error": "User does not exist"})
+
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
             return redirect('home')
-        
+        else:
+            return render(request, "login.html", {"error": "Invalid Password"})
+
 class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect('login')
 
-class HomeView(View):
+class HomeView(LoginRequiredMixin, View):
+    login_url = "login"
     def get(self, request):
         return render(request, "home.html")
-    
