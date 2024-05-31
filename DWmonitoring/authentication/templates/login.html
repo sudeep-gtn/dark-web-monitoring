@@ -12,18 +12,18 @@
         <div class=" text-red-600 gap-2 border-2 border-red-600 px-4 py-2  mx-auto rounded flex items-center "><?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.0//EN'  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'><svg height="22" style="overflow:visible;enable-background:new 0 0 32 32" viewBox="0 0 32 32" width="22" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g id="Error_1_"><g id="Error"><circle cx="16" cy="16" id="BG" r="16" style="fill:#D72828;"/><path d="M14.5,25h3v-3h-3V25z M14.5,6v13h3V6H14.5z" id="Exclamatory_x5F_Sign" style="fill:#E6E6E6;"/></g></g></g></svg> <span>{{ error }}</span></div>
         {% endif %}
         <div class="flex flex-col gap-1 ">
-            <label class="font-semibol`d  px-2 " for="email">Email</label>
+            <label class="font-semibold text-gray-700 px-2 " for="email">Email</label>
             <input 
                 type="email"  
                 name="email" 
                 required
-                class="p-2 w-full outline-none border-2 border-red-300 focus:border-red-500  rounded-lg  transition-all duration-300 ease-linear"
+                class="p-2 w-full outline-none border-2 border-gray-400 focus:border-red-500  rounded-lg  transition-all duration-100 ease-in-out"
                 placeholder="eg. name@example.com">
         </div>
         <div class="flex flex-col gap-1 ">
-            <label class="font-semibold px-2 " for="password">Password</label>
+            <label class="font-semibold px-2  text-gray-700" for="password">Password</label>
             <input 
-                class="w-full p-2 outline-none border-red-300 focus:border-red-500 border-2 rounded-lg  transition-all duration-300 ease-linear" 
+                class="w-full p-2 outline-none border-gray-400 focus:border-red-500 border-2 rounded-lg  transition-all duration-100 ease-in-out" 
                 type="password" 
                 name="password" 
                 required
