@@ -9,11 +9,15 @@
     
 </head>
 <body>
-    <main>
-        <h1 class="text-2xl font-semibold mx-auto text-center mt-4 "> <span class="text-red-600 "> Register </span> Your Identity </h1>
+    <main class="my-4 ">
+        <h1 class="text-2xl font-semibold mx-auto text-center mt-2 "> <span class="text-red-600 "> Register </span> Your Identity </h1>
 
         <div class="flex flex-col-reverse gap-4  md:flex-row w-full items-center justify-center items-center justify-center p-4 mt-8">
-            <form action="" class="w-5/6  md:w-1/3 lg:w-1/4  flex flex-col gap-4  ">
+            <form method="post" class="w-5/6  md:w-1/3 lg:w-1/4  flex flex-col gap-4  ">
+                {% csrf_token %}
+                {% if error %}
+                    <div class=" text-red-600 gap-2 border-2 border-red-600 px-4 py-2  mx-auto rounded flex items-center "><?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.0//EN'  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'><svg height="22" style="overflow:visible;enable-background:new 0 0 32 32" viewBox="0 0 32 32" width="22" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g id="Error_1_"><g id="Error"><circle cx="16" cy="16" id="BG" r="16" style="fill:#D72828;"/><path d="M14.5,25h3v-3h-3V25z M14.5,6v13h3V6H14.5z" id="Exclamatory_x5F_Sign" style="fill:#E6E6E6;"/></g></g></g></svg> <span>{{ error }}</span></div>
+                {% endif %}
                 <div class="flex flex-col gap-1 ">
                     <label class="font-semibold  px-2 " for="email">Full Name </label>
                     <input 
@@ -39,15 +43,19 @@
                     <input 
                         class="w-full p-2 outline-none border-red-300 focus:border-red-500 border-2 rounded-lg  transition-all duration-300 ease-linear" 
                         type="password" 
-                        name="confirm_password" 
+                        name="c_password" 
                         placeholder="********" >
                 </div>
-                <button class="bg-red-500 text-white text-lg rounded-lg p-2 active:bg-red-800 transition-all duration-300 ease-in-out"> Register Now  </button>
+                <button type="submit" class="bg-red-500 text-white text-lg rounded-lg p-2 active:bg-red-800 transition-all duration-300 ease-in-out"> Register Now  </button>
+
+                <div class="text-center font-medium text-red-800 hover:underline  "> <a href="login">Already have account ?  Login </a> </div>
+
             </form>
             <div>
-                <img src="{% static 'images/register.png' %}" height="300" class="md:w-96" width="300" alt="Login Illustration">
+                <img  src="{% static 'images/register.png' %}" height="250" class="md:w-96 " width="250" alt="Login Illustration">
             </div>
         </div>
+
     </main>
 </body>
 </html>

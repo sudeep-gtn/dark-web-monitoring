@@ -12,10 +12,11 @@
     <main>
         <h1 class="text-2xl font-semibold mx-auto text-center mt-4 "> <span class="text-red-600 ">Login</span> Your Identity </h1>
 
-        <div class="flex flex-col-reverse md:flex-row w-full items-center justify-center items-center justify-center p-4 mt-16">
-            <form action="" class="w-5/6  md:w-1/3 lg:w-1/4  flex flex-col gap-4  ">
+        <div class="flex flex-col-reverse md:flex-row w-full items-center justify-center items-center justify-center p-4 mt-8">
+            <form method="POST"  class="w-5/6  md:w-1/3 lg:w-1/4  flex flex-col gap-4  ">
+                {% csrf_token %}
                 <div class="flex flex-col gap-1 ">
-                    <label class="font-semibold  px-2 " for="email">Email</label>
+                    <label class="font-semibol`d  px-2 " for="email">Email</label>
                     <input 
                         type="email"  
                         name="email" 
@@ -26,10 +27,12 @@
                     <label class="font-semibold px-2 " for="password">Password</label>
                     <input class="w-full p-2 outline-none border-red-300 focus:border-red-500 border-2 rounded-lg  transition-all duration-300 ease-linear" type="password" name="password" placeholder="********" >
                 </div>
-                <button class="bg-red-500 text-white text-lg rounded-lg p-2 active:bg-red-800 transition-all duration-300 ease-in-out">Login </button>
+                <button type="submit" class="bg-red-500 text-white text-lg rounded-lg p-2 active:bg-red-800 transition-all duration-300 ease-in-out"> Login </button>
+
+                <div class="text-center font-medium text-red-800 hover:underline  "> <a href="register">Don't have account ?  Register</a> </div>
             </form>
             <div>
-                <img src="{% static 'images/login-illustration.png' %}" height="250" width="250" alt="Login Illustration">
+                <img src="{% static 'images/login-illustration.png' %}" height="250" class="md:w-96" width="250" alt="Login Illustration">
             </div>
         </div>
     </main>
