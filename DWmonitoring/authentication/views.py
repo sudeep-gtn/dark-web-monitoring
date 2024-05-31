@@ -42,6 +42,11 @@ class LoginView(View):
         if user is not None:
             login(request, user)
             return redirect('home')
+        
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('login')
 
 class HomeView(View):
     def get(self, request):
