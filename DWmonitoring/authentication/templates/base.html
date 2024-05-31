@@ -10,7 +10,7 @@
     <!-- Navigation bar -->
     <div class="flex flex-col md:flex-row">
         <!-- Sidebar -->
-        <div class="bg-gray-800 text-white w-full md:w-56 h-screen flex flex-col justify-between">
+        <div class="bg-gray-800 text-white w-full z-50 md:w-56 h-screen flex flex-col justify-between">
           <div>
             <div class="p-4 text-center border-b border-gray-700">
               <div class="text-2xl font-bold">Logo</div>
@@ -57,9 +57,22 @@
             </div>
           </div>
           <div class="p-4 border-t border-gray-700">
-            <a class="w-full text-left p-3 rounded hover:bg-gray-700" href="{% url 'logout' %}">
+            <button onclick="showPopUp()" class="block w-full text-left p-3 rounded hover:bg-red-600">
               Log out
-            </a>
+            </button>
+          </div>
+        </div>
+
+        <div class="fixed inset-0 z-20 flex items-center justify-center min-h-full overflow-hidden">
+          <!-- <div aria-hidden="true" class="fixed bg-black inset-0 opacity-60">
+
+          </div> -->
+          <div id="confirm-popup" class="border-2 border-gray-200 rounded w-[700px] h-[300px] hidden mx-auto flex-col items-center justify-around my-auto relative shadow-lg translate-y-4 bg-gray-200">
+            <h1 class="text-center text-red-500 text-2xl my-4">Are you sure to logout?</h1>
+            <div class="flex items-center justify-around w-full py-2 px-6">
+              <a href="{% url 'logout' %}" class="w-fit px-8 py-2 bg-red-500 text-white rounded-full hover:bg-white hover:text-red-500 trasition-all duration-300 ease-in-out">Yes</a>
+              <button onclick="cancelLogout()" class="w-fit px-8 py-2 bg-red-500 text-white rounded-full hover:bg-white hover:text-red-500">Cancel</button>
+            </div>
           </div>
         </div>
     
@@ -116,6 +129,16 @@
 <script>
     function toggleDropdown(dropdownId) {
       document.getElementById(dropdownId).classList.toggle("hidden");
+    }
+    function showPopUp() {
+              let element = document.getElementById('confirm-popup');
+              element.classList.remove('hidden')
+              element.classList.add('block');
+            }
+    function cancelLogout() {
+      let element = document.getElementById('confirm-popup');
+              element.classList.remove('block')
+              element.classList.add('hidden');      
     }
 </script>
 </html>
