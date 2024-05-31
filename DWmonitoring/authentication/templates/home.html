@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title> {% block title %} Home {% endblock title %}</title>
 </head>
+
 <body>
-    <h1>Home page</h1>
+    <header class="flex fixed w-full bg-white  z-50 h-14 justify-between py-4 px-8 border-b-2 border-gray-200 ">
+        <div class="text-xl font-semibold">
+            <a href="{% url 'home' %}"><span class=" text-red-700 ">Dark Web</span> <span
+                    class="text-[#92a91a]">Monitoring</span></a>
+        </div>
+        <nav class="flex gap-6">
+            <a href="{% url 'login' %}">
+                <button
+                    class="{% if request.path == '/login' %} text-red-700 border-red-700 {% endif %} border-b-2 hover:border-red-600 hover:text-red-600 transition-all duration-200 ease-in-out border-b">Login</button>
+            </a>
+            <a href="{% url 'register' %}">
+                <button
+                    class="{% if request.path == '/register' %} text-red-700 border-red-700 {% endif %}  border-b-2 hover:border-red-600 hover:text-red-600 transition-all duration-200 ease-in-out border-b">Register</button>
+            </a>
+        </nav>
+    </header>
+    <main class="pt-16 ">
+        {% block content %}
+        {% endblock content %}
+    </main>
 </body>
+
 </html>
