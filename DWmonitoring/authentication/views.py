@@ -108,3 +108,6 @@ class OrganizationDetailsView(View):
 class NotificationsView(View):
     def get(self, request):
         return render(request,'notifications.html')
+    
+
+print("Hello world")
