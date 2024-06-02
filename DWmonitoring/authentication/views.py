@@ -22,6 +22,9 @@ class RegisterView(View):
         if not re.match(r'^[A-Za-z\s]{3,}$', full_name):
             return render(request, "register.html", {"error": "Full name must be at least 3 characters long and contain only alphabetic characters and spaces"})
 
+        if CustomUser.objects.filter(email=email).exists():
+            return render(request, "register.html", {"error": "User with the provided email already exists"})
+
         if password != c_password:
             return render(request, "register.html", {"error": "Passwords do not match"})
         try:
@@ -33,7 +36,7 @@ class RegisterView(View):
         try:
             validate_password(password)
         except ValidationError as e:
-            return render(request, "register.html", {"error": str(e.messages)})
+            return render(request, "register.html", {"error": "".join(e.messages)})
 
         try:
             user = CustomUser.objects.create_user(
@@ -94,7 +97,6 @@ class UsersView(View):
     def get(self, request):
         return render(request,"users.html")
     
-
 class EmailView(View):
     def get(self,request):
         return render(request, "email.html")
