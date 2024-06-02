@@ -1,1 +1,4 @@
 dark-web-env/
+__pycache__/
+migrations/
+DWmonitoring/db.sqlite3

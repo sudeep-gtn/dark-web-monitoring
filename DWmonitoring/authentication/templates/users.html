@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Users{% endblock title %}
+
+{% block content %}
+<div class="mx-4 my-4">
+    <div class="flex space-x-6 mb-6">
+      <div class="flex-1 shadow-lg bg-white p-6 rounded-lg border-custom">
+        <h2 class="text-2xl mb-2 text-center">Users</h2>
+        <div class="flex justify-between items-center">
+          <div>
+            <p class="text-5xl font-bold">245</p>
+            <p>User breaches</p>
+          </div>
+          <div>
+            <p class="text-5xl font-bold">500</p>
+            <p>Total Users</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 bg-white shadow-lg p-6 rounded-lg border-custom flex items-center justify-center">
+        <p class="text-5xl font-bold">Chart</p>
+      </div>
+    </div>
+    <div class="overflow-x-auto bg-gray-200 rounded-lg border-custom">
+      <table class="min-w-full table-auto">
+        <thead class="bg-gray-300 rounded">
+          <tr class="border-b border-gray-400">
+            <th class="px-4 py-2 border-custom border-r border-gray-500">user Name</th>
+            <th class="px-4 py-2 border-custom border-r border-gray-500">breach date</th>
+            <th class="px-4 py-2 border-custom border-r border-gray-500">breach ip</th>
+            <th class="px-4 py-2 border-custom border-r border-gray-500">domain</th>
+            <th class="px-4 py-2 border-custom border-r border-gray-500">threat type</th>
+            <th class="px-4 py-2 border-custom border-r border-gray-500">severity level</th>
+            <th class="px-4 py-2 border-custom border-r border-gray-500">type of data</th>
+            <th class="px-4 py-2 border-custom border-r border-gray-500">source</th>
+            <th class="px-4 py-2 border-custom border-r border-gray-500">personal email</th>
+            <th class="px-4 py-2 border-custom border-r border-gray-500">phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="px-4 py-2 border-custom">emp1</td>
+            <td class="px-4 py-2 border-custom">date1</td>
+            <td class="px-4 py-2 border-custom">ip1</td>
+            <td class="px-4 py-2 border-custom">domain1</td>
+            <td class="px-4 py-2 border-custom">threat1</td>
+            <td class="px-4 py-2 border-custom">severity1</td>
+            <td class="px-4 py-2 border-custom">data1</td>
+            <td class="px-4 py-2 border-custom">source1</td>
+            <td class="px-4 py-2 border-custom">email1</td>
+            <td class="px-4 py-2 border-custom">phone1</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border-custom">emp2</td>
+            <td class="px-4 py-2 border-custom">date2</td>
+            <td class="px-4 py-2 border-custom">ip2</td>
+            <td class="px-4 py-2 border-custom">domain2</td>
+            <td class="px-4 py-2 border-custom">threat2</td>
+            <td class="px-4 py-2 border-custom">severity2</td>
+            <td class="px-4 py-2 border-custom">data2</td>
+            <td class="px-4 py-2 border-custom">source2</td>
+            <td class="px-4 py-2 border-custom">email2</td>
+            <td class="px-4 py-2 border-custom">phone2</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border-custom">emp3</td>
+            <td class="px-4 py-2 border-custom">date3</td>
+            <td class="px-4 py-2 border-custom">ip3</td>
+            <td class="px-4 py-2 border-custom">domain3</td>
+            <td class="px-4 py-2 border-custom">threat3</td>
+            <td class="px-4 py-2 border-custom">severity3</td>
+            <td class="px-4 py-2 border-custom">data3</td>
+            <td class="px-4 py-2 border-custom">source3</td>
+            <td class="px-4 py-2 border-custom">email3</td>
+            <td class="px-4 py-2 border-custom">phone3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock content %}

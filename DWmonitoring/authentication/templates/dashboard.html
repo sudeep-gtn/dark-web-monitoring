@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+<div class="p-6">
+  <!-- Dashboard Section -->
+  <div class="grid grid-cols-4 gap-6 mb-6">
+      <!-- Domain Breaches -->
+      <div class="bg-white p-6 rounded shadow-md">
+          <div class="text-2xl font-bold">85</div>
+          <div class="text-gray-500">Domain breaches</div>
+      </div>
+      <!-- Card Breaches -->
+      <div class="bg-white p-6 rounded shadow-md">
+          <div class="text-2xl font-bold">85</div>
+          <div class="text-gray-500">Card breaches</div>
+      </div>
+      <!-- User Breaches -->
+      <div class="bg-white p-6 rounded shadow-md">
+          <div class="text-2xl font-bold">12</div>
+          <div class="text-gray-500">User breaches</div>
+          <div class="text-gray-500">Total: 10,000</div>
+      </div>
+      <!-- Email Breaches -->
+      <div class="bg-white p-6 rounded shadow-md">
+          <div class="text-2xl font-bold">54</div>
+          <div class="text-gray-500">Email breaches</div>
+          <div class="text-gray-500">Total: 2,300</div>
+      </div>
+  </div>
+
+  <!-- Severity Level and Data Distribution -->
+  <div class="grid grid-cols-3 gap-6 mb-6">
+      <!-- Severity Level -->
+      <div class="bg-white p-6 rounded shadow-md flex justify-center items-center">
+        <div>
+            <div class="text-xl font-bold mb-4">Severity Level</div>
+            <div class="flex justify-center">
+                <div class="w-32 h-32 rounded-full border-4 border-gray-300 flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="font-bold text-red-500">High: 10</div>
+                        <div class="text-yellow-500">Medium: 5</div>
+                        <div class="text-green-500">Low: 2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+      <!-- Severity Level Distribution of Data Types -->
+      <div class="bg-white p-6 rounded shadow-md col-span-1">
+          <div class="text-xl font-bold mb-4">Severity Level Distribution</div>
+          <div class="flex justify-around">
+              <div class="text-center">
+                  <div class="h-24 w-8 bg-red-500"></div>
+                  <div class="mt-2">Financial</div>
+              </div>
+              <div class="text-center">
+                  <div class="h-32 w-8 bg-yellow-500"></div>
+                  <div class="mt-2">Personal</div>
+              </div>
+              <div class="text-center">
+                  <div class="h-20 w-8 bg-green-500"></div>
+                  <div class="mt-2">Intellectual</div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Health Report Indicator -->
+      <div class="bg-white p-6 rounded shadow-md col-span-1 flex justify-center items-center">
+          <div class="text-center">
+              <div class="text-xl font-bold mb-4">Health Report Indicator</div>
+              <svg viewBox="0 0 36 36" class="w-32 h-32">
+                  <path
+                      d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none" stroke="#ccc" stroke-width="4" />
+                  <path
+                      d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831"
+                      fill="none" stroke="#ff4500" stroke-width="4" stroke-dasharray="80, 100" />
+              </svg>
+              <div class="mt-4">Critical</div>
+          </div>
+      </div>
+  </div>
+  <div class="bg-white rounded shadow-md">
+    <div class="h-96">
+        <canvas id="trendAnalysisChart"></canvas>
+    </div>
+</div>
+
+
+<script>
+  // Line chart data
+  const ctx = document.getElementById('trendAnalysisChart').getContext('2d');
+  const trendAnalysisChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          datasets: [{
+              label: 'Monthly Data',
+              data: [10, 20, 15, 30, 25, 35, 40, 30, 45, 55, 50, 60],
+              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4
+          }]
+      },
+      options: {
+          responsive: true,
+          scales: {
+              x: {
+                  beginAtZero: true
+              },
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+</script>
+
+
+{% endblock content %}
