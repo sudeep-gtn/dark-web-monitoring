@@ -1,0 +1,4 @@
+db.sqlite3 
+DWmonitoring/__pycache__/
+authentication/migrations/
+
