@@ -67,14 +67,15 @@ class LoginView(View):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect("dashboard")
         else:
             return render(request, "login.html", {"error": "Invalid Password"})
 
-class LogoutView(View):
+class LogoutView(View, LoginRequiredMixin):
+    login_url = "login"
     def get(self, request):
         logout(request)
-        return redirect('login')
+        return redirect("login")
 
 class HomeView(View):
     def get(self, request):
@@ -85,29 +86,38 @@ class DashboardView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, "dashboard.html")
     
-class DomainView(View):
+class DomainView(LoginRequiredMixin, View):
+    login_url = "login"
     def get(self, request):
-        return render(request,"domain.html")
+        return render(request, "domain.html")
     
-class CardsView(View):
+class CardsView(LoginRequiredMixin, View):
+    login_url = "login"
     def get(self, request):
-        return render(request,"cards.html")
+        return render(request, "cards.html")
     
-class UsersView(View):
+class UsersView(LoginRequiredMixin, View):
+    login_url = "login"
     def get(self, request):
-        return render(request,"users.html")
+        return render(request, "users.html")
     
-class EmailView(View):
+class EmailView(LoginRequiredMixin, View):
+    login_url = "login"
     def get(self,request):
         return render(request, "email.html")
     
-class OrganizationDetailsView(View):
+class OrganizationDetailsView(LoginRequiredMixin, View):
+    login_url = "login"
     def get(self, request):
-        return render(request,"organization-details.html")
+        return render(request, "organization-details.html")
     
-class NotificationsView(View):
+class NotificationsView(LoginRequiredMixin, View):
+    login_url = "login"
     def get(self, request):
-        return render(request,'notifications.html')
+        return render(request, "notifications.html")
     
 
-print("Hello world")
+class ProfileView(LoginRequiredMixin, View):
+    login_url = "login"
+    def get(self, request):
+        return render(request, "profile.html")
