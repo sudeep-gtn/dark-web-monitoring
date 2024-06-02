@@ -96,14 +96,14 @@
   </style>
 </head>
 
-<body class="bg-gray-100">
+<body  class="bg-gray-100">
   <!-- Navigation bar -->
   <div class="flex flex-col md:flex-row">
     <!-- Sidebar -->
-    <div id="sidebar"  class=" hidden md:block absolute md:static top-0 left-0 z-50  bg-gray-800 text-white  md:px-0 z-50 md:w-56 h-screen flex flex-col justify-between">
+    <div id="sidebar"  class="hidden md:block absolute md:static top-0 left-0 z-50  bg-gray-800 text-white  md:px-0 z-50 md:w-56 h-screen flex flex-col justify-between">
       <div>
         <div class="p-4 text-center border-b border-gray-700">
-          <div class="text-2xl font-bold">Logo</div>
+          <div class="text-2xl font-bold"><img src="https://i0.wp.com/gtn.com.np/storage/2022/09/greentick-nepal-pvt-lt.png?fit=2294%2C755&ssl=1" height="130" width="130"></div>
         </div>
         <div class="p-4">
           <ul class="space-y-2">
@@ -154,6 +154,9 @@
         </div>
       </div>
       <div class="p-4 border-t mb-4  flex flex-col items-center justify-around w-full  border-gray-700">
+        <button  class=" block md:hidden {% if request.path == '/profile' %}border-l-4 border-[#92a91a]{% endif %} block w-full text-left p-3 rounded hover:bg-gray-700">
+          Profile 
+        </button>
         <button  class=" block md:hidden {% if request.path == '/settings' %}border-l-4 border-[#92a91a]{% endif %} block w-full text-left p-3 rounded hover:bg-gray-700">
           Settings 
         </button>
@@ -225,7 +228,7 @@
           class="w-full text-left block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</button>
         </div>
         <!-- menu for mobile view -->
-        <div class="md:hidden block bg-gray-100 rounded-full p-4 z-50">
+        <div class="md:hidden block  bg-gray-100 rounded-full p-4 z-50">
           <input id="checkbox2" type="checkbox" class="hidden">
           <label class="toggle toggle2" for="checkbox2" onclick="toggleSidebar()">
             <div id="bar4" class="bars"></div>
@@ -255,6 +258,7 @@ function toggleSidebar() {
       sidebar.classList.remove('slide-out');
       sidebar.classList.add('slide-in');
       overlay.classList.remove('hidden');
+      document.querySelector('body').classList.add('overflow-hidden')
     } else {
       sidebar.classList.remove('slide-in');
       sidebar.classList.add('slide-out');
