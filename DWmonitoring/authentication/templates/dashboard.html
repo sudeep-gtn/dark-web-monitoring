@@ -77,13 +77,13 @@
 
         <!-- Severity Level and Data Distribution -->
         <div style="width: 350px;" class=' mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'>
-            <h1 class="font-semibold pb-2 w-fit  mx-auto text-center"> Total Breach Counts by Type </h1>
+            <h1 class="font-semibold pb-2 w-fit  mx-auto text-center">Distribution of Data Breach Severity Levels  </h1>
             <div  class="chart-container ">
                 <canvas id="severityChart"></canvas>
             </div>
         </div>
         <div class='xl:w-[700px] w-[400px] mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'>
-            <h1 class="font-semibold pb-2 ">Distribution of Data Breach Severity Levels </h1>
+            <h1 class="font-semibold pb-2 "> Total Breach Counts by Type</h1>
             <div class="chart-container">
                 <canvas id="breachCountChart"></canvas>
             </div>
@@ -172,6 +172,8 @@
         const breachCountCtx = document.getElementById('breachCountChart').getContext('2d');
         new Chart(breachCountCtx, breachCountChartConfig);
     };
+
+
 </script>
 
 
