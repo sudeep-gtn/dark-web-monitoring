@@ -13,6 +13,25 @@
       display: none;
     }
 
+    ::-webkit-scrollbar {
+      width: 12px;
+      /* Width of the scrollbar */
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      /* Background of the scrollbar track */
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: red;
+      /* Color of the scrollbar thumb */
+      border-radius: 10px;
+      /* Roundness of the scrollbar thumb */
+      border: 4px solid #f1f1f1;
+      /* Padding around scrollbar thumb */
+    }
+
     .toggle2 {
       position: relative;
       width: 34px;
@@ -179,7 +198,7 @@
 
 
   <!-- Main Content -->
-  <div class="flex-1 w-full h-screen overflow-y-scroll">
+  <div class="flex-1 w-full h-screen overflow-y-auto">
 
     <div id="confirm-popup"
       class="fixed hidden inset-0 z-50  min-h-full overflow-y-auto overflow-x-hidden flex items-center justify-center">
@@ -196,9 +215,9 @@
     </div>
     <!-- Header -->
     <header class="shadow-md p-4 flex justify-between items-center z-50">
-      <div class="text-3xl font-extrabold text-gray-700">
+      <a href="{% url 'dashboard'%}" class="text-3xl font-extrabold text-gray-700">
         <span class="text-red-500"> Dark Web</span> <span class="text-[#92a91a]">Monitoring</span>
-      </div>
+      </a>
       <div class="relative flex gap-4 px-4">
         <a href="{% url 'notifications' %}" class="flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 50 50">
