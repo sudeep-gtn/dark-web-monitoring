@@ -4,7 +4,7 @@
 {% block content %}
 <div class="p-6">
     <!-- Dashboard Section -->
-    <div class=" w-full mx-auto flex flex-col md:flex-row items-center  gap-4 mb-6">
+    <div class=" w-full mx-auto flex flex-col xl:flex-row items-center  gap-4 mb-6">
         <!-- Domain Breaches -->
         <div class="flex gap-4 lg:flex-row flex-col w-full">
             <div
@@ -12,7 +12,7 @@
                 <div
                     class="bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center h-36 w-36 rounded-full ">
                     <div
-                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-5xl text-red-600 font-bold">
+                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-red-600 font-bold">
                         85</div>
                 </div>
                 <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
@@ -27,7 +27,7 @@
                 <div
                     class="bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center h-36 w-36 rounded-full ">
                     <div
-                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-5xl text-red-600 font-bold">
+                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-red-600 font-bold">
                         85</div>
                 </div>
                 <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
@@ -44,7 +44,7 @@
                 <div
                     class="bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center h-36 w-36 rounded-full ">
                     <div
-                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-5xl text-red-600 font-bold">
+                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-red-600 font-bold">
                         755</div>
                 </div>
                 <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
@@ -59,7 +59,7 @@
                 <div
                     class="bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center h-36 w-36 rounded-full ">
                     <div
-                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-5xl text-red-600 font-bold">
+                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-red-600 font-bold">
                         98</div>
                 </div>
                 <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
@@ -73,63 +73,27 @@
 
 
     <!-- charts  -->
-    <div class="flex ">
+    <div class="flex gap-6 flex-col lg:flex-row ">
+
         <!-- Severity Level and Data Distribution -->
-        <div style="width: 350px;" class=' mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'
-            id="chartContainer">
-            <h1 class="font-semibold py-2">Distribution of Data Breach Severity Levels </h1>
-            <canvas id="severityChart"></canvas>
+        <div style="width: 350px;" class=' mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'>
+            <h1 class="font-semibold pb-2 w-fit  mx-auto text-center"> Total Breach Counts by Type </h1>
+            <div  class="chart-container ">
+                <canvas id="severityChart"></canvas>
+            </div>
         </div>
+        <div class='xl:w-[700px] w-[400px] mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'>
+            <h1 class="font-semibold pb-2 ">Distribution of Data Breach Severity Levels </h1>
+            <div class="chart-container">
+                <canvas id="breachCountChart"></canvas>
+            </div>
+        </div>
+
+        
     </div>
-
-
-
 </div>
-<div class="bg-white rounded shadow-md">
-    <h1></h1>
-    <div>
-        <canvas id="trendAnalysisChart"></canvas>
-    </div>
-</div>
-
 <script>
     // Line chart data
-    const ctx = document.getElementById('trendAnalysisChart').getContext('2d');
-    const trendAnalysisChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [{
-                label: 'Monthly Data',
-                data: [10, 20, 15, 30, 25, 35, 40, 30, 45, 55, 50, 60],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderWidth: 2,
-                fill: true,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    beginAtZero: true
-                },
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-
-
-
-
-
-
-    // Doughnut chart for severity level 
-
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
@@ -143,7 +107,38 @@
         }]
     };
 
-    const config = {
+    const breachCountData = {
+        labels: ['Domains', 'Emails', 'Users', 'Cards'],
+        datasets: [{
+            label: 'Breach Counts',
+            data: [getRandomInt(10, 100), getRandomInt(10, 100), getRandomInt(10, 100), getRandomInt(10, 100)],
+            backgroundColor: '#36a2eb'
+        }]
+    };
+
+    const breachCountChartConfig = {
+        type: 'bar',
+        data: breachCountData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: ''
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    const severityConfig = {
         type: 'doughnut',
         data: severityData,
         options: {
@@ -171,8 +166,11 @@
     };
 
     window.onload = function () {
-        const ctx = document.getElementById('severityChart').getContext('2d');
-        new Chart(ctx, config);
+        const severityCtx = document.getElementById('severityChart').getContext('2d');
+        new Chart(severityCtx, severityConfig);
+
+        const breachCountCtx = document.getElementById('breachCountChart').getContext('2d');
+        new Chart(breachCountCtx, breachCountChartConfig);
     };
 </script>
 
