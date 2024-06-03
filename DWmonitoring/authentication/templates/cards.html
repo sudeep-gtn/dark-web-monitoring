@@ -2,5 +2,71 @@
 {% block title %}Cards{% endblock title %}
 
 {% block content %}
-<h1>Cards page</h1>
+<div class="mx-4 my-4">
+    <div class="flex space-x-6 mb-6">
+        <div class="flex-1 shadow-lg bg-white p-6 rounded-lg border-custom">
+          <h2 class="text-2xl mb-2 text-center">Cards</h2>
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="text-5xl font-bold">78</p>
+              <p>Cards breaches</p>
+            </div>
+            <div>
+              <p class="text-5xl font-bold">500</p>
+              <p>Total Cards</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 bg-white shadow-lg p-6 rounded-lg border-custom flex items-center justify-center">
+          <p class="text-5xl font-bold">Chart</p>
+        </div>
+      </div>
+    <div class="overflow-x-auto">
+        <div class="shadow rounded border border-gray-200">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Card No.</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Card Type</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Expiry Date</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">CVV</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Card Holder Name</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Issuing Bank</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Breach Date</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Breach Source</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Last Used Date</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Comment/Summary/Key Notes</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr>
+                        <td class="px-4 py-3 text-left">1234-5678-9011-1213</td>
+                        <td class="px-4 py-3 text-left">VISA</td>
+                        <td class="px-4 py-3 text-left">2027-03-05</td>
+                        <td class="px-4 py-3 text-left">Unknown</td>
+                        <td class="px-4 py-3 text-left">Abc User</td>
+                        <td class="px-4 py-3 text-left">ABC Bank Pvt.Ltd.</td>
+                        <td class="px-4 py-3 text-left">2023-05-05</td>
+                        <td class="px-4 py-3 text-left">Unknown</td>
+                        <td class="px-4 py-3 text-left">2022-03-30</td>
+                        <td class="px-4 py-3 flex items-center"><textarea class="border rounded px-2 py-1 w-full mr-2 resize-none"></textarea><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button></td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3 text-left">1234-5678-9011-1213</td>
+                        <td class="px-4 py-3 text-left">VISA</td>
+                        <td class="px-4 py-3 text-left">2027-03-05</td>
+                        <td class="px-4 py-3 text-left">Unknown</td>
+                        <td class="px-4 py-3 text-left">Abc User</td>
+                        <td class="px-4 py-3 text-left">ABC Bank Pvt.Ltd.</td>
+                        <td class="px-4 py-3 text-left">2023-05-05</td>
+                        <td class="px-4 py-3 text-left">Unknown</td>
+                        <td class="px-4 py-3 text-left">2022-03-30</td>
+                        <td class="px-4 py-3 flex items-center"><textarea class="border rounded px-2 py-1 w-full mr-2 resize-none"></textarea><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock content %}

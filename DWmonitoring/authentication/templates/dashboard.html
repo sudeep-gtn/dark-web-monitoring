@@ -3,125 +3,177 @@
 
 {% block content %}
 <div class="p-6">
-  <!-- Dashboard Section -->
-  <div class="grid grid-cols-4 gap-6 mb-6">
-      <!-- Domain Breaches -->
-      <div class="bg-white p-6 rounded shadow-md">
-          <div class="text-2xl font-bold">85</div>
-          <div class="text-gray-500">Domain breaches</div>
-      </div>
-      <!-- Card Breaches -->
-      <div class="bg-white p-6 rounded shadow-md">
-          <div class="text-2xl font-bold">85</div>
-          <div class="text-gray-500">Card breaches</div>
-      </div>
-      <!-- User Breaches -->
-      <div class="bg-white p-6 rounded shadow-md">
-          <div class="text-2xl font-bold">12</div>
-          <div class="text-gray-500">User breaches</div>
-          <div class="text-gray-500">Total: 10,000</div>
-      </div>
-      <!-- Email Breaches -->
-      <div class="bg-white p-6 rounded shadow-md">
-          <div class="text-2xl font-bold">54</div>
-          <div class="text-gray-500">Email breaches</div>
-          <div class="text-gray-500">Total: 2,300</div>
-      </div>
-  </div>
-
-  <!-- Severity Level and Data Distribution -->
-  <div class="grid grid-cols-3 gap-6 mb-6">
-      <!-- Severity Level -->
-      <div class="bg-white p-6 rounded shadow-md flex justify-center items-center">
-        <div>
-            <div class="text-xl font-bold mb-4">Severity Level</div>
-            <div class="flex justify-center">
-                <div class="w-32 h-32 rounded-full border-4 border-gray-300 flex items-center justify-center">
-                    <div class="text-center">
-                        <div class="font-bold text-red-500">High: 10</div>
-                        <div class="text-yellow-500">Medium: 5</div>
-                        <div class="text-green-500">Low: 2</div>
-                    </div>
+    <!-- Dashboard Section -->
+    <div class=" w-full mx-auto flex flex-col xl:flex-row items-center  gap-4 mb-6">
+        <!-- Domain Breaches -->
+        <div class="flex gap-4 lg:flex-row flex-col w-full">
+            <div
+                class="border-2 border-red-200 w-full hover:shadow-red-600/20 hover:shadow-2xl transition-all duration-300 ease-in-out bg-white flex gap-8 items-center justify-center p-6 rounded-md shadow-md">
+                <div
+                    class="bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center h-36 w-36 rounded-full ">
+                    <div
+                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-red-600 font-bold">
+                        85</div>
+                </div>
+                <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
+                <div class="flex flex-col gap-2 ">
+                    <div class="text-gray-500 text-lg font-semibold">Domain breaches</div>
+                    <a href="{% url 'domain' %}" class="text-blue-500 underline">View Details</a>
+                </div>
+            </div>
+            <!-- Card Breaches -->
+            <div
+                class="border-2 border-red-200 w-full hover:shadow-red-600/20 hover:shadow-2xl transition-all duration-300 ease-in-out bg-white flex gap-8 items-center justify-center p-6 rounded-md shadow-md">
+                <div
+                    class="bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center h-36 w-36 rounded-full ">
+                    <div
+                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-red-600 font-bold">
+                        85</div>
+                </div>
+                <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
+                <div class="flex flex-col gap-2 ">
+                    <div class="text-gray-500 text-lg font-semibold">Cards breaches</div>
+                    <a href="{% url 'cards' %}" class="text-blue-500 underline">View Details</a>
+                </div>
+            </div>
+        </div>
+        <!-- User Breaches -->
+        <div class="lg:flex-row flex gap-4 flex-col w-full">
+            <div
+                class="border-2 border-red-200 w-full hover:shadow-red-600/20 hover:shadow-2xl transition-all duration-300 ease-in-out bg-white flex gap-8 items-center justify-center p-6 rounded-md shadow-md">
+                <div
+                    class="bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center h-36 w-36 rounded-full ">
+                    <div
+                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-red-600 font-bold">
+                        755</div>
+                </div>
+                <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
+                <div class="flex flex-col gap-2 ">
+                    <div class="text-gray-500 text-lg font-semibold"> User breaches</div>
+                    <a href="{% url 'users' %}" class="text-blue-500 underline">View Details</a>
+                </div>
+            </div>
+            <!-- Email Breaches -->
+            <div
+                class="border-2 border-red-200 w-full hover:shadow-red-600/20 hover:shadow-2xl transition-all duration-300 ease-in-out bg-white flex gap-8 items-center justify-center p-6 rounded-md shadow-md">
+                <div
+                    class="bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center h-36 w-36 rounded-full ">
+                    <div
+                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-red-600 font-bold">
+                        98</div>
+                </div>
+                <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
+                <div class="flex flex-col gap-2 ">
+                    <div class="text-gray-500 text-lg font-semibold"> Email breaches</div>
+                    <a href="{% url 'email' %}" class="text-blue-500 underline">View Details</a>
                 </div>
             </div>
         </div>
     </div>
 
 
-      <!-- Severity Level Distribution of Data Types -->
-      <div class="bg-white p-6 rounded shadow-md col-span-1">
-          <div class="text-xl font-bold mb-4">Severity Level Distribution</div>
-          <div class="flex justify-around">
-              <div class="text-center">
-                  <div class="h-24 w-8 bg-red-500"></div>
-                  <div class="mt-2">Financial</div>
-              </div>
-              <div class="text-center">
-                  <div class="h-32 w-8 bg-yellow-500"></div>
-                  <div class="mt-2">Personal</div>
-              </div>
-              <div class="text-center">
-                  <div class="h-20 w-8 bg-green-500"></div>
-                  <div class="mt-2">Intellectual</div>
-              </div>
-          </div>
-      </div>
+    <!-- charts  -->
+    <div class="flex gap-6 flex-col lg:flex-row ">
 
-      <!-- Health Report Indicator -->
-      <div class="bg-white p-6 rounded shadow-md col-span-1 flex justify-center items-center">
-          <div class="text-center">
-              <div class="text-xl font-bold mb-4">Health Report Indicator</div>
-              <svg viewBox="0 0 36 36" class="w-32 h-32">
-                  <path
-                      d="M18 2.0845
-                         a 15.9155 15.9155 0 0 1 0 31.831
-                         a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none" stroke="#ccc" stroke-width="4" />
-                  <path
-                      d="M18 2.0845
-                         a 15.9155 15.9155 0 0 1 0 31.831"
-                      fill="none" stroke="#ff4500" stroke-width="4" stroke-dasharray="80, 100" />
-              </svg>
-              <div class="mt-4">Critical</div>
-          </div>
-      </div>
-  </div>
-  <div class="bg-white rounded shadow-md">
-    <div class="h-96">
-        <canvas id="trendAnalysisChart"></canvas>
+        <!-- Severity Level and Data Distribution -->
+        <div style="width: 350px;" class=' mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'>
+            <h1 class="font-semibold pb-2 w-fit  mx-auto text-center">Distribution of Data Breach Severity Levels  </h1>
+            <div  class="chart-container ">
+                <canvas id="severityChart"></canvas>
+            </div>
+        </div>
+        <div class='xl:w-[700px] w-[400px] mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'>
+            <h1 class="font-semibold pb-2 "> Total Breach Counts by Type</h1>
+            <div class="chart-container">
+                <canvas id="breachCountChart"></canvas>
+            </div>
+        </div>
+
+        
     </div>
 </div>
-
-
 <script>
-  // Line chart data
-  const ctx = document.getElementById('trendAnalysisChart').getContext('2d');
-  const trendAnalysisChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-          datasets: [{
-              label: 'Monthly Data',
-              data: [10, 20, 15, 30, 25, 35, 40, 30, 45, 55, 50, 60],
-              borderColor: 'rgba(75, 192, 192, 1)',
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderWidth: 2,
-              fill: true,
-              tension: 0.4
-          }]
-      },
-      options: {
-          responsive: true,
-          scales: {
-              x: {
-                  beginAtZero: true
-              },
-              y: {
-                  beginAtZero: true
-              }
-          }
-      }
-  });
+    // Line chart data
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    const severityData = {
+        labels: ['High', 'Medium', 'Low'],
+        datasets: [{
+            data: [getRandomInt(10, 100), getRandomInt(10, 100), getRandomInt(10, 100)],
+            backgroundColor: ['#f22424', '#ebcb1a', '#73e038'],
+            hoverBackgroundColor: ['#c91010', '#e3cf19', '#77db69']
+        }]
+    };
+
+    const breachCountData = {
+        labels: ['Domains', 'Emails', 'Users', 'Cards'],
+        datasets: [{
+            label: 'Breach Counts',
+            data: [getRandomInt(10, 100), getRandomInt(10, 100), getRandomInt(10, 100), getRandomInt(10, 100)],
+            backgroundColor: '#36a2eb'
+        }]
+    };
+
+    const breachCountChartConfig = {
+        type: 'bar',
+        data: breachCountData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: ''
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    const severityConfig = {
+        type: 'doughnut',
+        data: severityData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                label += context.parsed;
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        },
+    };
+
+    window.onload = function () {
+        const severityCtx = document.getElementById('severityChart').getContext('2d');
+        new Chart(severityCtx, severityConfig);
+
+        const breachCountCtx = document.getElementById('breachCountChart').getContext('2d');
+        new Chart(breachCountCtx, breachCountChartConfig);
+    };
+
+
 </script>
 
 

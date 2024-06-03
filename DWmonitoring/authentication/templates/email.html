@@ -2,5 +2,58 @@
 {% block title %}Email{% endblock title %}
 
 {% block content %}
-<h1>Email page</h1>
+<div class="mx-4 my-4">
+    <div class="flex space-x-6 mb-6">
+        <div class="flex-1 shadow-lg bg-white p-6 rounded-lg border-custom">
+          <h2 class="text-2xl mb-2 text-center">Emails</h2>
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="text-5xl font-bold">245</p>
+              <p>Email breaches</p>
+            </div>
+            <div>
+              <p class="text-5xl font-bold">500</p>
+              <p>Total Emails</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 bg-white shadow-lg p-6 rounded-lg border-custom flex items-center justify-center">
+          <p class="text-5xl font-bold">Chart</p>
+        </div>
+      </div>
+    <div class="overflow-x-auto">
+        <div class="shadow rounded border border-gray-200">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Email</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Password</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Password Type</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Discovery Date</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Data Leak Source</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm">Comment/Summary/Key Notes</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr>
+                        <td class="px-4 py-3 text-left"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                        <td class="px-4 py-3 text-left">password</td>
+                        <td class="px-4 py-3 text-left">Text</td>
+                        <td class="px-4 py-3 text-left">2023-11-21</td>
+                        <td class="px-4 py-3 text-left">Website</td>
+                        <td class="px-4 py-3 flex items-center"><textarea class="border rounded px-2 py-1 w-full mr-2 resize-none"></textarea><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button></td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3 text-left"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                        <td class="px-4 py-3 text-left">324430jfdn239032r@#$34589348</td>
+                        <td class="px-4 py-3 text-left">Hashed</td>
+                        <td class="px-4 py-3 text-left">2023-01-23</td>
+                        <td class="px-4 py-3 text-left">Hacked forums</td>
+                        <td class="px-4 py-3 flex items-center"><textarea class="border rounded px-2 py-1 w-full mr-2 resize-none"></textarea><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock content %}
