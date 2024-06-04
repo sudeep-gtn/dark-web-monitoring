@@ -96,8 +96,9 @@
                 <canvas id="breachCountChart"></canvas>
             </div>
         </div>
-        <div class="shadow-xl rounded-lg  w-fit border-2  border-red-200">
-            <div id="gauge-chart"></div>
+        <div class="shadow-xl flex flex-col items-center justify-center rounded-lg  w-[350px] border-2  border-red-200 bg-white h-[400px]">
+            <h1 class="font-semibold py-2">Organization Health Status</h1>
+            <div id="gauge-chart" class="w-[400px] h-[300px] md:h-[400px]"></div>
         </div>
     </div>
 </div>
@@ -198,84 +199,36 @@
         const breachCountCtx = document.getElementById('breachCountChart').getContext('2d');
         new Chart(breachCountCtx, breachCountChartConfig);
     };
-    var level = 70;
+    
+    // Initialize ECharts instance
+    var myChart = echarts.init(document.getElementById('gauge-chart'));
 
-    // Trig to calc meter point
-    var degrees = 180 - (level * 1.8),
-        radius = .5;
-    var radians = degrees * Math.PI / 180;
-    var x = radius * Math.cos(radians);
-    var y = radius * Math.sin(radians);
-
-    // Path: may have to change to create a better triangle
-    var mainPath = 'M -.0 -0.025 L .0 0.025 L ',
-        pathX = String(x),
-        space = ' ',
-        pathY = String(y),
-        pathEnd = ' Z';
-    var path = mainPath.concat(pathX, space, pathY, pathEnd);
-
-    var data = [
-        {
-            type: 'scatter',
-            x: [0],
-            y: [0],
-            marker: { size: 28, color: '850000' },
-            showlegend: false,
-            name: 'value',
-            text: level,
-            hoverinfo: 'text+name'
-        },
-        {
-            values: [50 / 3, 50 / 3, 50 / 3, 50],
-            rotation: 90,
-            text: ['Good', 'Average', 'Bad', ''],
-            textinfo: 'text',
-            textposition: 'inside',
-            marker: {
-                colors: ['#2BE716','#f0853e' , '#f22424', 'rgba(255, 255, 255, 0)']
+    // Configuration options
+    var option = {
+        series: [{
+            type: 'gauge',
+            detail: { show: false }, // Hide details
+            data: [{ value: 23, name: 'Health Status' }],
+            startAngle: 180,  // Start angle of the gauge (180 degrees for half-circle)
+            endAngle: 0,      // End angle of the gauge (0 degrees for half-circle)
+            axisLine: {            // Axis settings
+                lineStyle: {
+                    width: 20,      // Thickness of the gauge
+                    color: [[0.2, 'red'], [0.7, 'yellow'], [1, 'green']] // Color ranges
+                }
             },
-            labels: ['Good', 'Average', 'Bad', ''],
-            hoverinfo: 'label',
-            hole: .5,
-            type: 'pie',
-            showlegend: true
-        }
-    ];
-
-    var layout = {
-        shapes: [{
-            type: 'path',
-            path: path,
-            fillcolor: '850000',
-            line: {
-                color: '850000'
+            axisTick: { show: false }, // Hide ticks
+            splitLine: { show: false }, // Hide split lines
+            pointer: {              // Pointer settings (needle)
+                length: '70%',      // Length of the needle
+                width: 8,           // Width of the needle
+                color: 'auto'       // Color of the needle (auto uses color of axisLine)
             }
-        }],
-        title: 'Health Status',
-        height: 400,
-        width: 350,
-        xaxis: {
-            zeroline: false,
-            showticklabels: false,
-            showgrid: false,
-            range: [-1, 1]
-        },
-        yaxis: {
-            zeroline: false,
-            showticklabels: false,
-            showgrid: false,
-            range: [-1, 1]
-        }
+        }]
     };
 
-    var config = { 
-        displayModeBar: false,
-        staticPlot: true
-    };
-
-    Plotly.newPlot('gauge-chart', data, layout, config);
-
+    // Set the configuration and render the chart
+    myChart.setOption(option);
 </script>
 
 
