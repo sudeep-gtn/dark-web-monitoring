@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <title>{% block title %}Darkweb Monitoring{% endblock title %}</title>
   <style>
     #checkbox2 {
@@ -299,6 +300,85 @@
     element.classList.remove('block')
     element.classList.add('hidden');
   }
+
+  var level = 70;
+
+    // Trig to calc meter point
+    var degrees = 180 - (level * 1.8),
+        radius = .5;
+    var radians = degrees * Math.PI / 180;
+    var x = radius * Math.cos(radians);
+    var y = radius * Math.sin(radians);
+
+    // Path: may have to change to create a better triangle
+    var mainPath = 'M -.0 -0.025 L .0 0.025 L ',
+        pathX = String(x),
+        space = ' ',
+        pathY = String(y),
+        pathEnd = ' Z';
+    var path = mainPath.concat(pathX, space, pathY, pathEnd);
+
+    var data = [
+        {
+            type: 'scatter',
+            x: [0],
+            y: [0],
+            marker: { size: 28, color: '850000' },
+            showlegend: false,
+            name: 'value',
+            text: level,
+            hoverinfo: 'text+name'
+        },
+        {
+            values: [50 / 3, 50 / 3, 50 / 3, 50],
+            rotation: 90,
+            text: ['Good', 'Average', 'Bad', ''],
+            textinfo: 'text',
+            textposition: 'inside',
+            marker: {
+                colors: ['rgba(0, 255, 0, .5)', 'rgba(255, 255, 0, .5)', 'rgba(255, 0, 0, .5)', 'rgba(255, 255, 255, 0)']
+            },
+            labels: ['Good', 'Average', 'Bad', ''],
+            hoverinfo: 'label',
+            hole: .5,
+            type: 'pie',
+            showlegend: false
+        }
+    ];
+
+    var layout = {
+        shapes: [{
+            type: 'path',
+            path: path,
+            fillcolor: '850000',
+            line: {
+                color: '850000'
+            }
+        }],
+        title: 'Health Status',
+        height: 400,
+        width: 600,
+        xaxis: {
+            zeroline: false,
+            showticklabels: false,
+            showgrid: false,
+            range: [-1, 1]
+        },
+        yaxis: {
+            zeroline: false,
+            showticklabels: false,
+            showgrid: false,
+            range: [-1, 1]
+        }
+    };
+
+    var config = { 
+        displayModeBar: false,  // This will remove the mode bar
+        staticPlot: true
+    };
+
+    Plotly.newPlot('gauge-chart', data, layout, config);
+  
 </script>
 
 </html>
