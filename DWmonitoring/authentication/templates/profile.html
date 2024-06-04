@@ -5,7 +5,7 @@ Profile
 {% endblock title %}
 
 {% block content %}
-<div class="bg-gray-800 text-white p-8 rounded-lg shadow-lg mx-2 my-2">
+<div class="bg-gray-200 text-gray-900 p-8 rounded-lg shadow-lg mx-2 my-2">
     <h1 class="text-3xl font-bold mb-4">USER PROFILE</h1>
     <div class="flex items-center mb-4">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-16 h-16 rounded-full">
@@ -13,22 +13,22 @@ Profile
         </svg>
         <div class="ml-4">
             <p class="font-semibold">Full Name</p>
-            <p class="bg-gray-700 p-2 rounded">{{user.full_name}}</p>
+            <p class="bg-gray-300 p-2 rounded">{{user.full_name}}</p>
         </div>
     </div>
     <div class="mb-4">
         <p class="font-semibold">Email:</p>
-        <p class="bg-gray-700 p-2 rounded">{{user.email}}</p>
+        <p class="bg-gray-300 p-2 rounded">{{user.email}}</p>
     </div>
     <div class="mb-4">
         <p class="font-semibold">Bio:</p>
-        <p class="bg-gray-700 p-2 rounded">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, quasi?</p>
+        <p class="bg-gray-300 p-2 rounded">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, quasi?</p>
     </div>
     <div class="mb-4">
         <p class="font-semibold">Location:</p>
-        <p class="bg-gray-700 p-2 rounded">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, id.</p>
+        <p class="bg-gray-300 p-2 rounded">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, id.</p>
     </div>
-    <button class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded">Edit Profile</button>
+    <button class="bg-gray-600 hover:bg-gray-600 text-white px-4 py-2 rounded">Edit Profile</button>
 </div>
 
 
