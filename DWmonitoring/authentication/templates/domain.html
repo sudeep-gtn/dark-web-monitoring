@@ -2,5 +2,61 @@
 {% block title %}Domain{% endblock title %}
 
 {% block content %}
-<h1>Domain page</h1>
+<div class="mx-4 my-4">
+    <div class="flex flex-col md:flex-row space-y-6 md:space-x-6 md:space-y-0 mb-6">
+        <div class="flex-1 shadow-lg bg-white p-6 rounded-lg border-custom">
+          <h2 class="text-2xl mb-2 text-center">Domain</h2>
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="text-5xl font-bold">78</p>
+              <p>Domain breaches</p>
+            </div>
+            <div>
+              <p class="text-5xl font-bold">500</p>
+              <p>Total Domain</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 bg-white shadow-lg p-6 rounded-lg border-custom flex items-center justify-center">
+          <p class="text-5xl font-bold">Chart</p>
+        </div>
+      </div>
+    <div class="overflow-x-auto">
+        <div class="shadow rounded border border-gray-200">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="px-4 py-3 text-left uppercase font-semibold text-sm" rowspan="2">Name</th>
+                        <th class="px-4 py-3 text-left uppercase font-semibold text-sm" rowspan="2">IP</th>
+                        <th class="px-4 py-3 text-left uppercase font-semibold text-sm" rowspan="2">Severity Level</th>
+                        <th class="px-4 py-3 text-center uppercase font-semibold text-sm" colspan="2">Sources</th>
+                        <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm" rowspan="2">Comment/Summary/Key Notes</th>
+                      </tr>
+                      <tr>
+                        <th class="px-4 py-3 text-center uppercase font-semibold text-sm">IP</th>
+                        <th class="px-4 py-3 text-center uppercase font-semibold text-sm">Domain</th>
+                      </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr>
+                        <td class="px-4 py-3 text-left">Abc R</td>
+                        <td class="px-4 py-3 text-left">192....</td>
+                        <td class="px-4 py-3 text-left">Medium</td>
+                        <td class="px-4 py-3 text-center">192.168.1.1</td>
+                        <td class="px-4 py-3 text-center">example.com</td>
+                        <td class="px-4 py-3 flex items-center"><textarea class="border rounded px-2 py-1 w-full mr-2 resize-none"></textarea><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button></td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3 text-left">Joe Rg</td>
+                        <td class="px-4 py-3 text-left">123.22...</td>
+                        <td class="px-4 py-3 text-left">Medium</td>
+                        <td class="px-4 py-3 text-center">10.0.0.1</td>
+                        <td class="px-4 py-3 text-center">example.org</td>
+                        <td class="px-4 py-3 flex items-center"><textarea class="border rounded px-2 py-1 w-full mr-2 resize-none"></textarea><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock content %}
