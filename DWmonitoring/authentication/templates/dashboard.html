@@ -19,7 +19,7 @@
                 <div class="w-1/3 flex flex-col gap-2 ">
                     <div class="text-gray-500 text-lg font-semibold">Domain breaches</div>
                     <a href="{% url 'domain' %}"
-                        class="text-base hover:border-red-600 hover:px-2 border-b-2 border-blue-400 transition-all duration-300 ease-in-out hover:text-red-600 text-blue-500 w-fit ">View
+                        class="text-base hover:border-red-600 border-b-2 border-blue-400 transition-all duration-300 ease-in-out hover:text-red-600 text-blue-500 w-fit ">View
                         Details</a>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                 <div class="w-1/3 flex flex-col gap-2 ">
                     <div class="text-gray-500 text-lg font-semibold">Financial Cards breaches</div>
                     <a href="{% url 'cards' %}"
-                        class="text-base hover:border-red-600 hover:px-2 border-b-2 border-blue-400 transition-all duration-300 ease-in-out hover:text-red-600 text-blue-500 w-fit ">View
+                        class="text-base hover:border-red-600 border-b-2 border-blue-400 transition-all duration-300 ease-in-out hover:text-red-600 text-blue-500 w-fit ">View
                         Details</a>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="w-1/3 flex flex-col gap-2 ">
                     <div class="text-gray-500 text-lg font-semibold"> User breaches</div>
                     <a href="{% url 'users' %}"
-                        class="text-base hover:border-red-600 hover:px-2 border-b-2 border-blue-400 transition-all duration-300 ease-in-out hover:text-red-600 text-blue-500 w-fit ">View
+                        class="text-base hover:border-red-600  border-b-2 border-blue-400 transition-all duration-300 ease-in-out hover:text-red-600 text-blue-500 w-fit ">View
                         Details</a>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 <div class="w-1/3 flex flex-col gap-2 ">
                     <div class="text-gray-500 text-lg font-semibold"> Email breaches</div>
                     <a href="{% url 'email' %}"
-                        class="text-base hover:border-red-600 hover:px-2 border-b-2 border-blue-400 transition-all duration-300 ease-in-out hover:text-red-600 text-blue-500 w-fit ">View
+                        class="text-base hover:border-red-600 border-b-2 border-blue-400 transition-all duration-300 ease-in-out hover:text-red-600 text-blue-500 w-fit ">View
                         Details</a>
                 </div>
             </div>
@@ -82,8 +82,12 @@
     <!-- charts  -->
     <div class="flex gap-4 items-center justify-center flex-col xl:flex-row ">
 
+        <div class="shadow-xl flex flex-col items-center justify-center rounded-lg  w-[350px] border-2  border-red-200 bg-white h-[400px]">
+            <h1 class="font-semibold py-2">Organization Health Status</h1>
+            <div id="gauge-chart" class="w-[350px] h-[300px] md:h-[400px]"></div>
+        </div>
         <!-- Severity Level and Data Distribution -->
-        <div style="width: 350px;" class=' mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'>
+        <div class='w-[330px] xl:w-[370px] mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'>
             <h1 class="font-semibold pb-2 w-fit  mx-auto text-center">Distribution of Data Breach Severity Levels </h1>
             <div class="chart-container ">
                 <canvas id="severityChart"></canvas>
@@ -95,10 +99,6 @@
             <div class="chart-container w-full">
                 <canvas id="breachCountChart"></canvas>
             </div>
-        </div>
-        <div class="shadow-xl flex flex-col items-center justify-center rounded-lg  w-[350px] border-2  border-red-200 bg-white h-[400px]">
-            <h1 class="font-semibold py-2">Organization Health Status</h1>
-            <div id="gauge-chart" class="w-[400px] h-[300px] md:h-[400px]"></div>
         </div>
     </div>
 </div>
@@ -208,7 +208,7 @@
         series: [{
             type: 'gauge',
             detail: { show: false }, // Hide details
-            data: [{ value: 23, name: 'Health Status' }],
+            data: [{ value: 70, name: 'Health Status' }],
             startAngle: 180,  // Start angle of the gauge (180 degrees for half-circle)
             endAngle: 0,      // End angle of the gauge (0 degrees for half-circle)
             axisLine: {            // Axis settings
