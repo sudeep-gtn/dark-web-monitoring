@@ -97,7 +97,6 @@
             </div>
         </div>
         <div id="gauge-chart" style="width:600px;height:400px;"></div>
-
     </div>
 </div>
 <script>
@@ -195,7 +194,83 @@
         const breachCountCtx = document.getElementById('breachCountChart').getContext('2d');
         new Chart(breachCountCtx, breachCountChartConfig);
     };
+    var level = 70;
 
+    // Trig to calc meter point
+    var degrees = 180 - (level * 1.8),
+        radius = .5;
+    var radians = degrees * Math.PI / 180;
+    var x = radius * Math.cos(radians);
+    var y = radius * Math.sin(radians);
+
+    // Path: may have to change to create a better triangle
+    var mainPath = 'M -.0 -0.025 L .0 0.025 L ',
+        pathX = String(x),
+        space = ' ',
+        pathY = String(y),
+        pathEnd = ' Z';
+    var path = mainPath.concat(pathX, space, pathY, pathEnd);
+
+    var data = [
+        {
+            type: 'scatter',
+            x: [0],
+            y: [0],
+            marker: { size: 28, color: '850000' },
+            showlegend: false,
+            name: 'value',
+            text: level,
+            hoverinfo: 'text+name'
+        },
+        {
+            values: [50 / 3, 50 / 3, 50 / 3, 50],
+            rotation: 90,
+            text: ['Good', 'Average', 'Bad', ''],
+            textinfo: 'text',
+            textposition: 'inside',
+            marker: {
+                colors: ['#2BE716','#f0853e' , '#f22424', 'rgba(255, 255, 255, 0)']
+            },
+            labels: ['Good', 'Average', 'Bad', ''],
+            hoverinfo: 'label',
+            hole: .5,
+            type: 'pie',
+            showlegend: false
+        }
+    ];
+
+    var layout = {
+        shapes: [{
+            type: 'path',
+            path: path,
+            fillcolor: '850000',
+            line: {
+                color: '850000'
+            }
+        }],
+        title: 'Health Status',
+        height: 400,
+        width: 600,
+        xaxis: {
+            zeroline: false,
+            showticklabels: false,
+            showgrid: false,
+            range: [-1, 1]
+        },
+        yaxis: {
+            zeroline: false,
+            showticklabels: false,
+            showgrid: false,
+            range: [-1, 1]
+        }
+    };
+
+    var config = { 
+        displayModeBar: false,
+        staticPlot: true
+    };
+
+    Plotly.newPlot('gauge-chart', data, layout, config);
 
 </script>
 
