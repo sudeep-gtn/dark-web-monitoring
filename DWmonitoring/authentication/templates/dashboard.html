@@ -64,7 +64,7 @@
                 <div
                     class="w-2/3 bg-[linear-gradient(90deg,_rgba(25,240,17,1)_0%,_rgba(173,250,36,1)_100%)] flex items-center justify-center h-36 w-36 rounded-full ">
                     <div
-                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-green-600 font-bold">
+                        class="bg-white h-32 w-32 rounded-full flex items-center justify-center text-4xl text-green-500 font-bold">
                         0</div>
                 </div>
                 <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
@@ -90,7 +90,7 @@
             </div>
         </div>
         <div
-            class='xl:w-[700px] w-[400px] mx-auto border-2 flex flex-col items-center justify-center  shadow-xl border-red-200 p-4 rounded-lg bg-white'>
+            class='xl:w-[700px] w-fit  mx-auto border-2 flex flex-col items-center justify-center  shadow-xl border-red-200 p-4 rounded-lg bg-white'>
             <h1 class="font-semibold py-2 w-fit "> Breach Counts by Type and Severity Level </h1>
             <div class="chart-container w-full">
                 <canvas id="breachCountChart"></canvas>
@@ -121,12 +121,12 @@
             {
                 label: 'Low',
                 data: [getRandomInt(1, 10), getRandomInt(1, 10), getRandomInt(1, 10), getRandomInt(1, 10)],
-                backgroundColor: '#73e038'
+                backgroundColor: '#ffbd08'
             },
             {
                 label: 'Medium',
                 data: [getRandomInt(1, 10), getRandomInt(1, 10), getRandomInt(1, 10), getRandomInt(1, 10)],
-                backgroundColor: '#ebcb1a'
+                backgroundColor: '#f0853e'
             },
             {
                 label: 'High',
