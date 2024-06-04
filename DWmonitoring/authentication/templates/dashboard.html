@@ -80,7 +80,7 @@
 
 
     <!-- charts  -->
-    <div class="flex gap-6 flex-col lg:flex-row ">
+    <div class="flex gap-4 items-center justify-center flex-col xl:flex-row ">
 
         <!-- Severity Level and Data Distribution -->
         <div style="width: 350px;" class=' mx-auto border-2 shadow-xl border-red-200 p-4 rounded-lg bg-white'>
@@ -96,7 +96,9 @@
                 <canvas id="breachCountChart"></canvas>
             </div>
         </div>
-        <div id="gauge-chart" style="width:600px;height:400px;"></div>
+        <div class="shadow-xl rounded-lg  w-fit border-2  border-red-200">
+            <div id="gauge-chart"></div>
+        </div>
     </div>
 </div>
 <script>
@@ -235,7 +237,7 @@
             hoverinfo: 'label',
             hole: .5,
             type: 'pie',
-            showlegend: false
+            showlegend: true
         }
     ];
 
@@ -250,7 +252,7 @@
         }],
         title: 'Health Status',
         height: 400,
-        width: 600,
+        width: 350,
         xaxis: {
             zeroline: false,
             showticklabels: false,
