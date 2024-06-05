@@ -3,51 +3,62 @@
 
 {% block content %}
 <div class="mx-4 my-4">
-  <div class="flex flex-col md:flex-row space-y-6 md:space-x-6 md:space-y-0 mb-6">
-    <div class="flex-1 shadow-lg bg-white p-6 rounded-lg border-custom">
-      <h2 class="text-2xl mb-2 text-center">Domain</h2>
-      <div class="flex justify-between items-center">
-        <div>
-          <p class="text-5xl font-bold">78</p>
-          <p>Domain breaches</p>
+  <div class="flex flex-col w-full xl:w-5/6  mx-auto gap-6 lg:flex-row mb-6">
+    <div class="flex flex-col border-2 border-red-200 w-full xl:w-1/2 shadow-lg bg-white p-6 rounded-lg">
+      <div class="flex gap-2 text-3xl font-semibold mx-auto">Domain <span> <img src="/static//images/domain.svg"
+            height="40" width="40" alt="cards"></span> </div>
+      <div class=" flex flex-col ">
+        <div class="flex items-center justify-around w-full gap-2 pt-4">
+          <div class="flex flex-col p-2 ">
+            <h2 class="text-6xl  font-bold text-red-600">5</h2>
+            <span class=" text-lg">Domain Breaches </span>
+          </div>
+          <div class="flex flex-col">
+            <h2 class="text-6xl font-bold text-red-600">50</h2>
+            <span class="text-lg">Breaches in total </span>
+          </div>
         </div>
-        <div>
-          <p class="text-5xl font-bold">500</p>
-          <p>Total Domain</p>
+        <div class="font-semibold text-gray-600 w-fit mx-auto mt-8 text-lg ">There are <span class="text-red-600"> 15</span> unique domains breach , <span class="text-red-600"> 35 </span> times in total. </div>
+      </div>
+    </div>
+    <div class=" xl:w-1/2 w-full flex-col w-full bg-white shadow-lg p-4 rounded-lg  flex ">
+      <div class="flex gap-4 flex-col lg:flex-row  items-center pb-4 ">
+        <h1 class="font-semibold text-left text-lg">Data Leak Source</h1>
+        <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 bg-white outline-none" name="domains">
+          <option selected value="">Select domain </option>
+          <option value="123345566">example.com</option>
+          <option value="123345566">example1.com</option>
+        </select>
+      </div>
+      <div class="flex gap-4 flex-col lg:flex-row  items-center justify-center w-full">
+        <div class="w-2/5 flex items-center mx-auto justify-center">
+          <div
+            class=" flex items-center justify-center p-2 h-48 w-48 bg-gradient-to-l from-yellow-500 to-red-500 rounded-full ">
+            <div class="flex items-center justify-center w-44 h-44 bg-white  rounded-full">
+              <span
+                class="shadow-2xl shadow-gray-400/70   rounded-full h-24 w-24 border-2 border-gray-200 flex items-center justify-center font-bold text-4xl text-red-800">3</span>
+            </div>
+          </div>
+        </div>
+        <div class="w-3/5 items-left justify-start flex flex-col  ">
+          <h1 class="text-left text-gray-600 font-semibold tracking-wide"> There are <span class="text-red-500">4</span>
+            data leak sources . Here are the top data leak sources with the most findings : </h1>
+          <ol class="list-disc px-4 py-2 font-bold text-gray-800 pt-4 flex items-left flex-col gap-2">
+            <li class="flex items-center gap-2 "> <span
+                class="text-base border border-red-400 bg-red-200 px-2 rounded-md ">23</span> example.com</li>
+            <li class="flex items-center gap-2 "> <span
+                class="text-base border border-red-400 bg-red-200 px-2 rounded-md ">6</span> Telegram.org</li>
+            <li class="flex items-center gap-2 "> <span
+                class="text-base border border-red-400 bg-red-200 px-2 rounded-md ">9</span> greentick.com</li>
+          </ol>
         </div>
       </div>
-    </div> 
-        <div id="breachDetails"
-          class="flex-1 bg-white shadow-lg p-6 rounded-lg border-custom flex flex-col items-center">
-          <div>
-            <select id="domainSelect"
-              class="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg shadow-sm">
-              <option value="example.com">example.com</option>
-              <option value="example1.com">example1.com</option>
-              <option value="example2.com">example2.com</option>
-              <option value="example3.com">example3.com</option>
-            </select>
-          </div>
-          <p class="text-xl font-bold">Data Leak Source</p>
-          <div class="flex space-x-6">
-            <div class="bg-red-600 text-white w-28 h-28 flex items-center justify-center rounded-full my-4">
-              <p class="text-2xl font-bold" id="breachCount">4</p>
-            </div>
-           <div class="py-7">
-            <ul class="text-center" id="breachList">
-              <li>120 Telegram.org</li>
-              <li>12 Telegram.org</li>
-              <li>34 Telegram.org</li>
-              <li>45 Telegram.org</li>
-            </ul>
-           </div>
-          </div>
-        </div>
+    </div>
   </div>
   <div class="overflow-x-auto">
     <div class="shadow rounded border border-gray-200">
       <table class="min-w-full bg-white">
-        <thead class="bg-gray-800 text-white">
+        <thead class="bg-gray-300 text-gray-800">
           <tr>
             <th class="px-4 py-3 text-left uppercase font-semibold text-sm" rowspan="2">Name</th>
             <th class="px-4 py-3 text-left uppercase font-semibold text-sm" rowspan="2">IP</th>
@@ -63,7 +74,7 @@
         </thead>
         <tbody class="text-gray-700">
           <tr>
-            <td class="px-4 py-3 text-left">Abc R</td>
+            <td class="px-4 py-3 text-left">abc.com</td>
             <td class="px-4 py-3 text-left">192....</td>
             <td class="px-4 py-3 text-left">Medium</td>
             <td class="px-4 py-3 text-center">192.168.1.1</td>
@@ -73,7 +84,7 @@
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button></td>
           </tr>
           <tr>
-            <td class="px-4 py-3 text-left">Joe Rg</td>
+            <td class="px-4 py-3 text-left">xyz.com</td>
             <td class="px-4 py-3 text-left">123.22...</td>
             <td class="px-4 py-3 text-left">Medium</td>
             <td class="px-4 py-3 text-center">10.0.0.1</td>
@@ -87,38 +98,4 @@
     </div>
   </div>
 </div>
-<script>
-  const breachData = {
-    "example.com": {
-      count: 4,
-      sources: ["120 Telegram.org", "12 Telegram.org", "34 Telegram.org", "45 Telegram.org"]
-    },
-    "example1.com": {
-      count: 3,
-      sources: ["50 Example1.org", "30 Example1.org", "20 Example1.org"]
-    },
-    "example2.com": {
-      count: 5,
-      sources: ["90 Example2.org", "70 Example2.org", "60 Example2.org", "40 Example2.org", "10 Example2.org"]
-    },
-    "example3.com": {
-      count: 2,
-      sources: ["15 Example3.org", "5 Example3.org"]
-    }
-  };
-
-  document.getElementById('domainSelect').addEventListener('change', function () {
-    const selectedDomain = this.value;
-    const breachInfo = breachData[selectedDomain];
-
-    document.getElementById('breachCount').textContent = breachInfo.count;
-    const breachList = document.getElementById('breachList');
-    breachList.innerHTML = '';
-    breachInfo.sources.forEach(source => {
-      const listItem = document.createElement('li');
-      listItem.textContent = source;
-      breachList.appendChild(listItem);
-    });
-  });
-</script>
 {% endblock content %}
