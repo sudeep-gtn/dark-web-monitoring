@@ -10,7 +10,7 @@
     <title> {% block title %} Home {% endblock title %}</title>
 </head>
 
-<body>
+<body class="relative bottom-0">
     <header class="flex fixed w-full bg-white  z-50 h-16 justify-between py-4 px-8 border-b-2 border-gray-200 ">
 
         <a href="/" class="flex items-center justify-center">
@@ -42,7 +42,7 @@
         </nav>
     </header>
 
-    <div class="pt-16 ">
+    <div class="pt-16 min-h-screen pb-16">
 
         {% block content %}
         <div class="bg-gray-700">
@@ -104,7 +104,11 @@
             </div>
         </div>
         {% endblock content %}
+        <div class="w-full h-16 bg-gray-700 absolute flex items-center justify-center text-white bottom-0">
+            <p>&copy; 2024 Greentick Nepal. All rights reserved.</p>
+        </div>
     </div>
+    
 
     <script>
         particlesJS('particles-js', {
