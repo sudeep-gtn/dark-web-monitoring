@@ -127,50 +127,55 @@
   <!-- Navigation bar -->
   <!-- Sidebar -->
   <div id="sidebar"
-    class="hidden md:block fixed overflow-hidden md:static top-0 left-0 z-50  bg-gray-800 text-white  md:px-0 z-50 md:w-56 h-screen flex flex-col justify-between">
+    class="hidden md:block fixed overflow-hidden md:static top-0 left-0 z-50  bg-gray-800 text-white  md:px-0 z-50 md:w-66 h-screen flex flex-col justify-between">
     <div>
       <div class="p-4 text-center border-b border-gray-700">
         <div class="text-2xl font-bold"><img src="https://gkavach.com/storage/2023/02/greentick.png" height="130"
             width="130"></div>
       </div>
       <div class="p-4">
-        <ul class="space-y-2 text-gray-400 font-bold text-lg ">
+        <ul class="space-y-2 text-gray-400 font-semibold text-lg ">
           <li>
-
             <a class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dashboard' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'dashboard' %}">
               Dashboard
             </a>
           </li>
           <li>
-            <div class="w-full text-left p-3 rounded text-gray-400 font-semibold cursor-pointer">
-              Details
+            <a class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/cards' %}border-l-4 text-white border-[#92a91a]{% endif %}"
+              href="{% url 'cards' %}">
+              Cards
+            </a>
+          </li>
+          <li>
+            <div class="border-b-2 border-gray-400  w-full text-xl text-left p-3  text-gray-400 font-semibold">
+              Leaks
             </div>
             <ul id="detailsMenu" class="ml-4 mt-2 space-y-2">
               <li>
-                <a href="{% url 'domain' %}"
-                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/domain' %}border-l-4 text-white border-[#92a91a]{% endif %}">
-                  Domain
+                <a href="#"
+                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '#' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  Black Market
                 </a>
               </li>
               <li>
-                <a href="{% url 'cards' %}"
-                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/cards' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
-                  Cards
+                <a href="#"
+                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '#' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
+                  Stellar Logs 
                 </a>
               </li>
               <li>
-                <a href="{% url 'users' %}"
-                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/user' %}border-l-4 text-white border-[#92a91a]{% endif %}">
-                  User
+                <a href="#"
+                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '#' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  PII Exposure
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="{% url 'email' %}"
                   class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/email' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   Email
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
 
