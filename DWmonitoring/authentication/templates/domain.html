@@ -20,7 +20,7 @@
         <div class="font-semibold text-gray-600 w-fit mx-auto mt-8 text-lg ">There are <span class="text-red-600"> 15</span> unique domains breach , <span class="text-red-600"> 35 </span> times in total. </div>
       </div>
     </div>
-    <div class=" xl:w-1/2 w-full flex-col w-full bg-white shadow-lg p-4 rounded-lg  flex ">
+    <div class=" xl:w-1/2 w-full flex-col w-full bg-white shadow-lg p-4 rounded-lg border-2 border-red-200 flex ">
       <div class="flex gap-4 flex-col lg:flex-row  items-center pb-4 ">
         <h1 class="font-semibold text-left text-lg">Data Leak Source</h1>
         <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 bg-white outline-none" name="domains">
@@ -63,7 +63,6 @@
             <th class="px-4 py-3 text-left uppercase font-semibold text-sm" rowspan="2">IP</th>
             <th class="px-4 py-3 text-left uppercase font-semibold text-sm" rowspan="2">Severity Level</th>
             <th class="px-4 py-3 text-center uppercase font-semibold text-sm" colspan="2">Sources</th>
-            <th class="w-1/5 px-4 py-3 text-left uppercase font-semibold text-sm" rowspan="2">Comment/Summary/Key Notes
             </th>
           </tr>
           <tr>
@@ -78,9 +77,6 @@
             <td class="px-4 py-3 text-left">Medium</td>
             <td class="px-4 py-3 text-center">192.168.1.1</td>
             <td class="px-4 py-3 text-center">example.com</td>
-            <td class="px-4 py-3 flex items-center"><textarea
-                class="border rounded px-2 py-1 w-full mr-2 resize-none"></textarea><button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button></td>
           </tr>
           <tr>
             <td class="px-4 py-3 text-left">xyz.com</td>
@@ -88,9 +84,6 @@
             <td class="px-4 py-3 text-left">Medium</td>
             <td class="px-4 py-3 text-center">10.0.0.1</td>
             <td class="px-4 py-3 text-center">example.org</td>
-            <td class="px-4 py-3 flex items-center"><textarea
-                class="border rounded px-2 py-1 w-full mr-2 resize-none"></textarea><button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button></td>
           </tr>
         </tbody>
       </table>
