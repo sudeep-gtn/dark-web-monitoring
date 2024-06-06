@@ -45,27 +45,42 @@
             </label>
             <input
                 class="w-full p-2 outline-none border-gray-400 focus:border-red-500 border-2 rounded-lg  transition-all duration-100 ease-linear"
-                type="password" name="password" required placeholder="********">
+                type="password" name="password" id="password" required placeholder="********">
         </div>
         <div class="flex flex-col gap-1 ">
             <label class="font-semibold px-2 " for="password">Confirm Password </label>
             <input
                 class="w-full p-2 outline-none border-gray-400 focus:border-red-500 border-2 rounded-lg  transition-all duration-100 ease-linear"
-                type="password" name="c_password" placeholder="********">
+                type="password" name="c_password" placeholder="********" id="c_password">
+            <div class="flex items-center"><input onchange="showPassword()" class="mr-2" type="checkbox"
+                    name="show-password" id="show-password"><label class="cursor-pointer" for="show-password">Show password</label></div>
         </div>
-        <p class="text-gray-600">By clicking "Register", you agree to our <a href="#" class="text-blue-500">Terms of Service</a> and <a href="#" class="text-blue-500 ">Privacy Policy</a>.</p>
+        <p class="text-gray-600">By clicking "Register", you agree to our <a href="{% url 'terms-and-conditions' %}" class="text-blue-500">Terms and
+                Conditions of Service</a>.</p>
         <button type="submit"
             class="bg-red-500 text-white text-lg rounded-lg p-2 active:bg-red-800 transition-all duration-300 ease-in-out">
             Register </button>
 
         <div class="text-center font-medium text-red-800 hover:underline  "> <a href="login">Already have account ?
                 Login </a> </div>
-
     </form>
     <div>
         <img src="{% static 'images/register.png' %}" height="250" class="md:w-96 " width="250"
             alt="Login Illustration">
     </div>
 </div>
-
+<script>
+    function showPassword() {
+        password = document.getElementById("password");
+        c_password = document.getElementById("c_password");
+        if ((c_password.type && password.type) == "text") {
+            c_password.type = "password"
+            password.type = "password"
+        }
+        else {
+            password.type = "text"
+            c_password.type = "text"
+        }
+    }
+</script>
 {% endblock content %}
