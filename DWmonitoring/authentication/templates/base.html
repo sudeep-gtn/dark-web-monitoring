@@ -127,31 +127,56 @@
   <!-- Navigation bar -->
   <!-- Sidebar -->
   <div id="sidebar"
-    class="hidden md:block fixed overflow-hidden md:static top-0 left-0 z-50  bg-gray-800 text-white  md:px-0 z-50 md:w-66 h-screen flex flex-col justify-between">
+    class="hidden md:block fixed overflow-hidden md:static top-0 left-0 z-50  bg-gray-800 text-white  md:px-0 z-50 md:w-[300px] h-screen flex flex-col justify-between">
     <div>
       <div class="p-4 text-center border-b border-gray-700">
         <div class="text-2xl font-bold"><img src="https://gkavach.com/storage/2023/02/greentick.png" height="130"
             width="130"></div>
       </div>
-      <div class="p-4">
-        <ul class="space-y-2 text-gray-400 font-semibold text-lg ">
+      <div class="p-2">
+        <a href="#" class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %} font-semibold flex items-center text-lg text-gray-400 my-6 px-2 py-3 rounded">
+          Brand Protection
+          <span>
+            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 4L10 8L6 12" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <div class="font-semibold flex items-center gap-2  text-lg text-gray-400 pb-4 px-2">Dark Web Monitoring
+           <span>
+            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6L8 10L12 6" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+        <ul class="space-y-2 text-gray-400 font-semibold px-4  ">
           <li>
-            <a class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dashboard' %}border-l-4 text-white border-[#92a91a]{% endif %}"
+            <a class="block flex items-center gap-2 w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dashboard' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'dashboard' %}">
               Dashboard
             </a>
           </li>
           <li>
-            <a class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/cards' %}border-l-4 text-white border-[#92a91a]{% endif %}"
+            <a class="block flex items-center gap-2 w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/cards' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'cards' %}">
               Cards
+              <!-- <span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span> -->
             </a>
           </li>
           <li>
-            <div class="border-b-2 border-gray-400  w-full text-xl text-left p-3  text-gray-400 font-semibold">
-              Leaks
+            <div class=" flex items-center gap-2 w-fit text-lg  text-left p-3  text-gray-400 font-semibold">
+              Leaks 
+              <span>
+                <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 6L8 10L12 6" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
             </div>
-            <ul id="detailsMenu" class="ml-4 mt-2 space-y-2">
+            <ul id="detailsMenu" class="ml-4 px-2 space-y-2">
               <li>
                 <a href="{% url 'domain' %}"
                   class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/leaks/domain' %}border-l-4 text-white border-[#92a91a]{% endif %}">
