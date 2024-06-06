@@ -53,7 +53,7 @@
                 class="w-full p-2 outline-none border-gray-400 focus:border-red-500 border-2 rounded-lg  transition-all duration-100 ease-linear"
                 type="password" name="c_password" placeholder="********" id="c_password">
             <div class="flex items-center"><input onchange="showPassword()" class="mr-2" type="checkbox"
-                    name="show-password" id="show-password"><label for="show-password">Show password</label></div>
+                    name="show-password" id="show-password"><label class="cursor-pointer" for="show-password">Show password</label></div>
         </div>
         <p class="text-gray-600">By clicking "Register", you agree to our <a href="{% url 'terms-and-conditions' %}" class="text-blue-500">Terms and
                 Conditions of Service</a>.</p>
@@ -63,7 +63,6 @@
 
         <div class="text-center font-medium text-red-800 hover:underline  "> <a href="login">Already have account ?
                 Login </a> </div>
-
     </form>
     <div>
         <img src="{% static 'images/register.png' %}" height="250" class="md:w-96 " width="250"

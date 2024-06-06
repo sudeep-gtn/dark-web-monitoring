@@ -134,7 +134,7 @@
             width="130"></div>
       </div>
       <div class="p-2">
-        <a href="#" class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %} font-semibold flex items-center text-lg text-gray-400 my-6 px-2 py-3 rounded">
+        <a href="{% url 'brand-protection' %}" class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %} font-semibold flex items-center text-lg text-gray-400 my-6 px-2 py-3 rounded">
           Brand Protection
           <span>
             <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,13 +151,13 @@
         </div>
         <ul class="space-y-2 text-gray-400 font-semibold px-4  ">
           <li>
-            <a class="block flex items-center gap-2 w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dashboard' %}border-l-4 text-white border-[#92a91a]{% endif %}"
+            <a class="block flex items-center gap-2 w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/dashboard' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'dashboard' %}">
               Dashboard
             </a>
           </li>
           <li>
-            <a class="block flex items-center gap-2 w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/details/cards' %}border-l-4 text-white border-[#92a91a]{% endif %}"
+            <a class="block flex items-center gap-2 w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/cards' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'cards' %}">
               Cards
               <!-- <span>
@@ -179,25 +179,25 @@
             <ul id="detailsMenu" class="ml-4 px-2 space-y-2">
               <li>
                 <a href="{% url 'domain' %}"
-                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/leaks/domain' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/domain' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   Domain
                 </a>
               </li>
               <li>
                 <a href="{% url 'black-market' %}"
-                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/leaks/black-market' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/black-market' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   Black Market
                 </a>
               </li>
               <li>
                 <a href="{% url 'stellar-logs' %}"
-                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/leaks/stellar-logs' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
+                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/stellar-logs' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
                   Stellar Logs 
                 </a>
               </li>
               <li>
                 <a href="{% url 'pii-exposure' %}"
-                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/leaks/pii-exposure' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/pii-exposure' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   PII Exposure
                 </a>
               </li>
