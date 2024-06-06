@@ -6,7 +6,7 @@ from .views import (
     CardsView, UsersView, 
     EmailView, OrganizationDetailsView, 
     NotificationsView, ProfileView, 
-    BlackMarketView, StellarLogsView, 
+    BlackMarketView, StealerLogsView, 
     PiiExposureView, TermsAndConditionsView,
     BrandProtectionView)
 
@@ -24,7 +24,7 @@ urlpatterns = [
     path('notifications',NotificationsView.as_view(), name="notifications"),
     path('profile',ProfileView.as_view(), name="profile"),
     path('dark-web-monitoring/leaks/black-market',BlackMarketView.as_view(), name="black-market"),
-    path('dark-web-monitoring/leaks/stellar-logs', StellarLogsView.as_view(), name="stellar-logs"),
+    path('dark-web-monitoring/leaks/stealer-logs', StealerLogsView.as_view(), name="stealer-logs"),
     path('dark-web-monitoring/leaks/pii-exposure', PiiExposureView.as_view(),name="pii-exposure"),
     path('terms-and-conditions', TermsAndConditionsView.as_view(), name="terms-and-conditions"),
     path('brand-protection',BrandProtectionView.as_view(), name="brand-protection")

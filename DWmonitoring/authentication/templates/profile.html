@@ -3,31 +3,63 @@
 {% block title %}
 Profile
 {% endblock title %}
-
+ 
 {% block content %}
-<div class="bg-gray-200 text-gray-900 p-8 rounded-lg shadow-lg mx-2 my-2">
-    <h1 class="text-3xl font-bold mb-4">USER PROFILE</h1>
-    <div class="flex items-center mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-16 h-16 rounded-full">
-            <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
-        </svg>
-        <div class="ml-4">
-            <p class="font-semibold">Full Name</p>
-            <p class="bg-gray-300 p-2 rounded">{{user.full_name}}</p>
+<div class="bg-white text-gray-900 p-8 rounded-lg shadow-lg mx-2 my-2 ">
+    <h1 class="text-3xl font-bold mb-4">Account Information</h1>
+    <hr class="border-t border-gray-300 my-6">
+
+    <div class="flex flex-row justify-between items-center">
+        <p class="font-semibold">Name</p>
+        <p class="font-semibold">{{user.full_name}}</p>
+    </div>
+
+    <hr class="border-t border-gray-300 my-6">
+
+    <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-col">
+            <p class="font-semibold">Email:</p>
+            <small>Account email used to login to platform and get notification, two factor validation code etc.
+            </small>
         </div>
+        <p class="font-semibold">{{user.email}}</p>
     </div>
-    <div class="mb-4">
-        <p class="font-semibold">Email:</p>
-        <p class="bg-gray-300 p-2 rounded">{{user.email}}</p>
+    <hr class="border-t border-gray-300 my-6">
+    <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-col">
+            <p class="font-semibold">Password</p>
+            <small>You can use this password along with your email to login to platform, please keep your password strong and change frequently.</small>
+        </div>
+        <p>*********</p>
+        </div>
+    <a href="#" class="text-blue-500 underline">Edit</a>
+    <hr class="border-t border-gray-300 my-6">
+    <div class="flex flex-row justify-between items-center">
+        <p class="font-semibold">Country</p>
+        <p class="font-semibold">🇳🇵NP</p>
     </div>
-    <div class="mb-4">
-        <p class="font-semibold">Bio:</p>
-        <p class="bg-gray-300 p-2 rounded">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, fuga voluptatum hic eum dicta quis in? Cupiditate iusto repellat fugiat.</p>
+    <hr class="border-t border-gray-300 my-6">
+    <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-col">
+            <p class="font-semibold">Date Created</p>
+            <small>Creation date of your account.</small>
+        </div>        <p class="font-semibold">2024-06-01</p>
     </div>
-    <div class="mb-4">
-        <p class="font-semibold">Location:</p>
-        <p class="bg-gray-300 p-2 rounded">Sahid Marg, Gyaneshwor, Kathmandu Nepal</p>
+    <hr class="border-t border-gray-300 my-6">
+    <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-col">
+            <p class="font-semibold">Last Login Track</p>
+            <small>Date and time when your account was last signed in.</small>
+        </div>
+        <p class="font-semibold">{{user.last_login}}</p>
     </div>
-    <button class="bg-gray-600 hover:bg-gray-600 text-white px-4 py-2 rounded">Edit Profile</button>
+    <hr class="border-t border-gray-300 my-6">
+    <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-col">
+            <p class="font-semibold">Last Login IP</p>
+            <small>IP address from which your account was last signed in.</small>
+        </div>
+        <p class="font-semibold font-mono">111.111.211.114</p>
+    </div>
 </div>
 {% endblock content %}

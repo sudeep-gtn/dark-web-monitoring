@@ -127,10 +127,10 @@ class BlackMarketView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, "black_market.html")
     
-class StellarLogsView(LoginRequiredMixin, View):
+class StealerLogsView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
-        return render(request, "stellar_logs.html")
+        return render(request, "stealer-logs.html")
     
 
 class PiiExposureView(LoginRequiredMixin, View):
