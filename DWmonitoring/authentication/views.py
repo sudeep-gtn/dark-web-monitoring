@@ -137,3 +137,7 @@ class PiiExposureView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "pii-exposure.html")
+    
+class TermsAndConditionsView(View):
+    def get(self, request):
+        return render(request, "terms_and_conditions.html")

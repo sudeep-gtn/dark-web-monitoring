@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegisterView, LoginView, HomeView, LogoutView, DashboardView, DomainView, CardsView, UsersView, EmailView, OrganizationDetailsView, NotificationsView, ProfileView, BlackMarketView, StellarLogsView, PiiExposureView
+from .views import RegisterView, LoginView, HomeView, LogoutView, DashboardView, DomainView, CardsView, UsersView, EmailView, OrganizationDetailsView, NotificationsView, ProfileView, BlackMarketView, StellarLogsView, PiiExposureView, TermsAndConditionsView
 
 urlpatterns = [
     path('',HomeView.as_view(), name="home"),
@@ -16,5 +16,6 @@ urlpatterns = [
     path('profile',ProfileView.as_view(), name="profile"),
     path('leaks/black-market',BlackMarketView.as_view(), name="black-market"),
     path('leaks/stellar-logs', StellarLogsView.as_view(), name="stellar-logs"),
-    path('leaks/pii-exposure', PiiExposureView.as_view(),name="pii-exposure")
+    path('leaks/pii-exposure', PiiExposureView.as_view(),name="pii-exposure"),
+    path('terms-and-conditions', TermsAndConditionsView.as_view(), name="terms-and-conditions")
 ]
