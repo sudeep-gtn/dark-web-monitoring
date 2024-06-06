@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block title %} Stellar Logs {% endblock title %}
+
+{% block content %}
+<div class="bg-gray-100">
+    <div class="dashboard bg-gray-800 text-white py-4 text-center">
+        <h1 class="text-2xl font-bold">Dark Web Monitoring Dashboard</h1>
+        <div class="mt-4 flex justify-around">
+            <div class="text-center">
+                <h2 class="text-lg">Total Logs</h2>
+                <p class="text-2xl">1500</p>
+            </div>
+            <div class="text-center">
+                <h2 class="text-lg">Unique Credentials</h2>
+                <p class="text-2xl">300</p>
+            </div>
+            <div class="text-center">
+                <h2 class="text-lg">Financial Info</h2>
+                <p class="text-2xl">50</p>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto py-6 overflow-x-auto overflow-y-auto">
+        <div class="mb-4 flex justify-between">
+            <!-- <input type="text" placeholder="Search..." class="p-2 border rounded w-1/3"> -->
+            <!-- <button class="p-2 bg-blue-500 text-white rounded">Export</button> -->
+        </div>
+        <table class="min-w-full bg-white border rounded-lg">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b">Log ID</th>
+                    <th class="py-2 px-4 border-b">Date Detected</th>
+                    <th class="py-2 px-4 border-b">Data Type</th>
+                    <th class="py-2 px-4 border-b">Source</th>
+                    <th class="py-2 px-4 border-b">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Data Rows -->
+                <tr>
+                    <td class="py-2 px-4 border-b text-center">001</td>
+                    <td class="py-2 px-4 border-b text-center">2024-06-05</td>
+                    <td class="py-2 px-4 border-b text-center">Credentials</td>
+                    <td class="py-2 px-4 border-b text-center">Browser</td>
+                    <td class="py-2 px-4 border-b text-center">
+                        <button class="text-blue-500" onclick="toggleDetails('details-001')">Expand</button>
+                    </td>
+                </tr>
+                <tr id="details-001" class="hidden">
+                    <td colspan="5" class="py-2 px-4">
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <h3 class="font-bold">Credentials</h3>
+                            <p><strong>URL:</strong> example.com</p>
+                            <p><strong>Username:</strong> user123</p>
+                            <p><strong>Password:</strong> ****</p>
+                            <h3 class="font-bold mt-2">Financial Info</h3>
+                            <p><strong>Credit Card:</strong> ****-****-****-1234</p>
+                            <p><strong>Expiry:</strong> 06/25</p>
+                            <h3 class="font-bold mt-2">Personal Info</h3>
+                            <p><strong>Email:</strong> user@example.com</p>
+                            <h3 class="font-bold mt-2">System Info</h3>
+                            <p><strong>OS:</strong> Windows 10</p>
+                            <p><strong>Hardware:</strong> Intel i7</p>
+                            <h3 class="font-bold mt-2">Files</h3>
+                            <p><a href="#" class="text-blue-500">View Screenshot</a></p>
+                            <p><a href="#" class="text-blue-500">Download Keylogger Data</a></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-2 px-4 border-b text-center">002</td>
+                    <td class="py-2 px-4 border-b text-center">2024-02-15</td>
+                    <td class="py-2 px-4 border-b text-center">Credentials</td>
+                    <td class="py-2 px-4 border-b text-center">Application</td>
+                    <td class="py-2 px-4 border-b text-center">
+                        <button class="text-blue-500" onclick="toggleDetails('details-002')">Expand</button>
+                    </td>
+                </tr>
+                <tr id="details-002" class="hidden">
+                    <td colspan="5" class="py-2 px-4">
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <h3 class="font-bold">Credentials</h3>
+                            <p><strong>URL:</strong> example.com</p>
+                            <p><strong>Username:</strong> user123</p>
+                            <p><strong>Password:</strong> ****</p>
+                            <h3 class="font-bold mt-2">Financial Info</h3>
+                            <p><strong>Credit Card:</strong> ****-****-****-1234</p>
+                            <p><strong>Expiry:</strong> 09/15</p>
+                            <h3 class="font-bold mt-2">Personal Info</h3>
+                            <p><strong>Email:</strong> user@example.com</p>
+                            <h3 class="font-bold mt-2">System Info</h3>
+                            <p><strong>OS:</strong> Windows 11</p>
+                            <p><strong>Hardware:</strong> Intel i5</p>
+                            <h3 class="font-bold mt-2">Files</h3>
+                            <p><a href="#" class="text-blue-500">View Screenshot</a></p>
+                            <p><a href="#" class="text-blue-500">Download Keylogger Data</a></p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function toggleDetails(rowId) {
+            var element = document.getElementById(rowId);
+            element.classList.toggle("hidden");
+        }
+    </script>
+
+</div>
+{% endblock content %}
