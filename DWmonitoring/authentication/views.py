@@ -2,12 +2,13 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import CustomUser
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.contrib.auth.password_validation import validate_password
 import re
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 class RegisterView(View):
     def get(self, request):
@@ -146,3 +147,57 @@ class BrandProtectionView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "brand-protection.html")
+    
+class EditNameView(LoginRequiredMixin, View):
+    login_url = "login"
+    def get(self, request):
+        return render(request, "profile.html")
+    
+    def post(self, request):
+        user = request.user
+        full_name = request.POST.get("full_name").strip()
+
+        if not re.match(r'^[A-Za-z\s]{3,}$', full_name):
+            messages.error(request, "Full name must be at least 3 characters long and contain only alphabetic characters and spaces")
+            return redirect("profile")
+
+        if full_name:
+            user.full_name = full_name
+            user.save()
+            messages.success(request,"Name changed successfully")
+            return redirect("profile")
+        else:
+            messages.error(request,"Something went wrong. Please try again.")
+            return redirect("profile")
+
+class ChangePasswordView(LoginRequiredMixin, View):
+    login_url = "login"
+    def get(self, request):
+        return render(request, "profile.html")
+    
+    def post(self, request):
+        user = request.user
+        old_password = request.POST.get("old_password")
+        new_password = request.POST.get("new_password")
+        c_new_password = request.POST.get("c_new_password")
+
+        if not user.check_password(old_password):
+            messages.error(request, "Old password is incorrect.")
+            return redirect("profile")
+        
+        if new_password != c_new_password:
+            messages.error(request, "New passwords do not match.")
+            return render(request, "profile.html")
+        
+        try:
+            validate_password(new_password)
+        except ValidationError as e:
+            messages.error(request, "".join(e.messages))
+            return redirect("profile")
+    
+        user.set_password(new_password)
+        user.save()
+        
+        update_session_auth_hash(request, user)
+        messages.success(request, "Password changed successfully.")
+        return redirect("profile")

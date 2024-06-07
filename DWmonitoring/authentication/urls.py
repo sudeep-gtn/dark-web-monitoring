@@ -8,7 +8,9 @@ from .views import (
     NotificationsView, ProfileView, 
     BlackMarketView, StealerLogsView, 
     PiiExposureView, TermsAndConditionsView,
-    BrandProtectionView)
+    BrandProtectionView,EditNameView,
+    ChangePasswordView
+    )
 
 urlpatterns = [
     path('',HomeView.as_view(), name="home"),
@@ -27,5 +29,7 @@ urlpatterns = [
     path('dark-web-monitoring/leaks/stealer-logs', StealerLogsView.as_view(), name="stealer-logs"),
     path('dark-web-monitoring/leaks/pii-exposure', PiiExposureView.as_view(),name="pii-exposure"),
     path('terms-and-conditions', TermsAndConditionsView.as_view(), name="terms-and-conditions"),
-    path('brand-protection',BrandProtectionView.as_view(), name="brand-protection")
+    path('brand-protection',BrandProtectionView.as_view(), name="brand-protection"),
+    path('edit-name', EditNameView.as_view(), name="edit-name"),
+    path('change-password', ChangePasswordView.as_view(), name="change-password")
 ]
