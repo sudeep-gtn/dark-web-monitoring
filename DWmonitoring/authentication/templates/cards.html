@@ -5,20 +5,20 @@
 <div class="mx-4 my-4">
   <div class="flex flex-col w-full xl:w-5/6  mx-auto gap-6 lg:flex-row mb-6">
     <div class="flex flex-col border-2 border-red-200 w-full xl:w-1/2 shadow-lg bg-white p-6 rounded-lg">
-      <div class="flex gap-2 text-3xl font-semibold mx-auto">Cards <span> <img src="/static/images/credit-card.png"
-            height="40" width="40" alt="cards"></span> </div>
+      <div class="flex gap-2 text-2xl font-semibold mx-auto">Cards <span> <img src="/static/images/credit-card.png"
+            height="30" width="30" alt="cards"></span> </div>
       <div class=" flex flex-col ">
         <div class="flex items-center justify-around w-full gap-2 pt-4">
           <div class="flex flex-col p-2 ">
-            <h2 class="text-6xl  font-bold text-red-600">5</h2>
-            <span class=" text-lg">Card Breaches </span>
+            <h2 class="text-4xl  font-bold text-red-600">5</h2>
+            <span class=" text-gray-600">Card Breaches </span>
           </div>
           <div class="flex flex-col">
-            <h2 class="text-6xl font-bold text-red-600">35</h2>
-            <span class="text-lg">Breaches in total </span>
+            <h2 class="text-4xl font-bold text-red-600">35</h2>
+            <span class="text-gray-600">Breaches in total </span>
           </div>
         </div>
-        <div class="font-semibold text-gray-600 w-fit mx-auto mt-8 text-lg ">There are <span class="text-red-600"> 5</span> unique cards breach , <span class="text-red-600"> 35 </span> times in total. </div>
+        <div class="font-semibold text-gray-500 w-fit mx-auto mt-8 text-sm ">There are <span class="text-red-600"> 5</span> unique cards breach , <span class="text-red-600"> 35 </span> times in total. </div>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
     <div class=" border-2 border-red-200 xl:w-1/2 w-full flex-col w-full bg-white shadow-lg p-4 rounded-lg  flex ">
       <div class="flex gap-4 flex-col lg:flex-row  items-center pb-4 ">
         <h1 class="font-semibold text-left text-lg">Data Leak Source</h1>
-        <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 bg-white outline-none" name="cards">
+        <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none" name="cards">
           <option selected value="">Select BIN </option>
           <option value="123345566"> 1234567</option>
           <option value="123345566"> 1234567</option>
@@ -36,28 +36,30 @@
       <div class="flex gap-4 flex-col lg:flex-row  items-center justify-center w-full">
         <div class="w-2/5 flex items-center mx-auto justify-center">
           <div
-            class=" flex items-center justify-center p-2 h-48 w-48 bg-gradient-to-l  from-yellow-500 to-red-500 rounded-full ">
-            <div class="flex items-center justify-center w-44 h-44 bg-white  rounded-full">
+            class=" flex items-center justify-center p-2 h-36 w-36 bg-gradient-to-l  from-yellow-500 to-red-500 rounded-full ">
+            <div class="flex items-center justify-center w-32 h-32 bg-white  rounded-full">
               <span
-                class="shadow-2xl shadow-gray-400/70   rounded-full h-24 w-24 border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out flex items-center justify-center font-bold text-4xl text-red-800">5</span>
+                class="shadow-2xl shadow-gray-400/70   rounded-full h-16 w-16 border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out flex items-center justify-center font-bold text-4xl text-red-600">5</span>
             </div>
           </div>
         </div>
-        <div class="w-3/5 items-left justify-start flex flex-col  ">
-          <h1 class="text-left text-gray-600 font-semibold tracking-wide"> There are <span class="text-red-500">5</span>
+        <div class="md:w-3/5 w-5/6 items-left justify-start flex flex-col  ">
+          <h1 class="text-left text-sm text-gray-600 font-semibold tracking-wide"> There are <span class="text-red-500">5</span>
             data leak sources . Here are the top data leak sources with the most findings : </h1>
-          <ol class="list-disc px-4 py-2 font-bold text-gray-800 pt-4 flex items-left flex-col gap-2">
-            <li class="flex items-center gap-2 "> <span
-                class="text-base border border-red-400 bg-red-200 px-2 rounded-md ">23</span> example.com</li>
-            <li class="flex items-center gap-2 "> <span
-                class="text-base border border-red-400 bg-red-200 px-2 rounded-md ">3</span> shyambistsa.tech</li>
-            <li class="flex items-center gap-2 "> <span
-                class="text-base border border-red-400 bg-red-200 px-2 rounded-md ">6</span> Telegram.org</li>
-            <li class="flex items-center gap-2 "> <span
-                class="text-base border border-red-400 bg-red-200 px-2 rounded-md ">12</span> sudipbogati.com.np</li>
-            <li class="flex items-center gap-2 "> <span
-                class="text-base border border-red-400 bg-red-200 px-2 rounded-md ">9</span> greentick.com</li>
-          </ol>
+          <div class="w-full mt-2 border-t-2 border-gray-300 h-[100px] overflow-y-auto">
+            <ol class="list-disc px-4 py-2 font-bold text-gray-800 pt-4 flex items-left flex-col gap-2">
+              <li class="flex items-center gap-2 text-sm "> <span
+                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">23</span> example.com</li>
+              <li class="flex items-center gap-2 text-sm"> <span
+                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">3</span> shyambistsa.tech</li>
+              <li class="flex items-center gap-2 text-sm"> <span
+                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">6</span> Telegram.org</li>
+              <li class="flex items-center gap-2 text-sm"> <span
+                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">12</span> sudipbogati.com.np</li>
+              <li class="flex items-center gap-2 text-sm"> <span
+                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">9</span> greentick.com</li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>
