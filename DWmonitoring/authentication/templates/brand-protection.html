@@ -2,6 +2,23 @@
 {% block title %}Brand Protection{% endblock title %}
 
 {% block header %}
+<style>
+    .toggle-icon {
+        transition: transform 0.3s;
+    }
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
+</style>
+<script>
+    function toggleDetails(id, iconId) {
+        const element = document.getElementById(id);
+        const icon = document.getElementById(iconId);
+        element.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+    }
+</script>
+
 <header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
     <a href="{% url 'brand-protection'%}" class="text-xl font-extrabold text-gray-700">
       <span class="text-red-500"> Brand</span> <span class="text-[#92a91a]">Protection</span>
@@ -51,96 +68,146 @@
     <div class="container mx-auto p-4">
         <h1 class="text-4xl font-bold mb-6 text-center">Brand Protection Dashboard</h1>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="flex flex-wrap -mx-2">
             <!-- Brand Mentions Monitoring -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">Brand Mentions</h2>
-                <div class="mb-4">
-                    <p class="text-lg">Total Mentions: <span class="font-bold">1,234</span></p>
-                    <p class="text-lg">Negative Mentions: <span class="font-bold text-red-500">123</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">Brand Mentions</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">Total Mentions: <span class="font-bold">1,234</span></p>
+                        <p class="text-lg">Negative Mentions: <span class="font-bold text-red-500">123</span></p>
+                    </div>
+                    <svg id="iconBrandMentions" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('brandMentions', 'iconBrandMentions')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="brandMentions" class="hidden mt-4">
+                        <p class="text-md">Tracking keywords and brand name variations.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Details</button>
             </div>
             <!-- Counterfeit Detection -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">Counterfeit Detection</h2>
-                <div class="mb-4">
-                    <p class="text-lg">Listings Detected: <span class="font-bold">56</span></p>
-                    <p class="text-lg">Actions Taken: <span class="font-bold">50</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">Counterfeit Detection</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">Listings Detected: <span class="font-bold">56</span></p>
+                        <p class="text-lg">Actions Taken: <span class="font-bold">50</span></p>
+                    </div>
+                    <svg id="iconCounterfeitDetection" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('counterfeitDetection', 'iconCounterfeitDetection')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="counterfeitDetection" class="hidden mt-4">
+                        <p class="text-md">Monitoring product listings and images for counterfeits.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Listings</button>
             </div>
             <!-- Data Leaks and Compromised Accounts -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">Data Leaks</h2>
-                <div class="mb-4">
-                    <p class="text-lg">Compromised Accounts: <span class="font-bold">12</span></p>
-                    <p class="text-lg">Databases Leaked: <span class="font-bold">3</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">Data Leaks</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">Compromised Accounts: <span class="font-bold">12</span></p>
+                        <p class="text-lg">Databases Leaked: <span class="font-bold">3</span></p>
+                    </div>
+                    <svg id="iconDataLeaks" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('dataLeaks', 'iconDataLeaks')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="dataLeaks" class="hidden mt-4">
+                        <p class="text-md">Monitoring for compromised credentials and database leaks.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Details</button>
             </div>
             <!-- Intellectual Property Protection -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">IP Protection</h2>
-                <div class="mb-4">
-                    <p class="text-lg">IP Infringements: <span class="font-bold">8</span></p>
-                    <p class="text-lg">Actions Taken: <span class="font-bold">8</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">IP Protection</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">IP Infringements: <span class="font-bold">8</span></p>
+                        <p class="text-lg">Actions Taken: <span class="font-bold">8</span></p>
+                    </div>
+                    <svg id="iconIPProtection" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('ipProtection', 'iconIPProtection')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="ipProtection" class="hidden mt-4">
+                        <p class="text-md">Safeguarding against unauthorized use of IP.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Details</button>
             </div>
             <!-- Executive Protection -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">Executive Protection</h2>
-                <div class="mb-4">
-                    <p class="text-lg">Threats Detected: <span class="font-bold">2</span></p>
-                    <p class="text-lg">Actions Taken: <span class="font-bold">2</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">Executive Protection</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">Threats Detected: <span class="font-bold">2</span></p>
+                        <p class="text-lg">Actions Taken: <span class="font-bold">2</span></p>
+                    </div>
+                    <svg id="iconExecutiveProtection" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('executiveProtection', 'iconExecutiveProtection')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="executiveProtection" class="hidden mt-4">
+                        <p class="text-md">Monitoring and addressing threats against executives.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Details</button>
             </div>
             <!-- Social Media and Phishing Protection -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">Social Media & Phishing</h2>
-                <div class="mb-4">
-                    <p class="text-lg">Fake Accounts: <span class="font-bold">4</span></p>
-                    <p class="text-lg">Phishing Campaigns: <span class="font-bold">3</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">Social Media & Phishing</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">Fake Accounts: <span class="font-bold">4</span></p>
+                        <p class="text-lg">Phishing Campaigns: <span class="font-bold">3</span></p>
+                    </div>
+                    <svg id="iconSocialMediaPhishing" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('socialMediaPhishing', 'iconSocialMediaPhishing')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="socialMediaPhishing" class="hidden mt-4">
+                        <p class="text-md">Detecting and mitigating fake accounts and phishing campaigns.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Details</button>
             </div>
             <!-- Reputation Management -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">Reputation Management</h2>
-                <div class="mb-4">
-                    <p class="text-lg">Negative Sentiments: <span class="font-bold">45</span></p>
-                    <p class="text-lg">Resolved Issues: <span class="font-bold">40</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">Reputation Management</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">Negative Sentiments: <span class="font-bold">45</span></p>
+                        <p class="text-lg">Resolved Issues: <span class="font-bold">40</span></p>
+                    </div>
+                    <svg id="iconReputationManagement" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('reputationManagement', 'iconReputationManagement')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="reputationManagement" class="hidden mt-4">
+                        <p class="text-md">Analyzing and responding to negative sentiments.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Details</button>
             </div>
             <!-- Threat Intelligence Reports -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">Threat Intelligence</h2>
-                <div class="mb-4">
-                    <p class="text-lg">Reports Generated: <span class="font-bold">10</span></p>
-                    <p class="text-lg">Actionable Insights: <span class="font-bold">7</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">Threat Intelligence</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">Reports Generated: <span class="font-bold">10</span></p>
+                        <p class="text-lg">Actionable Insights: <span class="font-bold">7</span></p>
+                    </div>
+                    <svg id="iconThreatIntelligence" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('threatIntelligence', 'iconThreatIntelligence')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="threatIntelligence" class="hidden mt-4">
+                        <p class="text-md">Providing actionable insights through regular reports.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Reports</button>
             </div>
             <!-- Collaboration and Incident Response -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">Incident Response</h2>
-                <div class="mb-4">
-                    <p class="text-lg">Incidents Resolved: <span class="font-bold">5</span></p>
-                    <p class="text-lg">Pending Actions: <span class="font-bold">1</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">Incident Response</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">Incidents Resolved: <span class="font-bold">5</span></p>
+                        <p class="text-lg">Pending Actions: <span class="font-bold">1</span></p>
+                    </div>
+                    <svg id="iconIncidentResponse" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('incidentResponse', 'iconIncidentResponse')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="incidentResponse" class="hidden mt-4">
+                        <p class="text-md">Coordinating with law enforcement and internal teams.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Details</button>
             </div>
             <!-- Legal and Compliance Monitoring -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">Legal & Compliance</h2>
-                <div class="mb-4">
-                    <p class="text-lg">Legal Notices: <span class="font-bold">3</span></p>
-                    <p class="text-lg">Compliance Issues: <span class="font-bold">0</span></p>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                    <h2 class="text-2xl font-semibold mb-2">Legal & Compliance</h2>
+                    <div class="mb-4">
+                        <p class="text-lg">Legal Notices: <span class="font-bold">3</span></p>
+                        <p class="text-lg">Compliance Issues: <span class="font-bold">0</span></p>
+                    </div>
+                    <svg id="iconLegalCompliance" class="toggle-icon absolute top-6 right-6 cursor-pointer" onclick="toggleDetails('legalCompliance', 'iconLegalCompliance')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div id="legalCompliance" class="hidden mt-4">
+                        <p class="text-md">Ensuring compliance with legal and regulatory requirements.</p>
+                    </div>
                 </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">View Details</button>
             </div>
         </div>
     </div>
