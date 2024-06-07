@@ -8,6 +8,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
+  <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon">
+
   <title>{% block title %}Darkweb Monitoring{% endblock title %}</title>
   <style>
     #checkbox2 {
@@ -191,7 +193,7 @@
               </li>
               <li>
                 <a href="{% url 'stealer-logs' %}"
-                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/stellar-logs' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
+                  class="block w-full text-left p-3 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/stealer-logs' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
                   Stealer Logs 
                 </a>
               </li>
