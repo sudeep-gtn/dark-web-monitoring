@@ -146,3 +146,16 @@ class BrandProtectionView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "brand-protection.html")
+    
+class EditNameView(LoginRequiredMixin, View):
+    login_url = "login"
+    def get(self, request):
+        return render(request, "profile.html")
+    
+    def post(self, request):
+        user = request.user
+        full_name = request.POST.get("full_name").strip()
+        if full_name:
+            user.full_name = full_name
+            user.save()
+            return redirect("profile")

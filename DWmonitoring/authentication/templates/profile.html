@@ -11,7 +11,24 @@ Profile
 
     <div class="flex flex-row justify-between items-center">
         <p class="font-semibold">Name</p>
-        <p class="font-semibold">{{user.full_name}}</p>
+        <button class="font-semibold">{{user.full_name}}</button>
+    </div>
+    <button onclick="showEditNamePopUp()" class="text-blue-500 underline">Edit</button>
+ 
+
+    <div id="edit-name-popup" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white rounded-lg p-8 max-w-md">
+            <h2 class="text-2xl font-semibold mb-4">Edit Name</h2>
+            <form method="post" action="/edit-name">
+                {% csrf_token %}
+                <label for="name" class="block mb-2">Name:</label>
+                <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="text" id="name" name="full_name" value="{{user.full_name}}">    
+            <div class="flex justify-end">
+                <button type="submit" class="bg-blue-500 text-white rounded-lg px-4 py-2">Save</button>
+                <button onclick="cancelEditNamePopUp(event)" class="bg-gray-300 text-gray-800 rounded-lg px-4 py-2 ml-4">Cancel</button>
+            </div>
+            </form>
+        </div>
     </div>
 
     <hr class="border-t border-gray-300 my-6">
@@ -32,7 +49,25 @@ Profile
         </div>
         <p>*********</p>
         </div>
-    <a href="#" class="text-blue-500 underline">Edit</a>
+    <button onclick="showChangePasswordPopUp()" class="text-blue-500 underline">Edit</button>
+
+    <div id="change-password-popup" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white rounded-lg p-8 max-w-md">
+            <h2 class="text-2xl font-semibold mb-4">Change Password</h2>
+            <label for="password" class="block mb-2">Current Password</label>
+            <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="password" id="password" name="password">
+            <label for="password" class="block mb-2">New Password</label>
+            <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="password" id="password" name="password">
+            <label for="password" class="block mb-2">Confirm New Password</label>
+            <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="password" id="password" name="password">
+
+            <div class="flex justify-end">
+                <button class="bg-blue-500 text-white rounded-lg px-4 py-2">Save</button>
+                <button onclick="cancelChangePasswordPopUp(event)" class="bg-gray-300 text-gray-800 rounded-lg px-4 py-2 ml-4">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
     <hr class="border-t border-gray-300 my-6">
     <div class="flex flex-row justify-between items-center">
         <p class="font-semibold">Country</p>
@@ -43,7 +78,8 @@ Profile
         <div class="flex flex-col">
             <p class="font-semibold">Date Created</p>
             <small>Creation date of your account.</small>
-        </div>        <p class="font-semibold">2024-06-01</p>
+        </div>
+        <p class="font-semibold font-mono">2024-06-01</p>
     </div>
     <hr class="border-t border-gray-300 my-6">
     <div class="flex flex-row justify-between items-center">
@@ -51,7 +87,7 @@ Profile
             <p class="font-semibold">Last Login Track</p>
             <small>Date and time when your account was last signed in.</small>
         </div>
-        <p class="font-semibold">{{user.last_login}}</p>
+        <p class="font-semibold font-mono">{{user.last_login}}</p>
     </div>
     <hr class="border-t border-gray-300 my-6">
     <div class="flex flex-row justify-between items-center">
@@ -62,4 +98,21 @@ Profile
         <p class="font-semibold font-mono">111.111.211.114</p>
     </div>
 </div>
+<script>
+    function showEditNamePopUp() {
+        document.getElementById('edit-name-popup').classList.remove('hidden');        
+    }
+    function cancelEditNamePopUp(event){
+        event.preventDefault();
+        document.getElementById('edit-name-popup').classList.add('hidden');        
+    }
+
+    function showChangePasswordPopUp() {
+        document.getElementById('change-password-popup').classList.remove('hidden');        
+    }
+    function cancelChangePasswordPopUp(event){
+        event.preventDefault();
+        document.getElementById('change-password-popup').classList.add('hidden');        
+    }
+</script>
 {% endblock content %}
