@@ -2,31 +2,31 @@
 {% block title %} Stellar Logs {% endblock title %}
 
 {% block content %}
-<div class="bg-gray-100">
-    <div class="dashboard bg-gray-800 text-white py-4 text-center">
-        <h1 class="text-2xl font-bold">Dark Web Monitoring Dashboard</h1>
-        <div class="mt-4 flex justify-around">
-            <div class="text-center">
-                <h2 class="text-lg">Total Logs</h2>
-                <p class="text-2xl">1500</p>
+<div class="">
+    <div class="dashboard py-4 text-center">
+        <h1 class="text-2xl font-bold"> <span class="text-red-600 ">Stealer Logs  </span> Informations </h1>
+        <div class="mt-8 w-full flex items-center mx-auto justify-around">
+            <div class=" w-1/3  ">
+                <p class="text-2xl font-semibold">1500</p> 
+                <h2 class="text-lg text-gray-500">Total Logs</h2>
             </div>
-            <div class="text-center">
-                <h2 class="text-lg">Unique Credentials</h2>
-                <p class="text-2xl">300</p>
+            <div class=" w-1/3 ">
+                <p class="text-2xl  font-semibold">300</p>
+                <h2 class="text-lg text-gray-500">Unique Credentials</h2>
             </div>
-            <div class="text-center">
-                <h2 class="text-lg">Financial Info</h2>
-                <p class="text-2xl">50</p>
+            <div class="w-1/3 ">
+                <p class="font-semibold text-2xl">50</p>
+                <h2 class="text-lg text-gray-500">Financial Info</h2>
             </div>
         </div>
     </div>
-    <div class="container mx-auto py-6 overflow-x-auto overflow-y-auto">
+    <div class="container rounded-lg shadow-md mx-auto  my-6 overflow-x-auto overflow-y-auto">
         <div class="mb-4 flex justify-between">
             <!-- <input type="text" placeholder="Search..." class="p-2 border rounded w-1/3"> -->
             <!-- <button class="p-2 bg-blue-500 text-white rounded">Export</button> -->
         </div>
-        <table class="min-w-full bg-white border rounded-lg">
-            <thead>
+        <table class="border-2 border-gray-300  min-w-full bg-white rounded-lg">
+            <thead class="border-b-2 border-gray-300 bg-gray-200">
                 <tr>
                     <th class="py-2 px-4 border-b">Log ID</th>
                     <th class="py-2 px-4 border-b">Date Detected</th>
@@ -43,10 +43,16 @@
                     <td class="py-2 px-4 border-b text-center">Credentials</td>
                     <td class="py-2 px-4 border-b text-center">Browser</td>
                     <td class="py-2 px-4 border-b text-center">
-                        <button class="text-blue-500" onclick="toggleDetails('details-001')">Expand</button>
+                        <button class="text-blue-500 flex items-center mx-auto text-center " onclick="toggleDetails('details-001')">
+                            Expand
+                            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </span>
+                        </button>
                     </td>
                 </tr>
-                <tr id="details-001" class="hidden">
+                <tr id="details-001" class="hidden ">
                     <td colspan="5" class="py-2 px-4">
                         <div class="p-4 bg-gray-100 rounded-lg">
                             <h3 class="font-bold">Credentials</h3>
@@ -73,7 +79,11 @@
                     <td class="py-2 px-4 border-b text-center">Credentials</td>
                     <td class="py-2 px-4 border-b text-center">Application</td>
                     <td class="py-2 px-4 border-b text-center">
-                        <button class="text-blue-500" onclick="toggleDetails('details-002')">Expand</button>
+                        <button class="text-blue-500 flex gap-2 items-center mx-auto text-center" onclick="toggleDetails('details-002')">Expand <span>
+                            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </span></button>
                     </td>
                 </tr>
                 <tr id="details-002" class="hidden">
