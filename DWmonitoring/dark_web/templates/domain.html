@@ -33,6 +33,9 @@
         <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none"
           name="cards">
           <option selected value="">Select domain</option>
+          {% for domain in unique_domains %}
+            <option selected value="{{domain}}">{{domain}}</option>
+          {% endfor %}
         </select>
       </div>
       <div class="flex gap-4 flex-col lg:flex-row items-center justify-center w-full">

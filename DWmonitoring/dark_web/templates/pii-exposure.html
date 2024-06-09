@@ -13,20 +13,19 @@
             <div class=" flex flex-col ">
                 <div class="flex items-center justify-around w-full gap-2 pt-4">
                     <div class="flex flex-col p-2 ">
-                        <h2 class="text-3xl font-bold text-red-600">5</h2>
+                        <h2 class="text-3xl font-bold text-red-600">{{unique_pii_exposures_length}}</h2>
                         <span class=" text-gray-500 font-semibold">User Breaches </span>
                     </div>
                     <div class="flex flex-col">
-                        <h2 class="text-3xl font-bold text-red-600">35</h2>
+                        <h2 class="text-3xl font-bold text-red-600">{{pii_exposures_length}}</h2>
                         <span class="text-gray-500 font-semibold">Breaches in total </span>
                     </div>
                 </div>
                 <div class="font-semibold text-gray-500 w-fit mx-auto mt-8 ">There are <span
                         class="text-red-600">
-                        5</span> unique users breach , <span class="text-red-600">35 </span> times in total. </div>
+                        {{unique_pii_exposures_length}}</span> unique users breach , <span class="text-red-600">{{pii_exposures_length}}</span> times in total. </div>
             </div>
         </div>
-
 
         <div class=" border-2 border-red-200 xl:w-1/2 w-full flex-col w-full bg-white shadow-lg p-4 rounded-lg  flex ">
             <div class="flex gap-4 flex-col lg:flex-row  items-center pb-4 ">
@@ -34,8 +33,9 @@
               <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none"
                 name="cards">
                 <option selected value="">Select user </option>
-                <option value="123345566"> admin@admin.com</option>
-                <option value="123345566"> example.com </option>
+                {% for unique_pii_exposures_email in unique_pii_exposures_emails %}
+                <option value="123345566">{{unique_pii_exposures_email}}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="flex gap-4 flex-col lg:flex-row  items-center justify-center w-full">
@@ -109,21 +109,23 @@
                     </tr>
                 </thead>
                 <tbody class=" text-gray-700">
+                    {% for pii_exposure in pii_exposures %}
                     <tr>
-                        <td class="text-center text-sm py-2 px-2 w-fit ">John Doe</td>
-                        <td class="text-center text-sm py-2 px-2 w-fit ">2027-03-05</td>
-                        <td class="text-center text-sm py-2 px-2 w-fit ">192....</td>
-                        <td class="text-center text-sm py-2 px-2 w-fit ">example.com</td>
-                        <td class="text-center text-sm py-2 px-2 w-fit ">Phishing</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.name}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.breach_date}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.breach_ip}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.domain}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.threat_type}}</td>
                         <td class="text-center text-sm py-2 px-2 w-fit "><span
-                                class="bg-yellow-200 px-2 rounded-lg w-fit  text-gray-700 border-2 border-yellow-400 flex justify-center text-center mx-auto items-center">Medium</span>
+                                class="bg-yellow-200 px-2 rounded-lg w-fit  text-gray-700 border-2 border-yellow-400 flex justify-center text-center mx-auto items-center">{{pii_exposure.severity_level}}</span>
                         </td>
-                        <td class="text-center text-sm py-2 px-2 w-fit ">personal</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.type_of_data}}</td>
                         <td class="text-center text-sm py-2 px-2 w-fit "><span
-                                class="bg-gray-200 px-2 flex items-center rounded-lg w-fit "> Hacker Forum </span></td>
-                        <td class="text-center text-sm py-2 px-2 w-fit ">john@example.com</td>
-                        <td class="text-center text-sm py-2 px-2 w-fit ">03780.....</td>
+                                class="bg-gray-200 px-2 flex items-center rounded-lg w-fit "> {{pii_exposure.source}} </span></td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.personal_email}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.phone}}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
