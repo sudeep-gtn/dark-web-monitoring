@@ -7,6 +7,26 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
+    <style>
+        ::-webkit-scrollbar {
+            width: 12px;
+            /* Width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            /* Background of the scrollbar track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: red;
+            /* Color of the scrollbar thumb */
+            border-radius: 10px;
+            /* Roundness of the scrollbar thumb */
+            border: 4px solid #f1f1f1;
+            /* Padding around scrollbar thumb */
+        }
+    </style>
     <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon">
     <title> {% block title %} Home {% endblock title %}</title>
 </head>
@@ -22,12 +42,13 @@
             <a href="{% url 'home' %}"><span class=" text-red-700 ">Dark Web</span> <span
                     class="text-[#92a91a]">Monitoring</span></a>
         </div> -->
-        <nav class="flex gap-8 px-8 text-xl font-semibold  items-center justify-center">
+        <nav class="flex gap-8 px-2 text-lg font-semibold  items-center justify-center">
 
             {% if user.is_authenticated %}
-            <a href="{% url 'dashboard' %}">
+            <a target="_blank" href="{% url 'dashboard' %}">
                 <button
-                    class="{% if request.path == '/dashboard' %} text-red-700 border-red-700 {% endif %} border-b-2 hover:border-red-600 hover:text-red-600 transition-all duration-200 ease-in-out border-b">Dashboard</button>
+                    class="{% if request.path == '/dashboard' %} text-black border-red-700 {% endif %} flex items-center gap-2 text-gray-600 border-b-2 hover:border-gray-600 hover:text-gray-900 transition-all duration-200 ease-in-out border-b">Dashboard
+                    <img src="/static/images/redirect.png" height="20" width="16" alt="redirection"></button>
             </a>
 
             {% else %}
@@ -49,21 +70,21 @@
         <div class="bg-gray-700">
             <div class="relative sm:w-full md:w-5/6 xl:w-2/4  mx-auto text-center text-white pt-4 pb-14 bg-gray-700">
                 <div id="particles-js" class="absolute top-0 left-0 w-full h-full z-0"></div>
-                <div class="text-4xl w-fit mx-auto py-8  font-bold  text-white z-10 relative">
+                <div class="text-2xl w-fit mx-auto py-8  font-bold  text-white z-10 relative">
                     <span class="text-red-600  ">Dark Web</span>
                     <span class="border-b-2 border-red-800 text-gray-200 px-2 ">Monitoring</span>
                 </div>
-                <p class="text-gray-300 w-4/5 font-semibold tracking-wide mx-auto text-xl z-10 relative">
+                <p class="text-gray-300 w-4/5 font-semibold tracking-wide mx-auto text-lg z-10 relative">
                     The dark web: a hidden network where threats can linger unseen. But what if you could shine a light
                     on it? Our application empowers you to monitor the dark web for mentions of your personal
                     information, giving you peace of mind and the knowledge to act swiftly if needed.
                 </p>
                 <div class="flex gap-14 items-center pt-8 justify-center z-10 relative">
                     <a href="#"
-                        class="bg-red-600 px-4 py-2 rounded-lg text-lg font-medium hover:shadow-green-600 shadow-2xl hover:bg-[#92a91a] transition-all duration-300 ease-in-out">
+                        class="bg-red-600 px-4 py-2 rounded-lg font-medium hover:shadow-green-600 shadow-2xl hover:bg-[#92a91a] transition-all duration-300 ease-in-out">
                         Contact us </a>
                     <a href="{% url 'register' %}"
-                        class="border-2 border-red-700 px-4 py-2 rounded-lg text-lg font-medium hover:bg-red-800 transition-all duration-300 ease-in-out hover:shadow-red-600 hover:shadow-2xl">
+                        class="border-2 border-red-700 px-4 py-2 rounded-lg font-medium hover:bg-red-800 transition-all duration-300 ease-in-out hover:shadow-red-600 hover:shadow-2xl">
                         Get Started </a>
                 </div>
             </div>
@@ -72,13 +93,14 @@
 
         <div class="flex w-5/6 flex-col lg:flex-row mt-4 mx-auto items-center justify-center">
 
-            <div class=" border-r-2 border-red-400 lg:border-none my-4 w-full px-4 py-8 flex flex-col gap-2 items-center text-center justify-center  mx-auto">
+            <div
+                class=" border-r-2 border-red-400 lg:border-none my-4 w-full px-4 py-8 flex flex-col gap-2 items-center text-center justify-center  mx-auto">
                 <div class=" w-fit  mx-auto flex items-center justify-center">
-                    <img height="60" width="400" src="/static/images/ice-example.jpg" alt="dark-web-illustration">
+                    <img height="60" width="300" src="/static/images/ice-example.jpg" alt="dark-web-illustration">
                 </div>
                 <div class="flex  w-full md:w-2/3 xl:w-2/3 flex-col gap-4">
-                    <h1 class="text-2xl tracking-wide font-semibold pt-6 mx-auto  ">What is the Dark Web ?</h1>
-                    <p class="text-lg text-gray-600 ">
+                    <h1 class="text-xl tracking-wide font-semibold pt-6 mx-auto  ">What is the Dark Web ?</h1>
+                    <p class="text-gray-600 ">
                         The dark web refers to a hidden part of the internet that is not accessible through traditional
                         search engines or browsers. It is often used for illicit activities, where users can remain
                         anonymous and transactions can be conducted using cryptocurrencies. There is a great deal of
@@ -90,11 +112,11 @@
             <div
                 class=" border-l-2 lg:border-none border-red-400 my-4 w-full px-4 py-8 flex flex-col  gap-2 items-center text-center justify-center  mx-auto">
                 <div class=" w-fit  mx-auto flex items-center justify-center">
-                    <img height="60" width="220" src="/static/images/img-banner-dark-web-monitoring.svg" alt="">
+                    <img height="60" width="200" src="/static/images/img-banner-dark-web-monitoring.svg" alt="">
                 </div>
                 <div class="flex  w-full md:w-2/3 xl:w-2/3 flex-col gap-4">
-                    <h1 class="text-2xl tracking-wide font-semibold pt-6 mx-auto  ">What is Dark Web Monitoring ?</h1>
-                    <p class="text-lg text-gray-600 ">Dark web monitoring is a service that scans the dark web for your
+                    <h1 class="text-xl tracking-wide font-semibold pt-6 mx-auto  ">What is Dark Web Monitoring ?</h1>
+                    <p class=" text-gray-600 ">Dark web monitoring is a service that scans the dark web for your
                         personal information.
                         The dark web is a part of the internet that isn't indexed by search engines and requires special
                         software to access. Criminals sometimes use the dark web to buy and sell stolen data, including
@@ -105,11 +127,11 @@
             </div>
         </div>
         {% endblock content %}
-        <div class="w-full h-16 bg-gray-700 absolute flex items-center justify-center text-white bottom-0">
-            <p>&copy; 2024 Greentick Nepal. All rights reserved.</p>
+        <div class="w-full h-16 text-sm bg-gray-700 absolute flex items-center justify-center text-white bottom-0">
+            <p>&copy; 2024 Green Tick Nepal. All rights reserved.</p>
         </div>
     </div>
-    
+
 
     <script>
         particlesJS('particles-js', {
