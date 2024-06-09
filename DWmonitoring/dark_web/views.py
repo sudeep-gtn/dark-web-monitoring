@@ -101,10 +101,41 @@ class StealerLogsView(LoginRequiredMixin, View):
 
 class PiiExposureView(LoginRequiredMixin, View):
     login_url = "login"
+
     def get(self, request):
+        # Retrieve all PII exposures from the database
         pii_exposures = PIIExposure.objects.all()
-        pii_exposures_length = len(pii_exposures)
-        pii_exposures_email = [pii_exposure.personal_email for pii_exposure in pii_exposures]
-        unique_pii_exposures_email = set(pii_exposures_email)
-        unique_pii_exposures_length = len(unique_pii_exposures_email)
-        return render(request, "pii-exposure.html",{'pii_exposures': pii_exposures, 'pii_exposures_length': pii_exposures_length, 'unique_pii_exposures_length': unique_pii_exposures_length, 'unique_pii_exposures_emails':unique_pii_exposures_email})
+
+        # Calculate the total number of PII exposures
+        pii_exposures_length = pii_exposures.count()
+
+        # Extract unique email addresses from PII exposures
+        pii_exposures_emails = [pii_exposure.personal_email for pii_exposure in pii_exposures]
+        unique_pii_exposures_emails = set(pii_exposures_emails)
+        unique_pii_exposures_length = len(unique_pii_exposures_emails)
+
+        # Prepare leak sources data
+        leak_sources = {}
+        for pii_exposure in pii_exposures:
+            email = pii_exposure.personal_email
+            domain = pii_exposure.source_domain
+            if email not in leak_sources:
+                leak_sources[email] = []
+            # Count occurrences of each domain for an email
+            domain_exists = next((item for item in leak_sources[email] if item["domain"] == domain), None)
+            if domain_exists:
+                domain_exists["count"] += 1
+            else:
+                leak_sources[email].append({"count": 1, "domain": domain})
+        
+        # Convert leak_sources dictionary to JSON
+        leak_sources_json = json.dumps(leak_sources)
+
+        # Render the template with the necessary context data
+        return render(request, "pii-exposure.html", {
+            'pii_exposures': pii_exposures,
+            'pii_exposures_length': pii_exposures_length,
+            'unique_pii_exposures_length': unique_pii_exposures_length,
+            'unique_pii_exposures_emails': unique_pii_exposures_emails,
+            'leak_sources_json': leak_sources_json
+        })
