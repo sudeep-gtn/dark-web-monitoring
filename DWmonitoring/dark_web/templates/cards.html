@@ -18,52 +18,46 @@
             <span class="text-gray-600">Breaches in total </span>
           </div>
         </div>
-        <div class="font-semibold text-gray-500 w-fit mx-auto mt-8 text-sm ">There are <span class="text-red-600">{{unique_card_length}}</span> unique cards breach , <span class="text-red-600">{{card_length}}</span> times in total. </div>
+        <div class="font-semibold text-gray-500 w-fit mx-auto mt-8 text-sm ">There are <span
+            class="text-red-600">{{unique_card_length}}</span> unique cards breach , <span
+            class="text-red-600">{{card_length}}</span> times in total. </div>
       </div>
     </div>
 
 
-
-    <div class=" border-2 border-red-200 xl:w-1/2 w-full flex-col w-full bg-white shadow-lg p-4 rounded-lg  flex ">
-      <div class="flex gap-4 flex-col lg:flex-row  items-center pb-4 ">
+    <div class="border-2 border-red-200 xl:w-1/2 w-full flex-col bg-white shadow-lg p-4 rounded-lg flex mx-auto my-4">
+      <div class="flex gap-4 flex-col lg:flex-row items-center pb-4">
         <h1 class="font-semibold text-left text-lg">Data Leak Source</h1>
-        <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none" name="cards">
-          <option selected value="">Select BIN </option>
-          {% for card_bin_number in unique_card_bin_numbers %}
-          <option value="{{card_bin_number}}">{{card_bin_number}}</option>
-          {% endfor %}
+        <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none"
+          name="cards">
+          <option selected value="">Select BIN</option>
         </select>
       </div>
-      <div class="flex gap-4 flex-col lg:flex-row  items-center justify-center w-full">
+      <div class="flex gap-4 flex-col lg:flex-row items-center justify-center w-full">
         <div class="w-2/5 flex items-center mx-auto justify-center">
           <div
-            class=" flex items-center justify-center p-2 h-36 w-36 bg-gradient-to-l  from-yellow-500 to-red-500 rounded-full ">
-            <div class="flex items-center justify-center w-32 h-32 bg-white  rounded-full">
-              <span
-                class="shadow-2xl shadow-gray-400/70   rounded-full h-16 w-16 border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out flex items-center justify-center font-bold text-4xl text-red-600">5</span>
+            class="flex items-center justify-center p-2 h-36 w-36 bg-gradient-to-l from-yellow-500 to-red-500 rounded-full">
+            <div class="flex items-center justify-center w-32 h-32 bg-white rounded-full">
+              <span id="leak-count"
+                class="shadow-2xl shadow-gray-400/70 rounded-full h-16 w-16 border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out flex items-center justify-center font-bold text-4xl text-red-600">0</span>
             </div>
           </div>
         </div>
-        <div class="md:w-3/5 w-5/6 items-left justify-start flex flex-col  ">
-          <h1 class="text-left text-sm text-gray-600 font-semibold tracking-wide"> There are <span class="text-red-500">5</span>
-            data leak sources . Here are the top data leak sources with the most findings : </h1>
+        <div class="md:w-3/5 w-5/6 items-left justify-start flex flex-col">
+          <h1 class="text-left text-sm text-gray-600 font-semibold tracking-wide">There are <span id="leak-count-text"
+              class="text-red-500">0</span> data leak sources. Here are the top data leak sources with the most
+            findings:</h1>
           <div class="w-full mt-2 border-t-2 border-gray-300 h-[120px] overflow-y-auto">
-            <ol class="list-disc px-4 py-2 font-bold text-gray-800 pt-4 flex items-left flex-col gap-2">
-              <li class="flex items-center gap-2 text-sm "> <span
-                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">23</span> example.com</li>
-              <li class="flex items-center gap-2 text-sm"> <span
-                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">3</span> shyambistsa.tech</li>
-              <li class="flex items-center gap-2 text-sm"> <span
-                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">6</span> Telegram.org</li>
-              <li class="flex items-center gap-2 text-sm"> <span
-                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">12</span> sudipbogati.com.np</li>
-              <li class="flex items-center gap-2 text-sm"> <span
-                  class="text-sm  border border-red-400 bg-red-200 px-2 rounded-md ">9</span> greentick.com</li>
+            <ol class="list-disc px-4 py-2 font-bold text-gray-800 pt-4 flex items-left flex-col gap-2"
+              id="leak-source-list">
+              <!-- Leak sources will be populated here -->
             </ol>
           </div>
         </div>
       </div>
     </div>
+
+
   </div>
   <div class="overflow-x-auto">
     <div class="max-h-[450px] overflow-y-auto shadow rounded border border-gray-200">
@@ -105,28 +99,69 @@
   </div>
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-      const breachDomains = JSON.parse('{{ unique_breach_domains_json|escapejs }}');
-      const selectElement = document.querySelector('select[name="cards"]');
-      const domainListElement = document.querySelector('.domain-list');
-      const countElement = document.querySelector('.domain-count');
+  document.addEventListener('DOMContentLoaded', () => {
+    // Define the JSON data as a variable
+    const leakSources = {
+      "BIN1": [
+        { "count": 23, "domain": "example.com" },
+        { "count": 3, "domain": "shyambistsa.tech" }
+      ],
+      "BIN2": [
+        { "count": 6, "domain": "Telegram.org" },
+        { "count": 12, "domain": "sudipbogati.com.np" },
+      ],
+      "BIN3": [
+        { "count": 9, "domain": "greentick.com" },
+      ]
+    };
+    const selectElement = document.querySelector('select[name="cards"]');
+    const leakCountElement = document.getElementById('leak-count');
+    const leakCountTextElement = document.getElementById('leak-count-text');
+    const list = document.getElementById('leak-source-list');
 
-      selectElement.addEventListener('change', function() {
-          const selectedBin = this.value;
-          const domains = breachDomains[selectedBin] || [];
-          countElement.textContent = domains.length;
+    // Populate select options
+    Object.keys(leakSources).forEach(bin => {
+      const option = document.createElement('option');
+      option.value = bin;
+      option.textContent = bin;
+      selectElement.appendChild(option);
+    });
 
-          // Clear the current list
-          domainListElement.innerHTML = '';
+    function updateLeakSources(bin = null) {
+      // Clear the current list
+      list.innerHTML = '';
 
-          // Populate the list with new domains
-          domains.forEach(domain => {
-              const li = document.createElement('li');
-              li.classList.add('flex', 'items-center', 'gap-2', 'text-sm');
-              li.innerHTML = `<span class="text-sm border border-red-400 bg-red-200 px-2 rounded-md">${domains.length}</span> ${domain}`;
-              domainListElement.appendChild(li);
-          });
+      let domains = [];
+      if (bin && leakSources[bin]) {
+        domains = leakSources[bin];
+      } else {
+        // Aggregate all domains if no BIN is selected
+        Object.values(leakSources).forEach(binSources => {
+          domains = domains.concat(binSources);
+        });
+      }
+
+      // Update the leak count
+      const uniqueDomains = [...new Set(domains.map(source => source.domain))];
+      const leakCount = uniqueDomains.length;
+      leakCountElement.textContent = leakCount;
+      leakCountTextElement.textContent = leakCount;
+
+      // Populate the list with the associated leak sources
+      domains.forEach(source => {
+        const listItem = document.createElement('li');
+        listItem.className = 'flex items-center gap-2 text-sm';
+        listItem.innerHTML = `<span class="text-sm border border-red-400 bg-red-200 px-2 rounded-md">${source.count}</span> ${source.domain}`;
+        list.appendChild(listItem);
       });
+    }
+
+    selectElement.addEventListener('change', function () {
+      updateLeakSources(this.value);
+    });
+
+    // Initial load with no BIN selected
+    updateLeakSources();
   });
 </script>
 
