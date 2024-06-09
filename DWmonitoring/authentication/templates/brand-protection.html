@@ -44,9 +44,8 @@
       </button>
 
       <div id="profileDropdown"
-        class="hidden absolute right-0 mt-14 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1">
+        class="hidden absolute right-0 mt-14 w-48 bg-white border border-gray-200 z-50 rounded-md shadow-lg py-1">
         <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
-        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
         <button onclick="showPopUp()"
           class="w-full text-left block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</button>
       </div>
@@ -65,7 +64,7 @@
 
 {% block content %}
 <div>
-    <div class="container mx-auto p-4">
+    <div class="container mx-auto p-4 z-20">
         <h1 class="text-4xl font-bold mb-6 text-center">Brand Protection Dashboard</h1>
         
         <div class="flex flex-wrap -mx-2">
