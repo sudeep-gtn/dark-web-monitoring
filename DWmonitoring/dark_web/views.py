@@ -13,13 +13,31 @@ class DashboardView(LoginRequiredMixin, View):
     
 class DomainView(LoginRequiredMixin, View):
     login_url = "login"
+    
     def get(self, request):
         domains = Domain.objects.all()
         domain_length = len(domains)
         all_domains = [domain.name for domain in domains]
         unique_domain = set(all_domains)
         unique_domain_length = len(unique_domain)
-        return render(request, "domain.html",{'domains': domains, 'domain_length': domain_length, 'unique_domain_length': unique_domain_length, 'unique_domains': unique_domain})
+        
+        leak_sources = {}
+        for domain_obj in domains:
+            name = domain_obj.name
+            source_domain = domain_obj.source_domain
+            if name not in leak_sources:
+                leak_sources[name] = []
+            # Count occurrences of each domain for a bin
+            domain_exists = next((item for item in leak_sources[name] if item["domain"] == source_domain), None)
+            if domain_exists:
+                domain_exists["count"] += 1
+            else:
+                leak_sources[name].append({"count": 1, "domain": source_domain})
+        
+        leak_sources_json = json.dumps(leak_sources)
+
+        return render(request, "domain.html", {'domains': domains, 'domain_length': domain_length, 'unique_domain_length': unique_domain_length, 'unique_domains': unique_domain, 'leak_sources_json': leak_sources_json})
+
     
 class CardsView(LoginRequiredMixin, View):
     login_url = "login"
