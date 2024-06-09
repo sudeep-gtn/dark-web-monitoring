@@ -33,7 +33,6 @@ class RegisterView(View):
         except ValidationError:
             return render(request, "register.html", {"error": "Invalid email address"})
 
-        # Validate password
         try:
             validate_password(password)
         except ValidationError as e:
@@ -82,63 +81,12 @@ class HomeView(View):
     def get(self, request):
         return render(request, "home.html")
 
-class DashboardView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self, request):
-        return render(request, "dashboard.html")
-    
-class DomainView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self, request):
-        return render(request, "domain.html")
-    
-class CardsView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self, request):
-        return render(request, "cards.html")
-    
-class UsersView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self, request):
-        return render(request, "users.html")
-    
-class EmailView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self,request):
-        return render(request, "email.html")
-    
-class OrganizationDetailsView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self, request):
-        return render(request, "organization-details.html")
-    
-class NotificationsView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self, request):
-        return render(request, "notifications.html")
-    
 
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "profile.html")
-    
-class BlackMarketView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self, request):
-        return render(request, "black_market.html")
-    
-class StealerLogsView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self, request):
-        return render(request, "stealer-logs.html")
-    
 
-class PiiExposureView(LoginRequiredMixin, View):
-    login_url = "login"
-    def get(self, request):
-        return render(request, "pii-exposure.html")
-    
 class TermsAndConditionsView(View):
     def get(self, request):
         return render(request, "terms_and_conditions.html")
