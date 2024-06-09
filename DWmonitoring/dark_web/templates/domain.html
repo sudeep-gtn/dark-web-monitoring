@@ -138,11 +138,12 @@
       leakCountElement.textContent = leakCount;
       leakCountTextElement.textContent = leakCount;
 
+      console.log("sources : ", sources)
       // Populate the list with the associated leak sources
       sources.forEach(source => {
         const listItem = document.createElement('li');
         listItem.className = 'flex items-center gap-2 text-sm';
-        listItem.innerHTML = `<span class="text-sm border border-red-400 bg-red-200 px-2 rounded-md">${source.count}</span> ${source.source}`;
+        listItem.innerHTML = `<span class="text-sm border border-red-400 bg-red-200 px-2 rounded-md">${source.count}</span> ${source.domain}`;
         // listItem.textContent = `Source: ${source.source} (${source.count})`;
         list.appendChild(listItem);
       });
