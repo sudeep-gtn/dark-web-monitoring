@@ -18,6 +18,8 @@ class Card(models.Model):
     severity_level = models.CharField(max_length=10, choices=SEVERITY_CHOICES, verbose_name='Severity Level', default='Low')
     breach_source_domain = models.CharField(max_length=255, null=True, blank=True, verbose_name="Breach Source Domain")
 
+    def __str__(self):
+        return str(self.card_bin_number)
 
 class Domain(models.Model):
     SEVERITY_LEVEL_CHOICES = [

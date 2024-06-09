@@ -56,9 +56,8 @@
         </div>
       </div>
     </div>
-
-
   </div>
+
   <div class="overflow-x-auto">
     <div class="max-h-[450px] overflow-y-auto shadow rounded border border-gray-200">
       <table class="min-w-full bg-white rounded shadow-2xl ">
@@ -98,22 +97,12 @@
     </div>
   </div>
 </div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Define the JSON data as a variable
-    const leakSources = {
-      "BIN1": [
-        { "count": 23, "domain": "example.com" },
-        { "count": 3, "domain": "shyambistsa.tech" }
-      ],
-      "BIN2": [
-        { "count": 6, "domain": "Telegram.org" },
-        { "count": 12, "domain": "sudipbogati.com.np" },
-      ],
-      "BIN3": [
-        { "count": 9, "domain": "greentick.com" },
-      ]
-    };
+    // Get the JSON data from the context
+    const leakSources = JSON.parse('{{ leak_sources_json|escapejs }}');
+    
     const selectElement = document.querySelector('select[name="cards"]');
     const leakCountElement = document.getElementById('leak-count');
     const leakCountTextElement = document.getElementById('leak-count-text');
