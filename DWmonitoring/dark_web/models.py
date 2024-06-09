@@ -72,16 +72,16 @@ class PIIExposure(models.Model):
         ('Medium', 'Medium'),
         ('High', 'High'),
     ]
-    name = models.CharField(max_length=255, null=True, blank=True)
-    breach_date = models.DateField(null=True, blank=True)
-    breach_ip = models.GenericIPAddressField(null=True, blank=True)
-    domain = models.CharField(max_length=255, null=True, blank=True)
-    threat_type = models.CharField(max_length=255, null=True, blank=True)
+    name = models.CharField(max_length=255)
+    breach_date = models.DateField()
+    breach_ip = models.GenericIPAddressField()
+    domain = models.CharField(max_length=255)
+    threat_type = models.CharField(max_length=255)
     severity_level = models.CharField(max_length=6, choices=SEVERITY_LEVEL_CHOICES)
-    type_of_data = models.CharField(max_length=255, null=True, blank=True)
-    source = models.CharField(max_length=255, null=True, blank=True)
-    personal_email = models.EmailField(null=True, blank=True)
-    phone = models.CharField(max_length=20, null=True, blank=True)
+    type_of_data = models.CharField(max_length=255)
+    source = models.CharField(max_length=255)
+    personal_email = models.EmailField()
+    phone = models.CharField(max_length=20)
 
     def __str__(self):
         return f'{self.name} - {self.breach_ip} - {self.breach_date}'
