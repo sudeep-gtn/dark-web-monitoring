@@ -37,7 +37,6 @@ class DomainView(LoginRequiredMixin, View):
         leak_sources_json = json.dumps(leak_sources)
 
         return render(request, "domain.html", {'domains': domains, 'domain_length': domain_length, 'unique_domain_length': unique_domain_length, 'unique_domains': unique_domain, 'leak_sources_json': leak_sources_json})
-
     
 class CardsView(LoginRequiredMixin, View):
     login_url = "login"
