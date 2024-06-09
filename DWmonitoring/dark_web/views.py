@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-from .models import Card
+from .models import Card, Domain, BlackMarket
 
 # Create your views here.
 class DashboardView(LoginRequiredMixin, View):
@@ -13,7 +13,12 @@ class DashboardView(LoginRequiredMixin, View):
 class DomainView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
-        return render(request, "domain.html")
+        domains = Domain.objects.all()
+        domain_length = len(domains)
+        all_domains = [domain.name for domain in domains]
+        unique_domain = set(all_domains)
+        unique_domain_length = len(unique_domain)
+        return render(request, "domain.html",{'domains': domains, 'domain_length': domain_length, 'unique_domain_length': unique_domain_length})
     
 class CardsView(LoginRequiredMixin, View):
     login_url = "login"
@@ -44,7 +49,8 @@ class NotificationsView(LoginRequiredMixin, View):
 class BlackMarketView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
-        return render(request, "black_market.html")
+        black_market_datas = BlackMarket.objects.all()
+        return render(request, "black_market.html",{'black_market_datas': black_market_datas})
     
 class StealerLogsView(LoginRequiredMixin, View):
     login_url = "login"

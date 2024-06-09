@@ -19,14 +19,11 @@ class Card(models.Model):
     breach_source_domain = models.CharField(max_length=255, null=True, blank=True, verbose_name="Breach Source Domain")
 
 
-
-
-
 class Domain(models.Model):
     SEVERITY_LEVEL_CHOICES = [
-        ('low', 'Low'),
-        ('medium', 'Medium'),
-        ('high', 'High'),
+        ('Low', 'Low'),
+        ('Medium', 'Medium'),
+        ('High', 'High'),
     ]
     name = models.CharField(max_length=255)
     domain_ip = models.GenericIPAddressField()
@@ -35,14 +32,14 @@ class Domain(models.Model):
     source_domain = models.TextField()
 
     def __str__(self):
-        return f'{self.name} - {self.ip}'
+        return f'{self.name} - {self.domain_ip}'
     
 
 class BlackMarket(models.Model):
     STATUS_CHOICES = [
-        ('available', 'Available'),
-        ('sold', 'Sold'),
-        ('unavailable', 'Unavailable'),
+        ('Available', 'Available'),
+        ('Sold', 'Sold'),
+        ('Unavailable', 'Unavailable'),
     ]
     id = models.AutoField(primary_key=True)
     source = models.CharField(max_length=255)
@@ -69,9 +66,9 @@ class StealerLogs(models.Model):
 
 class PIIExposure(models.Model):
     SEVERITY_LEVEL_CHOICES = [
-        ('low', 'Low'),
-        ('medium', 'Medium'),
-        ('high', 'High'),
+        ('Low', 'Low'),
+        ('Medium', 'Medium'),
+        ('High', 'High'),
     ]
     name = models.CharField(max_length=255)
     breach_date = models.DateField()

@@ -33,62 +33,22 @@
           </tr>
         </thead>
         <tbody class=" text-gray-600">
+          {% for black_market_data in black_market_datas %}
           <tr>
-            <td class="text-left py-2 px-2 w-fit ">21</td>
-            <td class="text-left py-2 px-2 w-fit "> domain.com </td>
-            <td class="text-left py-2 px-2 w-fit ">192.123.32.213</td>
-            <td class="text-left py-2 px-2 w-fit "> Example </td>
-            <td class="text-left py-2 px-2 w-fit "> 23 </td>
+            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.id}}</td>
+            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.source}}</td>
+            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.stealer_log_preview}}</td>
+            <td class="text-left py-2 px-2 w-fit "> {{black_market_data.related_assets}} </td>
+            <td class="text-left py-2 px-2 w-fit "> {{black_market_data.price}} </td>
             <td class="text-left py-2 px-2 w-fit "><span
-                class="bg-blue-200 px-2 rounded-lg w-fit text-sm text-gray-700 border border-blue-400 flex items-center">active</span>
+                class="bg-blue-200 px-2 rounded-lg w-fit text-sm text-gray-700 border border-blue-400 flex items-center">{{black_market_data.status}}</span>
             </td>
-            <td class="text-left py-2 px-2 w-fit "> Ongoing </td>
-            <td class="text-left py-2 px-2 w-fit "> 2023-05-05</td>
-            <td class="text-left py-2 px-2 w-fit "> example </td>
+            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.obtain_progress}}</td>
+            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.discovery_date}}</td>
+            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.incident}}</td>
             <td class="text-left py-2 px-2 w-fit "> actions </td>
           </tr>
-          <tr>
-            <td class="text-left py-2 px-2 w-fit ">21</td>
-            <td class="text-left py-2 px-2 w-fit "> domain.com </td>
-            <td class="text-left py-2 px-2 w-fit ">192.123.32.213</td>
-            <td class="text-left py-2 px-2 w-fit "> Example </td>
-            <td class="text-left py-2 px-2 w-fit "> 23 </td>
-            <td class="text-left py-2 px-2 w-fit "><span
-                class="bg-blue-200 px-2 rounded-lg w-fit  text-gray-700 border border-blue-400 text-sm flex items-center">active</span>
-            </td>
-            <td class="text-left py-2 px-2 w-fit "> Ongoing </td>
-            <td class="text-left py-2 px-2 w-fit "> 2023-05-05</td>
-            <td class="text-left py-2 px-2 w-fit "> example </td>
-            <td class="text-left py-2 px-2 w-fit "> actions </td>
-          </tr>
-          <tr>
-            <td class="text-left py-2 px-2 w-fit ">21</td>
-            <td class="text-left py-2 px-2 w-fit "> domain.com </td>
-            <td class="text-left py-2 px-2 w-fit ">192.123.32.213</td>
-            <td class="text-left py-2 px-2 w-fit "> Example </td>
-            <td class="text-left py-2 px-2 w-fit "> 23 </td>
-            <td class="text-left py-2 px-2 w-fit "><span
-                class="bg-blue-200 px-2 rounded-lg w-fit text-sm text-gray-700 border border-blue-400 flex items-center">active</span>
-            </td>
-            <td class="text-left py-2 px-2 w-fit "> Ongoing </td>
-            <td class="text-left py-2 px-2 w-fit "> 2023-05-05</td>
-            <td class="text-left py-2 px-2 w-fit "> example </td>
-            <td class="text-left py-2 px-2 w-fit "> actions </td>
-          </tr>
-          <tr>
-            <td class="text-left py-2 px-2 w-fit ">21</td>
-            <td class="text-left py-2 px-2 w-fit "> domain.com </td>
-            <td class="text-left py-2 px-2 w-fit ">192.123.32.213</td>
-            <td class="text-left py-2 px-2 w-fit "> Example </td>
-            <td class="text-left py-2 px-2 w-fit "> 23 </td>
-            <td class="text-left py-2 px-2 w-fit "><span
-                class="bg-blue-200 px-2 rounded-lg w-fit text-sm text-gray-700 lack border border-blue-400 flex items-center">active</span>
-            </td>
-            <td class="text-left py-2 px-2 w-fit "> Ongoing </td>
-            <td class="text-left py-2 px-2 w-fit "> 2023-05-05</td>
-            <td class="text-left py-2 px-2 w-fit "> example </td>
-            <td class="text-left py-2 px-2 w-fit "> actions </td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
