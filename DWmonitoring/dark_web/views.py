@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-from .models import Card, Domain, BlackMarket, StealerLogs
+from .models import Card, Domain, BlackMarket, StealerLogs, PIIExposure
 import json
 
 # Create your views here.
@@ -19,7 +19,7 @@ class DomainView(LoginRequiredMixin, View):
         all_domains = [domain.name for domain in domains]
         unique_domain = set(all_domains)
         unique_domain_length = len(unique_domain)
-        return render(request, "domain.html",{'domains': domains, 'domain_length': domain_length, 'unique_domain_length': unique_domain_length})
+        return render(request, "domain.html",{'domains': domains, 'domain_length': domain_length, 'unique_domain_length': unique_domain_length, 'unique_domains': unique_domain})
     
 class CardsView(LoginRequiredMixin, View):
     login_url = "login"
@@ -81,10 +81,13 @@ class StealerLogsView(LoginRequiredMixin, View):
     def get(self, request):
         stealer_logs = StealerLogs.objects.all()
         return render(request, "stealer-logs.html",{'stealer_logs': stealer_logs})
-    
 
 class PiiExposureView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
-        return render(request, "pii-exposure.html")
-    
+        pii_exposures = PIIExposure.objects.all()
+        pii_exposures_length = len(pii_exposures)
+        pii_exposures_email = [pii_exposure.personal_email for pii_exposure in pii_exposures]
+        unique_pii_exposures_email = set(pii_exposures_email)
+        unique_pii_exposures_length = len(unique_pii_exposures_email)
+        return render(request, "pii-exposure.html",{'pii_exposures': pii_exposures, 'pii_exposures_length': pii_exposures_length, 'unique_pii_exposures_length': unique_pii_exposures_length, 'unique_pii_exposures_emails':unique_pii_exposures_email})
