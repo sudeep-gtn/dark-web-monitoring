@@ -10,15 +10,15 @@
       <div class=" flex flex-col ">
         <div class="flex items-center justify-around w-full gap-2 pt-4">
           <div class="flex flex-col p-2 ">
-            <h2 class="text-4xl  font-bold text-red-600">5</h2>
+            <h2 class="text-4xl  font-bold text-red-600">{{unique_card_length}}</h2>
             <span class=" text-gray-600">Card Breaches </span>
           </div>
           <div class="flex flex-col">
-            <h2 class="text-4xl font-bold text-red-600">35</h2>
+            <h2 class="text-4xl font-bold text-red-600">{{card_length}}</h2>
             <span class="text-gray-600">Breaches in total </span>
           </div>
         </div>
-        <div class="font-semibold text-gray-500 w-fit mx-auto mt-8 text-sm ">There are <span class="text-red-600"> 5</span> unique cards breach , <span class="text-red-600"> 35 </span> times in total. </div>
+        <div class="font-semibold text-gray-500 w-fit mx-auto mt-8 text-sm ">There are <span class="text-red-600">{{unique_card_length}}</span> unique cards breach , <span class="text-red-600">{{card_length}}</span> times in total. </div>
       </div>
     </div>
 
@@ -29,8 +29,9 @@
         <h1 class="font-semibold text-left text-lg">Data Leak Source</h1>
         <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none" name="cards">
           <option selected value="">Select BIN </option>
-          <option value="123345566"> 1234567</option>
-          <option value="123345566"> 1234567</option>
+          {% for card_bin_number in unique_card_bin_numbers %}
+          <option value="{{card_bin_number}}">{{card_bin_number}}</option>
+          {% endfor %}
         </select>
       </div>
       <div class="flex gap-4 flex-col lg:flex-row  items-center justify-center w-full">
@@ -79,24 +80,54 @@
             <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Breach Source</th>
             <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Last Used Date</th>
             <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Severity Level</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Source Domain</th>
           </tr>
         </thead>
         <tbody class="text-gray-700 ">
+          {% for card in cards %}
           <tr>
-            <td class="px-4 py-3 text-sm text-left">1234013</td>
-            <td class="px-4 py-3 text-sm text-left">VISA</td>
-            <td class="px-4 py-3 text-sm text-left">2027-03-05</td>
-            <td class="px-4 py-3 text-sm text-left">Unknown</td>
-            <td class="px-4 py-3 text-sm text-left">Abc User</td>
-            <td class="px-4 py-3 text-sm text-left">ABC Bank Pvt.Ltd.</td>
-            <td class="px-4 py-3 text-sm text-left">2023-05-05</td>
-            <td class="px-4 py-3 text-sm text-left">Unknown</td>
-            <td class="px-4 py-3 text-sm text-left">2022-03-30</td>
-            <td class="px-4 py-3 text-sm text-left">Medium</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.card_bin_number}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.card_type}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.expiry_date}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.cvv}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.card_holder_name}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.issuing_bank}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.breach_date}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.breach_source}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.last_used_date}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.severity_level}}</td>
+            <td class="px-4 py-3 text-sm text-left">{{card.breach_source_domain}}</td>
           </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const breachDomains = JSON.parse('{{ unique_breach_domains_json|escapejs }}');
+      const selectElement = document.querySelector('select[name="cards"]');
+      const domainListElement = document.querySelector('.domain-list');
+      const countElement = document.querySelector('.domain-count');
+
+      selectElement.addEventListener('change', function() {
+          const selectedBin = this.value;
+          const domains = breachDomains[selectedBin] || [];
+          countElement.textContent = domains.length;
+
+          // Clear the current list
+          domainListElement.innerHTML = '';
+
+          // Populate the list with new domains
+          domains.forEach(domain => {
+              const li = document.createElement('li');
+              li.classList.add('flex', 'items-center', 'gap-2', 'text-sm');
+              li.innerHTML = `<span class="text-sm border border-red-400 bg-red-200 px-2 rounded-md">${domains.length}</span> ${domain}`;
+              domainListElement.appendChild(li);
+          });
+      });
+  });
+</script>
+
 {% endblock content %}
