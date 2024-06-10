@@ -248,10 +248,7 @@
         class=" font-bold text-gray-400 block md:hidden {% if request.path == '/profile' %}border-l-4 text-white border-[#92a91a]{% endif %} block w-full text-left p-2 rounded hover:bg-gray-700">
         Profile
       </a>
-      <button
-        class=" font-bold text-gray-400  block md:hidden {% if request.path == '/settings' %}border-l-4 text-white border-[#92a91a]{% endif %} block w-full text-left p-2 rounded hover:bg-gray-700">
-        Settings
-      </button>
+
       <button onclick="showPopUp()"
         class="block w-full text-left p-2 font-bold text-lg text-red-500 hover:text-white rounded hover:bg-red-600">
         Log out
@@ -306,7 +303,6 @@
         <div id="profileDropdown"
           class="hidden absolute right-0 mt-14 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1">
           <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
-          <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
           <button onclick="showPopUp()"
             class="w-full text-left block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</button>
         </div>
