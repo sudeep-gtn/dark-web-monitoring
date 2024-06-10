@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 
 class Card(models.Model):
     card_bin_number = models.IntegerField(null=True, blank=True, verbose_name='Card BIN Number')
@@ -21,6 +22,10 @@ class Card(models.Model):
     def __str__(self):
         return str(self.card_bin_number)
 
+    def get_severity_score(self):
+        mapping = {'Low': 1, 'Medium': 2, 'High': 3}
+        return mapping.get(self.severity_level, 1) 
+
 class Domain(models.Model):
     SEVERITY_LEVEL_CHOICES = [
         ('Low', 'Low'),
@@ -35,6 +40,10 @@ class Domain(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.domain_ip}'
+    
+    def get_severity_score(self):
+        mapping = {'Low': 1, 'Medium': 2, 'High': 3}
+        return mapping.get(self.severity_level, 1) 
     
 
 class BlackMarket(models.Model):
@@ -85,3 +94,32 @@ class PIIExposure(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.breach_ip} - {self.breach_date}'
+    
+    def get_severity_score(self):
+        """Returns a numerical severity score for the PII exposure instance."""
+        mapping = {'Low': 1, 'Medium': 2, 'High': 3}
+        return mapping.get(self.severity_level, 1)
+    
+def calculate_organization_health():
+    """Calculates the overall organization health status (1-100)."""
+
+    # Retrieve all instances of Card, Domain, and PIIExposure
+    cards = Card.objects.all()
+    domains = Domain.objects.all()
+    piis = PIIExposure.objects.all()
+
+    # Calculate average severity for each type
+    avg_card_severity = sum(card.get_severity_score() for card in cards) / len(cards) if cards else 1
+    avg_domain_severity = sum(domain.get_severity_score() for domain in domains) / len(domains) if domains else 1
+    avg_pii_severity = sum(pii.get_severity_score() for pii in piis) / len(piis) if piis else 1
+
+    # Weighted average calculation
+    weighted_average = (
+        (avg_card_severity * 0.4) +  # Card severity weighted at 40%
+        (avg_domain_severity * 0.3) +  # Domain severity weighted at 30%
+        (avg_pii_severity * 0.3)        # PII Exposure severity weighted at 30%
+    )
+
+    health_score = max(0, min(100, int((3 - weighted_average) / 2 * 100)))
+
+    return health_score
