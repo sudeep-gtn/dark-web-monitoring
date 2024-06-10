@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-from .models import Card, Domain, BlackMarket, StealerLogs, PIIExposure
+from .models import Card, Domain, BlackMarket, StealerLogs, PIIExposure, calculate_organization_health
 import json
 from django.db.models import Count
 # Create your views here.
@@ -40,13 +40,16 @@ class DashboardView(LoginRequiredMixin, View):
             'High': sum(severity_counts[model].get('High', 0) for model in severity_counts),
         }
 
+        health_score = calculate_organization_health()
+
         context = {
             'domains_count': domains_count,
             'cards_count': cards_count,
             'pii_exposures_count': pii_exposures_count,
             'stealer_logs_count': stealer_logs_count,
             'severity_counts': severity_counts,
-            'total_severity_counts': total_severity_counts,  # Include total severity counts in context
+            'total_severity_counts': total_severity_counts,
+            'health_score' : health_score
         }
 
         return render(request, "dashboard.html", context)
