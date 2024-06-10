@@ -60,11 +60,11 @@
             </div>
             <!-- Email Breaches -->
             <div
-                class="border-2 border-green-200 w-full lg:w-1/2 hover:shadow-green-600/20 hover:shadow-2xl transition-all duration-300 ease-in-out bg-white flex gap-8 items-center justify-center p-6 rounded-md shadow-md">
+                class="border-2 border-red-200 w-full lg:w-1/2 hover:shadow-red-600/20 hover:shadow-2xl transition-all duration-300 ease-in-out bg-white flex gap-8 items-center justify-center p-6 rounded-md shadow-md">
                 <div
                     class="w-3/4 bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center h-32 w-32 rounded-full ">
                     <div
-                        class="bg-white h-28 w-28 rounded-full flex items-center justify-center text-4xl text-green-500 font-bold">
+                        class="bg-white h-28 w-28 rounded-full flex items-center justify-center text-4xl text-red-500 font-bold">
                         {{stealer_logs_count}}</div>
                 </div>
                 <!-- <div class="text-5xl text-red-600 font-bold">85</div> -->
@@ -103,7 +103,25 @@
     </div>
 </div>
 <script>
-    // Line chart data
+    function parseSafe(jsonString) {
+        try {
+            return JSON.parse(jsonString);
+        } catch (e) {
+            console.error('Error parsing JSON:', e);
+            return {};
+        }
+    }
+
+    const cardSeverityCounts = parseSafe('{{ severity_counts|escapejs }}');
+    const domainSeverityCounts = parseSafe('{{ domain_severity_counts|escapejs }}');
+    const piiSeverityCounts = parseSafe('{{ pii_severity_counts|escapejs }}');
+
+    console.log("card severity : ", cardSeverityCounts);
+    console.log("domain severity : ", domainSeverityCounts);
+    console.log("pii severity counts : ",piiSeverityCounts);
+    // Fallback to zero if undefined
+    const getCount = (severityCounts, level) => severityCounts[level] || 0;
+    console.log("counts of severity data : ", getCount);
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
@@ -118,7 +136,7 @@
     };
 
     const breachCountData = {
-        labels: ['Domains', 'Emails', 'Users', 'Cards'],
+        labels: ['Cards', 'Domains', 'PII'],
         datasets: [
             {
                 label: 'Low',

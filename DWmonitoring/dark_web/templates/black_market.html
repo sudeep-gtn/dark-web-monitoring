@@ -32,23 +32,31 @@
               ACTIONS</th>
           </tr>
         </thead>
-        <tbody class=" text-gray-600">
-          {% for black_market_data in black_market_datas %}
-          <tr>
-            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.id}}</td>
-            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.source}}</td>
-            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.stealer_log_preview}}</td>
-            <td class="text-left py-2 px-2 w-fit "> {{black_market_data.related_assets}} </td>
-            <td class="text-left py-2 px-2 w-fit "> {{black_market_data.price}} </td>
-            <td class="text-left py-2 px-2 w-fit "><span
-                class="bg-blue-200 px-2 rounded-lg w-fit text-sm text-gray-700 border border-blue-400 flex items-center">{{black_market_data.status}}</span>
-            </td>
-            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.obtain_progress}}</td>
-            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.discovery_date}}</td>
-            <td class="text-left py-2 px-2 w-fit ">{{black_market_data.incident}}</td>
-            <td class="text-left py-2 px-2 w-fit "> actions </td>
-          </tr>
-          {% endfor %}
+        <tbody class="text-gray-600">
+          {% if black_market_datas %}
+            {% for black_market_data in black_market_datas %}
+            <tr>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.id }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.source }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.stealer_log_preview }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.related_assets }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.price }}</td>
+              <td class="text-left py-2 px-2 w-fit ">
+                <span class="bg-blue-200 px-2 rounded-lg w-fit text-sm text-gray-700 border border-blue-400 flex items-center">
+                  {{ black_market_data.status }}
+                </span>
+              </td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.obtain_progress }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.discovery_date }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.incident }}</td>
+              <td class="text-left py-2 px-2 w-fit ">actions</td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="10" class="text-center py-2 px-2">No data found</td>
+            </tr>
+          {% endif %}
         </tbody>
       </table>
     </div>

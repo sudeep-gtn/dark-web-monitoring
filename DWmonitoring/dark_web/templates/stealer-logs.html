@@ -37,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Example Data Rows -->
+                {% if stealer_logs %}
             {% for stealer_log in stealer_logs %}
                 <tr>
                     <td class="py-2 px-4 border-b text-center">{{stealer_log.log_id}}</td>
@@ -77,6 +77,12 @@
                     </td>
                 </tr>
                 {% endfor %}
+            
+                {% else %}
+                <tr>
+                    <td colspan="10" class="text-center py-2 px-2">No data found</td>
+                  </tr>
+                  {% endif %}
             </tbody>
         </table>
     </div>

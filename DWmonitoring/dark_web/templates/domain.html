@@ -4,8 +4,10 @@
 {% block content %}
 <div class="mx-4 my-4">
   <div class="flex flex-col w-full xl:w-5/6 mx-auto gap-6 lg:flex-row mb-6">
-    <div class="flex flex-col h-[300px] my-auto border-2 border-red-200 w-full xl:w-1/2 shadow-lg bg-white p-6 rounded-lg">
-      <div class="flex gap-2 relative items-center text-2xl font-semibold mx-auto">Domain <span> <img src="/static/images/globe.png" height="25" width="25" alt="cards"></span> </div>
+    <div
+      class="flex flex-col h-[300px] my-auto border-2 border-red-200 w-full xl:w-1/2 shadow-lg bg-white p-6 rounded-lg">
+      <div class="flex gap-2 relative items-center text-2xl font-semibold mx-auto">Domain <span> <img
+            src="/static/images/globe.png" height="25" width="25" alt="cards"></span> </div>
       <div class="flex flex-col">
         <div class="flex items-center justify-around w-full gap-2 pt-4">
           <div class="flex flex-col p-2">
@@ -17,15 +19,19 @@
             <span class="text-sm font-semibold text-gray-500">Breaches in total </span>
           </div>
         </div>
-        <div class="font-semibold text-gray-500 w-fit mx-auto mt-8 text-base ">There are <span class="text-red-600">{{unique_domain_length}}</span> unique domains breached, <span class="text-red-600">{{domain_length}}</span> times in total. </div>
+        <div class="font-semibold text-gray-500 w-fit mx-auto mt-8 text-base ">There are <span
+            class="text-red-600">{{unique_domain_length}}</span> unique domains breached, <span
+            class="text-red-600">{{domain_length}}</span> times in total. </div>
       </div>
     </div>
 
 
-    <div class="border-2 border-red-200 min-h-[300px] xl:w-1/2 w-full flex-col bg-white shadow-lg p-4 rounded-lg flex mx-auto my-4">
+    <div
+      class="border-2 border-red-200 min-h-[300px] xl:w-1/2 w-full flex-col bg-white shadow-lg p-4 rounded-lg flex mx-auto my-4">
       <div class="flex gap-4 flex-col lg:flex-row items-center pb-4">
         <h1 class="font-semibold text-left text-lg">Domain Leak Source</h1>
-        <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none" name="cards">
+        <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none"
+          name="cards">
           <option value="">Select domain</option>
           <!-- {% for domain in unique_domains %}
             <option value="{{domain}}">{{domain}}</option>
@@ -34,16 +40,21 @@
       </div>
       <div class="flex gap-4 flex-col lg:flex-row items-center justify-center w-full">
         <div class="w-2/5 flex items-center mx-auto justify-center">
-          <div class="flex items-center justify-center p-2 h-36 w-36 bg-gradient-to-l from-yellow-500 to-red-500 rounded-full">
+          <div
+            class="flex items-center justify-center p-2 h-36 w-36 bg-gradient-to-l from-yellow-500 to-red-500 rounded-full">
             <div class="flex items-center justify-center w-32 h-32 bg-white rounded-full">
-              <span id="leak-count" class="shadow-2xl shadow-gray-400/70 rounded-full h-16 w-16 border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out flex items-center justify-center font-bold text-4xl text-red-600">0</span>
+              <span id="leak-count"
+                class="shadow-2xl shadow-gray-400/70 rounded-full h-16 w-16 border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out flex items-center justify-center font-bold text-4xl text-red-600">0</span>
             </div>
           </div>
         </div>
         <div class="md:w-3/5 w-5/6 items-left justify-start flex flex-col">
-          <h1 class="text-left text-sm text-gray-600 font-semibold tracking-wide">There are <span id="leak-count-text" class="text-red-500">0</span> domain leak sources. Here are the top leak sources with the most findings:</h1>
+          <h1 class="text-left text-sm text-gray-600 font-semibold tracking-wide">There are <span id="leak-count-text"
+              class="text-red-500">0</span> domain leak sources. Here are the top leak sources with the most findings:
+          </h1>
           <div class="w-full mt-2 border-t-2 border-gray-300 max-h-[120px] overflow-y-auto">
-            <ol class="list-disc px-4 py-2 font-bold text-gray-800 pt-4 flex items-left flex-col gap-2" id="leak-source-list">
+            <ol class="list-disc px-4 py-2 font-bold text-gray-800 pt-4 flex items-left flex-col gap-2"
+              id="leak-source-list">
               <!-- Leak sources will be populated here -->
             </ol>
           </div>
@@ -62,8 +73,10 @@
           <tr>
             <th class="w-fit py-2 px-2 border-r-2 border-gray-400 uppercase font-semibold text-sm" rowspan="2">Name</th>
             <th class="w-fit py-2 px-2 border-r-2 border-gray-400 uppercase font-semibold text-sm" rowspan="2">IP</th>
-            <th class="w-fit py-2 px-2 border-r-2 border-gray-400 uppercase font-semibold text-sm" rowspan="2">Severity Level</th>
-            <th class="w-fit py-2 px-2 mx-auto border-b-2 border-gray-400 uppercase font-semibold text-sm" colspan="2">Sources</th>
+            <th class="w-fit py-2 px-2 border-r-2 border-gray-400 uppercase font-semibold text-sm" rowspan="2">Severity
+              Level</th>
+            <th class="w-fit py-2 px-2 mx-auto border-b-2 border-gray-400 uppercase font-semibold text-sm" colspan="2">
+              Sources</th>
           </tr>
           <tr>
             <th class="w-fit py-2 px-2 border-r-2 border-gray-400 uppercase font-semibold text-sm">
@@ -74,20 +87,21 @@
           </tr>
         </thead>
         <tbody class="text-gray-700">
+          {% if domains %}
           {% for domain in domains %}
           <tr>
             <td class="text-center px-4 py-3">{{domain.name}}</td>
             <td class="text-center px-4 py-3">{{domain.domain_ip}}.</td>
             <td class="px-4 py-3 text-center">
               <span class="px-2 text-xs border rounded-md flex items-center w-fit mx-auto
-                {% if domain.severity_level == 'Low' %}
-                  bg-orange-200 border-orange-400
-                {% elif domain.severity_level == 'Medium' %}
-                  bg-yellow-200 border-yellow-500
-                {% elif domain.severity_level == 'High' %}
-                  bg-red-200 border-red-500
-                {% endif %}
-              ">
+                  {% if domain.severity_level == 'Low' %}
+                    bg-orange-200 border-orange-400
+                  {% elif domain.severity_level == 'Medium' %}
+                    bg-yellow-200 border-yellow-500
+                  {% elif domain.severity_level == 'High' %}
+                    bg-red-200 border-red-500
+                  {% endif %}
+                ">
                 {{ domain.severity_level }}
               </span>
             </td>
@@ -95,6 +109,11 @@
             <td class="px-4 py-3 text-center">{{domain.source_domain}}</td>
           </tr>
           {% endfor %}
+          {% else %}
+          <tr>
+            <td colspan="10" class="text-center py-2 px-2">No data found</td>
+          </tr>
+          {% endif %}
         </tbody>
       </table>
     </div>
