@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Black Market{% endblock title %}
+
+{% block content %}
+<div>
+  <h1 class="text-2xl w-fit mx-auto font-semibold my-4 text-gray-700">Black Market <span class="text-red-600"> Insights</span> </h1>
+  <p class="text-gray-500 font-medium px-8 text-base ">Discover the latest trends and activities in dark web black markets. Our advanced tools provide insights into illicit transactions, emerging threats, and underground market dynamics. Stay informed with our comprehensive data and reports.</p>
+  <div class="overflow-x-auto shadow-lg border-2 border-gray-400 rounded-xl my-4  mx-4">
+    <div class=" overflow-y-auto border border-gray-200">
+      <table class=" min-w-full bg-white">
+        <thead class="bg-gray-100 text-gray-800">
+          <tr>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              ID</th>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              Source</th>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              Stealer log Preview </th>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              RELATED ASSETS</th>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              PRICE	</th>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              STATUS</th>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              OBTAIN PROGRESS</th>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              DISCOVERY DATE</th>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              INCIDENT</th>
+            <th class="w-fit py-2 px-2  border-b-2 border-gray-400 text-left uppercase font-semibold text-sm">
+              ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600">
+          {% if black_market_datas %}
+            {% for black_market_data in black_market_datas %}
+            <tr>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.id }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.source }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.stealer_log_preview }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.related_assets }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.price }}</td>
+              <td class="text-left py-2 px-2 w-fit ">
+                <span class="bg-blue-200 px-2 rounded-lg w-fit text-sm text-gray-700 border border-blue-400 flex items-center">
+                  {{ black_market_data.status }}
+                </span>
+              </td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.obtain_progress }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.discovery_date }}</td>
+              <td class="text-left py-2 px-2 w-fit ">{{ black_market_data.incident }}</td>
+              <td class="text-left py-2 px-2 w-fit ">actions</td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="10" class="text-center py-2 px-2">No data found</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

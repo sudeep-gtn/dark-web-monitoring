@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% block title %}PII Exposures {% endblock title %}
+
+{% block content %}
+<div>
+    <div class="text-xl font-bold text-center my-4 "> <span class="text-red-600">P</span>ersonally <span
+            class="text-red-600">I</span>dentifiable <span class="text-red-600">I</span>nformation <span
+            class="text-red-600">Exposures</span> </div>
+    <div class='w-full md:w-5/6 mx-auto p-4 flex flex-col xl:flex-row gap-4 '>
+        <div
+            class="flex flex-col h-[300px] my-auto border-2 border-red-200 w-full xl:w-1/2 shadow-lg bg-white p-6 rounded-lg">
+            <div class="flex items-center gap-2 text-2xl text-gray-800 font-semibold mx-auto">Users <span class=""> <img
+                        src="/static//images/user.svg" height="20" width="20" alt="cards"></span> </div>
+            <div class=" flex flex-col ">
+                <div class="flex items-center justify-around w-full gap-2 pt-4">
+                    <div class="flex flex-col p-2 ">
+                        <h2 class="text-3xl font-bold text-red-600">{{unique_pii_exposures_length}}</h2>
+                        <span class=" text-gray-500 font-semibold">User Breaches </span>
+                    </div>
+                    <div class="flex flex-col">
+                        <h2 class="text-3xl font-bold text-red-600">{{pii_exposures_length}}</h2>
+                        <span class="text-gray-500 font-semibold">Breaches in total </span>
+                    </div>
+                </div>
+                <div class="font-semibold text-gray-500 w-fit mx-auto mt-8 ">There are <span class="text-red-600">
+                        {{unique_pii_exposures_length}}</span> unique users breach , <span
+                        class="text-red-600">{{pii_exposures_length}}</span> times in total. </div>
+            </div>
+        </div>
+
+        <div
+            class="border-2 border-red-200 min-h-[300px] xl:w-1/2 w-full flex-col bg-white shadow-lg p-4 rounded-lg flex mx-auto my-4">
+            <div class="flex gap-4 flex-col lg:flex-row items-center pb-4">
+                <h1 class="font-semibold text-left text-lg">Domain Leak Source</h1>
+                <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none"
+                    name="cards">
+                    <option value="">Select domain</option>
+                    <!-- {% for domain in unique_domains %}
+                  <option value="{{domain}}">{{domain}}</option>
+                {% endfor %} -->
+                </select>
+            </div>
+            <div class="flex gap-4 flex-col lg:flex-row items-center justify-center w-full">
+                <div class="w-2/5 flex items-center mx-auto justify-center">
+                    <div
+                        class="flex items-center justify-center p-2 h-36 w-36 bg-gradient-to-l from-yellow-500 to-red-500 rounded-full">
+                        <div class="flex items-center justify-center w-32 h-32 bg-white rounded-full">
+                            <span id="leak-count"
+                                class="shadow-2xl shadow-gray-400/70 rounded-full h-16 w-16 border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out flex items-center justify-center font-bold text-4xl text-red-600">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-3/5 w-5/6 items-left justify-start flex flex-col">
+                    <h1 class="text-left text-sm text-gray-600 font-semibold tracking-wide">There are <span
+                            id="leak-count-text" class="text-red-500">0</span> domain leak sources. Here are the top
+                        leak sources with the most findings:</h1>
+                    <div class="w-full mt-2 border-t-2 border-gray-300 max-h-[120px] overflow-y-auto">
+                        <ol class="list-disc px-4 py-2 font-bold text-gray-800 pt-4 flex items-left flex-col gap-2"
+                            id="leak-source-list">
+                            <!-- Leak sources will be populated here -->
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="overflow-x-auto shadow-lg border-2 border-gray-400 rounded-xl my-6 mx-4">
+        <div class=" overflow-y-auto border border-gray-200">
+            <table class=" min-w-full bg-white">
+                <thead class="bg-gray-100 text-gray-800">
+                    <tr>
+                        <th
+                            class="w-fit py-2 px-2 border-b-2 text-gray-600 border-gray-400 text-center uppercase font-semibold">
+                            Name</th>
+                        <th
+                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
+                            Personal Email</th>
+
+                        <th
+                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
+                            Phone</th>
+                        <th
+                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
+                            Breach Date</th>
+                        <th
+                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
+                            Breach IP</th>
+                        <th
+                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
+                            Source Domain</th>
+                        <th
+                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
+                            Type of Data</th>
+                        <th
+                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
+                            Threat type</th>
+                        <th
+                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
+                            Severity Level</th>
+                        <th
+                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
+                            Source</th>
+
+                    </tr>
+                </thead>
+                <tbody class=" text-gray-700">
+                    {% if pii_exposures %}
+                    {% for pii_exposure in pii_exposures %}
+                    <tr>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.name}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.personal_email}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.phone}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.breach_date}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.breach_ip}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.source_domain}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.type_of_data}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.threat_type}}</td>
+                        <td class="text-center text-sm py-2 px-2 w-fit ">
+                            <span class="px-2 text-xs border rounded-md flex items-center w-fit mx-auto
+                    {% if pii_exposure.severity_level == 'Low' %}
+                    bg-yellow-50 border-yellow-400
+                    {% elif pii_exposure.severity_level == 'Medium' %}
+                    bg-yellow-200 border-yellow-500
+                    {% elif pii_exposure.severity_level == 'High' %}
+                    bg-red-200 border-red-500
+                    {% endif %}
+                ">
+                                {{ pii_exposure.severity_level }}
+                            </span>
+                        </td>
+                        <td class="text-center text-sm py-2 px-2 w-fit "><span
+                                class="bg-gray-200 px-2 flex items-center rounded-lg w-fit "> {{pii_exposure.source}}
+                            </span></td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="10" class="text-center py-2 px-2">No data found</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Define the JSON data as a variable
+        const leakSources = JSON.parse('{{ leak_sources_json|escapejs|safe }}');
+
+        const selectElement = document.querySelector('select[name="cards"]');
+        const leakCountElement = document.getElementById('leak-count');
+        const leakCountTextElement = document.getElementById('leak-count-text');
+        const list = document.getElementById('leak-source-list');
+
+        // Populate select options with unique leaked domains
+        const uniqueDomains = Object.keys(leakSources);
+        uniqueDomains.forEach(domain => {
+            const option = document.createElement('option');
+            option.value = domain;
+            option.textContent = domain;
+            selectElement.appendChild(option);
+        });
+
+        function updateLeakSources(domain = null) {
+            // Clear the current list
+            list.innerHTML = '';
+
+            let sources = [];
+            if (domain && leakSources[domain]) {
+                sources = leakSources[domain];
+            } else {
+                // Aggregate all sources if no domain is selected
+                Object.values(leakSources).forEach(domainSources => {
+                    sources = sources.concat(domainSources);
+                });
+            }
+
+            // Update the leak count
+            const leakCount = sources.reduce((total, source) => total + source.count, 0);
+            leakCountElement.textContent = leakCount;
+            leakCountTextElement.textContent = leakCount;
+
+            console.log("sources : ", sources)
+            // Populate the list with the associated leak sources
+            sources.forEach(source => {
+                const listItem = document.createElement('li');
+                listItem.className = 'flex items-center gap-2 text-sm';
+                listItem.innerHTML = `<span class="text-sm border border-red-400 bg-red-200 px-2 rounded-md">${source.count}</span> ${source.domain}`;
+                // listItem.textContent = `Source: ${source.source} (${source.count})`;
+                list.appendChild(listItem);
+            });
+        }
+
+        selectElement.addEventListener('change', function () {
+            updateLeakSources(this.value);
+        });
+
+        // Initial load with no domain selected
+        updateLeakSources();
+    });
+</script>
+{% endblock content %}

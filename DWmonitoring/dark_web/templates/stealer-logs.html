@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="">
-    <div class="dashboard py-4 text-center">
+    <!-- <div class="dashboard py-4 text-center">
         <h1 class="text-2xl font-bold"> <span class="text-red-600 ">Stealer Logs  </span> Informations </h1>
         <div class="mt-8  px-4 w-full lg:w-2/3 gap-4  flex items-center mx-auto justify-around">
             <div class="shadow-lg w-1/3 bg-white flex flex-col gap-2 py-4 border-2 rounded-xl border-red-300">
@@ -19,7 +19,8 @@
                 <h2 class="text-gray-500">Financial Info</h2>
             </div>
         </div>
-    </div>
+    </div> -->
+    <h1 class="text-2xl w-fit mx-auto font-semibold my-4 text-gray-700">Stealer Log <span class="text-red-600"> Insights</span> </h1>
     <div class=" rounded-lg border-2 border-gray-300 shadow-md mx-4  my-6 overflow-x-auto overflow-y-auto">
         <div class="flex justify-between">
             <!-- <input type="text" placeholder="Search..." class="p-2 border rounded w-1/3"> -->
@@ -36,14 +37,15 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Example Data Rows -->
+                {% if stealer_logs %}
+            {% for stealer_log in stealer_logs %}
                 <tr>
-                    <td class="py-2 px-4 border-b text-center">001</td>
-                    <td class="py-2 px-4 border-b text-center">2024-06-05</td>
-                    <td class="py-2 px-4 border-b text-center">Credentials</td>
-                    <td class="py-2 px-4 border-b text-center">Browser</td>
+                    <td class="py-2 px-4 border-b text-center">{{stealer_log.log_id}}</td>
+                    <td class="py-2 px-4 border-b text-center">{{stealer_log.date_detected}}</td>
+                    <td class="py-2 px-4 border-b text-center">{{stealer_log.data_type}}</td>
+                    <td class="py-2 px-4 border-b text-center">{{stealer_log.source}}</td>
                     <td class="py-2 px-4 border-b text-center">
-                        <button class="text-blue-500 flex items-center mx-auto text-center " onclick="toggleDetails('details-001')">
+                        <button class="text-blue-500 flex items-center mx-auto text-center " onclick="toggleDetails('{{stealer_log.log_id}}')">
                             Expand
                             <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -52,10 +54,10 @@
                         </button>
                     </td>
                 </tr>
-                <tr id="details-001" class="hidden ">
+                <tr id="{{stealer_log.log_id}}" class="hidden ">
                     <td colspan="5" class="py-2 px-4">
                         <div class="p-4 bg-gray-100 rounded-lg">
-                            <h3 class="font-bold">Credentials</h3>
+                            <!-- <h3 class="font-bold">Credentials</h3>
                             <p><strong>URL:</strong> example.com</p>
                             <p><strong>Username:</strong> user123</p>
                             <p><strong>Password:</strong> ****</p>
@@ -69,44 +71,18 @@
                             <p><strong>Hardware:</strong> Intel i7</p>
                             <h3 class="font-bold mt-2">Files</h3>
                             <p><a href="#" class="text-blue-500">View Screenshot</a></p>
-                            <p><a href="#" class="text-blue-500">Download Keylogger Data</a></p>
+                            <p><a href="#" class="text-blue-500">Download Keylogger Data</a></p> -->
+                            {{stealer_log.details}}
                         </div>
                     </td>
                 </tr>
+                {% endfor %}
+            
+                {% else %}
                 <tr>
-                    <td class="py-2 px-4 border-b text-center">002</td>
-                    <td class="py-2 px-4 border-b text-center">2024-02-15</td>
-                    <td class="py-2 px-4 border-b text-center">Credentials</td>
-                    <td class="py-2 px-4 border-b text-center">Application</td>
-                    <td class="py-2 px-4 border-b text-center">
-                        <button class="text-blue-500 flex gap-2 items-center mx-auto text-center" onclick="toggleDetails('details-002')">Expand <span>
-                            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                          </span></button>
-                    </td>
-                </tr>
-                <tr id="details-002" class="hidden">
-                    <td colspan="5" class="py-2 px-4">
-                        <div class="p-4 bg-gray-100 rounded-lg">
-                            <h3 class="font-bold">Credentials</h3>
-                            <p><strong>URL:</strong> example.com</p>
-                            <p><strong>Username:</strong> user123</p>
-                            <p><strong>Password:</strong> ****</p>
-                            <h3 class="font-bold mt-2">Financial Info</h3>
-                            <p><strong>Credit Card:</strong> ****-****-****-1234</p>
-                            <p><strong>Expiry:</strong> 09/15</p>
-                            <h3 class="font-bold mt-2">Personal Info</h3>
-                            <p><strong>Email:</strong> user@example.com</p>
-                            <h3 class="font-bold mt-2">System Info</h3>
-                            <p><strong>OS:</strong> Windows 11</p>
-                            <p><strong>Hardware:</strong> Intel i5</p>
-                            <h3 class="font-bold mt-2">Files</h3>
-                            <p><a href="#" class="text-blue-500">View Screenshot</a></p>
-                            <p><a href="#" class="text-blue-500">Download Keylogger Data</a></p>
-                        </div>
-                    </td>
-                </tr>
+                    <td colspan="10" class="text-center py-2 px-2">No data found</td>
+                  </tr>
+                  {% endif %}
             </tbody>
         </table>
     </div>

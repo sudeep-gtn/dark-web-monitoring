@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% block title %}Cards{% endblock title %}
+
+{% block content %}
+<div class="mx-4 my-4">
+  <div class="flex flex-col items-center w-full xl:w-5/6  mx-auto gap-6 lg:flex-row mb-6">
+    <div class="flex flex-col h-[300px] border-2 border-red-200 w-full xl:w-1/2 shadow-lg bg-white p-6 rounded-lg">
+      <div class="flex gap-2 text-2xl font-semibold mx-auto">Cards <span> <img src="/static/images/credit-card.png"
+            height="30" width="30" alt="cards"></span> </div>
+      <div class=" flex flex-col ">
+        <div class="flex items-center justify-around w-full gap-2 pt-4">
+          <div class="flex flex-col p-2 ">
+            <h2 class="text-4xl  font-bold text-red-600">{{unique_card_length}}</h2>
+            <span class=" text-gray-600">Card Breaches </span>
+          </div>
+          <div class="flex flex-col">
+            <h2 class="text-4xl font-bold text-red-600">{{card_length}}</h2>
+            <span class="text-gray-600">Breaches in total </span>
+          </div>
+        </div>
+        <div class="font-semibold text-gray-500 w-fit mx-auto mt-4 text-sm ">There are <span
+            class="text-red-600">{{unique_card_length}}</span> unique cards breach , <span
+            class="text-red-600">{{card_length}}</span> times in total. </div>
+      </div>
+    </div>
+
+
+    <div class="border-2 border-red-200 min-h-[300px] xl:w-1/2 w-full flex-col bg-white shadow-lg p-4 rounded-lg flex mx-auto my-4">
+      <div class="flex gap-4 flex-col lg:flex-row items-center pb-4">
+        <h1 class="font-semibold text-left text-lg">Data Leak Source</h1>
+        <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none"
+          name="cards">
+          <option selected value="">Select BIN</option>
+        </select>
+      </div>
+      <div class="flex gap-4 flex-col lg:flex-row items-center justify-center w-full">
+        <div class="w-2/5 flex items-center mx-auto justify-center">
+          <div
+            class="flex items-center justify-center p-2 h-36 w-36 bg-gradient-to-l from-yellow-500 to-red-500 rounded-full">
+            <div class="flex items-center justify-center w-32 h-32 bg-white rounded-full">
+              <span id="leak-count"
+                class="shadow-2xl shadow-gray-400/70 rounded-full h-16 w-16 border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out flex items-center justify-center font-bold text-4xl text-red-600">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="md:w-3/5 w-5/6 items-left justify-start flex flex-col">
+          <h1 class="text-left text-sm text-gray-600 font-semibold tracking-wide">There are <span id="leak-count-text"
+              class="text-red-500">0</span> data leak sources. Here are the top data leak sources with the most
+            findings:</h1>
+          <div class="w-full mt-2 border-t-2 border-gray-300 max-h-[120px] overflow-y-auto">
+            <ol class="list-disc px-4 py-2 font-bold text-gray-800 pt-4 flex items-left flex-col gap-2"
+              id="leak-source-list">
+              <!-- Leak sources will be populated here -->
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto">
+    <div class="max-h-[450px] overflow-y-auto shadow rounded border border-gray-200">
+      <table class="min-w-full bg-white rounded shadow-2xl ">
+        <thead class="bg-gray-300 text-gray-800">
+          <tr>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Card BIN No.</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Card Type</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Expiry Date</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">CVV</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Card Holder Name</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Issuing Bank</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Breach Date</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Breach Source</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Last Used Date</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Severity Level</th>
+            <th class="w-fit  px-4 py-3 text-left uppercase font-semibold text-sm">Source Domain</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700 ">
+          {% if cards %}
+            {% for card in cards %}
+            <tr>
+              <td class="px-4 py-3 text-sm text-left">{{card.card_bin_number}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.card_type}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.expiry_date}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.cvv}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.card_holder_name}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.issuing_bank}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.breach_date}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.breach_source}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.last_used_date}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.severity_level}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.breach_source_domain}}</td>
+            </tr>
+            {% endfor %}
+          {% else %}
+          <tr>
+            <td colspan="10" class="text-center py-2 px-2">No data found</td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get the JSON data from the context
+    const leakSources = JSON.parse('{{ leak_sources_json|escapejs }}');
+    
+    const selectElement = document.querySelector('select[name="cards"]');
+    const leakCountElement = document.getElementById('leak-count');
+    const leakCountTextElement = document.getElementById('leak-count-text');
+    const list = document.getElementById('leak-source-list');
+
+    // Populate select options
+    Object.keys(leakSources).forEach(bin => {
+      const option = document.createElement('option');
+      option.value = bin;
+      option.textContent = bin;
+      selectElement.appendChild(option);
+    });
+
+    function updateLeakSources(bin = null) {
+      // Clear the current list
+      list.innerHTML = '';
+
+      let domains = [];
+      if (bin && leakSources[bin]) {
+        domains = leakSources[bin];
+      } else {
+        // Aggregate all domains if no BIN is selected
+        Object.values(leakSources).forEach(binSources => {
+          domains = domains.concat(binSources);
+        });
+      }
+
+      // Update the leak count
+      const uniqueDomains = [...new Set(domains.map(source => source.domain))];
+      const leakCount = uniqueDomains.length;
+      leakCountElement.textContent = leakCount;
+      leakCountTextElement.textContent = leakCount;
+
+      // Populate the list with the associated leak sources
+      domains.forEach(source => {
+        const listItem = document.createElement('li');
+        listItem.className = 'flex items-center gap-2 text-sm';
+        listItem.innerHTML = `<span class="text-sm border border-red-400 bg-red-200 px-2 rounded-md">${source.count}</span> ${source.domain}`;
+        list.appendChild(listItem);
+      });
+    }
+
+    selectElement.addEventListener('change', function () {
+      updateLeakSources(this.value);
+    });
+
+    // Initial load with no BIN selected
+    updateLeakSources();
+  });
+</script>
+
+{% endblock content %}
