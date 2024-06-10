@@ -9,8 +9,6 @@ from django.contrib.auth.password_validation import validate_password
 import re
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from .utils import send_otp_email, is_otp_valid
-
 
 class RegisterView(View):
     def get(self, request):
@@ -30,7 +28,6 @@ class RegisterView(View):
 
         if password != c_password:
             return render(request, "register.html", {"error": "Passwords do not match"})
-        
         try:
             validate_email(email)
         except ValidationError:
@@ -42,35 +39,17 @@ class RegisterView(View):
             return render(request, "register.html", {"error": "".join(e.messages)})
 
         try:
-            user = CustomUser.objects.create_user(email=email, full_name=full_name, password=password)
-            send_otp_email(user)
-            request.session['otp_user_id'] = user.id
-            return redirect('verify-otp')
+            user = CustomUser.objects.create_user(
+                email=email, full_name=full_name, password=password
+            )
+
         except Exception as e:
             return render(request, "register.html", {"error": "Registration failed"})
 
-class VerifyOTPView(View):
-    def get(self, request):
-        return render(request, "verify-otp.html")
-
-    def post(self, request):
-        otp = request.POST.get("otp")
-        user_id = request.session.get('otp_user_id')
-        if not user_id:
-            return redirect('register')
-        
-        try:
-            user = CustomUser.objects.get(id=user_id)
-        except CustomUser.DoesNotExist:
-            return redirect('register')
-
-        if is_otp_valid(user, otp):
-            user.is_active = True
-            user.save()
-            del request.session['otp_user_id']
-            return redirect('login')
+        if user:
+            return redirect("verify-otp")
         else:
-            return render(request, "verify-otp.html", {"error": "Invalid or expired OTP"})
+            return render(request, "register.html", {"error": "Registration failed"})
 
 class LoginView(View):
     def get(self, request):
@@ -87,33 +66,10 @@ class LoginView(View):
 
         user = authenticate(request, email=email, password=password)
         if user is not None:
-            send_otp_email(user)
-            request.session['otp_user_id'] = user.id
-            return redirect('verify-otp')
+            login(request, user)
+            return redirect("dashboard")
         else:
             return render(request, "login.html", {"error": "Invalid Password"})
-
-class VerifyOTPLoginView(View):
-    def get(self, request):
-        return render(request, "verify-otp.html")
-
-    def post(self, request):
-        otp = request.POST.get("otp")
-        user_id = request.session.get('otp_user_id')
-        if not user_id:
-            return redirect('login')
-
-        try:
-            user = CustomUser.objects.get(id=user_id)
-        except CustomUser.DoesNotExist:
-            return redirect('login')
-
-        if is_otp_valid(user, otp):
-            login(request, user)
-            del request.session['otp_user_id']
-            return redirect('dashboard')
-        else:
-            return render(request, "verify-otp.html", {"error": "Invalid or expired OTP"})
 
 class LogoutView(View, LoginRequiredMixin):
     login_url = "login"
@@ -125,9 +81,10 @@ class HomeView(View):
     def get(self, request):
         return render(request, "home.html")
 
-# class VerifyOTP(View):
-#     def get(self, request):
-#         return render(request, 'verify-otp.html')
+class VerifyOTP(View):
+    def get(self, request):
+        return render(request, 'verify-otp.html')
+
 
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"

@@ -5,7 +5,8 @@ from .views import (
     ProfileView, 
    TermsAndConditionsView,
     BrandProtectionView,EditNameView,
-    ChangePasswordView, ContactPageView,VerifyOTP
+    ChangePasswordView, ContactPageView,
+    VerifyOTP
     )
 
 urlpatterns = [
