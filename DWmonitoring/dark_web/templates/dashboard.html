@@ -219,14 +219,23 @@
                 }
             },
             scales: {
-                x: {
-                    stacked: true,
-                },
-                y: {
-                    stacked: true,
-                    beginAtZero: true
+            x: {
+                stacked: true,
+                grid: {
+                    display: false
+                }
+            },
+            y: {
+                stacked: true,
+                beginAtZero: true,
+                grid: {
+                    display: false
+                }, 
+                ticks: {
+                    stepSize: 1
                 }
             }
+        }
         }
     };
  
