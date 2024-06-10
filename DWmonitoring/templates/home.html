@@ -46,13 +46,22 @@
             bottom: 0;
             clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
         }
+
+
+
+
+        .custom-max-blur-bg {
+            background-color: rgba(255, 255, 255, 0.7); /* White background with 70% opacity */
+            backdrop-filter: blur(3px); /* Maximum blur effect */
+        }
     </style>
     <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon" />
     <title>{% block title %} Home {% endblock title %}</title>
 </head>
 
 <body class="relative bottom-0">
-    <header class="flex fixed w-full bg-white z-50 h-16 justify-between py-4 px-2 border-b-2 border-gray-200">
+    <header class="flex fixed w-full z-50 h-16 justify-between py-4 px-2 shadow-lg custom-max-blur-bg">
+
         <a href="/" class="flex items-center justify-center">
             <img src="https://i0.wp.com/gtn.com.np/storage/2022/09/greentick-nepal-pvt-lt.png?fit=2294%2C755&ssl=1"
                 width="140" height="10" alt="" />
@@ -61,9 +70,9 @@
             <a href="{% url 'home' %}"><span class=" text-red-700 ">Dark Web</span> <span
                     class="text-[#92a91a]">Monitoring</span></a>
         </div> -->
-        <nav class="flex gap-8 px-2  items-center justify-center">
+        <nav class="flex gap-8 px-2 items-center justify-center">
             {% if user.is_authenticated %}
-            <a target="_blank" href="{% url 'dashboard' %}">
+            <a href="{% url 'dashboard' %}">
                 <button
                     class="{% if request.path == '/dashboard' %} text-black border-red-700 {% endif %} flex items-center gap-2 text-gray-600 border-b-2 hover:border-gray-600 hover:text-gray-900 transition-all duration-200 ease-in-out border-b">
                     Dashboard
