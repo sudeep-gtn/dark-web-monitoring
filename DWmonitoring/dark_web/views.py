@@ -8,7 +8,15 @@ import json
 class DashboardView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
-        return render(request, "dashboard.html")
+        domains = Domain.objects.all()
+        domains_count = len(domains)
+        cards = Card.objects.all()
+        cards_count = len(cards)
+        pii_exposures = PIIExposure.objects.all()
+        pii_exposures_count = len(pii_exposures)
+        stealer_logs = StealerLogs.objects.all()
+        stealer_logs_count = len(stealer_logs)
+        return render(request, "dashboard.html", {'domains_count': domains_count, 'cards_count': cards_count, 'pii_exposures_count': pii_exposures_count, 'stealer_logs_count': stealer_logs_count})
     
     
 class DomainView(LoginRequiredMixin, View):

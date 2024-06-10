@@ -77,21 +77,27 @@
           </tr>
         </thead>
         <tbody class="text-gray-700 ">
-          {% for card in cards %}
+          {% if cards %}
+            {% for card in cards %}
+            <tr>
+              <td class="px-4 py-3 text-sm text-left">{{card.card_bin_number}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.card_type}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.expiry_date}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.cvv}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.card_holder_name}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.issuing_bank}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.breach_date}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.breach_source}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.last_used_date}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.severity_level}}</td>
+              <td class="px-4 py-3 text-sm text-left">{{card.breach_source_domain}}</td>
+            </tr>
+            {% endfor %}
+          {% else %}
           <tr>
-            <td class="px-4 py-3 text-sm text-left">{{card.card_bin_number}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.card_type}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.expiry_date}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.cvv}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.card_holder_name}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.issuing_bank}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.breach_date}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.breach_source}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.last_used_date}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.severity_level}}</td>
-            <td class="px-4 py-3 text-sm text-left">{{card.breach_source_domain}}</td>
+            <td colspan="10" class="text-center py-2 px-2">No data found</td>
           </tr>
-          {% endfor %}
+          {% endif %}
         </tbody>
       </table>
     </div>
