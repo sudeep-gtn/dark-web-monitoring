@@ -149,3 +149,7 @@ class ChangePasswordView(LoginRequiredMixin, View):
         update_session_auth_hash(request, user)
         messages.success(request, "Password changed successfully.")
         return redirect("profile")
+
+class ContactPageView(View):
+    def get(self, request):
+        return render(request, "contact.html")
