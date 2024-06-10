@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models import Avg
 
 class Card(models.Model):
     card_bin_number = models.IntegerField(null=True, blank=True, verbose_name='Card BIN Number')
