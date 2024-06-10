@@ -3,22 +3,54 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from .models import Card, Domain, BlackMarket, StealerLogs, PIIExposure
 import json
-
+from django.db.models import Count
 # Create your views here.
 class DashboardView(LoginRequiredMixin, View):
     login_url = "login"
+
     def get(self, request):
-        domains = Domain.objects.all()
-        domains_count = len(domains)
-        cards = Card.objects.all()
-        cards_count = len(cards)
-        pii_exposures = PIIExposure.objects.all()
-        pii_exposures_count = len(pii_exposures)
-        stealer_logs = StealerLogs.objects.all()
-        stealer_logs_count = len(stealer_logs)
-        return render(request, "dashboard.html", {'domains_count': domains_count, 'cards_count': cards_count, 'pii_exposures_count': pii_exposures_count, 'stealer_logs_count': stealer_logs_count})
-    
-    
+        # Counts for all instances
+        domains_count = Domain.objects.count()
+        cards_count = Card.objects.count()
+        pii_exposures_count = PIIExposure.objects.count()
+        stealer_logs_count = StealerLogs.objects.count()
+
+        # Severity counts for each model
+        domain_severity_counts = Domain.objects.values('severity_level').annotate(count=Count('severity_level'))
+        card_severity_counts = Card.objects.values('severity_level').annotate(count=Count('severity_level'))
+        pii_exposure_severity_counts = PIIExposure.objects.values('severity_level').annotate(count=Count('severity_level'))
+
+        # Organize severity counts into a dictionary
+        severity_counts = {
+            'domain': {level['severity_level']: level['count'] for level in domain_severity_counts},
+            'card': {level['severity_level']: level['count'] for level in card_severity_counts},
+            'pii_exposure': {level['severity_level']: level['count'] for level in pii_exposure_severity_counts},
+        }
+
+        # Ensure all severity levels are present in the dictionary
+        for key in severity_counts:
+            for level in ['Low', 'Medium', 'High']:
+                if level not in severity_counts[key]:
+                    severity_counts[key][level] = 0
+
+        # Total severity counts for all models
+        total_severity_counts = {
+            'Low': sum(severity_counts[model].get('Low', 0) for model in severity_counts),
+            'Medium': sum(severity_counts[model].get('Medium', 0) for model in severity_counts),
+            'High': sum(severity_counts[model].get('High', 0) for model in severity_counts),
+        }
+
+        context = {
+            'domains_count': domains_count,
+            'cards_count': cards_count,
+            'pii_exposures_count': pii_exposures_count,
+            'stealer_logs_count': stealer_logs_count,
+            'severity_counts': severity_counts,
+            'total_severity_counts': total_severity_counts,  # Include total severity counts in context
+        }
+
+        return render(request, "dashboard.html", context)
+
 class DomainView(LoginRequiredMixin, View):
     login_url = "login"
     
