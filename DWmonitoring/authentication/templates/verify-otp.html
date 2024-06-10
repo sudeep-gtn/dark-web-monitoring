@@ -1,0 +1,68 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %} Login {% endblock title %}
+{% block content %}
+<h1 class="text-xl text-gray-700 pt-4 font-semibold mx-auto text-center "> <span class="text-red-600 ">Login</span> Your
+    Identity </h1>
+<p class="w-4/5 text-center  mx-auto my-4 text-gray-600">If you already have an account , please enter the associated
+    email and password below.</p>
+<div class="flex flex-col-reverse md:flex-row w-full items-center justify-center items-center justify-center p-4 mt-4">
+    <form method="POST" class="w-5/6  md:w-1/3 lg:w-1/4  flex flex-col gap-4  ">
+        {% csrf_token %}
+        {% if error %}
+        <div class=" text-red-600 gap-2 border-2 border-red-600 px-4 py-2  mx-auto rounded flex items-center ">
+            <?xml version="1.0" ?>
+            <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+            <svg height="22" style="overflow:visible;enable-background:new 0 0 32 32" viewBox="0 0 32 32" width="22"
+                xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g>
+                    <g id="Error_1_">
+                        <g id="Error">
+                            <circle cx="16" cy="16" id="BG" r="16" style="fill:#D72828;" />
+                            <path d="M14.5,25h3v-3h-3V25z M14.5,6v13h3V6H14.5z" id="Exclamatory_x5F_Sign"
+                                style="fill:#E6E6E6;" />
+                        </g>
+                    </g>
+                </g>
+            </svg> <span>{{ error }}</span>
+        </div>
+        {% endif %}
+        <div class="flex flex-col gap-1 ">
+            <label class="font-semibold text-gray-700 px-2 " for="email">Email</label>
+            <input type="email" name="email" required
+                class="p-2 w-full outline-none border-2 border-gray-400 focus:border-red-500  rounded-lg  transition-all duration-100 ease-in-out"
+                placeholder="eg. name@example.com">
+        </div>
+        <div class="flex flex-col gap-1 ">
+            <label class="font-semibold px-2  text-gray-700" for="password">Password</label>
+            <input
+                class="w-full p-2 outline-none border-gray-400 focus:border-red-500 border-2 rounded-lg  transition-all duration-100 ease-in-out"
+                type="password" id="password" name="password" required placeholder="********">
+            <div class="flex items-center"><input onchange="showPassword()" class="mr-2" type="checkbox"
+                    name="show-password" id="show-password"><label class="cursor-pointer" for="show-password">Show password</label></div>
+        </div>
+        <button type="submit"
+            class="bg-red-500 text-white text-lg rounded-lg p-2 active:bg-red-800 transition-all duration-300 ease-in-out">
+            Login </button>
+
+        <div class="text-center font-medium text-red-800 hover:underline  "> <a href="register">Don't have account ?
+                Register</a> </div>
+    </form>
+    <div>
+        <img src="{% static 'images/login-illustration.png' %}" height="250" class="md:w-96" width="250"
+            alt="Login Illustration">
+    </div>
+</div>
+<script>
+    function showPassword() {
+        password = document.getElementById("password");
+        if (password.type == "text") {
+            password.type = "password"
+        }
+        else {
+            password.type = "text"
+        }
+    }
+</script>
+{% endblock content %}

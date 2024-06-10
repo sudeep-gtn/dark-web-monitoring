@@ -81,6 +81,9 @@ class HomeView(View):
     def get(self, request):
         return render(request, "home.html")
 
+class VerifyOTP(View):
+    def get(self, request):
+        return render(request, 'verify-otp.html')
 
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"

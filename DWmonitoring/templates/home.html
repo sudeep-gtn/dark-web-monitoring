@@ -103,8 +103,8 @@
         <div style="background-image: url('/static/images/security-bg.jpg');  background-position: center; background-size: cover;" class="relative sm:w-full w-full mx-auto text-center text-white pt-4 pb-14">
             <div class="absolute inset-0 bg-black opacity-60"></div>
             <div id="particles-js" class="absolute top-0 left-0 w-full h-full z-0"></div>
-            <div class="md:text-3xl text-xl w-fit mx-auto py-4 font-extrabold text-white z-10 relative">
-                <span class="text-gray-200 px-2 ">Dark Web Monitoring & Brand Protection</span>
+            <div class="md:text-4xl text-xl w-fit mx-auto py-4 font-extrabold text-white z-10 relative">
+                <span class="text-gray-200 px-2 "><span class="text-red-600">Dark Web</span> Monitoring & <span class="text-red-600">Brand</span> Protection</span>
             </div>
             <p class="text-gray-300  text-sm md:w-5/6 xl:w-2/4 w-4/5 font-semibold tracking-wide mx-auto z-10 relative">
                 The dark web: a hidden network where threats can linger unseen. But
@@ -122,7 +122,7 @@
                 brand's future and stay ahead of the competition.
             </p>
             <div class="flex gap-14 items-center pt-8 justify-center z-10 relative">
-                <a href="#"
+                <a href="{% url 'contact' %}"
                     class="bg-red-600 px-4 py-2 rounded-lg font-medium hover:shadow-green-600 shadow-2xl hover:bg-[#92a91a] transition-all duration-300 ease-in-out">
                     Contact us
                 </a>
@@ -175,7 +175,7 @@
             </div>
         </div>
         <h1 class="text-3xl tracking-wide w-fit mx-auto my-6 font-extrabold pt-6 mx-auto">
-            Brand Protection
+            Brand <span class="text-red-600">Protection</span>
         </h1>
         <div class="relative">
             <div class="mask-image-top mask-image-bottom" style="background-image: url('/static/images/bg2.jpg')">
