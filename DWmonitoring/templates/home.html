@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
@@ -19,155 +19,247 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background-color: red;
+            background-color: rgb(233, 86, 86);
             /* Color of the scrollbar thumb */
             border-radius: 10px;
             /* Roundness of the scrollbar thumb */
             border: 4px solid #f1f1f1;
             /* Padding around scrollbar thumb */
         }
+
+        .mask-image-top:before,
+        .mask-image-bottom:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: rgba(5, 4, 4, 0.1);
+        }
+
+        .mask-image-top:before {
+            top: 0;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+        }
+
+        .mask-image-bottom:after {
+            bottom: 0;
+            clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
+        }
     </style>
-    <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon">
-    <title> {% block title %} Home {% endblock title %}</title>
+    <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon" />
+    <title>{% block title %} Home {% endblock title %}</title>
 </head>
 
 <body class="relative bottom-0">
-    <header class="flex fixed w-full bg-white  z-50 h-16 justify-between py-4 px-8 border-b-2 border-gray-200 ">
-
+    <header class="flex fixed w-full bg-white z-50 h-16 justify-between py-4 px-2 border-b-2 border-gray-200">
         <a href="/" class="flex items-center justify-center">
             <img src="https://i0.wp.com/gtn.com.np/storage/2022/09/greentick-nepal-pvt-lt.png?fit=2294%2C755&ssl=1"
-                width="140" height="10" alt="">
+                width="140" height="10" alt="" />
         </a>
         <!-- <div class="text-xl font-semibold">
             <a href="{% url 'home' %}"><span class=" text-red-700 ">Dark Web</span> <span
                     class="text-[#92a91a]">Monitoring</span></a>
         </div> -->
-        <nav class="flex gap-8 px-2 text-lg font-semibold  items-center justify-center">
-
+        <nav class="flex gap-8 px-2  items-center justify-center">
             {% if user.is_authenticated %}
             <a target="_blank" href="{% url 'dashboard' %}">
                 <button
-                    class="{% if request.path == '/dashboard' %} text-black border-red-700 {% endif %} flex items-center gap-2 text-gray-600 border-b-2 hover:border-gray-600 hover:text-gray-900 transition-all duration-200 ease-in-out border-b">Dashboard
-                    <img src="/static/images/redirect.png" height="20" width="16" alt="redirection"></button>
+                    class="{% if request.path == '/dashboard' %} text-black border-red-700 {% endif %} flex items-center gap-2 text-gray-600 border-b-2 hover:border-gray-600 hover:text-gray-900 transition-all duration-200 ease-in-out border-b">
+                    Dashboard
+                    <img src="/static/images/redirect.png" height="20" width="16" alt="redirection" />
+                </button>
             </a>
 
             {% else %}
             <a href="{% url 'login' %}">
                 <button
-                    class="{% if request.path == '/login' %} text-red-700 border-red-700 {% endif %} border-b-2 hover:border-red-600 hover:text-red-600 transition-all duration-200 ease-in-out border-b">Login</button>
+                    class="{% if request.path == '/login' %} shadow-2xl shadow-red-500/40 bg-red-600 text-white font-semibold {% endif %} bg-gray-300  px-2 hover:bg-red-500 hover:text-white  border border-transparent  hover:border-red-600 hover:text-red-600 rounded-lg shadow-lg shadow-gray-500/40 text-gray-700">
+                    Login
+                </button>
             </a>
             <a href="{% url 'register' %}">
                 <button
-                    class="{% if request.path == '/register' %} text-red-700 border-red-700 {% endif %}  border-b-2 hover:border-red-600 hover:text-red-600 transition-all duration-200 ease-in-out border-b">Register</button>
+                    class="{% if request.path == '/register' %} shadow-2xl shadow-red-500/40 bg-red-600 text-white font-semibold {% endif %} bg-gray-300  px-2 hover:bg-red-500 hover:text-white  border border-transparent  hover:border-red-600 hover:text-red-600 rounded-lg shadow-lg shadow-gray-500/40 text-gray-700">
+                    Register
+                </button>
             </a>
             {% endif %}
         </nav>
     </header>
 
     <div class="pt-16 min-h-screen pb-16">
-
         {% block content %}
-        <div class="bg-gray-700">
-            <div class="relative sm:w-full md:w-5/6 xl:w-2/4  mx-auto text-center text-white pt-4 pb-14 bg-gray-700">
-                <div id="particles-js" class="absolute top-0 left-0 w-full h-full z-0"></div>
-                <div class="text-2xl w-fit mx-auto py-8  font-bold  text-white z-10 relative">
-                    <span class="text-red-600  ">Dark Web</span>
-                    <span class="border-b-2 border-red-800 text-gray-200 px-2 ">Monitoring</span>
-                </div>
-                <p class="text-gray-300 w-4/5 font-semibold tracking-wide mx-auto text-lg z-10 relative">
-                    The dark web: a hidden network where threats can linger unseen. But what if you could shine a light
-                    on it? Our application empowers you to monitor the dark web for mentions of your personal
-                    information, giving you peace of mind and the knowledge to act swiftly if needed.
-                </p>
-                <div class="flex gap-14 items-center pt-8 justify-center z-10 relative">
-                    <a href="#"
-                        class="bg-red-600 px-4 py-2 rounded-lg font-medium hover:shadow-green-600 shadow-2xl hover:bg-[#92a91a] transition-all duration-300 ease-in-out">
-                        Contact us </a>
-                    <a href="{% url 'register' %}"
-                        class="border-2 border-red-700 px-4 py-2 rounded-lg font-medium hover:bg-red-800 transition-all duration-300 ease-in-out hover:shadow-red-600 hover:shadow-2xl">
-                        Get Started </a>
-                </div>
+
+        <div style="background-image: url('/static/images/security-bg.jpg');  background-position: center; background-size: cover;" class="relative sm:w-full w-full mx-auto text-center text-white pt-4 pb-14">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+            <div id="particles-js" class="absolute top-0 left-0 w-full h-full z-0"></div>
+            <div class="md:text-3xl text-xl w-fit mx-auto py-4 font-extrabold text-white z-10 relative">
+                <span class="text-gray-200 px-2 ">Dark Web Monitoring & Brand Protection</span>
+            </div>
+            <p class="text-gray-300  text-sm md:w-5/6 xl:w-2/4 w-4/5 font-semibold tracking-wide mx-auto z-10 relative">
+                The dark web: a hidden network where threats can linger unseen. But
+                what if you could shine a light on it? Our application empowers you
+                to monitor the dark web for mentions of your personal information,
+                giving you peace of mind and the knowledge to act swiftly if needed.
+            </p>
+            <p class="text-gray-300 py-4  md:w-5/6 xl:w-2/4 w-4/5 font-semibold tracking-wide mx-auto text-sm z-10 relative">
+                Our brand protection software offers a simple yet powerful solution.
+                It helps you monitor and prevent counterfeiting, trademark
+                infringement, and unauthorized use of your brand online and offline.
+                With real-time monitoring and automated enforcement tools, you can
+                quickly identify threats and take action to safeguard your brand
+                reputation and revenue. Invest in our software today to secure your
+                brand's future and stay ahead of the competition.
+            </p>
+            <div class="flex gap-14 items-center pt-8 justify-center z-10 relative">
+                <a href="#"
+                    class="bg-red-600 px-4 py-2 rounded-lg font-medium hover:shadow-green-600 shadow-2xl hover:bg-[#92a91a] transition-all duration-300 ease-in-out">
+                    Contact us
+                </a>
+                <a href="{% url 'register' %}"
+                    class="border-2 border-red-700 px-4 py-2 rounded-lg font-medium hover:bg-red-800 transition-all duration-300 ease-in-out hover:shadow-red-600 hover:shadow-2xl">
+                    Get Started
+                </a>
             </div>
         </div>
-
 
         <div class="flex w-5/6 flex-col lg:flex-row mt-4 mx-auto items-center justify-center">
-
             <div
-                class=" border-r-2 border-red-400 lg:border-none my-4 w-full px-4 py-8 flex flex-col gap-2 items-center text-center justify-center  mx-auto">
-                <div class=" w-fit  mx-auto flex items-center justify-center">
-                    <img height="60" width="300" src="/static/images/ice-example.jpg" alt="dark-web-illustration">
+                class="border-r-2 border-red-400 lg:border-none my-4 w-full px-4 py-8 flex flex-col gap-2 items-center text-center justify-center mx-auto">
+                <div class="w-fit mx-auto flex items-center justify-center">
+                    <img height="60" width="300" src="/static/images/ice-example.jpg" alt="dark-web-illustration" />
                 </div>
-                <div class="flex  w-full md:w-2/3 xl:w-2/3 flex-col gap-4">
-                    <h1 class="text-xl tracking-wide font-semibold pt-6 mx-auto  ">What is the Dark Web ?</h1>
-                    <p class="text-gray-600 ">
-                        The dark web refers to a hidden part of the internet that is not accessible through traditional
-                        search engines or browsers. It is often used for illicit activities, where users can remain
-                        anonymous and transactions can be conducted using cryptocurrencies. There is a great deal of
-                        privacy and anonymity that comes with using the dark web compared to traditional websites, which
-                        makes it a prime space for malicious actors.
+                <div class="flex w-full md:w-2/3 xl:w-2/3 flex-col gap-4">
+                    <h1 class="text-xl tracking-wide font-semibold pt-6 mx-auto">
+                        What is the Dark Web ?
+                    </h1>
+                    <p class="text-gray-600">
+                        The dark web refers to a hidden part of the internet that is not
+                        accessible through traditional search engines or browsers. It is
+                        often used for illicit activities, where users can remain
+                        anonymous and transactions can be conducted using
+                        cryptocurrencies. There is a great deal of privacy and anonymity
+                        that comes with using the dark web compared to traditional
+                        websites, which makes it a prime space for malicious actors.
                     </p>
                 </div>
             </div>
             <div
-                class=" border-l-2 lg:border-none border-red-400 my-4 w-full px-4 py-8 flex flex-col  gap-2 items-center text-center justify-center  mx-auto">
-                <div class=" w-fit  mx-auto flex items-center justify-center">
-                    <img height="60" width="200" src="/static/images/img-banner-dark-web-monitoring.svg" alt="">
+                class="border-l-2 lg:border-none border-red-400 my-4 w-full px-4 py-8 flex flex-col gap-2 items-center text-center justify-center mx-auto">
+                <div class="w-fit mx-auto flex items-center justify-center">
+                    <img height="60" width="200" src="/static/images/img-banner-dark-web-monitoring.svg" alt="" />
                 </div>
-                <div class="flex  w-full md:w-2/3 xl:w-2/3 flex-col gap-4">
-                    <h1 class="text-xl tracking-wide font-semibold pt-6 mx-auto  ">What is Dark Web Monitoring ?</h1>
-                    <p class=" text-gray-600 ">Dark web monitoring is a service that scans the dark web for your
-                        personal information.
-                        The dark web is a part of the internet that isn't indexed by search engines and requires special
-                        software to access. Criminals sometimes use the dark web to buy and sell stolen data, including
-                        usernames, passwords, social security numbers, and credit card information.
+                <div class="flex w-full md:w-2/3 xl:w-2/3 flex-col gap-4">
+                    <h1 class="text-xl tracking-wide font-semibold pt-6 mx-auto">
+                        What is Dark Web Monitoring ?
+                    </h1>
+                    <p class="text-gray-600">
+                        Dark web monitoring is a service that scans the dark web for your
+                        personal information. The dark web is a part of the internet that
+                        isn't indexed by search engines and requires special software to
+                        access. Criminals sometimes use the dark web to buy and sell
+                        stolen data, including usernames, passwords, social security
+                        numbers, and credit card information.
                     </p>
                 </div>
-
             </div>
         </div>
+        <h1 class="text-3xl tracking-wide w-fit mx-auto my-6 font-extrabold pt-6 mx-auto">
+            Brand Protection
+        </h1>
+        <div class="relative">
+            <div class="mask-image-top mask-image-bottom" style="background-image: url('/static/images/bg2.jpg')">
+                <div class="flex flex-col w-full md:w-4/6 mx-auto px-6 pt-8 pb-16">
+                    <div class="flex flex-col md:flex-row w-full items-center justify-center mx-auto">
+                        <div class="w-[300px] md:w-[500px]">
+                            <img src="/static/images/protection.png" alt="brand-protection" />
+                        </div>
+                        <div class="w-full flex flex-col items-start justify-center">
+                            <h2 class="font-semibold py-2 md:py-6">
+                                What is Brand Protection?
+                            </h2>
+                            <p class="font-medium text-gray-600">
+                                Brand protection is the guardian angel of your brand,
+                                tirelessly watching over its reputation, value, and identity
+                                in a world teeming with counterfeiters, copycats, and
+                                unauthorized users. It's the shield that defends your brand
+                                from threats lurking in both the digital and physical realms,
+                                ensuring that your hard-earned goodwill and consumer trust
+                                remain untarnished.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row-reverse w-full items-center justify-center mx-auto">
+                        <div class="w-[250px] md:w-[400px]">
+                            <img src="/static/images/protection01.png" alt="brand-protection" />
+                        </div>
+                        <div class="w-full flex flex-col items-start justify-center">
+                            <h2 class="font-semibold py-2 ">
+                                Why Brand Protection is necessary?
+                            </h2>
+                            <p class="font-medium text-gray-600">
+                                Brand protection is essential because it shields your brand
+                                from a multitude of risks that can undermine its integrity,
+                                reputation, and value. Without robust brand protection
+                                measures, your brand is vulnerable to threats such as
+                                counterfeit products flooding the market, trademark
+                                infringement diluting your identity, and unauthorized use
+                                tarnishing your reputation. By investing in brand protection,
+                                you not only safeguard your brand's assets but also preserve
+                                consumer trust, maintain market competitiveness, and secure
+                                long-term success. It's not just about protecting your brand;
+                                it's about safeguarding everything you've worked so hard to
+                                build.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {% endblock content %}
         <div class="w-full h-16 text-sm bg-gray-700 absolute flex items-center justify-center text-white bottom-0">
             <p>&copy; 2024 Green Tick Nepal. All rights reserved.</p>
         </div>
     </div>
 
-
     <script>
-        particlesJS('particles-js', {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#ffffff"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 20,
+                    density: {
+                        enable: true,
+                        value_area: 800,
                     },
                 },
-                "size": {
-                    "value": 3, // Adjust the size of particles here
+                color: {
+                    value: "#ffffff",
                 },
-                "interactivity": {
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "repulse"
-                        }
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000",
+                    },
+                    polygon: {
+                        nb_sides: 5,
                     },
                 },
-            }
+                size: {
+                    value: 3, // Adjust the size of particles here
+                },
+                interactivity: {
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse",
+                        },
+                    },
+                },
+            },
         });
     </script>
 </body>
