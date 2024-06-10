@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard{% endblock title %}
- 
+
 {% block content %}
 <div class="p-6">
     <!-- Dashboard Section -->
@@ -80,11 +80,11 @@
             </div>
         </div>
     </div>
- 
- 
+
+
     <!-- charts  -->
     <div class="flex gap-4 items-center justify-center flex-col xl:flex-row ">
- 
+
         <div
             class="shadow-lg flex flex-col items-center justify-center rounded-lg  w-[340px] border-2  border-red-200 bg-white h-[340px]">
             <h1 class="font-semibold text-sm text-gray-600 py-2">Organization Health Status</h1>
@@ -124,9 +124,9 @@
     console.log('Total Low Severity Count:', totalSeverityCounts.Low);
     console.log('Total Medium Severity Count:', totalSeverityCounts.Medium);
     console.log('Total High Severity Count:', totalSeverityCounts.High);
- 
- 
- 
+
+
+
     const severityDataPieChart = {
         labels: ['High', 'Medium', 'Low'],
         datasets: [{
@@ -161,10 +161,10 @@
             }
         },
     };
- 
- 
- 
- 
+
+
+
+
     // Severity counts data from Django
     const severityCounts = {
         'domain': {
@@ -183,7 +183,7 @@
             'High': parseSafe('{{ severity_counts.pii_exposure.High }}')
         }
     };
- 
+
     const breachCountData = {
         labels: ['Cards', 'Domains', 'PII'],
         datasets: [
@@ -204,7 +204,7 @@
             }
         ]
     };
- 
+
     const breachCountChartConfig = {
         type: 'bar',
         data: breachCountData,
@@ -230,17 +230,19 @@
             }
         }
     };
- 
+
     window.onload = function () {
         const severityCtx = document.getElementById('severityChart').getContext('2d');
         new Chart(severityCtx, severityConfig);
- 
+
         const breachCountCtx = document.getElementById('breachCountChart').getContext('2d');
         new Chart(breachCountCtx, breachCountChartConfig);
     };
- 
- 
-    const health_score = parseSafe('{{ health_score | escapejs }}')
+
+
+
+
+
     var myChart = echarts.init(document.getElementById('gauge-chart'));
     var option = {
         series: [{
@@ -251,7 +253,7 @@
                 fontSize: 20,
                 color: '#000'
             },
-            data: [{ value: health_score, name: 'Health Status' }],
+            data: [{ value: 88, name: 'Health Status' }],
             startAngle: 180,
             endAngle: 0,
             axisLine: {
@@ -301,10 +303,10 @@
             }
         ]
     };
- 
+
     // Set the configuration and render the chart
     myChart.setOption(option);
 </script>
- 
- 
+
+
 {% endblock content %}
