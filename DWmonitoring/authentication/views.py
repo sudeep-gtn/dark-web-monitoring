@@ -102,26 +102,21 @@ class VerifyOTP(View):
                     user.is_email_verified = True
                     user.save()
 
-                    if user.is_authenticated:
+                    if request.user.is_authenticated:
                         return redirect('profile')
                     else :
-                        return redirect("login")  # Redirect to your login URL
+                        return redirect("login")
                 else:
-                    # If OTP is invalid, show error message or handle accordingly
                     return render(request, 'verify-otp.html', {"error": "Invalid OTP. Please try again."})
             except CustomUser.DoesNotExist:
-                # If user does not exist, handle accordingly
                 return HttpResponse("User does not exist")
         else:
-            # If no registered email in session, handle accordingly
             return HttpResponse("No registered email found in session")
 
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "profile.html")
-
-
 
 class SendOTPFromProfile(View):
     def post(self,request):

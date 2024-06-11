@@ -2,9 +2,11 @@ import random
 from django.core.mail import send_mail
 from django.utils import timezone
 from datetime import timedelta
+import string
 
 def generate_otp():
-    return str(random.randint(100000, 999999))
+    characters = string.ascii_letters + string.digits
+    return ''.join(random.choices(characters, k=6))
 
 def send_otp_email(user):
     otp = generate_otp()
