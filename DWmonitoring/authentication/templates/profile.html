@@ -54,7 +54,7 @@ Profile
             <div class="font-semibold my-2">
                 Email: 
                 {% if not user.is_email_verified %}
-                <span class="inline-block bg-blue-500 text-white p-1 rounded-full font-normal text-sm">
+                <span class="inline-block bg-blue-500 text-white p-1 px-2 rounded font-normal text-sm">
                     <form method="post" action="/send-otp-now">
                         {% csrf_token %}
                         <button type="submit" class="focus:outline-none">Verify now</button>
