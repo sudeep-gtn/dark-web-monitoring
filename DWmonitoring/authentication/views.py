@@ -101,7 +101,11 @@ class VerifyOTP(View):
                 if is_otp_valid(user, otp):
                     user.is_email_verified = True
                     user.save()
-                    return redirect("login")  # Redirect to your login URL
+
+                    if user.is_authenticated:
+                        return redirect('profile')
+                    else :
+                        return redirect("login")  # Redirect to your login URL
                 else:
                     # If OTP is invalid, show error message or handle accordingly
                     return render(request, 'verify-otp.html', {"error": "Invalid OTP. Please try again."})
@@ -116,6 +120,44 @@ class ProfileView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "profile.html")
+
+
+
+class SendOTPFromProfile(View):
+    def post(self,request):
+        user = request.user
+        if user:
+            request.session['registered_email'] = user.email
+            send_otp_email(user)
+            return redirect("verify-otp")
+        else:
+            return render('profile.html', {'error':"Something went wrong :( "})
+
+
+# class VerifyOTPFromProfile(View):
+#     def get(self, request):
+#         return render(request, 'verify-otp.html')
+
+#     def post(self, request):
+#         otp = request.POST.get("otp").strip()
+#         email = request.session.get("registered_email")
+#         if email:
+#             try:
+#                 user = CustomUser.objects.get(email=email)
+#                 if is_otp_valid(user, otp):
+#                     user.is_email_verified = True
+#                     user.save()
+#                     return redirect("profile")  # Redirect to your login URL
+#                 else:
+#                     # If OTP is invalid, show error message or handle accordingly
+#                     return render(request, 'verify-otp.html', {"error": "Invalid OTP. Please try again."})
+#             except CustomUser.DoesNotExist:
+#                 # If user does not exist, handle accordingly
+#                 return HttpResponse("User does not exist")
+#         else:
+#             # If no registered email in session, handle accordingly
+#             return HttpResponse("No registered email found in session")
+
 
 class TermsAndConditionsView(View):
     def get(self, request):

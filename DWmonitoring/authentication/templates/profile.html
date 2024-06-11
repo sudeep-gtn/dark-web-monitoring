@@ -52,7 +52,10 @@ Profile
         <div class="flex flex-col">
             <div class="font-semibold my-2">Email: {% if not user.is_email_verified %}
                 <span class="bg-blue-500 text-white px-2 rounded font-normal text-sm py-1">
-                    <a href="#">Verify now</a>
+                    <form method="post" action="/send-otp-now">
+                        {% csrf_token %}
+                        <button type="submit"> Verify now </button>
+                    </form>
                 </span>
                 {% endif %}</div>
             <small>Account email used to login to platform and get notification, two factor validation code etc.

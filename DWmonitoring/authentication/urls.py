@@ -6,7 +6,8 @@ from .views import (
    TermsAndConditionsView,
     BrandProtectionView,EditNameView,
     ChangePasswordView, ContactPageView,
-    VerifyOTP
+    VerifyOTP,SendOTPFromProfile,
+    #   VerifyOTPFromProfile
     )
 
 urlpatterns = [
@@ -20,5 +21,7 @@ urlpatterns = [
     path('edit-name', EditNameView.as_view(), name="edit-name"),
     path('change-password', ChangePasswordView.as_view(), name="change-password"),
     path('contact', ContactPageView.as_view(), name="contact"),
-    path('verify-otp', VerifyOTP.as_view(), name="verify-otp")
+    path('verify-otp', VerifyOTP.as_view(), name="verify-otp"),
+    path('send-otp-now', SendOTPFromProfile.as_view(), name="send-otp-now"),
+    # path('verify-otp-now', VerifyOTPFromProfile.as_view(), name="verify-otp-now")
 ]
