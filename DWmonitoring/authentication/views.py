@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views import View
@@ -9,7 +10,7 @@ from django.contrib.auth.password_validation import validate_password
 import re
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-
+from .utils import send_otp_email, is_otp_valid
 class RegisterView(View):
     def get(self, request):
         return render(request, "register.html")
@@ -47,6 +48,12 @@ class RegisterView(View):
             return render(request, "register.html", {"error": "Registration failed"})
 
         if user:
+            # Store registered email in session
+            request.session['registered_email'] = email
+            
+            # Send OTP
+            send_otp_email(user)
+            
             return redirect("verify-otp")
         else:
             return render(request, "register.html", {"error": "Registration failed"})
@@ -85,6 +92,25 @@ class VerifyOTP(View):
     def get(self, request):
         return render(request, 'verify-otp.html')
 
+    def post(self, request):
+        otp = request.POST.get("otp").strip()
+        email = request.session.get("registered_email")
+        if email:
+            try:
+                user = CustomUser.objects.get(email=email)
+                if is_otp_valid(user, otp):
+                    user.is_email_verified = True
+                    user.save()
+                    return redirect("login")  # Redirect to your login URL
+                else:
+                    # If OTP is invalid, show error message or handle accordingly
+                    return render(request, 'verify-otp.html', {"error": "Invalid OTP. Please try again."})
+            except CustomUser.DoesNotExist:
+                # If user does not exist, handle accordingly
+                return HttpResponse("User does not exist")
+        else:
+            # If no registered email in session, handle accordingly
+            return HttpResponse("No registered email found in session")
 
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"

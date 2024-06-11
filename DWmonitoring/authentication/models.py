@@ -16,6 +16,7 @@ class CustomUserManager(BaseUserManager):
         user = self.create_user(email, full_name, password=password)
         user.is_superuser = True
         user.is_staff = True
+        user.is_email_verified = True
         user.save(using=self._db)
         return user
 
@@ -27,8 +28,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(default=timezone.now)
     otp = models.CharField(max_length=6, blank=True, null=True)
     otp_created_at = models.DateTimeField(blank=True, null=True)
-
-
+    is_email_verified = models.BooleanField(default=False)
 
     groups = models.ManyToManyField(
         'auth.Group',
