@@ -2,9 +2,185 @@
 {% load static %}
 
 {% block title %} Contact Us {% endblock title %}
+
+{% block header %}
+<header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
+    <a href="{% url 'notifications'%}" class="text-xl font-extrabold text-gray-700">
+        <div class="flex gap-2">
+            <span><img src="/static/images/alert.svg" height="30px" width="30px" alt=""></span>
+                <span class="text-gray-800">Notifications</span> <span class="text-red-500">Alerts
+                </span>
+            
+            <div class="bg-red-200 rounded-md px-2 border-2 border-red-400 text-gray-600">200</div>
+        </div>
+    </a>
+    <div class="relative flex gap-4 px-4">
+        <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon">
+        <button
+            class="hidden md:block border-2 border-gray-400 bg-gray-100 rounded-full p-2 {% if request.path == '/profile' %} border-red-600 {% endif %}"
+            onclick="toggleDropdown('profileDropdown')">
+            <img height="20" width="20" src="https://img.icons8.com/?size=100&id=fJ7hcfUGpKG7&format=png&color=000000"
+                alt="profile " />
+        </button>
+
+        <div id="profileDropdown"
+            class="hidden absolute right-0 mt-14 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1">
+            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+            <button onclick="showPopUp()"
+                class="w-full text-left block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</button>
+        </div>
+        <div class="md:hidden block  bg-gray-100 rounded-full p-2  z-50">
+            <input id="checkbox2" type="checkbox" class="hidden">
+            <label class="toggle toggle2" for="checkbox2" onclick="toggleSidebar()">
+                <div id="bar4" class="bars"></div>
+                <div id="bar5" class="bars"></div>
+                <div id="bar6" class="bars"></div>
+            </label>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
 {% block content %}
 
 <div>
-    notifications alerts section 
+    <div class="mx-6 my-2 p-2">
+        <h1 class="mx-2 font-semibold mb-2 text-lg">Recommendations</h1>
+        <div class="p-2 rounded bg-white shadow">
+            <p>Everyone has a responsibility to protect against cyber security threats, and that means being
+                in-the-know. Ongoing Threat Alerts Provide Key visibility and awareness into the latest cybersecurity
+                threats, trending attacks, cyber incidents, and published vulnerabilities that could impact your
+                organization.</p>
+        </div>
+    </div>
+
+    <div class="mx-6 my-2 p-2">
+        <h1 class="font-semibold mb-2 text-lg">Alerts</h1>
+        <div class="rounded-t-lg overflow-hidden">
+            <table class="w-full border-collapse">
+                <thead class="text-center bg-gray-300">
+                    <tr>
+                        <th class="px-4 py-2">Description</th>
+                        <th class="px-6 py-2 w-1/6">Date</th>
+                        <th class="px-6 py-2 w-1/6">Details</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white text-center">
+                    <tr class="border-b">
+                        <td class="px-4 py-2 text-left">
+                            <h2 class="font-semibold">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                Assumenda, illo.</h2>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odio ducimus alias
+                                ratione quibusdam id, sequi doloribus quas, expedita animi molestias perferendis
+                                asperiores reiciendis fuga consequuntur excepturi suscipit quaerat ut!</p>
+                        </td>
+                        <td class="px-6 py-2 w-1/6">01 Dec 2023</td>
+                        <td class="px-6 py-2 w-1/6">
+                            <a href="#" target="_blank" class="flex items-center space-x-2 text-blue-500">
+                                <img src="/static/images/redirect.png" alt="view details" class="w-4 h-4" />
+                                <span>View article</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="px-4 py-2 text-left">
+                            <h2 class="font-semibold">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                Assumenda, illo.</h2>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odio ducimus alias
+                                ratione quibusdam id, sequi doloribus quas, expedita animi molestias perferendis
+                                asperiores reiciendis fuga consequuntur excepturi suscipit quaerat ut!</p>
+                        </td>
+                        <td class="px-6 py-2 w-1/6">01 Dec 2023</td>
+                        <td class="px-6 py-2 w-1/6">
+                            <a href="#" target="_blank" class="flex items-center space-x-2 text-blue-500">
+                                <img src="/static/images/redirect.png" alt="view details" class="w-4 h-4" />
+                                <span>View article</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="px-4 py-2 text-left">
+                            <h2 class="font-semibold">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                Assumenda, illo.</h2>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odio ducimus alias
+                                ratione quibusdam id, sequi doloribus quas, expedita animi molestias perferendis
+                                asperiores reiciendis fuga consequuntur excepturi suscipit quaerat ut!</p>
+                        </td>
+                        <td class="px-6 py-2 w-1/6">01 Dec 2023</td>
+                        <td class="px-6 py-2 w-1/6">
+                            <a href="#" target="_blank" class="flex items-center space-x-2 text-blue-500">
+                                <img src="/static/images/redirect.png" alt="view details" class="w-4 h-4" />
+                                <span>View article</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="px-4 py-2 text-left">
+                            <h2 class="font-semibold">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                Assumenda, illo.</h2>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odio ducimus alias
+                                ratione quibusdam id, sequi doloribus quas, expedita animi molestias perferendis
+                                asperiores reiciendis fuga consequuntur excepturi suscipit quaerat ut!</p>
+                        </td>
+                        <td class="px-6 py-2 w-1/6">01 Dec 2023</td>
+                        <td class="px-6 py-2 w-1/6">
+                            <a href="#" target="_blank" class="flex items-center space-x-2 text-blue-500">
+                                <img src="/static/images/redirect.png" alt="view details" class="w-4 h-4" />
+                                <span>View article</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="px-4 py-2 text-left">
+                            <h2 class="font-semibold">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                Assumenda, illo.</h2>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odio ducimus alias
+                                ratione quibusdam id, sequi doloribus quas, expedita animi molestias perferendis
+                                asperiores reiciendis fuga consequuntur excepturi suscipit quaerat ut!</p>
+                        </td>
+                        <td class="px-6 py-2 w-1/6">01 Dec 2023</td>
+                        <td class="px-6 py-2 w-1/6">
+                            <a href="#" target="_blank" class="flex items-center space-x-2 text-blue-500">
+                                <img src="/static/images/redirect.png" alt="view details" class="w-4 h-4" />
+                                <span>View article</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="px-4 py-2 text-left">
+                            <h2 class="font-semibold">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                Assumenda, illo.</h2>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odio ducimus alias
+                                ratione quibusdam id, sequi doloribus quas, expedita animi molestias perferendis
+                                asperiores reiciendis fuga consequuntur excepturi suscipit quaerat ut!</p>
+                        </td>
+                        <td class="px-6 py-2 w-1/6">01 Dec 2023</td>
+                        <td class="px-6 py-2 w-1/6">
+                            <a href="#" target="_blank" class="flex items-center space-x-2 text-blue-500">
+                                <img src="/static/images/redirect.png" alt="view details" class="w-4 h-4" />
+                                <span>View article</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="px-4 py-2 text-left">
+                            <h2 class="font-semibold">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                Assumenda, illo.</h2>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odio ducimus alias
+                                ratione quibusdam id, sequi doloribus quas, expedita animi molestias perferendis
+                                asperiores reiciendis fuga consequuntur excepturi suscipit quaerat ut!</p>
+                        </td>
+                        <td class="px-6 py-2 w-1/6">01 Dec 2023</td>
+                        <td class="px-6 py-2 w-1/6">
+                            <a href="#" target="_blank" class="flex items-center space-x-2 text-blue-500">
+                                <img src="/static/images/redirect.png" alt="view details" class="w-4 h-4" />
+                                <span>View article</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock content %}
