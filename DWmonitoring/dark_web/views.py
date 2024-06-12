@@ -125,10 +125,10 @@ class OrganizationDetailsView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, "organization-details.html")
     
-class NotificationsView(LoginRequiredMixin, View):
+class NotificationsAlertView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
-        return render(request, "notifications.html")
+        return render(request, "notification-alerts.html")
 
 class BlackMarketView(LoginRequiredMixin, View):
     login_url = "login"
@@ -182,3 +182,9 @@ class PiiExposureView(LoginRequiredMixin, View):
             'unique_pii_exposures_emails': unique_pii_exposures_emails,
             'leak_sources_json': leak_sources_json
         })
+
+
+class Overview(LoginRequiredMixin, View):
+    login_url = "login"
+    def get(self, request):
+        return render(request, "overview.html")
