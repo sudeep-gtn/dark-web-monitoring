@@ -163,13 +163,7 @@
         </a>
         <a href="{% url 'notifications' %}"
           class="hover:bg-gray-700  {% if request.path == '/notification-alerts' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
-          Notification Alerts 
-          <span>
-            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </span>
+          <img class="mr-2" src="/static/images/alert.svg" height="18" width="18" alt="">Notification Alerts 
         </a>
         <a href="{% url 'brand-protection' %}"
           class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
