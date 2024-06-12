@@ -153,8 +153,7 @@
     class="hidden overflow-y-auto md:block fixed overflow-hidden md:static top-0 left-0 z-50  bg-gray-800 text-white  md:px-0 z-50 md:w-[230px] h-screen flex flex-col justify-between">
     <div>
       <div class="py-2 px-6  w text-center border-b border-gray-700">
-        <div class=""><img src="https://gkavach.com/storage/2023/02/greentick.png" height="130"
-            width="130"></div>
+        <div class=""><img src="https://gkavach.com/storage/2023/02/greentick.png" height="130" width="130"></div>
       </div>
       <div class="px-2 text-sm">
         <a href="{% url 'overview' %}"
@@ -163,13 +162,12 @@
         </a>
         <a href="{% url 'notifications' %}"
           class="hover:bg-gray-700  {% if request.path == '/notification-alerts' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
-          Notification Alerts 
-          <span>
-            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </span>
+          <img class="mr-2" src="/static/images/alert.svg" height="22" width="22" alt="">Notification Alerts
+        </a>
+
+        <a href="{% url 'threat-intelligence' %}"
+          class="hover:bg-gray-700  {% if request.path == '/threat-intelligence' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
+          <img class="" src="/static/images/threat-intelligence.svg" height="28" width="28" alt="">Threat Intelligence
         </a>
         <a href="{% url 'brand-protection' %}"
           class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
@@ -181,6 +179,7 @@
             </svg>
           </span>
         </a>
+
         <div class=" flex items-center gap-2 text-gray-400 pb-4 px-2">Dark Web Monitoring
           <span>
             <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

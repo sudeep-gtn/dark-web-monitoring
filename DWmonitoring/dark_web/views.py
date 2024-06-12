@@ -188,3 +188,7 @@ class Overview(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "overview.html")
+class ThreatIntelligence(LoginRequiredMixin, View):
+    login_url = "login"
+    def get(self, request):
+        return render(request, "threatIntelligence.html")
