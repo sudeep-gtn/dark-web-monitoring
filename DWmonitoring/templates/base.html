@@ -157,27 +157,21 @@
       </div>
       <div class="px-2 text-sm">
         <a href="{% url 'overview' %}"
-          class="hover:bg-gray-700  {% if request.path == '/overview' %}border-l-4 text-white border-[#92a91a] {% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded gap-2">
+          class="hover:bg-gray-700  {% if request.path == '/overview' %}border-l-4 text-white border-[#92a91a] {% endif %}  flex items-center text-gray-400 my-2 px-2 py-2 rounded gap-2">
           <img class="" src="/static/images/overview.svg" height="18" width="18" alt="">Overview
         </a>
         <a href="{% url 'notifications' %}"
-          class="hover:bg-gray-700  {% if request.path == '/notification-alerts' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
+          class="hover:bg-gray-700  {% if request.path == '/notification-alerts' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-2 px-2 py-2 rounded">
           <img class="mr-2" src="/static/images/alert.svg" height="22" width="22" alt="">Notification Alerts
         </a>
 
         <a href="{% url 'threat-intelligence' %}"
-          class="hover:bg-gray-700  {% if request.path == '/threat-intelligence' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
+          class="hover:bg-gray-700  {% if request.path == '/threat-intelligence' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-2 px-2 py-2 rounded">
           <img class="" src="/static/images/threat-intelligence.svg" height="28" width="28" alt="">Threat Intelligence
         </a>
         <a href="{% url 'brand-protection' %}"
-          class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
-          Brand Protection
-          <span>
-            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </span>
+          class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-2 px-2 py-2 rounded">
+          <img class="mr-2 ml-2" src="/static/images/brand-protection.png" alt="brand-protection-logo" height="18px" width="18px"> Brand Protection
         </a>
 
         <div class=" flex items-center gap-2 text-gray-400 pb-4 px-2">Dark Web Monitoring
@@ -191,13 +185,18 @@
           <li>
             <a class="block flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/dashboard' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'dashboard' %}">
+              <span class="w-[21px] h-[21px] mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 356.618"><path d="M31.179 0H480.82C497.972 0 512 14.028 512 31.182v294.257c0 17.151-14.028 31.179-31.18 31.179H31.179C14.028 356.618 0 342.59 0 325.439V31.182C0 14.028 14.028 0 31.179 0zM56.11 194.421c0-28.707 11.639-54.7 30.451-73.515 18.814-18.812 44.807-30.451 73.514-30.451 21.077 0 40.685 6.274 57.07 17.052l-10.471 9.365a89.941 89.941 0 00-40.929-12.733v11.993h-16.401v-11.537c-17.969 2.125-34.321 9.511-47.476 20.577l8.988 8.987-11.531 11.593-8.972-8.971c-12.95 15.651-20.736 35.736-20.736 57.64H56.11zm248.377-2.479h10.04v-76.795a2.412 2.412 0 012.408-2.405h24.887a2.412 2.412 0 012.407 2.405v76.795h18.269V98.29a2.411 2.411 0 012.407-2.404h24.875a2.41 2.41 0 012.407 2.404v93.652h18.27v-46.825c0-1.325 1.081-2.419 2.404-2.419h24.89a2.411 2.411 0 012.407 2.407v46.837h8.978v9.102H304.487v-9.102zM59.474 235.126h393.052v14.444H59.474v-14.444zm0 42.986h348.034v15.422H59.474v-15.422zm179.767-151.081c15.462 18.148 24.8 41.682 24.8 67.39h-13.508c0-21.448-7.469-41.156-19.939-56.662l8.647-10.728zM36.595 57.637h438.813c9.685 0 17.607 7.925 17.607 17.609v243.968c0 9.688-7.922 17.607-17.607 17.607H36.595c-9.685 0-17.607-7.919-17.607-17.607V75.246c0-9.684 7.922-17.609 17.607-17.609z"/><path fill="#EF1C25" d="M234.063 105.745l-83.197 74.405c-15.799 13.054 5.333 35.025 19.59 16.321l69.185-85.836-5.578-4.89z"/></svg>
+              </span>
               Dashboard
             </a>
           </li>
           <li>
             <a class="block flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/cards' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'cards' %}">
-              Cards
+              <span class="w-[20px] h-[20px]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"/></svg>
+              </span>Cards
               <!-- <span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -207,7 +206,10 @@
           </li>
           <li>
             <div class=" flex items-center gap-2 w-fit text-left p-2 text-gray-400 ">
-              Leaks
+              <!-- <span class="w-[22px] h-[22px]">
+                <svg fill="#ffffff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 256 241" enable-background="new 0 0 256 241" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M254,188V2H2v186h111v29H75v22h106v-22h-38v-29H254z M19,19h217v151H19L19,19z M156.269,42.429 c-14.477,0-26.28,11.803-26.28,26.28v15.768H85.451v62.98h68.236v-62.98h-13.186V68.709c0-8.668,7.1-15.768,15.768-15.768 c8.668,0,15.768,7.1,15.768,15.768v15.768h10.512V68.709C182.549,54.232,170.746,42.429,156.269,42.429z M127.407,131.688h-15.768 l2.121-12.356c-2.859-1.844-4.703-4.979-4.703-8.668c0-5.809,4.703-10.512,10.512-10.512s10.512,4.703,10.512,10.512 c0,3.688-1.844,6.824-4.703,8.668L127.407,131.688z"></path> </g></svg>
+              </span> -->
+              Compromised Data
               <span>
                 <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 6L8 10L12 6" stroke="gray" stroke-width="2" stroke-linecap="round"
@@ -218,25 +220,43 @@
             <ul id="detailsMenu" class="ml-4 px-2 space-y-2">
               <li>
                 <a href="{% url 'domain' %}"
-                  class="block w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/domain' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  class="block w-full flex text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/domain' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  <span>
+                    <svg class="mr-2" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24"></rect> <circle cx="12" cy="12" r="9" stroke="#ffffff" stroke-linejoin="round"></circle> <path d="M12 3C12 3 8.5 6 8.5 12C8.5 18 12 21 12 21" stroke="#ffffff" stroke-linejoin="round"></path> <path d="M12 3C12 3 15.5 6 15.5 12C15.5 18 12 21 12 21" stroke="#ffffff" stroke-linejoin="round"></path> <path d="M3 12H21" stroke="#ffffff" stroke-linejoin="round"></path> <path d="M19.5 7.5H4.5" stroke="#ffffff" stroke-linejoin="round"></path> <g filter="url(#000000ilter0_d_15_556)"> <path d="M19.5 16.5H4.5" stroke="#ffffff" stroke-linejoin="round"></path> </g> <defs> <filter id="filter0_d_15_556" x="3.5" y="16" width="17" height="3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"> <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood> <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix> <feOffset dy="1"></feOffset> <feGaussianBlur stdDeviation="0.5"></feGaussianBlur> <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix> <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_15_556"></feBlend> <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_15_556" result="shape"></feBlend> </filter> </defs> </g></svg>
+                  </span>
                   Domain
                 </a>
               </li>
               <li>
                 <a href="{% url 'black-market' %}"
-                  class="block w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/black-market' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  class="block w-full flex text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/black-market' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  <span class="mr-2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5 2H19C19.5523 2 20 2.44772 20 3V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2ZM18 4H6V20H18V4ZM10 14H8V16H10V14ZM16 10H8V12H16V10ZM16 14H12V16H16V14ZM12 6H8V8H12V6ZM16 6H14V8H16V6Z" fill="#FFFFFF"/>
+                    </svg>
+                  </span>
                   Black Market
-                </a>
+                 </a>
               </li>
               <li>
                 <a href="{% url 'stealer-logs' %}"
-                  class="block w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/stealer-logs' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
+                  class="block w-full flex text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/stealer-logs' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
+                  <span class="mr-2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M4 3C4 2.44772 4.44772 2 5 2H14C14.5523 2 15 2.44772 15 3V6H20C20.5523 6 21 6.44772 21 7V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2ZM5 4H13V6H5V4ZM5 20H19V8H16V12H12V8H5V20ZM11 10H7V12H11V10ZM7 14H13V16H7V14Z" fill="#FFFFFF"/>
+                    </svg>
+                  </span>               
                   Stealer Logs
                 </a>
               </li>
               <li>
                 <a href="{% url 'pii-exposure' %}"
-                  class="block w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/leaks/pii-exposure' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  class="block w-full flex text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/pii-exposure' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+                  <span class="mr-2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 17C11.4477 17 11 16.5523 11 16C11 15.4477 11.4477 15 12 15C12.5523 15 13 15.4477 13 16C13 16.5523 12.5523 17 12 17ZM11 7H13V14H11V7Z" fill="#FFFFFF"/>
+                    </svg>             
+                  </span>
                   PII Exposure
                 </a>
               </li>
@@ -250,8 +270,37 @@
           </li>
 
           <li>
-            <a class="block w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/org-details' %}border-l-4 text-white border-[#92a91a]{% endif %}"
-              href="{% url 'org-details' %}">Organization Details</a>
+            <a class="block w-full flex text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/org-details' %}border-l-4 text-white border-[#92a91a]{% endif %}"
+              href="{% url 'org-details' %}">
+              <span class="mr-2">
+                <svg version="1.1" id="XMLID_176_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" width="18px" height="18px">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g id="organization">
+                      <g>
+                        <path d="M20,24H4V5H2V0h20v5h-2V24z M6,22h12V5H6V22z M4,3h16V2H4V3z" fill="#FFFFFF"></path>
+                      </g>
+                      <g>
+                        <rect x="8" y="7" width="3" height="4" fill="#FFFFFF"></rect>
+                      </g>
+                      <g>
+                        <rect x="13" y="7" width="3" height="4" fill="#FFFFFF"></rect>
+                      </g>
+                      <g>
+                        <rect x="8" y="13" width="3" height="4" fill="#FFFFFF"></rect>
+                      </g>
+                      <g>
+                        <rect x="10" y="19" width="4" height="4" fill="#FFFFFF"></rect>
+                      </g>
+                      <g>
+                        <rect x="13" y="13" width="3" height="4" fill="#FFFFFF"></rect>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>
+              Organization Details</a>
           </li>
         </ul>
       </div>
@@ -263,13 +312,14 @@
       </a>
 
       <button onclick="showPopUp()"
-        class="block w-full text-left p-2 font-bold text-lg text-red-500 hover:text-white rounded hover:bg-red-600">
+        class="block flex text-center w-full text-left p-2 font-bold text-lg text-red-500 hover:text-white rounded hover:bg-red-600">
         Log out
+          <span class="ml-2 mt-1"> 
+            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.2429 22 18.8286 22 16.0002 22H15.0002C12.1718 22 10.7576 22 9.87889 21.1213C9.11051 20.3529 9.01406 19.175 9.00195 17" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+          </span>
       </button>
     </div>
   </div>
-
-
 
   <!-- Main Content -->
   <div class="flex-1 w-full h-screen overflow-y-auto">
