@@ -158,17 +158,11 @@
       </div>
       <div class="px-2 text-sm">
         <a href="{% url 'overview' %}"
-          class="hover:bg-gray-700  {% if request.path == '/overview' %}border-l-4 text-white border-[#92a91a]{% endif %}font-semibold flex items-center text-gray-400 my-4 px-2 py-2 rounded">
-          Overview
-          <span>
-            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </span>
+          class="hover:bg-gray-700  {% if request.path == '/overview' %}border-l-4 text-white border-[#92a91a] {% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded gap-2">
+          <img class="" src="/static/images/overview.svg" height="18" width="18" alt="">Overview
         </a>
         <a href="{% url 'notifications' %}"
-          class="hover:bg-gray-700  {% if request.path == '/notification-alerts' %}border-l-4 text-white border-[#92a91a]{% endif %} font-semibold flex items-center text-gray-400 my-4 px-2 py-2 rounded">
+          class="hover:bg-gray-700  {% if request.path == '/notification-alerts' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
           Notification Alerts 
           <span>
             <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -178,7 +172,7 @@
           </span>
         </a>
         <a href="{% url 'brand-protection' %}"
-          class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %} font-semibold flex items-center text-gray-400 my-4 px-2 py-2 rounded">
+          class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-4 px-2 py-2 rounded">
           Brand Protection
           <span>
             <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,14 +181,14 @@
             </svg>
           </span>
         </a>
-        <div class="font-semibold flex items-center gap-2 text-gray-400 pb-4 px-2">Dark Web Monitoring
+        <div class=" flex items-center gap-2 text-gray-400 pb-4 px-2">Dark Web Monitoring
           <span>
             <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6L8 10L12 6" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </span>
         </div>
-        <ul class="space-y-2 text-gray-400 font-semibold px-4  ">
+        <ul class="space-y-2 text-gray-400  px-4  ">
           <li>
             <a class="block flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/dashboard' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'dashboard' %}">
@@ -213,7 +207,7 @@
             </a>
           </li>
           <li>
-            <div class=" flex items-center gap-2 w-fit text-left p-2 text-gray-400 font-semibold">
+            <div class=" flex items-center gap-2 w-fit text-left p-2 text-gray-400 ">
               Leaks
               <span>
                 <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
