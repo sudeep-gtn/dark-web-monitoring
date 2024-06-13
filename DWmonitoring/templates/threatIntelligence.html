@@ -3,8 +3,6 @@
 
 {% block title %} Threat Intelligence {% endblock title %}
 {% block header %}
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 <header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
     <a href="{% url 'overview'%}" class="text-xl font-extrabold text-gray-700">
         <div class="flex items-center gap-2 "> <img class="text-gray-300" src="/static/images/threat-intelligence.svg"
@@ -139,7 +137,7 @@
             <div class="w-full py-4 flex justify-center items-center text-center border-2 border-gray-400 bg-white rounded-md">
                 <div>
                     <h1 class="font-semibold text-lg">Threat Sources</h1>
-                    <canvas id="piechart" width="250" height="250"></canvas>
+                    <canvas id="pieChart" width="250" height="250"></canvas>
                 </div>
             </div>
             <div class="sm:w-full flex justify-center items-center text-center bg-white border-2 border-gray-400 mt-2 rounded-md">
@@ -168,29 +166,80 @@
     </div>
 </div>
 
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Line Chart
+        var ctxLine = document.getElementById('lineChart').getContext('2d');
+    var lineChart = new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: "Threat Trend",
+                data: [12, 19, 3, 5, 2, 3, 17],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 
-      function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        var options = {
-          title: 'My Daily Activities'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-
+        // Pie Chart
+        var ctxPie = document.getElementById('pieChart').getContext('2d');
+        var pieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['Nation States', 'Terrorist organizations', 'Criminal groups', 'Hackers', 'Malicious insiders'],
+                datasets: [{
+                    label: 'Dataset',
+                    data: [12, 19, 3, 5, 2],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    });
 </script>
 {% endblock content %}
