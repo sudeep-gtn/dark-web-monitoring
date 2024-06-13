@@ -103,18 +103,38 @@
                 </div>
             </div>
         </div>
-        <div class="flex gap-4 flex-col md:flex-row  my-4  ">
-            <div class="bg-white border-2 border-gray-300 h-[400px] w-[350px] p-6  rounded-lg shadow-md">
-                <h1 class="text-lg font-bold">Threat Types</h1>
-                <p class="text-gray-500 text-sm mb-4">by message volume </p>
-                <canvas id="myPolarChart" width="400" height="400"></canvas>
+        <div class="flex flex-col mb-6">
+            <div class="flex gap-4 flex-col md:flex-row  my-4  ">
+                <div class="bg-white border-2 border-gray-300 h-[400px] w-[350px] p-6  rounded-lg shadow-md">
+                    <h1 class="text-lg font-bold">Threat Types</h1>
+                    <p class="text-gray-500 text-sm mb-4">by message volume </p>
+                    <canvas id="myPolarChart" width="400" height="400"></canvas>
+                </div>
+
+
+                <div
+                    class="bg-white border-2 border-gray-300 px-6 pb-8 pt-4 w-[370px] h-[400px] rounded-lg overflow-hidden shadow-md">
+                    <h1 class="text-lg font-bold">Threat Categories</h1>
+                    <p class="text-gray-500">by threats </p>
+                    <div class="" id="threat_cat"></div>
+                </div>
             </div>
-
-
-            <div class="bg-white border-2 border-gray-300 px-6 pb-8 pt-4 w-[370px] h-[400px] rounded-lg overflow-hidden shadow-md">
-                <h1 class="text-lg font-bold">Threat Categories</h1>
-                <p class="text-gray-500">by threats </p>
-                <div class="" id="donutchart"></div>
+            <div class="flex gap-4 ">
+                <div
+                    class="bg-white border-2 border-gray-300 px-3 pb-8 pt-4 w-[450px] h-[250px] rounded-lg overflow-hidden shadow-md">
+                    <div class="text-lg font-bold">Malware <span class="text-sm rounded-lg px-2 bg-blue-300 ">4</span>
+                    </div>
+                    <p class="text-gray-500 text-sm">By message volume </p>
+                    <div id="malware_chart"></div>
+                </div>
+                <div
+                    class="bg-white border-2 border-gray-300 px-3 pb-8 pt-4 w-[450px] h-[250px] rounded-lg overflow-hidden shadow-md">
+                    <div class="text-lg font-bold">Techniques <span
+                            class="text-sm rounded-lg px-2 bg-blue-300 ">5</span>
+                    </div>
+                    <p class="text-gray-500 text-sm">By message volume </p>
+                    <div id="techniques_chart" style="width: 100%; height: 100%;"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -176,11 +196,10 @@
 
 
 
-    // pie chart from google charts
-
+    // pie chart for threat categories
     google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
+    google.charts.setOnLoadCallback(threatCatChart);
+    function threatCatChart() {
         var data = google.visualization.arrayToDataTable([
             ['Threat Categories', 'Total counts'],
             ['Phishing threats', 11],
@@ -190,15 +209,78 @@
         ]);
 
         var options = {
-                title: 'Threat Categories',
-                pieHole: 0.4,
-                width: 350,  // Set the width of the chart
-                height: 350, // Set the height of the chart
-                chartArea: { width: '100%', height: '100%' } // Remove padding
-            };
+            title: 'Threat Categories',
+            pieHole: 0.4,
+            width: 350,  // Set the width of the chart
+            height: 350, // Set the height of the chart
+            chartArea: { width: '100%', height: '100%' } // Remove padding
+        };
 
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        var chart = new google.visualization.PieChart(document.getElementById('threat_cat'));
         chart.draw(data, options);
     }
+
+
+
+
+    // malaweres chart
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(malwareChart);
+
+    function malwareChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Malware', 'Counts',],
+            ['Tordal', 35],
+            ['Ficker stealer', 22],
+            ['Ficker stealer', 30],
+            ['Ficker stealer', 10],
+            ['Ficker stealer', 5],
+        ]);
+
+        var options = {
+            // title: 'Population of Largest U.S. Cities',
+            chartArea: { width: '60%' },
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('malware_chart'));
+
+        chart.draw(data, options);
+    }
+
+
+
+
+
+    // techniques
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(techniquesChart);
+
+     function techniquesChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Techniques', 'Volume'],
+          ['Geofencing', 23],
+          ['Social Engineering', 45],
+          ['Virtualization/sandbox Evasion', 65],
+          ['JavaScript', 33],
+          ['HTA', 34]
+        ]);
+
+        var options = {
+          chartArea: { width: '80%', left: '20%' },
+          hAxis: {
+            title: 'Volume',
+            minValue: 0
+          },
+          vAxis: {
+            title: 'Techniques'
+          },
+          bars: 'horizontal'
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('techniques_chart'));
+        chart.draw(data, options);
+      }
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
 </script>
 {% endblock content %}
