@@ -16,7 +16,7 @@ from .utils import send_otp_email, is_otp_valid
 class RegisterView(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect("dashboard")
+            return redirect("overview")
         else:
             return render(request, "register.html")
 
@@ -64,7 +64,7 @@ class RegisterView(View):
 class LoginView(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect("dashboard")
+            return redirect("overview")
         else:
             return render(request, "login.html")
 
