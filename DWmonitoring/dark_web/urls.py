@@ -5,7 +5,7 @@ from .views import (
     EmailView, OrganizationDetailsView, 
     NotificationsAlertView, 
     BlackMarketView, StealerLogsView, 
-    PiiExposureView,DashboardView,Overview,ThreatIntelligence
+    PiiExposureView,DashboardView,Overview,ThreatIntelligence, ThreatActor
     )
 urlpatterns = [
     path('dark-web-monitoring/dashboard',DashboardView.as_view(), name="dashboard"),
@@ -19,5 +19,6 @@ urlpatterns = [
     path('dark-web-monitoring/compromised-data/pii-exposure', PiiExposureView.as_view(),name="pii-exposure"),
 
     path('overview',Overview.as_view(), name='overview'),
-    path('threat-intelligence',ThreatIntelligence.as_view(), name='threat-intelligence')
+    path('threat-intelligence',ThreatIntelligence.as_view(), name='threat-intelligence'),
+    path('threat-intelligence/actor/',ThreatActor.as_view(), name='threat-actor-profile')
 ]
