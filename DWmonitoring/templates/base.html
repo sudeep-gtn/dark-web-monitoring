@@ -10,6 +10,14 @@
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
   <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon">
 
+
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
   <title>{% block title %}Darkweb Monitoring{% endblock title %}</title>
   <style>
     #checkbox2 {
@@ -171,7 +179,8 @@
         </a>
         <a href="{% url 'brand-protection' %}"
           class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-1 px-1 py-2 rounded">
-          <img class="mr-2 ml-2" src="/static/images/brand-protection.png" alt="brand-protection-logo" height="16px" width="16px"> Brand Protection
+          <img class="mr-2 ml-2" src="/static/images/brand-protection.png" alt="brand-protection-logo" height="16px"
+            width="16px"> Brand Protection
         </a>
 
         <div class=" flex items-center gap-2 text-gray-400 py-2 px-2">Dark Web Monitoring
@@ -224,7 +233,40 @@
                 <a href="{% url 'domain' %}"
                   class="block w-full flex items-center text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/domain' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   <span>
-                    <svg class="mr-2" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24"></rect> <circle cx="12" cy="12" r="9" stroke="#ffffff" stroke-linejoin="round"></circle> <path d="M12 3C12 3 8.5 6 8.5 12C8.5 18 12 21 12 21" stroke="#ffffff" stroke-linejoin="round"></path> <path d="M12 3C12 3 15.5 6 15.5 12C15.5 18 12 21 12 21" stroke="#ffffff" stroke-linejoin="round"></path> <path d="M3 12H21" stroke="#ffffff" stroke-linejoin="round"></path> <path d="M19.5 7.5H4.5" stroke="#ffffff" stroke-linejoin="round"></path> <g filter="url(#000000ilter0_d_15_556)"> <path d="M19.5 16.5H4.5" stroke="#ffffff" stroke-linejoin="round"></path> </g> <defs> <filter id="filter0_d_15_556" x="3.5" y="16" width="17" height="3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"> <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood> <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix> <feOffset dy="1"></feOffset> <feGaussianBlur stdDeviation="0.5"></feGaussianBlur> <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix> <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_15_556"></feBlend> <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_15_556" result="shape"></feBlend> </filter> </defs> </g></svg>
+                    <svg class="mr-2" width="18px" height="18px" viewBox="0 0 24 24" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <rect width="24" height="24"></rect>
+                        <circle cx="12" cy="12" r="9" stroke="#ffffff" stroke-linejoin="round"></circle>
+                        <path d="M12 3C12 3 8.5 6 8.5 12C8.5 18 12 21 12 21" stroke="#ffffff" stroke-linejoin="round">
+                        </path>
+                        <path d="M12 3C12 3 15.5 6 15.5 12C15.5 18 12 21 12 21" stroke="#ffffff"
+                          stroke-linejoin="round"></path>
+                        <path d="M3 12H21" stroke="#ffffff" stroke-linejoin="round"></path>
+                        <path d="M19.5 7.5H4.5" stroke="#ffffff" stroke-linejoin="round"></path>
+                        <g filter="url(#000000ilter0_d_15_556)">
+                          <path d="M19.5 16.5H4.5" stroke="#ffffff" stroke-linejoin="round"></path>
+                        </g>
+                        <defs>
+                          <filter id="filter0_d_15_556" x="3.5" y="16" width="17" height="3"
+                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                            <feOffset dy="1"></feOffset>
+                            <feGaussianBlur stdDeviation="0.5"></feGaussianBlur>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0">
+                            </feColorMatrix>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_15_556">
+                            </feBlend>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_15_556" result="shape">
+                            </feBlend>
+                          </filter>
+                        </defs>
+                      </g>
+                    </svg>
                   </span>
                   Domain
                 </a>
@@ -234,20 +276,24 @@
                   class="block w-full flex items-center text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/black-market' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   <span class="mr-2">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5 2H19C19.5523 2 20 2.44772 20 3V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2ZM18 4H6V20H18V4ZM10 14H8V16H10V14ZM16 10H8V12H16V10ZM16 14H12V16H16V14ZM12 6H8V8H12V6ZM16 6H14V8H16V6Z" fill="#FFFFFF"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M5 2H19C19.5523 2 20 2.44772 20 3V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2ZM18 4H6V20H18V4ZM10 14H8V16H10V14ZM16 10H8V12H16V10ZM16 14H12V16H16V14ZM12 6H8V8H12V6ZM16 6H14V8H16V6Z"
+                        fill="#FFFFFF" />
                     </svg>
                   </span>
                   Black Market
-                 </a>
+                </a>
               </li>
               <li>
                 <a href="{% url 'stealer-logs' %}"
                   class="block w-full flex text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/stealer-logs' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
                   <span class="mr-2">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M4 3C4 2.44772 4.44772 2 5 2H14C14.5523 2 15 2.44772 15 3V6H20C20.5523 6 21 6.44772 21 7V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2ZM5 4H13V6H5V4ZM5 20H19V8H16V12H12V8H5V20ZM11 10H7V12H11V10ZM7 14H13V16H7V14Z" fill="#FFFFFF"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M4 3C4 2.44772 4.44772 2 5 2H14C14.5523 2 15 2.44772 15 3V6H20C20.5523 6 21 6.44772 21 7V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2ZM5 4H13V6H5V4ZM5 20H19V8H16V12H12V8H5V20ZM11 10H7V12H11V10ZM7 14H13V16H7V14Z"
+                        fill="#FFFFFF" />
                     </svg>
-                  </span>               
+                  </span>
                   Stealer Logs
                 </a>
               </li>
@@ -255,7 +301,7 @@
                 <a href="{% url 'pii-exposure' %}"
                   class="block w-full flex gap-2 items-center text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/pii-exposure' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   <span class="">
-                    <img src="/static/images/user.png" height="18" width="18" alt="">         
+                    <img src="/static/images/user.png" height="18" width="18" alt="">
                   </span>
                   PII Exposure
                 </a>
@@ -273,7 +319,9 @@
             <a class="block w-full flex items-center text-left p-2 my-1 rounded hover:bg-gray-700 {% if request.path == '/org-details' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'org-details' %}">
               <span class="mr-2">
-                <svg version="1.1" id="XMLID_176_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" width="16px" height="16px">
+                <svg version="1.1" id="XMLID_176_" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" width="16px"
+                  height="16px">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                   <g id="SVGRepo_iconCarrier">
@@ -314,9 +362,20 @@
       <button onclick="showPopUp()"
         class="block flex text-center w-full text-left p-2 font-bold text-lg text-red-500 hover:text-white rounded hover:bg-red-600">
         Log out
-          <span class="ml-2 mt-1"> 
-            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.2429 22 18.8286 22 16.0002 22H15.0002C12.1718 22 10.7576 22 9.87889 21.1213C9.11051 20.3529 9.01406 19.175 9.00195 17" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-          </span>
+        <span class="ml-2 mt-1">
+          <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+            transform="matrix(-1, 0, 0, 1, 0, 0)">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.2429 22 18.8286 22 16.0002 22H15.0002C12.1718 22 10.7576 22 9.87889 21.1213C9.11051 20.3529 9.01406 19.175 9.00195 17"
+                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+              <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </g>
+          </svg>
+        </span>
       </button>
     </div>
   </div>

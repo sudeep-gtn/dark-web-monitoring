@@ -80,7 +80,7 @@ class LoginView(View):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect("dashboard")
+            return redirect("overview")
         else:
             return render(request, "login.html", {"error": "Invalid Password"})
 

@@ -192,3 +192,7 @@ class ThreatIntelligence(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "threatIntelligence.html")
+class ThreatActor(LoginRequiredMixin, View):
+    login_url = "login"
+    def get(self, request):
+        return render(request, "threatActorProfile.html")
