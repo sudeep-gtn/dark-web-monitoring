@@ -3,6 +3,8 @@
 
 {% block title %} Threat Intelligence {% endblock title %}
 {% block header %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
     <a href="{% url 'overview'%}" class="text-xl font-extrabold text-gray-700">
         <div class="flex items-center gap-2 "> <img class="text-gray-300" src="/static/images/threat-intelligence.svg"
@@ -46,69 +48,149 @@
 </header>
 {% endblock header %}
 {% block content %}
+
 <div>
-    <h1>Threat Actor Profile </h1>
-    <div>
-        <div class="text-gray-700">
-            Profiling Threat Actors
-            Threat actors include ransomware gangs, cyber criminals, and Advanced Persistent Threats (APTs). They want
-            to
-            attack your organization because you have something of value to them, be it data they can sell for profit or
-            operations they can hold for ransom. These groups are your primary threat and what you need to focus on
-            defending against.
-
+    <div class="flex flex-col sm:flex-row">
+        <div class="sm:w-3/4 p-4">
+            <h1 class="font-semibold text-lg p-2">Threat Actors
+                <span class="text-xs font-normal bg-red-200 border-2 border-red-400 rounded-md p-1">300</span>
+            </h1>
+            <div class="rounded-t-lg overflow-y-auto shadow max-h-[600px]">
+                <table class="w-full">
+                    <thead class="bg-gray-200 text-gray-600 text-left">
+                        <tr>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200">Actor</th>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200">Category</th>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200">Objective</th>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200">Attack Index</th>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200">12 Months Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="#">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4"><canvas id="lineChart" width="200" height="70"></canvas>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="#">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4"><canvas id="lineChart" width="200" height="70"></canvas>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="#">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4"><div id="lineChart" width="200" height="70"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="#">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4"><canvas id="lineChart" width="200" height="70"></canvas>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="#">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4"><canvas id="lineChart" width="200" height="70"></canvas>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="#">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4"><canvas id="lineChart" width="200" height="70"></canvas>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="#">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4"><canvas id="lineChart" width="200" height="70"></canvas>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="#">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4"><canvas id="lineChart" width="200" height="70"></canvas>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        To defend against these adversaries, you need to understand them and answer questions like:
-        <ul class="list-disc text-gray-600 flex flex-col px-6">
-            <li>
-                Which group is likely to attack you?
-            </li>
-            <li>
-                How will they likely attack you?
-            </li>
-            <li>
-                What mitigations or detections can you create to defend against them?
-            </li>
-        </ul>
-
-        <div l>
-            <div>
-                Tactics, Techniques, and Procedures (TTPs) are a method used by cybersecurity professionals to describe
-                the
-                strategies, actions, processes, and behaviors of threat actors when developing threats and engaging in
-                cyberattacks. TTPs can be used to analyze an APT's operation or to profile a specific threat actor. The
-                three elements of TTPs are:
+        <div class="sm:w-1/2 flex flex-col mt-16">
+            <div class="w-full py-4 flex justify-center items-center text-center border-2 border-gray-400 bg-white rounded-md">
+                <div>
+                    <h1 class="font-semibold text-lg">Threat Sources</h1>
+                    <canvas id="piechart" width="250" height="250"></canvas>
+                </div>
             </div>
-            <div class="flex flex-col">
-                <span class="font-semibold">Tactics:</span> The way an adversary chooses to carry out an attack from
-                start to finish
-                <span class="font-semibold">Techniques:</span> The technological approach used to achieve intermediate
-                results during the campaign
-                <span class="font-semibold">Procedures:</span> The organizational approach used by the threat actor
-
+            <div class="sm:w-full flex justify-center items-center text-center bg-white border-2 border-gray-400 mt-2 rounded-md">
+                <div class="w-full mx-2 overflow-y-auto max-h-[270px] mb-1">
+                    <h1 class="font-semibold text-lg p-2">Trending Threats</h1>
+                    <div class="w-full border-2 border-gray-300 rounded-md p-4 mb-1">
+                        <h2 class="font-semibold text-md mb-2 text-left">Malware</h2>
+                        <p class="text-sm text-left">Content related to Malware...</p>
+                    </div>
+                    <div class="w-full border-2 border-gray-300 rounded-md p-4 mb-1">
+                        <h2 class="font-semibold text-md mb-2 text-left">Malware</h2>
+                        <p class="text-sm text-left">Content related to Malware...</p>
+                    </div>
+                    <div class="w-full border-2 border-gray-300 rounded-md p-4 mb-1">
+                        <h2 class="font-semibold text-md mb-2 text-left">Malware</h2>
+                        <p class="text-sm text-left">Content related to Malware...</p>
+                    </div>
+                    <div class="w-full border-2 border-gray-300 rounded-md p-4 mb-1">
+                        <h2 class="font-semibold text-md mb-2 text-left">Malware</h2>
+                        <p class="text-sm text-left">Content related to Malware...</p>
+                    </div>                   
+                </div>
             </div>
+        
         </div>
     </div>
 </div>
 
-<script>
-    const fetchAnyrun = async () => {
-        const response = await fetch('https://cors-anywhere.herokuapp.com/https://api.any.run/v1/feeds/stix.json?IP=true&Domain=true&URL=true', {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Basic WX2JCzLFjmaRXaQHFhLfbfn5EHdwxCmbBpY8tQ78',
-                'Content-Type': 'application/json'
-            }
-        });
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
+      function drawChart() {
 
-        const jsonData = await response.json();
-        console.log("anyrun data: ", jsonData);
-    }
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
 
-    fetchAnyrun();
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+
 </script>
 {% endblock content %}
