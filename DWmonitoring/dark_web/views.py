@@ -5,6 +5,7 @@ from .models import Card, Domain, BlackMarket, StealerLogs, PIIExposure, calcula
 import json
 from django.db.models import Count
 import requests
+from collections import defaultdict
 
 # Create your views here.
 class DashboardView(LoginRequiredMixin, View):
@@ -208,11 +209,16 @@ class ThreatIntelligence(LoginRequiredMixin, View):
         if response.status_code != 200:
             context = {'error': 'Error fetching the API', 'details': response.text}
         else:
-            context = {'data': response.json()}
+            context =  response.json()
 
-        # print("data : ", context)
-        return render(request, "threatIntelligence.html",{'context':context.get('data')})
-    
+        types = defaultdict(int)
+        for obj in context["data"]["objects"]:
+            types[obj["type"]] += 1
+         # Convert to a list and sort
+        context["types"] = sorted(types.keys())
+        print("types: ", context["types"])
+
+        return render(request, "threatIntelligence.html",{'context':context})
 class ThreatActor(LoginRequiredMixin, View):
     login_url = "login"
     
