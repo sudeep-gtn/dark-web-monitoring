@@ -1,0 +1,361 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Threat Intelligence {% endblock title %}
+{% block header %}
+<header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
+    <a href="{% url 'threat-intelligence'%}" class="text-xl font-extrabold text-gray-700">
+        <div class="flex items-center gap-2 "> <img class="text-gray-300" src="/static/images/threat-intelligence.svg"
+                height="32" width="32" alt="overview"> Threat <span class="text-red-600">Intelligence</span> </div>
+    </a>
+    <div class="relative flex gap-4 px-4">
+        <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon">
+        <button
+            class="hidden md:block border-2 border-gray-400 bg-gray-100 rounded-full p-2 {% if request.path == '/profile' %} border-red-600 {% endif %}"
+            onclick="toggleDropdown('profileDropdown')">
+            <img height="20" width="20" src="https://img.icons8.com/?size=100&id=fJ7hcfUGpKG7&format=png&color=000000"
+                alt="profile " />
+        </button>
+
+        <div id="profileDropdown"
+            class="hidden absolute right-0 mt-14 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1">
+            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+            <button onclick="showPopUp()"
+                class="w-full text-left block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</button>
+        </div>
+        <!-- menu for mobile view -->
+        <div class="md:hidden block  bg-gray-100 rounded-full p-2  z-50">
+            <input id="checkbox2" type="checkbox" class="hidden">
+            <label class="toggle toggle2" for="checkbox2" onclick="toggleSidebar()">
+                <div id="bar4" class="bars"></div>
+                <div id="bar5" class="bars"></div>
+                <div id="bar6" class="bars"></div>
+            </label>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+{% block content %}
+
+<div>
+    <div class="flex flex-col sm:flex-row">
+        <div class="sm:w-3/4 p-4">
+            <h1 class="font-semibold text-lg p-2">Threat Actors
+                <span class="text-xs font-normal bg-red-200 border-2 border-red-400 rounded-md p-1">300</span>
+            </h1>
+            <div class="rounded-t-lg overflow-y-auto shadow max-h-[600px]">
+                <table class="w-full">
+                    <thead class="bg-gray-200 text-gray-600 text-left">
+                        <tr>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200">Actor</th>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200">Category</th>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200">Objective</th>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200">Attack Index</th>
+                            <th class="py-2 px-4 sticky top-0 bg-gray-200 z-40">12 Months Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a class="underline text-blue-500" href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4 z-0">
+                                <div class="" id="chart_div"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr><tr class="border-b">
+                            <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4">E-Crime</td>
+                            <td class="py-2 px-4"><span
+                                    class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
+                                    Ransomeware</span></td>
+                            <td class="py-2 px-4">243</td>
+                            <td class="py-2 px-4">
+                                <div id="chart_div"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="sm:w-1/2 flex flex-col mt-10 mr-1">
+            <div
+                class="w-[500px] h-[380px] mx-auto py-4 flex justify-center items-center text-center border-2 border-gray-400 bg-white rounded-md flex-col">
+                <h1 class="font-semibold text-lg">Threat Sources</h1>
+                <div class="overflow-hidden" id="piechart"></div>
+            </div>
+            <div
+                class="sm:w-full flex justify-center items-center text-center bg-white border-2 border-gray-400 mt-2 rounded-md">
+                <div class="w-full mx-2 overflow-y-auto max-h-[270px] mb-1">
+                    <h1 class="font-semibold text-lg p-2">Trending Threats</h1>
+                    <div class="w-full border-2 border-gray-300 rounded-md p-4 mb-1">
+                        <h2 class="font-semibold text-md mb-2 text-left">Malware</h2>
+                        <p class="text-sm text-left">Content related to Malware...</p>
+                    </div>
+                    <div class="w-full border-2 border-gray-300 rounded-md p-4 mb-1">
+                        <h2 class="font-semibold text-md mb-2 text-left">Malware</h2>
+                        <p class="text-sm text-left">Content related to Malware...</p>
+                    </div>
+                    <div class="w-full border-2 border-gray-300 rounded-md p-4 mb-1">
+                        <h2 class="font-semibold text-md mb-2 text-left">Malware</h2>
+                        <p class="text-sm text-left">Content related to Malware...</p>
+                    </div>
+                    <div class="w-full border-2 border-gray-300 rounded-md p-4 mb-1">
+                        <h2 class="font-semibold text-md mb-2 text-left">Malware</h2>
+                        <p class="text-sm text-left">Content related to Malware...</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        google.charts.load('current', { packages: ['corechart', 'line'] });
+        google.charts.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'X');
+            data.addColumn('number', 'Threats');
+
+            data.addRows([
+                [0, 0], [1, 10], [2, 23], [3, 17], [4, 18], [5, 9],
+                [6, 11], [7, 27], [8, 33], [9, 40], [10, 32], [11, 35]
+            ]);
+
+            var options = {
+                height: 100,
+                width: 220,
+                backgroundColor: {
+                    fill: 'transparent'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+        }
+    
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(threatCatChart);
+    function threatCatChart() {
+        var data = google.visualization.arrayToDataTable([
+                ['Threat Source', 'Numbers'],
+                ['Nation states', 11],
+                ['Terrorist organizations', 2],
+                ['Criminal groups', 2],
+                ['Hackers', 2],
+                ['Malicious insiders', 7]
+            ]);
+
+        var options = {
+            title: 'Threat Categories',
+            // pieHole: 0.4,
+            width: 350,
+            height: 350,
+            chartArea: { width: '100%', height: '100%' }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
+
+    });
+</script>
+{% endblock content %}

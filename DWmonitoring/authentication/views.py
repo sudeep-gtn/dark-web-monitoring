@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views import View
@@ -9,10 +10,15 @@ from django.contrib.auth.password_validation import validate_password
 import re
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from .utils import send_otp_email, is_otp_valid
+
 
 class RegisterView(View):
     def get(self, request):
-        return render(request, "register.html")
+        if request.user.is_authenticated:
+            return redirect("overview")
+        else:
+            return render(request, "register.html")
 
     def post(self, request):
         full_name = request.POST.get("full_name").strip()
@@ -47,13 +53,20 @@ class RegisterView(View):
             return render(request, "register.html", {"error": "Registration failed"})
 
         if user:
-            return redirect("login")
+            request.session['registered_email'] = email
+            
+            send_otp_email(user)
+            
+            return redirect("verify-otp")
         else:
             return render(request, "register.html", {"error": "Registration failed"})
 
 class LoginView(View):
     def get(self, request):
-        return render(request, "login.html")
+        if request.user.is_authenticated:
+            return redirect("overview")
+        else:
+            return render(request, "login.html")
 
     def post(self, request):
         email = request.POST.get("email")
@@ -67,7 +80,7 @@ class LoginView(View):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect("dashboard")
+            return redirect("overview")
         else:
             return render(request, "login.html", {"error": "Invalid Password"})
 
@@ -81,11 +94,46 @@ class HomeView(View):
     def get(self, request):
         return render(request, "home.html")
 
+class VerifyOTP(View):
+    def get(self, request):
+        return render(request, 'verify-otp.html')
+
+    def post(self, request):
+        otp = request.POST.get("otp").strip()
+        email = request.session.get("registered_email")
+        if email:
+            try:
+                user = CustomUser.objects.get(email=email)
+                if is_otp_valid(user, otp):
+                    user.is_email_verified = True
+                    user.save()
+
+                    if request.user.is_authenticated:
+                        return redirect('profile')
+                    else :
+                        return redirect("login")
+                else:
+                    return render(request, 'verify-otp.html', {"error": "Invalid OTP. Please try again."})
+            except CustomUser.DoesNotExist:
+                return HttpResponse("User does not exist")
+        else:
+            return HttpResponse("No registered email found in session")
 
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "profile.html")
+
+class SendOTPFromProfile(View):
+    def post(self,request):
+        user = request.user
+        if user:
+            request.session['registered_email'] = user.email
+            send_otp_email(user)
+            return redirect("verify-otp")
+        else:
+            return render('profile.html', {'error':"Something went wrong :( "})
+
 
 class TermsAndConditionsView(View):
     def get(self, request):
@@ -149,3 +197,7 @@ class ChangePasswordView(LoginRequiredMixin, View):
         update_session_auth_hash(request, user)
         messages.success(request, "Password changed successfully.")
         return redirect("profile")
+
+class ContactPageView(View):
+    def get(self, request):
+        return render(request, "contact.html")

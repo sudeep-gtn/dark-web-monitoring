@@ -50,11 +50,36 @@ Profile
 
     <div class="flex flex-row justify-between items-center">
         <div class="flex flex-col">
-            <p class="font-semibold">Email:</p>
-            <small>Account email used to login to platform and get notification, two factor validation code etc.
-            </small>
+            <div class="font-semibold my-2">
+                Email:
+                {% if not user.is_email_verified %}
+                <span class="inline-block bg-blue-500 text-white p-1 px-2 rounded font-normal text-sm">
+                    <form method="post" action="/send-otp-now">
+                        {% csrf_token %}
+                        <button type="submit" class="focus:outline-none">Verify now</button>
+                    </form>
+                </span>
+                {% endif %}
+            </div>
+            <small>Account email used to login to platform and get notification, two factor validation code etc.</small>
         </div>
-        <p class="font-semibold">{{user.email}}</p>
+
+        <div class="flex items-center gap-2 justify-between">
+            <div class="font-semibold flex gap-6 items-center w-fit">
+                <span class="w-2/3 mr-4">{{user.email}}</span>
+                <div class="w-1/4">
+                    {% if user.is_email_verified %}
+                <span>
+                    <img src="/static/images/verified-check.svg" width="20px" height="20px" alt="Email Verified">
+                </span>
+                {% else %}
+                <span>
+                    <img src="/static/images/cross-circle.svg" width="20px" height="20px" alt="Email Not Verified">
+                </span>
+                {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
     <hr class="border-t border-gray-300 my-6">
     <div class="flex flex-row justify-between items-center">
@@ -74,20 +99,20 @@ Profile
             <form action="/change-password" method="post">
                 {% csrf_token %}
                 <label for="old_password" class="block mb-2">Current Password</label>
-            <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="password" id="old_password"
-                name="old_password">
-            <label for="new_password" class="block mb-2">New Password</label>
-            <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="password" id="new_password"
-                name="new_password">
-            <label for="c_new_password" class="block mb-2">Confirm New Password</label>
-            <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="password" id="c_new_password"
-                name="c_new_password">
+                <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="password" id="old_password"
+                    name="old_password">
+                <label for="new_password" class="block mb-2">New Password</label>
+                <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="password" id="new_password"
+                    name="new_password">
+                <label for="c_new_password" class="block mb-2">Confirm New Password</label>
+                <input class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4" type="password"
+                    id="c_new_password" name="c_new_password">
 
-            <div class="flex justify-end">
-                <button type="submit" class="bg-blue-500 text-white rounded-lg px-4 py-2">Save</button>
-                <button onclick="cancelChangePasswordPopUp(event)"
-                    class="bg-gray-300 text-gray-800 rounded-lg px-4 py-2 ml-4">Cancel</button>
-            </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-500 text-white rounded-lg px-4 py-2">Save</button>
+                    <button onclick="cancelChangePasswordPopUp(event)"
+                        class="bg-gray-300 text-gray-800 rounded-lg px-4 py-2 ml-4">Cancel</button>
+                </div>
             </form>
         </div>
     </div>

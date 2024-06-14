@@ -155,3 +155,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587 
+EMAIL_USE_TLS = True
+# EMAIL_USE_SSL=False
+# EMAIL_HOST_USER = os.environ.get('EMAIL_USERNAME')  
+EMAIL_HOST_USER ='socialish01@gmail.com' 
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD = 'cyqxpptigbycrkcb'
+DEFAULT_FROM_EMAIL='sudeepbogati@google.com'
+# print(EMAIL_HOST_USER)
+# print(EMAIL_HOST_PASSWORD)
