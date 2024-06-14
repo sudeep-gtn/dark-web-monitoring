@@ -38,6 +38,68 @@
 {% block content %}
 
 <div>
+
+    <!-- from intelligence.any.run -->
+
+
+    <h1 class="text-2xl font-bold mb-4">Threat Intelligence</h1>
+
+    <!-- Display error message if there is an error -->
+    {% if context.error %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <strong class="font-bold">Error:</strong>
+        <span class="block sm:inline">{{ context.error }}</span>
+        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+            <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20">
+                <title>Close</title>
+                <path
+                    d="M14.348 14.849a1.2 1.2 0 1 1-1.697 1.697l-3.651-3.651-3.651 3.651a1.2 1.2 0 1 1-1.697-1.697l3.651-3.651-3.651-3.651a1.2 1.2 0 1 1 1.697-1.697l3.651 3.651 3.651-3.651a1.2 1.2 0 1 1 1.697 1.697l-3.651 3.651 3.651 3.651z" />
+            </svg>
+        </span>
+    </div>
+    {% endif %}
+
+    <!-- Display table if data is available -->
+    {% if context.data %}
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th
+                        class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                        Type</th>
+                    <th
+                        class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                        ID</th>
+                    <th
+                        class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                        Created</th>
+                    <th
+                        class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                        Modified</th>
+                    <!-- Add more headers as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in context.data.objects %}
+                <tr>
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ obj.type }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ obj.id }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ obj.created }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ obj.modified }}</td>
+                    <!-- Add more columns based on your data structure -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+
+
+
+
     <div class="flex flex-col sm:flex-row">
         <div class="sm:w-3/4 p-4">
             <h1 class="font-semibold text-lg p-2">Threat Actors
@@ -56,7 +118,8 @@
                     </thead>
                     <tbody class="bg-white">
                         <tr class="border-b">
-                            <td class="py-2 px-4"><a class="underline text-blue-500" href="{% url 'threat-actor-profile' %}">TA547</a></td>
+                            <td class="py-2 px-4"><a class="underline text-blue-500"
+                                    href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
                                     class="border-2 border-red-400 rounded-md p-1 bg-red-100 text-xs">Deploy
@@ -153,7 +216,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -174,7 +238,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -184,7 +249,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -194,7 +260,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -204,7 +271,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -214,7 +282,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -224,7 +293,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -234,7 +304,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -244,7 +315,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -254,7 +326,8 @@
                             <td class="py-2 px-4">
                                 <div id="chart_div"></div>
                             </td>
-                        </tr><tr class="border-b">
+                        </tr>
+                        <tr class="border-b">
                             <td class="py-2 px-4"><a href="{% url 'threat-actor-profile' %}">TA547</a></td>
                             <td class="py-2 px-4">E-Crime</td>
                             <td class="py-2 px-4"><span
@@ -331,11 +404,11 @@
 
             chart.draw(data, options);
         }
-    
-    google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(threatCatChart);
-    function threatCatChart() {
-        var data = google.visualization.arrayToDataTable([
+
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(threatCatChart);
+        function threatCatChart() {
+            var data = google.visualization.arrayToDataTable([
                 ['Threat Source', 'Numbers'],
                 ['Nation states', 11],
                 ['Terrorist organizations', 2],
@@ -344,18 +417,19 @@
                 ['Malicious insiders', 7]
             ]);
 
-        var options = {
-            title: 'Threat Categories',
-            // pieHole: 0.4,
-            width: 350,
-            height: 350,
-            chartArea: { width: '100%', height: '100%' }
-        };
+            var options = {
+                title: 'Threat Categories',
+                // pieHole: 0.4,
+                width: 350,
+                height: 350,
+                chartArea: { width: '100%', height: '100%' }
+            };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-    }
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
 
     });
+
 </script>
 {% endblock content %}

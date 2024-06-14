@@ -4,6 +4,8 @@ from django.views import View
 from .models import Card, Domain, BlackMarket, StealerLogs, PIIExposure, calculate_organization_health
 import json
 from django.db.models import Count
+import requests
+
 # Create your views here.
 class DashboardView(LoginRequiredMixin, View):
     login_url = "login"
@@ -191,7 +193,24 @@ class Overview(LoginRequiredMixin, View):
 class ThreatIntelligence(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
-        return render(request, "threatIntelligence.html")
+        url = 'https://api.any.run/v1/feeds/stix.json?IP=true&Domain=true&URL=true'
+        token = 'WX2JCzLFjmaRXaQHFhLfbfn5EHdwxCmbBpY8tQ78'
+
+        headers = {
+            'Accept': '*/*',
+            'Authorization': f'API-Key {token}',
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.get(url, headers=headers)
+
+        if response.status_code != 200:
+            context = {'error': 'Error fetching the API', 'details': response.text}
+        else:
+            context = {'data': response.json()}
+
+        print("data : ", context)
+        return render(request, "threatIntelligence.html",{'context':context.get('data')})
 class ThreatActor(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
