@@ -61,7 +61,49 @@
                         Network,
                         Office 365, SaaS, Windows, macOS</div>
                     <div><span class="font-semibold text-gray-700">Date Created:</span> 31 May 2017</div>
-                    <div><span class="font-semibold text-gray-700"> Date Created: </span> 16 January 2024</div>
+                    <div><span class="font-semibold text-gray-700"> Date Updated: </span> 16 January 2024</div>
+                    <div><span class="font-semibold text-gray-700"> Popularity: </span> {{context.data.popularity}}
+                    </div>
+                    <div><span class="font-semibold text-gray-700"> Label: </span> <span
+                            class="bg-red-500 rounded p-1 text-xs text-white">{{context.data.label}}</span></div>
+                    <div><span class="font-semibold text-gray-700"> Country: </span>
+                        {{context.data.threatActorDetails.country}}</div>
+                    <div><span class="font-semibold text-gray-700"> MalpediaDescription: </span>
+                        {{context.data.threatActorDetails.malpediaDescription}}</div>
+
+                        <h1 class="font-semibold text-gray-700 mt-2">Badges:</h1>
+                        <div class="w-full">
+                            <div class="flex flex-wrap">
+                                {% for badge in context.data.badges %}
+                                <div class="bg-blue-500 px-2 m-2 rounded text-white">
+                                    {{badge}}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <h1 class="font-semibold text-gray-700">Aliases:</h1>
+                        <div class="w-full h-[100px] overflow-auto">
+                            <div class="flex flex-wrap">
+                                {% for aliase in context.data.aliases %}
+                                <div class="bg-gray-300 px-2 m-2 rounded">
+                                    {{aliase}}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <h1 class="font-semibold text-gray-700 mt-2">Associated Malwares:</h1>
+                        <div class="w-full h-[120px] overflow-auto">
+                            <div class="flex flex-wrap">
+                                {% for malware in context.data.threatActorDetails.associatedMalwares %}
+                                <div class="bg-gray-300 px-2 m-2 rounded">
+                                    {{malware.label}}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
                 </div>
 
                 <div class="text-center">

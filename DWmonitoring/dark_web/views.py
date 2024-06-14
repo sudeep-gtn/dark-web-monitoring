@@ -190,6 +190,7 @@ class Overview(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "overview.html")
+        
 class ThreatIntelligence(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
@@ -209,9 +210,25 @@ class ThreatIntelligence(LoginRequiredMixin, View):
         else:
             context = {'data': response.json()}
 
-        print("data : ", context)
+        # print("data : ", context)
         return render(request, "threatIntelligence.html",{'context':context.get('data')})
+    
 class ThreatActor(LoginRequiredMixin, View):
     login_url = "login"
+    
     def get(self, request):
-        return render(request, "threatActorProfile.html")
+        url = "https://api.feedly.com/v3/entities/nlp%2Ff%2Fentity%2Fgz%3Ata%3A68391641-859f-4a9a-9a1e-3e5cf71ec376"
+
+        headers = {
+            "accept": "application/json",
+            "Authorization": "Bearer 68391641-859f-4a9a-9a1e-3e5cf71ec376"
+        }
+        response = requests.get(url, headers=headers)
+     
+        if response.status_code != 200:
+            context = {'error': 'Error fetching the API', 'details': response.text}
+        else:
+            context = {'data': response.json()}
+        print(context)
+
+        return render(request, "threatActorProfile.html", {'context':context})
