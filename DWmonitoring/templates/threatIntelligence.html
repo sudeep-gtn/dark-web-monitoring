@@ -42,11 +42,11 @@
     <!-- from intelligence.any.run -->
 
 
-    <h1 class="text-2xl font-bold mb-4">Threat Intelligence</h1>
+    <h1 class="text-lg font-bold mb-2 px-2 ">Threat Intelligence</h1>
 
     <!-- Display error message if there is an error -->
     {% if context.error %}
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+    <div class="bg-red-100 border border-gray-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
         <strong class="font-bold">Error:</strong>
         <span class="block sm:inline">{{ context.error }}</span>
         <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
@@ -62,33 +62,60 @@
 
     <!-- Display table if data is available -->
     {% if context.data %}
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-200">
-            <thead>
-                <tr class="bg-gray-100">
+    <div class="max-h-[400px] overflow-auto border border-gray-500 rounded-md shadow-lg mx-2  ">
+        <table class="min-w-full bg-white text-xs  ">
+            <thead class="">
+                <tr class="">
                     <th
-                        class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                        class="w-fit py-1 underline bg-white  font-semibold sticky top-0  text-xs leading-4 text-gray-800 uppercase  tracking-wider">
                         Type</th>
                     <th
-                        class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                        class="w-fit py-1 underline bg-white  font-semibold sticky top-0  text-xs leading-4 text-gray-800 uppercase  tracking-wider">
                         ID</th>
                     <th
-                        class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                        class="w-fit py-1 underline bg-white  font-semibold sticky top-0  text-xs leading-4 text-gray-800 uppercase  tracking-wider">
                         Created</th>
                     <th
-                        class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                        class="w-fit py-1 underline bg-white  font-semibold sticky top-0  text-xs leading-4 text-gray-800 uppercase  tracking-wider">
                         Modified</th>
+                    <th class="w-fit py-1 underline bg-white  font-semibold sticky top-0  text-xs leading-4 text-gray-800 uppercase  tracking-wider">Hashes</th>
+                    <th class="w-fit py-1 underline bg-white  font-semibold sticky top-0  text-xs leading-4 text-gray-800 uppercase  tracking-wider">External Sources</th>
+                    <th class="w-fit py-1 underline bg-white  font-semibold sticky top-0  text-xs leading-4 text-gray-800 uppercase  tracking-wider">Score</th>
+                    <th class="w-fit py-1 underline bg-white  font-semibold sticky top-0  text-xs leading-4 text-gray-800 uppercase  tracking-wider">Labels </th>
                     <!-- Add more headers as needed -->
                 </tr>
             </thead>
             <tbody>
                 {% for obj in context.data.objects %}
-                <tr>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ obj.type }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ obj.id }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ obj.created }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ obj.modified }}</td>
-                    <!-- Add more columns based on your data structure -->
+                <tr class="hover:bg-gray-200 text-gray-600 hover:text-black ">
+                    <td class="px-2  py-2 whitespace-no-wrap text-left border-b border-gray-200">{{ obj.type }}</td>
+                    <td class="px-2  py-2 whitespace-no-wrap text-left border-b border-gray-200">{{ obj.id }}</td>
+                    <td class="px-2  py-2 whitespace-no-wrap text-left border-b border-gray-200">{{ obj.created }}</td>
+                    <td class="px-2  py-2 whitespace-no-wrap text-left border-b border-gray-200">{{ obj.modified }}</td>
+                    <td class="px-2  py-2 whitespace-no-wrap text-left border-b border-gray-200">
+                        <ul>
+                            {% for hash_type, hash_value in obj.hashes.items %}
+                            <li class="text-yellow-700 "><strong class="text-gray-700">{{ hash_type }}:</strong> {{ hash_value }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td class="px-2  py-2 whitespace-no-wrap text-left border-b border-gray-200">
+                        <ul  class="max-h-36 overflow-y-auto">
+                            {% for external_ref in obj.external_references %}
+                            <li><a href="{{ external_ref.url }}" target="_blank" class="hover:text-red-600 py-4 underline">{{ external_ref.source_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <!-- End hashes -->
+                    <td class="px-2  py-2 whitespace-no-wrap text-center  border-b border-gray-200">{{ obj.score }}</td>
+
+                    <td class="px-2  py-2 whitespace-no-wrap text-left border-b border-gray-200">
+                        <ul>
+                            {% for label in obj.labels %}
+                            <li class="bg-gray-500 px-2 rounded-lg w-fit m-2 text-white">{{ label }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
