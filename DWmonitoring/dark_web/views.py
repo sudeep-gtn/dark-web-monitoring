@@ -235,6 +235,6 @@ class ThreatActor(LoginRequiredMixin, View):
             context = {'error': 'Error fetching the API', 'details': response.text}
         else:
             context = {'data': response.json()}
-        print(context)
+        # print(context)
 
         return render(request, "threatActorProfile.html", {'context':context})
