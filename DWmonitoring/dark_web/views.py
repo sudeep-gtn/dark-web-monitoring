@@ -6,6 +6,8 @@ import json
 from django.db.models import Count
 import requests
 from collections import defaultdict
+from cybernews.cybernews import CyberNews
+from dateutil import parser
 
 # Create your views here.
 class DashboardView(LoginRequiredMixin, View):
@@ -127,11 +129,29 @@ class OrganizationDetailsView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "organization-details.html")
-    
+
 class NotificationsAlertView(LoginRequiredMixin, View):
     login_url = "login"
+    
     def get(self, request):
-        return render(request, "notification-alerts.html")
+        news = CyberNews()
+        
+        data_breach_news = news.get_news('dataBreach')
+        malware_news = news.get_news('malware')
+        cyber_attak_news = news.get_news("cyberAttack")
+        security_news = news.get_news("security")
+        
+        news_data = data_breach_news + malware_news + cyber_attak_news + security_news
+        for news_item in news_data:
+            try:
+                news_item['newsDate'] = parser.parse(news_item['newsDate']).date()
+            except ValueError:
+                print("The date is not in correct date format")
+                news_item['newsDate'] = None
+        news_data = [item for item in news_data if item['newsDate'] is not None]
+        news_data_sorted = sorted(news_data, key=lambda x: x['newsDate'], reverse=True)
+        total_news = len(news_data_sorted) 
+        return render(request, "notification-alerts.html", {'news_data': news_data_sorted, 'total_news': total_news})
 
 class BlackMarketView(LoginRequiredMixin, View):
     login_url = "login"
@@ -149,35 +169,29 @@ class PiiExposureView(LoginRequiredMixin, View):
     login_url = "login"
 
     def get(self, request):
-        # Retrieve all PII exposures from the database
         pii_exposures = PIIExposure.objects.all()
 
-        # Calculate the total number of PII exposures
         pii_exposures_length = pii_exposures.count()
 
-        # Extract unique email addresses from PII exposures
         pii_exposures_emails = [pii_exposure.personal_email for pii_exposure in pii_exposures]
         unique_pii_exposures_emails = set(pii_exposures_emails)
         unique_pii_exposures_length = len(unique_pii_exposures_emails)
 
-        # Prepare leak sources data
         leak_sources = {}
         for pii_exposure in pii_exposures:
             email = pii_exposure.personal_email
             domain = pii_exposure.source_domain
             if email not in leak_sources:
                 leak_sources[email] = []
-            # Count occurrences of each domain for an email
+
             domain_exists = next((item for item in leak_sources[email] if item["domain"] == domain), None)
             if domain_exists:
                 domain_exists["count"] += 1
             else:
                 leak_sources[email].append({"count": 1, "domain": domain})
         
-        # Convert leak_sources dictionary to JSON
         leak_sources_json = json.dumps(leak_sources)
 
-        # Render the template with the necessary context data
         return render(request, "pii-exposure.html", {
             'pii_exposures': pii_exposures,
             'pii_exposures_length': pii_exposures_length,
@@ -195,6 +209,25 @@ class Overview(LoginRequiredMixin, View):
 class ThreatIntelligence(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
+
+
+
+        news = CyberNews()
+        
+        malware_news = news.get_news('malware')
+        
+        news_data =malware_news
+        for news_item in news_data:
+            try:
+                news_item['newsDate'] = parser.parse(news_item['newsDate']).date()
+            except ValueError:
+                print("The date is not in correct date format")
+                news_item['newsDate'] = None
+        news_data = [item for item in news_data if item['newsDate'] is not None]
+        news_data_sorted = sorted(news_data, key=lambda x: x['newsDate'], reverse=True)
+        total_news = len(news_data_sorted) 
+
+        print("malware news : ", news_data_sorted)
         url = 'https://api.any.run/v1/feeds/stix.json?IP=true&Domain=true&URL=true'
         token = 'WX2JCzLFjmaRXaQHFhLfbfn5EHdwxCmbBpY8tQ78'
 
@@ -214,11 +247,12 @@ class ThreatIntelligence(LoginRequiredMixin, View):
         types = defaultdict(int)
         for obj in context["data"]["objects"]:
             types[obj["type"]] += 1
-         # Convert to a list and sort
+         
         context["types"] = sorted(types.keys())
         print("types: ", context["types"])
 
-        return render(request, "threatIntelligence.html",{'context':context})
+        return render(request, "threatIntelligence.html",{'context':context, 'news_data_sorted'  : news_data_sorted })
+    
 class ThreatActor(LoginRequiredMixin, View):
     login_url = "login"
     
@@ -235,6 +269,5 @@ class ThreatActor(LoginRequiredMixin, View):
             context = {'error': 'Error fetching the API', 'details': response.text}
         else:
             context = {'data': response.json()}
-        # print(context)
 
         return render(request, "threatActorProfile.html", {'context':context})
