@@ -209,6 +209,25 @@ class Overview(LoginRequiredMixin, View):
 class ThreatIntelligence(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
+
+
+
+        news = CyberNews()
+        
+        malware_news = news.get_news('malware')
+        
+        news_data =malware_news
+        for news_item in news_data:
+            try:
+                news_item['newsDate'] = parser.parse(news_item['newsDate']).date()
+            except ValueError:
+                print("The date is not in correct date format")
+                news_item['newsDate'] = None
+        news_data = [item for item in news_data if item['newsDate'] is not None]
+        news_data_sorted = sorted(news_data, key=lambda x: x['newsDate'], reverse=True)
+        total_news = len(news_data_sorted) 
+
+        print("malware news : ", news_data_sorted)
         url = 'https://api.any.run/v1/feeds/stix.json?IP=true&Domain=true&URL=true'
         token = 'WX2JCzLFjmaRXaQHFhLfbfn5EHdwxCmbBpY8tQ78'
 
@@ -232,7 +251,7 @@ class ThreatIntelligence(LoginRequiredMixin, View):
         context["types"] = sorted(types.keys())
         print("types: ", context["types"])
 
-        return render(request, "threatIntelligence.html",{'context':context})
+        return render(request, "threatIntelligence.html",{'context':context, 'news_data_sorted'  : news_data_sorted })
     
 class ThreatActor(LoginRequiredMixin, View):
     login_url = "login"
