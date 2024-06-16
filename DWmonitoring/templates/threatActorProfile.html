@@ -82,26 +82,31 @@
                             </div>
                         </div>
 
-                        <h1 class="font-semibold text-gray-700">Aliases:</h1>
+                        <div class="bg-white shadow-md border-1 border-gray-200">
+                            <h1 class="font-semibold text-gray-700">Aliases:</h1>
                         <div class="w-full h-[100px] overflow-auto">
                             <div class="flex flex-wrap">
                                 {% for aliase in context.data.aliases %}
-                                <div class="bg-gray-300 px-2 m-2 rounded">
+                                <div class="bg-gray-300 px-2 m-2 rounded text-xs">
                                     {{aliase}}
                                 </div>
                                 {% endfor %}
                             </div>
                         </div>
+                        </div>
                         
-                        <h1 class="font-semibold text-gray-700 mt-2">Associated Malwares:</h1>
+                        
+                        <div class="bg-white shadow-md p-4 border-1 border-gray-200">
+                            <h1 class="font-semibold text-gray-700 mt-2">Associated Malwares:</h1>
                         <div class="w-full h-[120px] overflow-auto">
                             <div class="flex flex-wrap">
                                 {% for malware in context.data.threatActorDetails.associatedMalwares %}
-                                <div class="bg-gray-300 px-2 m-2 rounded">
+                                <div class="bg-gray-300 px-2 m-2 rounded text-xs">
                                     {{malware.label}}
                                 </div>
                                 {% endfor %}
                             </div>
+                        </div>
                         </div>
                         
                 </div>
