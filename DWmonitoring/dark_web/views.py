@@ -225,7 +225,7 @@ class ThreatIntelligence(LoginRequiredMixin, View):
                 news_item['newsDate'] = None
         news_data = [item for item in news_data if item['newsDate'] is not None]
         news_data_sorted = sorted(news_data, key=lambda x: x['newsDate'], reverse=True)
-        total_news = len(news_data_sorted) 
+        total_news = len(news_data_sorted)
 
         print("malware news : ", news_data_sorted)
         url = 'https://api.any.run/v1/feeds/stix.json?IP=true&Domain=true&URL=true'
@@ -272,6 +272,18 @@ class ThreatActor(LoginRequiredMixin, View):
 
         return render(request, "threatActorProfile.html", {'context':context})
 
+
+
 class IncidentResponse(LoginRequiredMixin, View):
+    login_url = "login"
+
     def get(self, request):
-        return render(request, "incidentResponse.html")
+        return render(request, 'incidentResponse.html')
+
+
+    
+class AnalyticsAndReports(LoginRequiredMixin, View):
+    login_url = "login"
+
+    def get(self, request):
+        return render( request,'analyticsAndReports.html')

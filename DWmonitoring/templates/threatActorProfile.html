@@ -61,54 +61,7 @@
                         Network,
                         Office 365, SaaS, Windows, macOS</div>
                     <div><span class="font-semibold text-gray-700">Date Created:</span> 31 May 2017</div>
-                    <div><span class="font-semibold text-gray-700"> Date Updated: </span> 16 January 2024</div>
-                    <div><span class="font-semibold text-gray-700"> Popularity: </span> {{context.data.popularity}}
-                    </div>
-                    <div><span class="font-semibold text-gray-700"> Label: </span> <span
-                            class="bg-red-500 rounded p-1 text-xs text-white">{{context.data.label}}</span></div>
-                    <div><span class="font-semibold text-gray-700"> Country: </span>
-                        {{context.data.threatActorDetails.country}}</div>
-                    <div><span class="font-semibold text-gray-700"> MalpediaDescription: </span>
-                        {{context.data.threatActorDetails.malpediaDescription}}</div>
-
-                        <h1 class="font-semibold text-gray-700 mt-2">Badges:</h1>
-                        <div class="w-full">
-                            <div class="flex flex-wrap">
-                                {% for badge in context.data.badges %}
-                                <div class="bg-blue-500 px-2 m-2 rounded text-white">
-                                    {{badge}}
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <div class="bg-white shadow-md border-1 border-gray-200">
-                            <h1 class="font-semibold text-gray-700">Aliases:</h1>
-                        <div class="w-full h-[100px] overflow-auto">
-                            <div class="flex flex-wrap">
-                                {% for aliase in context.data.aliases %}
-                                <div class="bg-gray-300 px-2 m-2 rounded text-xs">
-                                    {{aliase}}
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        </div>
-                        
-                        
-                        <div class="bg-white shadow-md p-4 border-1 border-gray-200">
-                            <h1 class="font-semibold text-gray-700 mt-2">Associated Malwares:</h1>
-                        <div class="w-full h-[120px] overflow-auto">
-                            <div class="flex flex-wrap">
-                                {% for malware in context.data.threatActorDetails.associatedMalwares %}
-                                <div class="bg-gray-300 px-2 m-2 rounded text-xs">
-                                    {{malware.label}}
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        </div>
-                        
+                    <div><span class="font-semibold text-gray-700"> Date Created: </span> 16 January 2024</div>
                 </div>
 
                 <div class="text-center">
@@ -203,16 +156,6 @@
                             <span class="text-red-600 font-semibold text-lg ">7</span>
                             <span class="text-sm  text-gray-600">Potentially Exposed </span>
                         </div>
-                    </div>
-                    <div class="flex justify-between mb-2">
-                        <div class="text-blue-500">Pre-Delivery Protected: <span id="pre-protected">52</span></div>
-                        <div class="text-green-500">Post-Delivery Protected: <span id="post-protected">6</span></div>
-                        <div class="text-red-500">Potentially Exposed: <span id="exposed">7</span></div>
-                    </div>
-                    <div class="bar">
-                        <div id="pre-delivery" class="bar-segment bg-blue-500"></div>
-                        <div id="post-delivery" class="bar-segment bg-green-500"></div>
-                        <div id="exposed-segment" class="bar-segment bg-red-500"></div>
                     </div>
                 </div>
 
@@ -402,33 +345,6 @@
 
 
 
-    // anyrun feed api
-    async function AnyRunFeed() {
-        const url = 'https://api.any.run/v1/feeds/stix.json';
-        const token = 'WX2JCzLFjmaRXaQHFhLfbfn5EHdwxCmbBpY8tQ78'; // Replace with your actual token
-
-        try {
-            const response = await fetch(url, {
-                mode: 'no-cors',
-                method: 'GET', // Optional, since GET is the default method
-                headers: {
-                    'Authorization': `${token}`,
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log("any run data :", data);
-            console.log(data);
-        } catch (error) {
-            console.error('Error fetching the API:', error);
-        }
-    }
-
-    AnyRunFeed();
+    
 </script>
 {% endblock content %}
