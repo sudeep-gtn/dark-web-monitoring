@@ -47,9 +47,50 @@
 </header>
 {% endblock header %}
 
-<main>
-    <div> Here, you'll find comprehensive insights and detailed reports generated from our continuous monitoring of dark web activities. Our platform leverages advanced algorithms and real-time data analysis to provide you with actionable intelligence, helping you stay ahead of potential threats and protect your digital assets. Explore various metrics, trends, and detailed reports to gain a deeper understanding of the dark web landscape and ensure your organization's security. </div>
-</main>
-
 {% block content %}
+
+<main class="mt-3 ">
+    <div class="text-gray-600  text-center px-8 mb-8"> Here, you'll find comprehensive insights and detailed reports generated from our continuous monitoring of dark web activities. Explore various metrics, trends, and detailed reports to gain a deeper understanding of the dark web landscape and ensure your organization's security. </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Summary of Key Metrics -->
+        <div class="p-4 bg-gray-200 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-2">Key Metrics</h3>
+            <p>Number of Threats Detected: <span class="font-bold">123</span></p>
+            <p>Recent Alerts: <span class="font-bold">5</span></p>
+            <!-- Add more key metrics as needed -->
+        </div>
+        <!-- Trend Analysis -->
+        <div class="p-4 bg-gray-200 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-2">Trend Analysis</h3>
+            <canvas id="trendChart"></canvas>
+        </div>
+        <!-- Add more overview sections as needed -->
+    </div>
+
+</main>
+<script>
+    var ctx = document.getElementById('trendChart').getContext('2d');
+    var trendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Threats Detected',
+                data: [12, 19, 3, 5, 2, 3, 7,6,8,13,21,7],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            fill:true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 {% endblock content %}
