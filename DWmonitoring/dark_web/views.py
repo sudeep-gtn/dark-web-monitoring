@@ -271,3 +271,7 @@ class ThreatActor(LoginRequiredMixin, View):
             context = {'data': response.json()}
 
         return render(request, "threatActorProfile.html", {'context':context})
+
+class IncidentResponse(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, "incidentResponse.html")

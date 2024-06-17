@@ -36,9 +36,6 @@
 </header>
 {% endblock header %}
 {% block content %}
-
-<>
-
     <!-- from intelligence.any.run -->
 
 
@@ -165,8 +162,7 @@
                             <ul>
                                 {% if obj.hashes %}
                                 {% for hash_type, hash_value in obj.hashes.items %}
-                                <li class="text-yellow-700"><strong class="text-gray-700">{{ hash_type }}:</strong> {{
-                                    hash_value }}</li>
+                                <li class="text-yellow-700"><strong class="text-gray-700">{{ hash_type }}:</strong> {{ hash_value }}</li>
                                 {% endfor %}
                                 {% else %}
                                 <li class="text-black text-lg text-center font-bold">-</li>
@@ -244,7 +240,7 @@
             </div>
         </div>
 
-        <div class="mt-6 bg-gray-200 border-2 border-red-400 p-4 rounded shadow-lg ">
+        <div class="mt-6 bg-gray-200 border-2 border-gray-400 p-4 rounded shadow-lg ">
             <div class="font-semibold text-xl mb-6 mt-8 w-fit mx-auto"> Trending <span class="text-red-500">Threats</span></div>
             <div class="flex flex-wrap items-center justify-center gap-12 mx-auto mt-8">
                 {% for news in news_data_sorted %}
@@ -256,7 +252,7 @@
                             class="w-full h-full group-hover:scale-110 transform transition-all duration-300 ease-in-out object-cover">
                     </div>
                     <p class="max-h-36 text-gray-600 p-4 overflow-hidden hover:text-black">{{ news.fullNews }}</p>
-                    <a href="{{ news.newsURL }}" class="text-blue-500 hover:underline px-4 pb-4">Read more</a>
+                    <a target="_blank" href="{{ news.newsURL }}" class="text-blue-500 hover:underline px-4 pb-4">Read more</a>
                 </div>
                 {% endfor %}
             </div>
