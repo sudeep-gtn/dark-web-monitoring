@@ -36,6 +36,7 @@ class Domain(models.Model):
     severity_level = models.CharField(max_length=6, choices=SEVERITY_LEVEL_CHOICES)
     source_ip = models.GenericIPAddressField()
     source_domain = models.TextField()
+    breach_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.name} - {self.domain_ip}'
