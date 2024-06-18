@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Analytics And Reports  {% endblock title %}
+{% block title %} Analytics And Reports {% endblock title %}
 
 {% block header %}
 <header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
     <a href="{% url 'threat-actor-profile'%}" class="text-xl font-extrabold text-gray-700">
         <div class="flex items-center gap-2 "> <img class="text-gray-300" src="/static/images/analytics-and-reports.png"
-                height="32" width="32" alt="overview"> Analytics and <span class="text-red-600"> Reports  </span> </div>
+                height="32" width="32" alt="overview"> Analytics and <span class="text-red-600"> Reports </span> </div>
     </a>
     <div class="relative flex gap-4 px-4">
         <!-- <a href="{% url 'notifications' %}"
@@ -50,22 +50,172 @@
 {% block content %}
 
 <main class="mt-3 ">
-    <div class="text-gray-600  text-center px-8 mb-8"> Here, you'll find comprehensive insights and detailed reports generated from our continuous monitoring of dark web activities. Explore various metrics, trends, and detailed reports to gain a deeper understanding of the dark web landscape and ensure your organization's security. </div>
+    <div class="text-gray-600  text-center px-8 mb-8"> Here, you'll find comprehensive insights and detailed reports
+        generated from our continuous monitoring of dark web activities. Explore various metrics, trends, and detailed
+        reports to gain a deeper understanding of the dark web landscape and ensure your organization's security. </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <!-- Summary of Key Metrics -->
-        <div class="p-4 bg-gray-200 rounded-lg shadow-lg">
+        <div class="p-4 bg-gray-200 rounded-lg border-2 border-gray-400 flex flex-col gap-2">
             <h3 class="text-xl font-semibold mb-2">Key Metrics</h3>
-            <p>Number of Threats Detected: <span class="font-bold">123</span></p>
-            <p>Recent Alerts: <span class="font-bold">5</span></p>
-            <!-- Add more key metrics as needed -->
+            <p>Number of Threats Detected: <span class="font-bold  text-red-600 ">123</span></p>
+            <p>Recent Alerts: <span class="font-bold text-red-600">5</span></p>
+            <p> Domain Leaks: <span class="font-bold text-red-600">9</span></p>
+            <p> Financial Card Leaks: <span class="font-bold text-red-600">10</span></p>
+            <p> PII Leaks : <span class="font-bold text-red-600">10</span></p>
         </div>
-        <!-- Trend Analysis -->
-        <div class="p-4 bg-gray-200 rounded-lg shadow-lg">
-            <h3 class="text-xl font-semibold mb-2">Trend Analysis</h3>
+
+        <div class="p-4 bg-gray-200 rounded-lg border-2 border-gray-400">
+            <h3 class="text-xl font-semibold mb-2">Threat Analysis</h3>
             <canvas id="trendChart"></canvas>
         </div>
-        <!-- Add more overview sections as needed -->
+        <div class="p-4 bg-gray-200 rounded-lg border-2 border-gray-400 shadow">
+            <h3 class="text-xl font-semibold mb-2">Top Vulnerability Categories</h3>
+            <canvas id="vulnerabilityCategoriesChart"></canvas>
+        </div>
+    </div>
+
+
+    <!-- Export to PDF -->
+    <div class="mt-4 flex justify-between w-full bg-white text-center  p-4 "> 
+        <p>Access your reports offline! Click the button below to download a PDF containing comprehensive reports and analysis.</p>
+        <button class="border-2 border-gray-400 text-gray-800 px-6 py-2 w-fit rounded-md">Export</button>
+    </div>
+
+
+    <div class="mb-6 mt-2 px-4 w-full md:w-5/6">
+        <h2 class="text-2xl font-semibold mb-4"><span class="text-red-700">Alerts</span> and Notifications</h2>
+        <div class="p-4 bg-gray-200 rounded border-2 border-red-300  shadow">
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">Recent Alerts</h3>
+            <div class=" overflow-y-auto  max-h-56">
+                <ul class="list-disc list-inside">
+                    <li class="text-gray-600 text-sm">
+                        <strong>Credential Leak Detected</strong>: User credentials for multiple accounts have been
+                        found on a dark web forum. Immediate password resets are recommended.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Phishing Campaign Identified</strong>: A new phishing campaign targeting employees has
+                        been detected. Emails containing malicious links are being sent. Ensure all staff are aware and
+                        cautious.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Ransomware Threat</strong>: A ransomware variant has been detected in the network
+                        traffic. Urgent action is required to isolate affected systems and prevent data encryption.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Data Breach Notification</strong>: Sensitive customer data has been identified on a dark
+                        web marketplace. An investigation is underway to determine the source of the breach.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Malware Infection</strong>: A malicious software infection has been detected on several
+                        devices within the organization. Conduct a thorough scan and clean affected systems.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Suspicious Login Activity</strong>: Multiple failed login attempts from an unknown IP
+                        address have been detected on the admin portal. Verify access logs and enforce multi-factor
+                        authentication.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Insider Threat Detected</strong>: Unusual data access patterns from an internal user
+                        account have been observed. Review the user's activity and permissions immediately.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Unpatched Vulnerability</strong>: A critical vulnerability in the web server software
+                        has been identified. Patch the system as soon as possible to prevent exploitation.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Suspicious File Upload</strong>: A potentially harmful file has been uploaded to the
+                        company's file-sharing system. Investigate the source and content of the file.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Dark Web Mention</strong>: The company's proprietary information has been mentioned in a
+                        dark web forum. Monitor the situation closely and assess potential risks.
+                    </li class="text-gray-600 text-sm">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <div class="text-2xl font-bold  mb-4 px-6 text-gray-800 "> <span class="text-red-600">Risk </span> Assessment
+        </div>
+        <div class="p-4 bg-gray-200 rounded border-2 border-gray-400 shadow">
+            <h3 class="text-xl font-semibold mb-2 text-red-700 ">Vulnerability Analysis</h3>
+            <p class="texg-gray-700">Identified and assessed vulnerabilities within your organization. The analysis
+                includes details on the affected systems, and recommended actions to mitigate these risks.</p>
+
+            <div class="overflow-auto max-h-56  rounded my-2 ">
+                <table class="min-w-full bg-gray-100">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit  underline ">Vulnerability ID</th>
+                            <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit   underline ">Description</th>
+                            <!-- <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit   underline ">Severity</th> -->
+                            <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit   underline ">Affected Systems</th>
+                            <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit   underline ">Recommended Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm ">
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-001</td>
+                            <td class="border px-4 py-2">SQL Injection in Customer Database</td>
+                            <!-- <td class="border px-4 py-2 text-red-500">High</td> -->
+                            <td class="border px-4 py-2">Customer Portal</td>
+                            <td class="border px-4 py-2">Sanitize inputs, use prepared statements, and apply database
+                                patches.</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-002</td>
+                            <td class="border px-4 py-2">Cross-Site Scripting (XSS)</td>
+                            <!-- <td class="border px-4 py-2 text-orange-500">Medium</td> -->
+                            <td class="border px-4 py-2">Public Website</td>
+                            <td class="border px-4 py-2">Implement input validation and output encoding.</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-003</td>
+                            <td class="border px-4 py-2">Outdated Software Versions</td>
+                            <!-- <td class="border px-4 py-2 text-yellow-500">Low</td> -->
+                            <td class="border px-4 py-2">Internal Servers</td>
+                            <td class="border px-4 py-2">Update to the latest software versions and apply security
+                                patches.</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-004</td>
+                            <td class="border px-4 py-2">Weak Password Policies</td>
+                            <!-- <td class="border px-4 py-2 text-red-500">High</td> -->
+                            <td class="border px-4 py-2">Corporate Network</td>
+                            <td class="border px-4 py-2">Enforce strong password policies and implement multi-factor
+                                authentication (MFA).</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-005</td>
+                            <td class="border px-4 py-2">Unsecured API Endpoints</td>
+                            <!-- <td class="border px-4 py-2 text-orange-500">Medium</td> -->
+                            <td class="border px-4 py-2">Mobile Application</td>
+                            <td class="border px-4 py-2">Implement proper authentication and authorization mechanisms
+                                for APIs.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="my-6">
+                <h3 class="text-xl font-semibold mb-2  text-red-700">Risk Score and Mitigation Plan</h3>
+                <p class="text-gray-700 ">Based on the identified vulnerabilities, we have calculated a risk score to
+                    help prioritize mitigation efforts. The following plan outlines the recommended actions to address
+                    the most critical vulnerabilities:</p>
+                <ul class="list-disc list-inside text-gray-700 px-4 py-2">
+                    <li>Immediate attention to SQL Injection and Weak Password Policies due to their high severity.</li>
+                    <li>Schedule regular updates and patch management for software versions to reduce low-severity
+                        risks.</li>
+                    <li>Implement security best practices for API endpoints and web applications to prevent XSS and
+                        other medium-severity threats.</li>
+                    <li>Continuous monitoring and reassessment to ensure new vulnerabilities are promptly identified and
+                        mitigated.</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 </main>
@@ -77,14 +227,40 @@
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec'],
             datasets: [{
                 label: 'Threats Detected',
-                data: [12, 19, 3, 5, 2, 3, 7,6,8,13,21,7],
+                data: [12, 19, 3, 5, 2, 3, 7, 6, 8, 13, 21, 7],
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
             }]
         },
         options: {
-            fill:true,
+            fill: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Top Vulnerability Categories
+
+
+    var ctx3 = document.getElementById('vulnerabilityCategoriesChart').getContext('2d');
+    var vulnerabilityCategoriesChart = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['SQL Injection', 'Cross-Site Scripting', 'Outdated Software', 'Weak Passwords', 'Unsecured APIs'],
+            datasets: [{
+                label: 'Vulnerabilities',
+                data:  [7, 12, 5, 10, 8],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            label:false,
             scales: {
                 y: {
                     beginAtZero: true
