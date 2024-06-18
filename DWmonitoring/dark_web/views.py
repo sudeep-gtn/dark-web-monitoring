@@ -142,16 +142,27 @@ class NotificationsAlertView(LoginRequiredMixin, View):
         security_news = news.get_news("security")
         
         news_data = data_breach_news + malware_news + cyber_attak_news + security_news
+        
+        unique_news_data = []
+        seen = set()
         for news_item in news_data:
             try:
                 news_item['newsDate'] = parser.parse(news_item['newsDate']).date()
             except ValueError:
                 print("The date is not in correct date format")
                 news_item['newsDate'] = None
-        news_data = [item for item in news_data if item['newsDate'] is not None]
-        news_data_sorted = sorted(news_data, key=lambda x: x['newsDate'], reverse=True)
+            
+            if news_item['newsDate'] is not None:
+                unique_key = (news_item.get('title'), news_item['newsDate'])
+                if unique_key not in seen:
+                    seen.add(unique_key)
+                    unique_news_data.append(news_item)
+        
+        news_data_sorted = sorted(unique_news_data, key=lambda x: x['newsDate'], reverse=True)
         total_news = len(news_data_sorted) 
+        
         return render(request, "notification-alerts.html", {'news_data': news_data_sorted, 'total_news': total_news})
+
 
 class BlackMarketView(LoginRequiredMixin, View):
     login_url = "login"
@@ -289,3 +300,8 @@ class AnalyticsAndReports(LoginRequiredMixin, View):
             'breach_counts': breach_counts,
         }        
         return render( request,'analyticsAndReports.html', {'context':context})
+
+
+class LiveThreatMap(View):
+    def get(self, request):
+        return render(request, "liveThreatMap.html")
