@@ -56,3 +56,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'user'
         verbose_name_plural = 'users'
+
+
+class UserLoginHistory(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    ip_address = models.GenericIPAddressField()
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'{self.user.email} logged in from {self.ip_address} on {self.timestamp}'
