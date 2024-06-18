@@ -305,3 +305,27 @@ class AnalyticsAndReports(LoginRequiredMixin, View):
 class LiveThreatMap(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, "liveThreatMap.html")
+    
+
+from django.shortcuts import render
+from django.http import HttpResponse
+from .models import Domain
+from weasyprint import HTML
+from django.template.loader import render_to_string
+
+def generate_report(request):
+    # Fetch data from the database
+    domains = Domain.objects.all()
+
+    print("domain: ", domains)
+    # Render the HTML template with the data
+    html_string = render_to_string('report_template.html', {'domains': domains})
+
+    # Convert the rendered HTML to PDF
+    html = HTML(string=html_string)
+    pdf = html.write_pdf()
+
+    # Create a response with the PDF
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    return response
