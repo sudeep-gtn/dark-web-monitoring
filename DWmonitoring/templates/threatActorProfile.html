@@ -111,8 +111,8 @@
                         <p class="text-gray-500 text-sm mb-4">by message volume </p>
                         <canvas id="myPolarChart" width="400" height="400"></canvas>
                     </div>
-    
-    
+
+
                     <div
                         class="bg-white border-2 mx-auto border-gray-300 px-6 pb-8 pt-4 w-[470px] h-[400px] rounded-lg overflow-hidden shadow-md">
                         <h1 class="text-lg font-bold">Threat Categories</h1>
@@ -123,7 +123,8 @@
                 <div class="flex gap-4 flex-col md:flex-row ">
                     <div
                         class="bg-white border-2 border-gray-300 px-3 pb-8 pt-4 w-[420px] h-[250px] rounded-lg overflow-hidden shadow-md">
-                        <div class="text-lg font-bold">Malware <span class="text-sm rounded-lg px-2 bg-gray-300 ">4</span>
+                        <div class="text-lg font-bold">Malware <span
+                                class="text-sm rounded-lg px-2 bg-gray-300 ">4</span>
                         </div>
                         <p class="text-gray-500 text-sm">By message volume </p>
                         <div id="malware_chart"></div>
@@ -138,8 +139,25 @@
                     </div>
                 </div>
             </div>
-            <div class=" w-full border-2 border-gray-300 rounded bg-white">
-                <div>Attack Progression</div>
+            <div class="p-2  w-full border-2 border-gray-300 rounded bg-white">
+                <h1 class="font-semibold text-gray-800">Attack Progression</h1>
+                <div class="flex flex-col">
+                    <h2 class="py-2 text-gray-700">Messages</h2>
+                    <div class="flex gap-4 items-center justify-center mx-auto px-2 ">
+                        <div class="flex flex-col ">
+                            <span class="text-blue-700 font-semibold text-lg ">52</span>
+                            <span class="text-sm  text-gray-600">Pre Delivery Protected</span>
+                        </div>
+                        <div class="flex flex-col ">
+                            <span class="text-blue-500 font-semibold text-lg ">23</span>
+                            <span class="text-sm  text-gray-600">Post Delivery Protected</span>
+                        </div>
+                        <div class="flex flex-col ">
+                            <span class="text-red-600 font-semibold text-lg ">7</span>
+                            <span class="text-sm  text-gray-600">Potentially Exposed </span>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -245,10 +263,10 @@
         ]);
 
         var options = {
-            legend: { position: 'none' } ,
+            legend: { position: 'none' },
             // title: 'Population of Largest U.S. Cities',
-            chartArea: { width: '100%' , left: '20%'},
-            
+            chartArea: { width: '100%', left: '20%' },
+
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('malware_chart'));
@@ -264,30 +282,69 @@
     google.charts.load('current', { packages: ['corechart', 'bar'] });
     google.charts.setOnLoadCallback(techniquesChart);
 
-     function techniquesChart() {
+    function techniquesChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Techniques', 'Volume'],
-          ['Geofencing', 23],
-          ['Social Engineering', 45],
-          ['sandbox Evasion', 65],
-          ['JavaScript', 33],
-          ['HTA', 34],
-          ['HTA', 99],
+            ['Techniques', 'Volume'],
+            ['Geofencing', 23],
+            ['Social Engineering', 45],
+            ['sandbox Evasion', 65],
+            ['JavaScript', 33],
+            ['HTA', 34],
+            ['HTA', 99],
         ]);
 
         var options = {
-        legend: { position: 'none' } ,
-          chartArea: { width: '100%', left: '30%' },
-          hAxis: {
-            title: 'Volume',
-            minValue: 0
-          },
-          bars: 'horizontal'
+            legend: { position: 'none' },
+            chartArea: { width: '100%', left: '30%' },
+            hAxis: {
+                title: 'Volume',
+                minValue: 0
+            },
+            bars: 'horizontal'
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('techniques_chart'));
         chart.draw(data, options);
-      }
+    }
     google.charts.load('current', { packages: ['corechart', 'bar'] });
+
+
+
+
+
+
+
+    // message progression data 
+
+    const progressionData = {
+        preProtected: 52,
+        postProtected: 6,
+        exposed: 7
+    };
+
+    // Calculate total
+    const total = progressionData.preProtected + progressionData.postProtected + progressionData.exposed;
+
+    // Calculate percentages
+    const preProtectedPercentage = (progressionData.preProtected / total) * 100;
+    const postProtectedPercentage = (progressionData.postProtected / total) * 100;
+    const exposedPercentage = (progressionData.exposed / total) * 100;
+
+    // Update HTML elements with dynamic progressionData
+    document.getElementById('pre-protected').innerText = progressionData.preProtected;
+    document.getElementById('post-protected').innerText = progressionData.postProtected;
+    document.getElementById('exposed').innerText = progressionData.exposed;
+
+    // Update bar segments width
+    document.getElementById('pre-delivery').style.width = preProtectedPercentage + '%';
+    document.getElementById('post-delivery').style.width = postProtectedPercentage + '%';
+    document.getElementById('exposed-segment').style.width = exposedPercentage + '%';
+
+
+
+
+
+
+    
 </script>
 {% endblock content %}

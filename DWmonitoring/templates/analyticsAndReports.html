@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Analytics And Reports {% endblock title %}
+
+{% block header %}
+<header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
+    <a href="{% url 'threat-actor-profile'%}" class="text-xl font-extrabold text-gray-700">
+        <div class="flex items-center gap-2 "> <img class="text-gray-300" src="/static/images/analytics-and-reports.png"
+                height="32" width="32" alt="overview"> Analytics and <span class="text-red-600"> Reports </span> </div>
+    </a>
+    <div class="relative flex gap-4 px-4">
+        <!-- <a href="{% url 'notifications' %}"
+          class="w-full rounded-md  border-gray-200{% if request.path == '/notifications' %} border-b-2 border-red-600 {% endif %} flex justify-center items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50">
+            <path
+              d="M 25 0 C 22.800781 0 21 1.800781 21 4 C 21 4.515625 21.101563 5.015625 21.28125 5.46875 C 15.65625 6.929688 12 11.816406 12 18 C 12 25.832031 10.078125 29.398438 8.25 31.40625 C 7.335938 32.410156 6.433594 33.019531 5.65625 33.59375 C 5.265625 33.878906 4.910156 34.164063 4.59375 34.53125 C 4.277344 34.898438 4 35.421875 4 36 C 4 37.375 4.84375 38.542969 6.03125 39.3125 C 7.21875 40.082031 8.777344 40.578125 10.65625 40.96875 C 13.09375 41.472656 16.101563 41.738281 19.40625 41.875 C 19.15625 42.539063 19 43.253906 19 44 C 19 47.300781 21.699219 50 25 50 C 28.300781 50 31 47.300781 31 44 C 31 43.25 30.847656 42.535156 30.59375 41.875 C 33.898438 41.738281 36.90625 41.472656 39.34375 40.96875 C 41.222656 40.578125 42.78125 40.082031 43.96875 39.3125 C 45.15625 38.542969 46 37.375 46 36 C 46 35.421875 45.722656 34.898438 45.40625 34.53125 C 45.089844 34.164063 44.734375 33.878906 44.34375 33.59375 C 43.566406 33.019531 42.664063 32.410156 41.75 31.40625 C 39.921875 29.398438 38 25.832031 38 18 C 38 11.820313 34.335938 6.9375 28.71875 5.46875 C 28.898438 5.015625 29 4.515625 29 4 C 29 1.800781 27.199219 0 25 0 Z M 25 2 C 26.117188 2 27 2.882813 27 4 C 27 5.117188 26.117188 6 25 6 C 23.882813 6 23 5.117188 23 4 C 23 2.882813 23.882813 2 25 2 Z M 27.34375 7.1875 C 32.675781 8.136719 36 12.257813 36 18 C 36 26.167969 38.078125 30.363281 40.25 32.75 C 41.335938 33.941406 42.433594 34.6875 43.15625 35.21875 C 43.515625 35.484375 43.785156 35.707031 43.90625 35.84375 C 44.027344 35.980469 44 35.96875 44 36 C 44 36.625 43.710938 37.082031 42.875 37.625 C 42.039063 38.167969 40.679688 38.671875 38.9375 39.03125 C 35.453125 39.753906 30.492188 40 25 40 C 19.507813 40 14.546875 39.753906 11.0625 39.03125 C 9.320313 38.671875 7.960938 38.167969 7.125 37.625 C 6.289063 37.082031 6 36.625 6 36 C 6 35.96875 5.972656 35.980469 6.09375 35.84375 C 6.214844 35.707031 6.484375 35.484375 6.84375 35.21875 C 7.566406 34.6875 8.664063 33.941406 9.75 32.75 C 11.921875 30.363281 14 26.167969 14 18 C 14 12.261719 17.328125 8.171875 22.65625 7.21875 C 23.320313 7.707031 24.121094 8 25 8 C 25.886719 8 26.679688 7.683594 27.34375 7.1875 Z M 21.5625 41.9375 C 22.683594 41.960938 23.824219 42 25 42 C 26.175781 42 27.316406 41.960938 28.4375 41.9375 C 28.792969 42.539063 29 43.25 29 44 C 29 46.222656 27.222656 48 25 48 C 22.777344 48 21 46.222656 21 44 C 21 43.242188 21.199219 42.539063 21.5625 41.9375 Z">
+            </path>
+          </svg>
+        </a> -->
+
+
+        <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon">
+        <button
+            class="hidden md:block border-2 border-gray-400 bg-gray-100 rounded-full p-2 {% if request.path == '/profile' %} border-red-600 {% endif %}"
+            onclick="toggleDropdown('profileDropdown')">
+            <img height="20" width="20" src="https://img.icons8.com/?size=100&id=fJ7hcfUGpKG7&format=png&color=000000"
+                alt="profile " />
+        </button>
+
+        <div id="profileDropdown"
+            class="hidden absolute right-0 mt-14 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1">
+            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+            <button onclick="showPopUp()"
+                class="w-full text-left block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</button>
+        </div>
+        <!-- menu for mobile view -->
+        <div class="md:hidden block  bg-gray-100 rounded-full p-2  z-50">
+            <input id="checkbox2" type="checkbox" class="hidden">
+            <label class="toggle toggle2" for="checkbox2" onclick="toggleSidebar()">
+                <div id="bar4" class="bars"></div>
+                <div id="bar5" class="bars"></div>
+                <div id="bar6" class="bars"></div>
+            </label>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block content %}
+
+<main class="mt-3 ">
+    <div class="text-gray-600  text-center px-8 mb-8"> Here, you'll find comprehensive insights and detailed reports
+        generated from our continuous monitoring of dark web activities. Explore various metrics, trends, and detailed
+        reports to gain a deeper understanding of the dark web landscape and ensure your organization's security. </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <!-- Summary of Key Metrics -->
+        <div class="p-4 bg-gray-200 rounded-lg border-2 border-gray-400 flex flex-col gap-2">
+            <h3 class="text-xl font-semibold mb-2">Key Metrics</h3>
+            <p>Number of Threats Detected: <span class="font-bold  text-red-600 ">123</span></p>
+            <p>Recent Alerts: <span class="font-bold text-red-600">5</span></p>
+            <p> Domain Leaks: <span class="font-bold text-red-600">9</span></p>
+            <p> Financial Card Leaks: <span class="font-bold text-red-600">10</span></p>
+            <p> PII Leaks : <span class="font-bold text-red-600">10</span></p>
+        </div>
+
+        <div class="p-4 bg-gray-200 rounded-lg border-2 border-gray-400">
+            <h3 class="text-xl font-semibold mb-2">Threat Analysis</h3>
+            <canvas id="trendChart"></canvas>
+        </div>
+        <div class="p-4 bg-gray-200 rounded-lg border-2 border-gray-400 shadow">
+            <h3 class="text-xl font-semibold mb-2">Top Vulnerability Categories</h3>
+            <canvas id="vulnerabilityCategoriesChart"></canvas>
+        </div>
+    </div>
+
+
+    <!-- Export to PDF -->
+    <div class="mt-4 flex justify-between w-full bg-white text-center  p-4 "> 
+        <p>Access your reports offline! Click the button below to download a PDF containing comprehensive reports and analysis.</p>
+        <button class="border-2 border-gray-400 text-gray-800 px-6 py-2 w-fit rounded-md">Export</button>
+    </div>
+
+
+    <div class="mb-6 mt-2 px-4 w-full md:w-5/6">
+        <h2 class="text-2xl font-semibold mb-4"><span class="text-red-700">Alerts</span> and Notifications</h2>
+        <div class="p-4 bg-gray-200 rounded border-2 border-red-300  shadow">
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">Recent Alerts</h3>
+            <div class=" overflow-y-auto  max-h-56">
+                <ul class="list-disc list-inside">
+                    <li class="text-gray-600 text-sm">
+                        <strong>Credential Leak Detected</strong>: User credentials for multiple accounts have been
+                        found on a dark web forum. Immediate password resets are recommended.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Phishing Campaign Identified</strong>: A new phishing campaign targeting employees has
+                        been detected. Emails containing malicious links are being sent. Ensure all staff are aware and
+                        cautious.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Ransomware Threat</strong>: A ransomware variant has been detected in the network
+                        traffic. Urgent action is required to isolate affected systems and prevent data encryption.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Data Breach Notification</strong>: Sensitive customer data has been identified on a dark
+                        web marketplace. An investigation is underway to determine the source of the breach.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Malware Infection</strong>: A malicious software infection has been detected on several
+                        devices within the organization. Conduct a thorough scan and clean affected systems.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Suspicious Login Activity</strong>: Multiple failed login attempts from an unknown IP
+                        address have been detected on the admin portal. Verify access logs and enforce multi-factor
+                        authentication.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Insider Threat Detected</strong>: Unusual data access patterns from an internal user
+                        account have been observed. Review the user's activity and permissions immediately.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Unpatched Vulnerability</strong>: A critical vulnerability in the web server software
+                        has been identified. Patch the system as soon as possible to prevent exploitation.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Suspicious File Upload</strong>: A potentially harmful file has been uploaded to the
+                        company's file-sharing system. Investigate the source and content of the file.
+                    </li>
+                    <li class="text-gray-600 text-sm">
+                        <strong>Dark Web Mention</strong>: The company's proprietary information has been mentioned in a
+                        dark web forum. Monitor the situation closely and assess potential risks.
+                    </li class="text-gray-600 text-sm">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <div class="text-2xl font-bold  mb-4 px-6 text-gray-800 "> <span class="text-red-600">Risk </span> Assessment
+        </div>
+        <div class="p-4 bg-gray-200 rounded border-2 border-gray-400 shadow">
+            <h3 class="text-xl font-semibold mb-2 text-red-700 ">Vulnerability Analysis</h3>
+            <p class="texg-gray-700">Identified and assessed vulnerabilities within your organization. The analysis
+                includes details on the affected systems, and recommended actions to mitigate these risks.</p>
+
+            <div class="overflow-auto max-h-56  rounded my-2 ">
+                <table class="min-w-full bg-gray-100">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit  underline ">Vulnerability ID</th>
+                            <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit   underline ">Description</th>
+                            <!-- <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit   underline ">Severity</th> -->
+                            <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit   underline ">Affected Systems</th>
+                            <th class="px-4 py-2 sticky top-0 bg-gray-100 z-10 w-fit   underline ">Recommended Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm ">
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-001</td>
+                            <td class="border px-4 py-2">SQL Injection in Customer Database</td>
+                            <!-- <td class="border px-4 py-2 text-red-500">High</td> -->
+                            <td class="border px-4 py-2">Customer Portal</td>
+                            <td class="border px-4 py-2">Sanitize inputs, use prepared statements, and apply database
+                                patches.</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-002</td>
+                            <td class="border px-4 py-2">Cross-Site Scripting (XSS)</td>
+                            <!-- <td class="border px-4 py-2 text-orange-500">Medium</td> -->
+                            <td class="border px-4 py-2">Public Website</td>
+                            <td class="border px-4 py-2">Implement input validation and output encoding.</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-003</td>
+                            <td class="border px-4 py-2">Outdated Software Versions</td>
+                            <!-- <td class="border px-4 py-2 text-yellow-500">Low</td> -->
+                            <td class="border px-4 py-2">Internal Servers</td>
+                            <td class="border px-4 py-2">Update to the latest software versions and apply security
+                                patches.</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-004</td>
+                            <td class="border px-4 py-2">Weak Password Policies</td>
+                            <!-- <td class="border px-4 py-2 text-red-500">High</td> -->
+                            <td class="border px-4 py-2">Corporate Network</td>
+                            <td class="border px-4 py-2">Enforce strong password policies and implement multi-factor
+                                authentication (MFA).</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="border px-4 py-2">VULN-2024-005</td>
+                            <td class="border px-4 py-2">Unsecured API Endpoints</td>
+                            <!-- <td class="border px-4 py-2 text-orange-500">Medium</td> -->
+                            <td class="border px-4 py-2">Mobile Application</td>
+                            <td class="border px-4 py-2">Implement proper authentication and authorization mechanisms
+                                for APIs.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="my-6">
+                <h3 class="text-xl font-semibold mb-2  text-red-700">Risk Score and Mitigation Plan</h3>
+                <p class="text-gray-700 ">Based on the identified vulnerabilities, we have calculated a risk score to
+                    help prioritize mitigation efforts. The following plan outlines the recommended actions to address
+                    the most critical vulnerabilities:</p>
+                <ul class="list-disc list-inside text-gray-700 px-4 py-2">
+                    <li>Immediate attention to SQL Injection and Weak Password Policies due to their high severity.</li>
+                    <li>Schedule regular updates and patch management for software versions to reduce low-severity
+                        risks.</li>
+                    <li>Implement security best practices for API endpoints and web applications to prevent XSS and
+                        other medium-severity threats.</li>
+                    <li>Continuous monitoring and reassessment to ensure new vulnerabilities are promptly identified and
+                        mitigated.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</main>
+<script>
+    var ctx = document.getElementById('trendChart').getContext('2d');
+    var trendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Threats Detected',
+                data: [12, 19, 3, 5, 2, 3, 7, 6, 8, 13, 21, 7],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            fill: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Top Vulnerability Categories
+
+
+    var ctx3 = document.getElementById('vulnerabilityCategoriesChart').getContext('2d');
+    var vulnerabilityCategoriesChart = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['SQL Injection', 'Cross-Site Scripting', 'Outdated Software', 'Weak Passwords', 'Unsecured APIs'],
+            datasets: [{
+                label: 'Vulnerabilities',
+                data:  [7, 12, 5, 10, 8],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            label:false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock content %}
