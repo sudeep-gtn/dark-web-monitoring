@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Threat Intelligence Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Domain IP</th>
+                <th>Severity Level</th>
+                <th>Source IP</th>
+                <th>Source Domain</th>
+                <th>Breach Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for domain in domains %}
+            <tr>
+                <td>{{ domain.name }}</td>
+                <td>{{ domain.domain_ip }}</td>
+                <td>{{ domain.severity_level }}</td>
+                <td>{{ domain.source_ip }}</td>
+                <td>{{ domain.source_domain }}</td>
+                <td>{{ domain.breach_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
