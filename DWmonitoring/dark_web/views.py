@@ -282,4 +282,10 @@ class AnalyticsAndReports(LoginRequiredMixin, View):
     login_url = "login"
 
     def get(self, request):
-        return render( request,'analyticsAndReports.html')
+        breach_dates = ['2023-01-15', '2023-02-10', '2023-03-05', '2023-04-25', '2023-05-12', '2023-06-08']
+        breach_counts = [1, 2, 1, 1, 1, 2]
+        context = {
+            'breach_dates': breach_dates,
+            'breach_counts': breach_counts,
+        }        
+        return render( request,'analyticsAndReports.html', {'context':context})
