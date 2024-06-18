@@ -302,6 +302,6 @@ class AnalyticsAndReports(LoginRequiredMixin, View):
         return render( request,'analyticsAndReports.html', {'context':context})
 
 
-class LiveThreatMap(View):
+class LiveThreatMap(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, "liveThreatMap.html")
