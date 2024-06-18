@@ -24,13 +24,12 @@
       </div>
     </div>
 
-
     <div class="border-2 border-red-200 min-h-[300px] xl:w-1/2 w-full flex-col bg-white shadow-lg p-4 rounded-lg flex mx-auto my-4">
       <div class="flex gap-4 flex-col lg:flex-row items-center pb-4">
         <h1 class="font-semibold text-left text-lg">Data Leak Source</h1>
         <select class="px-2 py-1 font-medium rounded-lg border-2 border-red-400 text-sm bg-white outline-none"
-          name="cards">
-          <option selected value="">Select BIN</option>
+          name="domains">
+          <option selected value="">Select Domain</option>
         </select>
       </div>
       <div class="flex gap-4 flex-col lg:flex-row items-center justify-center w-full">
@@ -107,46 +106,46 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // Get the JSON data from the context
-    const leakSources = JSON.parse('{{ leak_sources_json|escapejs }}');
+    const reversedLeakSources = JSON.parse('{{ reversed_leak_sources_json|escapejs }}');
     
-    const selectElement = document.querySelector('select[name="cards"]');
+    const selectElement = document.querySelector('select[name="domains"]');
     const leakCountElement = document.getElementById('leak-count');
     const leakCountTextElement = document.getElementById('leak-count-text');
     const list = document.getElementById('leak-source-list');
 
     // Populate select options
-    Object.keys(leakSources).forEach(bin => {
+    Object.keys(reversedLeakSources).forEach(domain => {
       const option = document.createElement('option');
-      option.value = bin;
-      option.textContent = bin;
+      option.value = domain;
+      option.textContent = domain;
       selectElement.appendChild(option);
     });
 
-    function updateLeakSources(bin = null) {
+    function updateLeakSources(domain = null) {
       // Clear the current list
       list.innerHTML = '';
 
-      let domains = [];
-      if (bin && leakSources[bin]) {
-        domains = leakSources[bin];
+      let bins = [];
+      if (domain && reversedLeakSources[domain]) {
+        bins = reversedLeakSources[domain];
       } else {
-        // Aggregate all domains if no BIN is selected
-        Object.values(leakSources).forEach(binSources => {
-          domains = domains.concat(binSources);
+        // Aggregate all bins if no domain is selected
+        Object.values(reversedLeakSources).forEach(domainSources => {
+          bins = bins.concat(domainSources);
         });
       }
 
       // Update the leak count
-      const uniqueDomains = [...new Set(domains.map(source => source.domain))];
-      const leakCount = uniqueDomains.length;
+      const uniqueBins = [...new Set(bins.map(source => source.bin_number))];
+      const leakCount = uniqueBins.length;
       leakCountElement.textContent = leakCount;
       leakCountTextElement.textContent = leakCount;
 
       // Populate the list with the associated leak sources
-      domains.forEach(source => {
+      bins.forEach(source => {
         const listItem = document.createElement('li');
         listItem.className = 'flex items-center gap-2 text-sm';
-        listItem.innerHTML = `<span class="text-sm border border-red-400 bg-red-200 px-2 rounded-md">${source.count}</span> ${source.domain}`;
+        listItem.innerHTML = `<span class="text-sm border border-red-400 bg-red-200 px-2 rounded-md">${source.count}</span> ${source.bin_number}`;
         list.appendChild(listItem);
       });
     }
@@ -155,7 +154,7 @@
       updateLeakSources(this.value);
     });
 
-    // Initial load with no BIN selected
+    // Initial load with no domain selected
     updateLeakSources();
   });
 </script>

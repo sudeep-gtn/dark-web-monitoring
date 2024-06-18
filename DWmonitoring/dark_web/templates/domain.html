@@ -73,8 +73,7 @@
           <tr>
             <th class="w-fit py-2 px-2 border-r-2 border-gray-400 uppercase font-semibold text-sm" rowspan="2">Name</th>
             <th class="w-fit py-2 px-2 border-r-2 border-gray-400 uppercase font-semibold text-sm" rowspan="2">IP</th>
-            <th class="w-fit py-2 px-2 border-r-2 border-gray-400 uppercase font-semibold text-sm" rowspan="2">Severity
-              Level</th>
+            <th class="w-fit py-2 px-2 border-r-2 border-gray-400 uppercase font-semibold text-sm" rowspan="2">Breach Date</th>
             <th class="w-fit py-2 px-2 mx-auto border-b-2 border-gray-400 uppercase font-semibold text-sm" colspan="2">
               Sources</th>
           </tr>
@@ -93,17 +92,7 @@
             <td class="text-center px-4 py-3">{{domain.name}}</td>
             <td class="text-center px-4 py-3">{{domain.domain_ip}}.</td>
             <td class="px-4 py-3 text-center">
-              <span class="px-2 text-xs border rounded-md flex items-center w-fit mx-auto
-                  {% if domain.severity_level == 'Low' %}
-                    bg-orange-200 border-orange-400
-                  {% elif domain.severity_level == 'Medium' %}
-                    bg-yellow-200 border-yellow-500
-                  {% elif domain.severity_level == 'High' %}
-                    bg-red-200 border-red-500
-                  {% endif %}
-                ">
-                {{ domain.severity_level }}
-              </span>
+                {{ domain.breach_date }}
             </td>
             <td class="px-4 py-3 text-center">{{domain.source_ip}}</td>
             <td class="px-4 py-3 text-center">{{domain.source_domain}}</td>

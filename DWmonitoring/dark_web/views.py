@@ -96,28 +96,28 @@ class CardsView(LoginRequiredMixin, View):
         unique_card_bin_numbers = set(card_bin_numbers)
         unique_card_length = len(unique_card_bin_numbers)
         
-        # Prepare the leakSources data
-        leak_sources = {}
+        # Prepare the leakSources data reversed
+        reversed_leak_sources = {}
         for card in cards:
             bin_number = card.card_bin_number
             domain = card.breach_source_domain
-            if bin_number not in leak_sources:
-                leak_sources[bin_number] = []
-            # Count occurrences of each domain for a bin
-            domain_exists = next((item for item in leak_sources[bin_number] if item["domain"] == domain), None)
-            if domain_exists:
-                domain_exists["count"] += 1
+            if domain not in reversed_leak_sources:
+                reversed_leak_sources[domain] = []
+            # Count occurrences of each bin number for a domain
+            bin_exists = next((item for item in reversed_leak_sources[domain] if item["bin_number"] == bin_number), None)
+            if bin_exists:
+                bin_exists["count"] += 1
             else:
-                leak_sources[bin_number].append({"count": 1, "domain": domain})
+                reversed_leak_sources[domain].append({"count": 1, "bin_number": bin_number})
         
-        leak_sources_json = json.dumps(leak_sources)
+        reversed_leak_sources_json = json.dumps(reversed_leak_sources)
 
         return render(request, "cards.html", {
             'cards': cards,
             'card_length': card_length,
             'unique_card_length': unique_card_length,
             'unique_card_bin_numbers': unique_card_bin_numbers,
-            'leak_sources_json': leak_sources_json
+            'reversed_leak_sources_json': reversed_leak_sources_json
         })
 
 class EmailView(LoginRequiredMixin, View):
@@ -200,7 +200,6 @@ class PiiExposureView(LoginRequiredMixin, View):
             'leak_sources_json': leak_sources_json
         })
 
-
 class Overview(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
@@ -209,9 +208,6 @@ class Overview(LoginRequiredMixin, View):
 class ThreatIntelligence(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
-
-
-
         news = CyberNews()
         
         malware_news = news.get_news('malware')
