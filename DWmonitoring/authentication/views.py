@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import CustomUser
+from .models import CustomUser, UserLoginHistory
 from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
@@ -119,10 +119,18 @@ class VerifyOTP(View):
         else:
             return HttpResponse("No registered email found in session")
 
+
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"
+    
     def get(self, request):
-        return render(request, "profile.html")
+        user = request.user
+        login_history = UserLoginHistory.objects.filter(user=user).order_by('-timestamp')
+        context = {
+            'login_history': login_history,
+        }
+        return render(request, "profile.html", context)
+
 
 class SendOTPFromProfile(View):
     def post(self,request):

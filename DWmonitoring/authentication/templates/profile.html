@@ -5,7 +5,8 @@ Profile
 {% endblock title %}
 
 {% block content %}
-<div class="bg-white text-gray-900 p-8 rounded-lg shadow-lg mx-2 my-2 ">
+<div class="flex">
+<div class="bg-white text-gray-900 p-8 rounded-lg shadow-lg mx-2 my-2 w-1/2 ">
     <h1 class="text-3xl font-bold mb-4">Account Information</h1>
     <hr class="border-t border-gray-300 my-6">
 
@@ -146,6 +147,28 @@ Profile
         </div>
         <p class="font-semibold font-mono">111.111.211.114</p>
     </div> -->
+</div>
+<div class="bg-white text-gray-900 p-8 rounded-lg shadow-lg mx-2 my-2 w-1/2">
+    <h1 class="text-xl font-bold mb-4">Audit Logs/Login History</h1>
+    <div class="overflow-x-auto">
+        <div class="bg-gray-100 rounded-lg shadow-md">
+            <div class="px-4 py-2 border-b border-gray-300">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center font-bold">Date-Time</div>
+                    <div class="text-center font-bold">IP Address</div>
+                </div>
+            </div>
+            {% for entry in login_history %}
+                <div class="px-4 py-2 border-b border-gray-300">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">{{ entry.timestamp }}</div>
+                        <div class="text-center">{{ entry.ip_address }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 </div>
 <script>
     function showEditNamePopUp() {

@@ -4,7 +4,7 @@
 {% block title %} Live Threat Map {% endblock title %}
 
 {% block header %}
-<header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
+<!-- <header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
     <a href="{% url 'threat-actor-profile'%}" class="text-xl font-extrabold text-gray-700">
         <div class="flex items-center gap-2 "> <img class="text-gray-300" src="/static/images/analytics-and-reports.png"
                 height="32" width="32" alt="overview"> Live Threat <span class="text-red-600"> Map </span> </div>
@@ -34,13 +34,14 @@
             </label>
         </div>
     </div>
-</header>
+</header> -->
+
 {% endblock header %}
 
 {% block content %}
 
-<main class="overflow-x-hidden">
-    <iframe src="https://threatmap.checkpoint.com/"  class="w-[1300px] h-screen" frameborder="0"></iframe>
+<main class="">
+    <iframe src="https://threatmap.checkpoint.com/"  class="w-full h-screen" frameborder="0"></iframe>
 </main>
 
 {% endblock content %}
