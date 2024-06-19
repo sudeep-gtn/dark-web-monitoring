@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-from .models import Card, Domain, BlackMarket, StealerLogs, PIIExposure, calculate_organization_health
+from .models import Card, Domain, BlackMarket, Notification, StealerLogs, PIIExposure, calculate_organization_health
 import json
 from django.db.models import Count
 import requests
@@ -106,9 +106,11 @@ class OrganizationDetailsView(LoginRequiredMixin, View):
 class NotificationsAlertView(LoginRequiredMixin, View):
     login_url = "login"
     
-    def get(self, request):     
-        return render(request, "notification-alerts.html")
-
+    def get(self, request):    
+        notifications = Notification.objects.all().order_by('-timestamp')
+        notifications_length = len(notifications)
+        return render(request, 'notificationsAlert.html', {'notifications': notifications, 'notifications_length': notifications_length})
+ 
 
 class BlackMarketView(LoginRequiredMixin, View):
     login_url = "login"
@@ -160,7 +162,11 @@ class PiiExposureView(LoginRequiredMixin, View):
 class Overview(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
-        return render(request, "overview.html")
+        health_score = calculate_organization_health()
+        context = {
+            'health_score': health_score
+        }
+        return render(request, "overview.html", context)
         
 class ThreatIntelligence(LoginRequiredMixin, View):
     login_url = "login"
