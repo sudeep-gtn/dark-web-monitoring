@@ -3,7 +3,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from .models import Card, Domain, BlackMarket, Notification, StealerLogs, PIIExposure, calculate_organization_health
 import json
-from django.db.models import Count
 import requests
 from collections import defaultdict
 from cybernews.cybernews import CyberNews
