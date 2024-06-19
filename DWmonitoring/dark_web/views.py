@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-from .models import Card, Domain, BlackMarket, Notification, StealerLogs, PIIExposure, calculate_organization_health
+from .models import Card, Domain, BlackMarket, Notification, StealerLogs, PIIExposure, Ticket, calculate_organization_health
 import json
 import requests
 from collections import defaultdict
@@ -236,8 +236,17 @@ class IncidentResponse(LoginRequiredMixin, View):
     login_url = "login"
 
     def get(self, request):
-        return render(request, 'incidentResponse.html')
+        tickets = Ticket.objects.all()
+        return render(request, 'incidentResponse.html', {'tickets': tickets})
 
+    def post(self, request):
+        ticket_title = request.POST.get('ticket_title')
+        ticket_description = request.POST.get('ticket_description')
+
+        new_ticket = Ticket(ticket_title=ticket_title, ticket_description=ticket_description)
+        new_ticket.save()
+
+        return redirect('incident-response')
 
     
 class AnalyticsAndReports(LoginRequiredMixin, View):

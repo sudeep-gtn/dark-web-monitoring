@@ -81,3 +81,10 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.message
+
+class Ticket(models.Model):
+    ticket_title = models.CharField(max_length=255, null=True, blank=True)
+    ticket_description = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.ticket_title
