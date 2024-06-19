@@ -57,7 +57,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = 'user'
         verbose_name_plural = 'users'
 
-
 class UserLoginHistory(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     ip_address = models.GenericIPAddressField()
