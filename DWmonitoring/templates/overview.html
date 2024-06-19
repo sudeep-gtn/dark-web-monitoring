@@ -50,7 +50,7 @@
         <!-- gauge chart -->
         <div
             class="shadow-md flex flex-col items-center justify-center rounded-lg  w-fit h-fit lg:w-[370px] border mx-auto border-gray-400 bg-white lg:h-[440px]">
-            <h1 class="font-semibold text-sm text-gray-600 py-2">Current Threat Level Status </h1>
+            <h1 class="font-semibold text-sm text-gray-600 py-2"> Org. Health status </h1>
             <div id="gauge-chart" class="w-[330px] h-[300px] md:h-[300px]"></div>
         </div>
 
@@ -194,7 +194,7 @@
             <canvas id="trendChart"></canvas>
         </div>
         <div class="p-4 bg-white rounded-lg border-2 border-gray-400 shadow">
-            <h3 class="text-lg font-bold mb-2">Top Vulnerability Categories</h3>
+            <h3 class="text-lg font-bold mb-2">Top Data Breach Sources</h3>
             <canvas id="vulnerabilityCategoriesChart"></canvas>
         </div>
     </div>
@@ -305,9 +305,9 @@
     var vulnerabilityCategoriesChart = new Chart(ctx3, {
         type: 'bar',
         data: {
-            labels: ['SQL Injection', 'Cross-Site Scripting', 'Outdated Software', 'Weak Passwords', 'Unsecured APIs'],
+            labels: ['google.com', 'telegram.org', 'facebook.com', 'stackoverflow.com', 'microsoft.com'],
             datasets: [{
-                label: 'Vulnerabilities',
+                label: 'breaches',
                 data: [7, 12, 5, 10, 8],
                 backgroundColor: 'rgba(153, 102, 255, 0.2)',
                 borderColor: 'rgba(153, 102, 255, 1)',

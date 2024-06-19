@@ -55,16 +55,17 @@
         <section id="raise-ticket" class="rounded-lg p-6">
             <button onclick="showForm()" class="bg-gray-300 p-2 rounded  mb-4">Raise Ticket</button>
             <div id="ticketForm" class="hidden">
-                <form action="#" method="POST" class="space-y-4">
+                <form method="POST" class="space-y-4">
+                    {% csrf_token %}
                     <div>
-                        <label for="ticket-title" class="block text-sm font-medium text-gray-700">Ticket Title</label>
-                        <input type="text" id="ticket-title" name="ticket-title"
+                        <label for="ticket_title" class="block text-sm font-medium text-gray-700">Ticket Title</label>
+                        <input type="text" id="ticket_title" name="ticket_title"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             required>
                     </div>
                     <div>
-                        <label for="ticket-description" class="block text-sm font-medium text-gray-700">Description</label>
-                        <textarea id="ticket-description" name="ticket-description" rows="3"
+                        <label for="ticket_description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea id="ticket_description" name="ticket_description" rows="3"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             required></textarea>
                     </div>
@@ -75,6 +76,25 @@
                     </div>
                 </form>
             </div>
+
+            <!-- {% if user.is_staff %}
+            <div class="mt-8">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Ticket Listing</h2>
+                <ul class="divide-y divide-gray-200">
+                    {% for ticket in tickets %}
+                    <li class="py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-medium text-gray-900">{{ ticket.ticket_title }}</h3>
+                                <p class="text-gray-500">{{ ticket.ticket_description }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div> -->
+        {% endif %}
+        
         </section>
         <div>
             <h1 class="mx-6 text-lg font-semibold">Integration With Security Infrastructure - SIEM (Available On Demand)</h1>
