@@ -51,75 +51,97 @@
 {% endblock header %}
 
 {% block content %}
-    <div class="container mx-auto">
-        <section id="raise-ticket" class="rounded-lg p-6">
-            <button onclick="showForm()" class="bg-gray-300 p-2 rounded  mb-4">Raise Ticket</button>
-            <div id="ticketForm" class="hidden">
-                <form method="POST" class="space-y-4">
-                    {% csrf_token %}
-                    <div>
-                        <label for="ticket_title" class="block text-sm font-medium text-gray-700">Ticket Title</label>
-                        <input type="text" id="ticket_title" name="ticket_title"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            required>
-                    </div>
-                    <div>
-                        <label for="ticket_description" class="block text-sm font-medium text-gray-700">Description</label>
-                        <textarea id="ticket_description" name="ticket_description" rows="3"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            required></textarea>
-                    </div>
-                    <div>
-                        <button type="submit"
-                            class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Raise
-                            Ticket</button>
-                    </div>
-                </form>
-            </div>
+<div class="container mx-auto">
+    <section id="raise-ticket" class="rounded-lg p-6">
+        <button onclick="showForm()" class="bg-gray-300 p-2 rounded  mb-4">Raise Ticket</button>
+        <div id="ticketForm" class="hidden">
+            <form method="POST" class="space-y-4" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <label for="ticket_title" class="block text-sm font-medium text-gray-700">Ticket Title</label>
+                    <input type="text" id="ticket_title" name="ticket_title"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        required>
+                </div>
+                <div>
+                    <label for="ticket_description" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="ticket_description" name="ticket_description" rows="3"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        required></textarea>
+                </div>
+                <div>
+                    <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+                    <input type="file" id="image" name="image"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <button type="submit"
+                        class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Raise Ticket
+                    </button>
+                </div>
+            </form>
+        </div>
 
-            <!-- {% if user.is_staff %}
-            <div class="mt-8">
-                <h2 class="text-xl font-bold text-gray-900 mb-4">Ticket Listing</h2>
-                <ul class="divide-y divide-gray-200">
-                    {% for ticket in tickets %}
-                    <li class="py-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="flex-1">
-                                <h3 class="text-lg font-medium text-gray-900">{{ ticket.ticket_title }}</h3>
-                                <p class="text-gray-500">{{ ticket.ticket_description }}</p>
+        <!-- {% if user.is_staff %}
+        <div class="mt-8">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Ticket Listing</h2>
+            <ul class="divide-y divide-gray-200">
+                {% for ticket in tickets %}
+                <li class="py-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium text-gray-900">{{ ticket.ticket_title }}</h3>
+                            <p class="text-gray-500">{{ ticket.ticket_description }}</p>
+                            {% if ticket.image %}
+                            <div>
+                                <img src="{{ ticket.image.url }}" alt="Ticket Image" class="max-w-full h-auto">
                             </div>
+                            {% endif %}
                         </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div> -->
-        {% endif %}
-        
-        </section>
-        <div>
-            <h1 class="mx-6 text-lg font-semibold">Integration With Security Infrastructure - SIEM (Available On Demand)</h1>
-            <div class="mx-6 mt-4 flex-col sm:flex sm:flex-row">
-                <p class="mb-2 mr-2 text-justify p-2">SIEM (Security Information and Event Management) is a robust cybersecurity solution that integrates Security Information Management (SIM) and Security Event Management (SEM) functionalities into a unified platform. SIM involves the collection, normalization, and analysis of security data from various sources, such as logs and events from networks, systems, and applications. On the other hand, SEM focuses on real-time monitoring and correlation of security events to detect and respond promptly to potential threats. Together, SIEM enables organizations to gain comprehensive visibility into their IT infrastructure, detect security incidents in real-time, and facilitate effective incident response and forensic investigations. By centralizing security data and providing advanced analytics capabilities, SIEM helps organizations enhance their security posture, comply with regulatory requirements, and mitigate risks effectively.
-                </p>
-                <img src="/static/images/siem.png" alt="SIEM Image" width="700" height="500" class="rounded shadow-lg">
-            </div>
-            <div class="mx-6 mb-4">
-                <a target="_blank" href="https://www.gkavach.com/" class="text-blue-500 text-sm hover:underline">Learn more about SIEM</a>
-            </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %} -->
+
+
+    </section>
+    <div>
+        <h1 class="mx-6 text-lg font-semibold">Integration With Security Infrastructure - SIEM (Available On Demand)
+        </h1>
+        <div class="mx-6 mt-4 flex-col sm:flex sm:flex-row">
+            <p class="mb-2 mr-2 text-justify p-2">SIEM (Security Information and Event Management) is a robust
+                cybersecurity solution that integrates Security Information Management (SIM) and Security Event
+                Management (SEM) functionalities into a unified platform. SIM involves the collection, normalization,
+                and analysis of security data from various sources, such as logs and events from networks, systems, and
+                applications. On the other hand, SEM focuses on real-time monitoring and correlation of security events
+                to detect and respond promptly to potential threats. Together, SIEM enables organizations to gain
+                comprehensive visibility into their IT infrastructure, detect security incidents in real-time, and
+                facilitate effective incident response and forensic investigations. By centralizing security data and
+                providing advanced analytics capabilities, SIEM helps organizations enhance their security posture,
+                comply with regulatory requirements, and mitigate risks effectively.
+            </p>
+            <img src="/static/images/siem.png" alt="SIEM Image" width="700" height="500" class="rounded shadow-lg">
+        </div>
+        <div class="mx-6 mb-4">
+            <a target="_blank" href="https://www.gkavach.com/" class="text-blue-500 text-sm hover:underline">Learn more
+                about SIEM</a>
         </div>
     </div>
+</div>
 
-    <script>
-        function showForm() {
+<script>
+    function showForm() {
         let element = document.getElementById("ticketForm");
 
-            if (element.classList.contains('hidden')) {
-                element.classList.remove('hidden');
-                element.classList.add('block');
-            } else {
-                element.classList.remove('block');
-                element.classList.add('hidden');
-            }
+        if (element.classList.contains('hidden')) {
+            element.classList.remove('hidden');
+            element.classList.add('block');
+        } else {
+            element.classList.remove('block');
+            element.classList.add('hidden');
         }
-    </script>
+    }
+</script>
 {% endblock content %}

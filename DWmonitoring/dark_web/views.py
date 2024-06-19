@@ -7,13 +7,14 @@ import requests
 from collections import defaultdict
 from cybernews.cybernews import CyberNews
 from dateutil import parser
+from django.http import HttpResponse, HttpResponseBadRequest
+from weasyprint import HTML
+from django.template.loader import render_to_string
 
-# Create your views here.
 class DashboardView(LoginRequiredMixin, View):
     login_url = "login"
 
     def get(self, request):
-        # Counts for all instances
         domains_count = Domain.objects.count()
         cards_count = Card.objects.count()
         pii_exposures_count = PIIExposure.objects.count()
@@ -47,7 +48,7 @@ class DomainView(LoginRequiredMixin, View):
             source_domain = domain_obj.source_domain
             if name not in leak_sources:
                 leak_sources[name] = []
-            # Count occurrences of each domain for a bin
+
             domain_exists = next((item for item in leak_sources[name] if item["domain"] == source_domain), None)
             if domain_exists:
                 domain_exists["count"] += 1
@@ -68,14 +69,12 @@ class CardsView(LoginRequiredMixin, View):
         unique_card_bin_numbers = set(card_bin_numbers)
         unique_card_length = len(unique_card_bin_numbers)
         
-        # Prepare the leakSources data reversed
         reversed_leak_sources = {}
         for card in cards:
             bin_number = card.card_bin_number
             domain = card.breach_source_domain
             if domain not in reversed_leak_sources:
                 reversed_leak_sources[domain] = []
-            # Count occurrences of each bin number for a domain
             bin_exists = next((item for item in reversed_leak_sources[domain] if item["bin_number"] == bin_number), None)
             if bin_exists:
                 bin_exists["count"] += 1
@@ -230,24 +229,25 @@ class ThreatActor(LoginRequiredMixin, View):
 
         return render(request, "threatActorProfile.html", {'context':context})
 
-
-
 class IncidentResponse(LoginRequiredMixin, View):
     login_url = "login"
 
     def get(self, request):
-        tickets = Ticket.objects.all()
-        return render(request, 'incidentResponse.html', {'tickets': tickets})
+        return render(request, 'incidentResponse.html')
 
     def post(self, request):
         ticket_title = request.POST.get('ticket_title')
         ticket_description = request.POST.get('ticket_description')
-
-        new_ticket = Ticket(ticket_title=ticket_title, ticket_description=ticket_description)
+        image_file = request.FILES.get('image')
+        
+        new_ticket = Ticket(
+            ticket_title=ticket_title,
+            ticket_description=ticket_description,
+            image=image_file
+            )
         new_ticket.save()
 
         return redirect('incident-response')
-
     
 class AnalyticsAndReports(LoginRequiredMixin, View):
     login_url = "login"
@@ -261,17 +261,10 @@ class AnalyticsAndReports(LoginRequiredMixin, View):
         }        
         return render( request,'analyticsAndReports.html', {'context':context})
 
-
 class LiveThreatMap(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, "liveThreatMap.html")
     
-
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Domain
-from weasyprint import HTML
-from django.template.loader import render_to_string
 
 def generate_report(request):
     # Fetch data from the database
@@ -289,3 +282,19 @@ def generate_report(request):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="report.pdf"'
     return response
+
+class TicketsView(View):
+    def get(self, request):
+        tickets = Ticket.objects.all()
+        return render(request, "tickets.html", {'tickets': tickets})
+    
+    def post(self, request, *args, **kwargs):
+        ticket_id = kwargs.get('ticket_id')
+        try:
+            ticket = Ticket.objects.get(ticket_id=ticket_id)
+        except Ticket.DoesNotExist:
+            return HttpResponseBadRequest("Invalid Ticket ID")
+        
+        ticket.resolved = True
+        ticket.save()
+        return redirect('tickets')

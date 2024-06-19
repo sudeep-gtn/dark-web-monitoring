@@ -67,12 +67,10 @@ class PIIExposure(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.breach_ip} - {self.breach_date}'
-
     
-
 def calculate_organization_health():
     """Calculates the overall organization health status (1-100)."""
-    # Return a static value
+    # Returning a static value
     return 50
 
 class Notification(models.Model):
@@ -83,8 +81,11 @@ class Notification(models.Model):
         return self.message
 
 class Ticket(models.Model):
+    ticket_id = models.AutoField(primary_key=True)
     ticket_title = models.CharField(max_length=255, null=True, blank=True)
     ticket_description = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='ticket_images/', blank=True, null=True)
+    resolved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.ticket_title

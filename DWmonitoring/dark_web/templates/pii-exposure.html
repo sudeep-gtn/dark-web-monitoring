@@ -96,9 +96,6 @@
                         <th
                             class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
                             Threat type</th>
-                        <!-- <th
-                            class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
-                            Severity Level</th> -->
                         <th
                             class="w-fit py-2 px-2 text-gray-600  border-b-2 border-gray-400 text-center uppercase font-semibold ">
                             Source</th>
@@ -117,22 +114,7 @@
                         <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.source_domain}}</td>
                         <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.type_of_data}}</td>
                         <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.threat_type}}</td>
-                        <!-- <td class="text-center text-sm py-2 px-2 w-fit ">
-                            <span class="px-2 text-xs border rounded-md flex items-center w-fit mx-auto
-                    {% if pii_exposure.severity_level == 'Low' %}
-                    bg-yellow-50 border-yellow-400
-                    {% elif pii_exposure.severity_level == 'Medium' %}
-                    bg-yellow-200 border-yellow-500
-                    {% elif pii_exposure.severity_level == 'High' %}
-                    bg-red-200 border-red-500
-                    {% endif %}
-                ">
-                                {{ pii_exposure.severity_level }}
-                            </span>
-                        </td>
-                        <td class="text-center text-sm py-2 px-2 w-fit "><span
-                                class="bg-gray-200 px-2 flex items-center rounded-lg w-fit "> {{pii_exposure.source}}
-                            </span></td> -->
+                        <td class="text-center text-sm py-2 px-2 w-fit ">{{pii_exposure.source}}</td>
                     </tr>
                     {% endfor %}
                     {% else %}
