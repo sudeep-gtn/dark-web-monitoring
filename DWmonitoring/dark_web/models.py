@@ -8,6 +8,8 @@ class Card(models.Model):
     card_holder_name = models.CharField(max_length=40, null=True, blank=True, verbose_name='Card Holder Name')
     issuing_bank = models.CharField(max_length=255, null=True, blank=True, verbose_name='Issuing Bank')
     breach_date = models.DateField(null=True, blank=True, verbose_name='Breach Date')
+    posted_date = models.DateField(auto_now_add=True)
+    
     breach_source = models.CharField(max_length=255, verbose_name='Breach Source')
     last_used_date = models.DateField(null=True, blank=True, verbose_name='Last Used Date')
     breach_source_domain = models.CharField(max_length=255, null=True, blank=True, verbose_name="Breach Source Domain")
@@ -21,6 +23,8 @@ class Domain(models.Model):
     source_ip = models.GenericIPAddressField()
     source_domain = models.TextField()
     breach_date = models.DateField(null=True, blank=True)
+    posted_date = models.DateField(auto_now_add=True)
+
 
     def __str__(self):
         return f'{self.name} - {self.domain_ip}'
@@ -57,6 +61,7 @@ class StealerLogs(models.Model):
 class PIIExposure(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     breach_date = models.DateField(null=True, blank=True)
+    posted_date = models.DateField(auto_now_add=True)
     breach_ip = models.GenericIPAddressField(null=True, blank=True)
     source_domain = models.CharField(max_length=255, null=True, blank=True)
     threat_type = models.CharField(max_length=255, null=True, blank=True)

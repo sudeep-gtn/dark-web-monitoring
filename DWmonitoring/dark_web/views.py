@@ -266,22 +266,41 @@ class LiveThreatMap(LoginRequiredMixin, View):
         return render(request, "liveThreatMap.html")
     
 
+from datetime import datetime
 def generate_report(request):
-    # Fetch data from the database
-    domains = Domain.objects.all()
 
-    print("domain: ", domains)
-    # Render the HTML template with the data
-    html_string = render_to_string('report_template.html', {'domains': domains})
 
-    # Convert the rendered HTML to PDF
-    html = HTML(string=html_string)
-    pdf = html.write_pdf()
+    if request.method == 'POST':
+        filters = request.POST.getlist('filters')
+        date_from = request.POST.get('date_from')
+        date_to = request.POST.get('date_to')
 
-    # Create a response with the PDF
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    return response
+        date_from = datetime.strptime(date_from, '%Y-%m-%d') if date_from else None
+        date_to = datetime.strptime(date_to, '%Y-%m-%d') if date_to else None
+
+
+        print('filters: ', filters)
+        print("date from ", date_from,"date to " , date_to)
+        domains = []
+        # Fetch data from the database
+        if 'domain-leaks' in filters :
+            domains = Domain.objects.all()
+            if date_from and date_to:
+                domains = domains.filter(breach_date__range=(date_from, date_to))
+
+        print("domain with filter: ", domains)
+        # Render the HTML template with the data
+        html_string = render_to_string('report_template.html', {'domains': domains})
+
+        # Convert the rendered HTML to PDF
+        html = HTML(string=html_string)
+        pdf = html.write_pdf()
+
+        # Create a response with the PDF
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+        return response
+    return render('report_template.html')
 
 class TicketsView(View):
     def get(self, request):
