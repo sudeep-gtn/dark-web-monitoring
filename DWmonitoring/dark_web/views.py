@@ -282,15 +282,33 @@ def generate_report(request):
         print('filters: ', filters)
         print("date from ", date_from,"date to " , date_to)
         domains = []
+        cards = []
+        pii = []
         # Fetch data from the database
         if 'domain-leaks' in filters :
             domains = Domain.objects.all()
             if date_from and date_to:
                 domains = domains.filter(breach_date__range=(date_from, date_to))
+        if 'card-leaks' in filters :
+            cards = Card.objects.all()
+            if date_from and date_to:
+                cards = cards.filter(breach_date__range=(date_from, date_to))
+        if 'pii-leaks' in filters :
+            pii = PIIExposure.objects.all()
+            if date_from and date_to:
+                pii = pii.filter(breach_date__range=(date_from, date_to))
 
         print("domain with filter: ", domains)
+        print("cards with filter: ", cards)
+        print("pii with filter: ", pii)
+
+        context= {
+            'domains' : domains,
+            'cards' : cards,
+            'pii' : pii
+        }
         # Render the HTML template with the data
-        html_string = render_to_string('report_template.html', {'domains': domains})
+        html_string = render_to_string('report_template.html', {'context': context})
 
         # Convert the rendered HTML to PDF
         html = HTML(string=html_string)
