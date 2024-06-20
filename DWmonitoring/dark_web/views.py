@@ -233,7 +233,8 @@ class IncidentResponse(LoginRequiredMixin, View):
     login_url = "login"
 
     def get(self, request):
-        return render(request, 'incidentResponse.html')
+        tickets = Ticket.objects.all()
+        return render(request, 'incidentResponse.html', {'tickets': tickets})
 
     def post(self, request):
         ticket_title = request.POST.get('ticket_title')
