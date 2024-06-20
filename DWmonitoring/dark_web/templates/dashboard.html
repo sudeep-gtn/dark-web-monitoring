@@ -124,9 +124,10 @@
         }
     }
     const totalSeverityCounts = {
-        'Low': parseSafe('{{ total_severity_counts.Low | escapejs }}'),
-        'Medium': parseSafe('{{ total_severity_counts.Medium | escapejs }}'),
-        'High': parseSafe('{{ total_severity_counts.High | escapejs }}')
+        // TODO: Replace with actual data from Django
+        'Low': 12,
+        'Medium': 32,
+        'High': 54
     };
     console.log('Total Low Severity Count:', totalSeverityCounts.Low);
     console.log('Total Medium Severity Count:', totalSeverityCounts.Medium);
