@@ -29,21 +29,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     otp = models.CharField(max_length=6, blank=True, null=True)
     otp_created_at = models.DateTimeField(blank=True, null=True)
     is_email_verified = models.BooleanField(default=False)
-
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='customuser_set',
-        blank=True,
-        help_text=('The groups this user belongs to. A user will get all permissions granted to each of their groups.'),
-        related_query_name='customuser',
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='customuser_set',
-        blank=True,
-        help_text='Specific permissions for this user.',
-        related_query_name='customuser',
-    )
+    is_org_admin = models.BooleanField(default=False)
+    organization = models.ForeignKey('Organization', on_delete=models.SET_NULL, null=True, blank=True, related_name='users')
 
     objects = CustomUserManager()
 
@@ -56,3 +43,21 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'user'
         verbose_name_plural = 'users'
+
+class Organization(models.Model):
+    name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    established = models.DateField()
+    monitoring_since = models.DateField(auto_now_add=True)
+    total_users = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+class UserLoginHistory(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    ip_address = models.GenericIPAddressField()
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'{self.user.email} logged in from {self.ip_address} on {self.timestamp}'

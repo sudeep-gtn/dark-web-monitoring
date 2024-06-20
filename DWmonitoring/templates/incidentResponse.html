@@ -51,55 +51,106 @@
 {% endblock header %}
 
 {% block content %}
-    <div class="container mx-auto">
-        <section id="raise-ticket" class="rounded-lg p-6">
-            <button onclick="showForm()" class="bg-gray-300 p-2 rounded  mb-4">Raise Ticket</button>
-            <div id="ticketForm" class="hidden">
-                <form action="#" method="POST" class="space-y-4">
-                    <div>
-                        <label for="ticket-title" class="block text-sm font-medium text-gray-700">Ticket Title</label>
-                        <input type="text" id="ticket-title" name="ticket-title"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            required>
-                    </div>
-                    <div>
-                        <label for="ticket-description" class="block text-sm font-medium text-gray-700">Description</label>
-                        <textarea id="ticket-description" name="ticket-description" rows="3"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            required></textarea>
-                    </div>
-                    <div>
-                        <button type="submit"
-                            class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Raise
-                            Ticket</button>
-                    </div>
-                </form>
-            </div>
-        </section>
+<div class="container mx-auto">
+    <section id="raise-ticket" class="rounded-lg p-6">
+        {% if user.is_staff %}
+        <a class="bg-gray-300 p-2 rounded  mb-4 hover:bg-gray-500 hover:text-white" href="{% url 'tickets' %}">View all
+            tickets</a>
+        {% else %}
+        <button onclick="showForm()" class="bg-gray-300 p-2 rounded  mb-4">Raise Ticket</button>
+        <div id="ticketForm" class="hidden">
+            <form method="POST" class="space-y-4" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <label for="ticket_title" class="block text-sm font-medium text-gray-700">Ticket Title</label>
+                    <input type="text" id="ticket_title" name="ticket_title"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        required>
+                </div>
+                <div>
+                    <label for="ticket_description" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="ticket_description" name="ticket_description" rows="3"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        required></textarea>
+                </div>
+                <div>
+                    <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+                    <input type="file" id="image" name="image"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <button type="submit"
+                        class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Raise Ticket
+                    </button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+
+        {% if not user.is_staff %}
         <div>
-            <h1 class="mx-6 text-lg font-semibold">Integration With Security Infrastructure - SIEM (Available On Demand)</h1>
-            <div class="mx-6 mt-4 flex-col sm:flex sm:flex-row">
-                <p class="mb-2 mr-2 text-justify p-2">SIEM (Security Information and Event Management) is a robust cybersecurity solution that integrates Security Information Management (SIM) and Security Event Management (SEM) functionalities into a unified platform. SIM involves the collection, normalization, and analysis of security data from various sources, such as logs and events from networks, systems, and applications. On the other hand, SEM focuses on real-time monitoring and correlation of security events to detect and respond promptly to potential threats. Together, SIEM enables organizations to gain comprehensive visibility into their IT infrastructure, detect security incidents in real-time, and facilitate effective incident response and forensic investigations. By centralizing security data and providing advanced analytics capabilities, SIEM helps organizations enhance their security posture, comply with regulatory requirements, and mitigate risks effectively.
-                </p>
-                <img src="/static/images/siem.png" alt="SIEM Image" width="700" height="500" class="rounded shadow-lg">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Tickets</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {% for ticket in tickets %}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900">{{ ticket.ticket_title }}</h3>
+                        <p class="text-gray-500 mb-3">{{ ticket.ticket_description }}</p>
+                        {% if ticket.image %}
+                        <div>
+                            <img src="{{ ticket.image.url }}" alt="Ticket Image" class="rounded-md w-full h-auto object-cover">
+                        </div>
+                        {% endif %}
+                        <div class="flex justify-between items-center mt-3">
+                            {% if ticket.resolved %}
+                            <div class="text-white bg-green-500 text-xs rounded p-1">Resolved</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-            <div class="mx-6 mb-4">
-                <a target="_blank" href="https://www.gkavach.com/" class="text-blue-500 text-sm hover:underline">Learn more about SIEM</a>
-            </div>
+        </div>        
+        {% endif %}
+
+    </section>
+    <hr class="border-t border-gray-600 my-3">
+    <div>
+        <h1 class="mx-6 text-lg font-semibold">Integration With Security Infrastructure - SIEM (Available On Demand)
+        </h1>
+        <div class="mx-6 mt-4 flex-col sm:flex sm:flex-row">
+            <p class="mb-2 mr-2 text-justify text-gray-600 pr-2">SIEM (Security Information and Event Management) is a
+                robust
+                cybersecurity solution that integrates Security Information Management (SIM) and Security Event
+                Management (SEM) functionalities into a unified platform. SIM involves the collection, normalization,
+                and analysis of security data from various sources, such as logs and events from networks, systems, and
+                applications. On the other hand, SEM focuses on real-time monitoring and correlation of security events
+                to detect and respond promptly to potential threats. Together, SIEM enables organizations to gain
+                comprehensive visibility into their IT infrastructure, detect security incidents in real-time, and
+                facilitate effective incident response and forensic investigations. By centralizing security data and
+                providing advanced analytics capabilities, SIEM helps organizations enhance their security posture,
+                comply with regulatory requirements, and mitigate risks effectively.
+            </p>
+            <img src="/static/images/siem.png" alt="SIEM Image" width="300" height="300" class="rounded shadow-lg">
+        </div>
+        <div class="mx-6 mb-4">
+            <a target="_blank" href="https://www.gkavach.com/" class="text-blue-500 text-sm hover:underline">Learn more
+                about SIEM</a>
         </div>
     </div>
+</div>
 
-    <script>
-        function showForm() {
+<script>
+    function showForm() {
         let element = document.getElementById("ticketForm");
 
-            if (element.classList.contains('hidden')) {
-                element.classList.remove('hidden');
-                element.classList.add('block');
-            } else {
-                element.classList.remove('block');
-                element.classList.add('hidden');
-            }
+        if (element.classList.contains('hidden')) {
+            element.classList.remove('hidden');
+            element.classList.add('block');
+        } else {
+            element.classList.remove('block');
+            element.classList.add('hidden');
         }
-    </script>
+    }
+</script>
 {% endblock content %}

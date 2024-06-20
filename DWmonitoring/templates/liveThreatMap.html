@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Live Threat Map {% endblock title %}
+
+{% block header %}
+<!-- <header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
+    <a href="{% url 'threat-actor-profile'%}" class="text-xl font-extrabold text-gray-700">
+        <div class="flex items-center gap-2 "> <img class="text-gray-300" src="/static/images/analytics-and-reports.png"
+                height="32" width="32" alt="overview"> Live Threat <span class="text-red-600"> Map </span> </div>
+    </a>
+    <div class="relative flex gap-4 px-4">
+
+        <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon">
+        <button
+            class="hidden md:block border-2 border-gray-400 bg-gray-100 rounded-full p-2 {% if request.path == '/profile' %} border-red-600 {% endif %}"
+            onclick="toggleDropdown('profileDropdown')">
+            <img height="20" width="20" src="https://img.icons8.com/?size=100&id=fJ7hcfUGpKG7&format=png&color=000000"
+                alt="profile " />
+        </button>
+
+        <div id="profileDropdown"
+            class="hidden absolute right-0 mt-14 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1">
+            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+            <button onclick="showPopUp()"
+                class="w-full text-left block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</button>
+        </div>
+        <div class="md:hidden block  bg-gray-100 rounded-full p-2  z-50">
+            <input id="checkbox2" type="checkbox" class="hidden">
+            <label class="toggle toggle2" for="checkbox2" onclick="toggleSidebar()">
+                <div id="bar4" class="bars"></div>
+                <div id="bar5" class="bars"></div>
+                <div id="bar6" class="bars"></div>
+            </label>
+        </div>
+    </div>
+</header> -->
+
+{% endblock header %}
+
+{% block content %}
+
+<main class="">
+    <iframe src="https://threatmap.checkpoint.com/"  class="w-full h-screen" frameborder="0"></iframe>
+</main>
+
+{% endblock content %}

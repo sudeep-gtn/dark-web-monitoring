@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Report</title>
+</head>
+
+<body>
+    <header class="flex items-center justify-between px-8 py-4 ">
+        <div class="text-3xl font-semibold tracking-wider"> Dark Web Monitoring Report  </div>
+        <div class="w-[200px]"> <img src="/static/images/logo-green1.png" alt="logo"></div>
+    </header>
+
+
+    {% if domains %}
+    <div class="px-8 flex justify-around items-center ">
+        <h1 class="font-semibold text-lg ">Domain Breaches</h1>
+        <div class="my-4 ">
+            <div class="font-semibold">Total Domain breaches : <span class="font-normal">{{ domains |length }}</span></div>
+        </div>
+    </div>
+    <div class="p-4 ">
+        <table class="min-w-full border-collapse block md:table">
+            <thead class="block md:table-header-group">
+                <tr class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Name</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Domain IP</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Source IP</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Source Domain</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Breach Date</th>
+                </tr>
+            </thead>
+            <tbody class="block md:table-row-group">
+                {% for domain in domains %}
+                <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.name }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.domain_ip }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.source_ip }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.source_domain }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.breach_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+
+    {% if pii  %}
+    <div class="px-8 flex justify-around items-center ">
+        <h1 class="font-semibold text-lg ">PII  Breaches</h1>
+        <div class="my-4 ">
+            <div class="font-semibold">Total PII breaches : <span class="font-normal">{{ pii |length }}</span></div>
+        </div>
+    </div>
+
+    <div class="p-4 ">
+        <table class="min-w-full border-collapse block md:table">
+            <thead class="block md:table-header-group">
+                <tr class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Name</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Breach Date</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Posted Date</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Breach IP</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Source Domain</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Threat Type</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Type of Data</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Source</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Personal Email</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Phone</th>
+                </tr>
+            </thead>
+            <tbody class="block md:table-row-group">
+                {% for exposure in pii %}
+                <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.name }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.breach_date }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.posted_date }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.breach_ip }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.source_domain }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.threat_type }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.type_of_data }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.source }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.personal_email }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.phone }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+
+    {% if cards %}
+
+    <div class="px-8 flex justify-around items-center ">
+        <h1 class="font-semibold text-lg ">Cards Breaches</h1>
+        <div class="my-4 ">
+            <div class="font-semibold">Total Card breaches : <span class="font-normal">{{ cards |length }}</span></div>
+        </div>
+    </div>
+
+    <div class="px-6 ">
+        <table class="min-w-full border-collapse block md:table">
+            <thead class="block md:table-header-group">
+                <tr class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Card BIN Number</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Card Type</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Expiry Date</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">CVV</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Card Holder Name</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Issuing Bank</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Breach Date</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Posted Date</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Breach Source</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Last Used Date</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Breach Source Domain</th>
+                </tr>
+            </thead>
+            <tbody class="block md:table-row-group">
+                {% for card in cards %}
+                <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.card_bin_number }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.card_type }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.expiry_date }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.cvv }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.card_holder_name }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.issuing_bank }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.breach_date }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.posted_date }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.breach_source }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.last_used_date }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.breach_source_domain }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% endif %}
+</body>
+
+</html>
