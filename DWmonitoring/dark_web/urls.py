@@ -30,7 +30,5 @@ urlpatterns = [
     path('live-threatmap', LiveThreatMap.as_view(), name="live-threatmap"),
     path('report/',GenerateReportView.as_view() , name="generate_report"),
     path('preview-report/',PreviewReportView.as_view(), name="preview-report"),
-    path('tickets/', TicketsView.as_view(), name="tickets"),
     path('resolve/<int:ticket_id>/', TicketsView.as_view(), name='resolve_ticket'),
-
 ]
