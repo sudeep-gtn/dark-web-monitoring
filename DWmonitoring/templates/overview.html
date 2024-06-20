@@ -42,17 +42,25 @@
         find top recent alerts about data breaches and a graph showing your organization's threat levels, keeping you
         informed and protected.
     </p>
-    <div class="p-4 flex gap-4  w-full mx-auto flex-col md:flex-row ">
+    <div class="p-4 flex gap-4  w-4/5 mx-auto flex-col md:flex-row ">
         <!-- gauge chart -->
-        <div class="shadow-md flex flex-col items-center justify-center rounded-lg  w-fit h-fit lg:w-[370px] border mx-auto border-gray-400 bg-white lg:h-[440px]">
+        <div class="shadow-md flex flex-col items-center justify-center rounded-lg  w-fit h-fit lg:w-[370px] border mx-auto border-red-300 bg-white lg:h-[440px]">
             <h1 class="font-semibold text-sm text-gray-600 py-2"> Org. Health status </h1>
             <div id="gauge-chart" class="w-[330px] h-[300px] md:h-[300px]"></div>
         </div>
+        <div
+            class="xl:w-4/5 text-gray-600 w-full border-2 flex flex-col items-center justify-center  shadow-lg border-red-200 p-4 rounded-lg bg-white">
+            <h2 class="text-lg font-semibold mb-4"> Breach count in 2023 </h2>
+            <div class="w-full h-full rounded-lg shadow">
+                <h3 class="text font-semibold mb-2">Breach Dates Over Time</h3>
+                <canvas id="breachDateChart"></canvas>
+            </div>
+        </div>
     </div>
 
-    <div class="mt-2  p-4  flex gap-4  flex-col xl:flex-row w-full">
-        <div class="flex flex-col items-center gap-4 w-full md:w-1/3">
-            <div class="w-full p-4 bg-white rounded-lg border-2 border-gray-400 flex flex-col gap-2">
+    <div class="mt-2 p-4  flex gap-4  flex-col xl:flex-row w-full">
+        <div class="flex flex-col md:flex-row justify-center mx-auto items-center gap-4 w-4/5 ">
+            <div class="md:w-1/2 w-full p-6  bg-white rounded-lg border-2 border-red-200 flex flex-col gap-2">
                 <h3 class="text-lg font-bold mb-2">Key Metrics</h3>
                 <div class="w-4/5 flex flex-col justify-center  gap-2">
                     <div
@@ -70,19 +78,11 @@
                     </div>
                 </div>
             </div>
-            <div class="p-4 w-full bg-white rounded-lg border-2 border-gray-400 shadow">
+            <div class="p-4 md:w-1/2 w-full bg-white rounded-lg border-2 border-red-200 shadow">
                 <h3 class="text-lg font-bold mb-2">Top Data Breach Sources</h3>
                 <canvas id="vulnerabilityCategoriesChart"></canvas>
             </div>
-        </div>
-        <div
-            class="xl:w-4/5 text-gray-600 w-full border-2 flex flex-col items-center justify-center  shadow-lg border-red-200 p-4 rounded-lg bg-white">
-            <h2 class="text-lg font-semibold mb-4"> Breach count in 2023 </h2>
-            <div class="w-full h-full rounded-lg shadow">
-                <h3 class="text font-semibold mb-2">Breach Dates Over Time</h3>
-                <canvas id="breachDateChart"></canvas>
-            </div>
-        </div>
+        </div> 
     </div>
 
 
