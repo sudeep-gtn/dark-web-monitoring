@@ -36,6 +36,47 @@ class DomainView(LoginRequiredMixin, View):
     login_url = "login"
     
     def get(self, request):
+
+        # Domain.objects.create(
+        #     name='example.com',
+        #     domain_ip='192.168.1.1',
+        #     source_ip='10.0.0.1',
+        #     source_domain='example-source.com',
+        #     breach_date='2024-03-10'
+        # )
+
+        # Domain.objects.create(
+        #     name='testsite.org',
+        #     domain_ip='172.16.0.1',
+        #     source_ip='192.168.0.1',
+        #     source_domain='testsite-source.org',
+        #     breach_date='2023-11-05'
+        # )
+
+        # Domain.objects.create(
+        #     name='mywebsite.net',
+        #     domain_ip='203.0.113.1',
+        #     source_ip='198.51.100.1',
+        #     source_domain='mywebsite-source.net',
+        #     breach_date='2024-02-20'
+        # )
+
+        # Domain.objects.create(
+        #     name='anothersite.io',
+        #     domain_ip='198.51.100.2',
+        #     source_ip='203.0.113.2',
+        #     source_domain='anothersite-source.io',
+        #     breach_date='2024-01-15'
+        # )
+
+        # Domain.objects.create(
+        #     name='sampledomain.edu',
+        #     domain_ip='203.0.113.3',
+        #     source_ip='198.51.100.3',
+        #     source_domain='sampledomain-source.edu',
+        #     breach_date='2024-05-18'
+        # )
+
         domains = Domain.objects.all()
         domain_length = len(domains)
         all_domains = [domain.name for domain in domains]
@@ -63,6 +104,72 @@ class CardsView(LoginRequiredMixin, View):
     login_url = "login"
     
     def get(self, request):
+
+        # Card.objects.create(
+        #     card_bin_number=123456,
+        #     card_type='Visa',
+        #     expiry_date='2025-12-31',
+        #     cvv=123,
+        #     card_holder_name='John Doe',
+        #     issuing_bank='Bank of America',
+        #     breach_date='2024-01-15',
+        #     breach_source='Data Breach XYZ',
+        #     last_used_date='2024-05-20',
+        #     breach_source_domain='xyzbreach.com'
+        # )
+
+        # Card.objects.create(
+        #     card_bin_number=654321,
+        #     card_type='MasterCard',
+        #     expiry_date='2023-07-31',
+        #     cvv=321,
+        #     card_holder_name='Jane Smith',
+        #     issuing_bank='Chase Bank',
+        #     breach_date='2023-02-10',
+        #     breach_source='Data Breach ABC',
+        #     last_used_date='2023-06-15',
+        #     breach_source_domain='abcbreach.net'
+        # )
+
+        # Card.objects.create(
+        #     card_bin_number=111111,
+        #     card_type='American Express',
+        #     expiry_date='2024-09-30',
+        #     cvv=456,
+        #     card_holder_name='Alice Johnson',
+        #     issuing_bank='Wells Fargo',
+        #     breach_date='2024-04-22',
+        #     breach_source='Data Breach 123',
+        #     last_used_date='2024-05-01',
+        #     breach_source_domain='123breach.com'
+        # )
+
+        # Card.objects.create(
+        #     card_bin_number=222222,
+        #     card_type='Discover',
+        #     expiry_date='2026-03-31',
+        #     cvv=789,
+        #     card_holder_name='Bob Brown',
+        #     issuing_bank='Citi Bank',
+        #     breach_date='2024-06-15',
+        #     breach_source='Data Breach 456',
+        #     last_used_date='2024-06-20',
+        #     breach_source_domain='456breach.com'
+        # )
+
+        # Card.objects.create(
+        #     card_bin_number=333333,
+        #     card_type='Visa',
+        #     expiry_date='2023-11-30',
+        #     cvv=101,
+        #     card_holder_name='Carol White',
+        #     issuing_bank='HSBC',
+        #     breach_date='2023-12-01',
+        #     breach_source='Data Breach 789',
+        #     last_used_date='2023-12-10',
+        #     breach_source_domain='789breach.com'
+        # )
+
         cards = Card.objects.all()
         card_length = len(cards)
         card_bin_numbers = [card.card_bin_number for card in cards]
@@ -113,12 +220,103 @@ class NotificationsAlertView(LoginRequiredMixin, View):
 class BlackMarketView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
+
+        # BlackMarket.objects.create(
+        #     source='DarkWeb Market A',
+        #     stealer_log_preview='Preview of stolen data...',
+        #     related_assets='Credit cards, PII',
+        #     price=199.99,
+        #     status='Available',
+        #     obtain_progress='10% completed',
+        #     discovery_date='2024-04-22',
+        #     incident='Incident 1234'
+        # )
+
+        # BlackMarket.objects.create(
+        #     source='DarkWeb Market B',
+        #     stealer_log_preview='Preview of different stolen data...',
+        #     related_assets='Bank account details, SSNs',
+        #     price=299.99,
+        #     status='Sold',
+        #     obtain_progress='100% completed',
+        #     discovery_date='2023-10-10',
+        #     incident='Incident 5678'
+        # )
+
+        # BlackMarket.objects.create(
+        #     source='Black Market C',
+        #     stealer_log_preview='Preview of more stolen data...',
+        #     related_assets='Passwords, Usernames',
+        #     price=399.99,
+        #     status='Unavailable',
+        #     obtain_progress='50% completed',
+        #     discovery_date='2024-03-15',
+        #     incident='Incident 9101'
+        # )
+
+        # BlackMarket.objects.create(
+        #     source='DarkWeb Market D',
+        #     stealer_log_preview='Another preview of stolen data...',
+        #     related_assets='Credit reports, Addresses',
+        #     price=149.99,
+        #     status='Available',
+        #     obtain_progress='70% completed',
+        #     discovery_date='2024-02-28',
+        #     incident='Incident 1121'
+        # )
+
+        # BlackMarket.objects.create(
+        #     source='DarkWeb Market E',
+        #     stealer_log_preview='Preview of various stolen data...',
+        #     related_assets='Emails, Phone numbers',
+        #     price=99.99,
+        #     status='Sold',
+        #     obtain_progress='90% completed',
+        #     discovery_date='2024-01-10',
+        #     incident='Incident 3141'
+        # )
+
         black_market_datas = BlackMarket.objects.all()
         return render(request, "black_market.html",{'black_market_datas': black_market_datas})
     
 class StealerLogsView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
+        # StealerLogs.objects.create(
+        #     date_detected='2024-01-05',
+        #     data_type='Credit Card Information',
+        #     source='Malware XYZ',
+        #     details='Details of the stolen data...'
+        # )
+
+        # StealerLogs.objects.create(
+        #     date_detected='2023-08-12',
+        #     data_type='Personal Identifiable Information',
+        #     source='Spyware ABC',
+        #     details='Details of the stolen PII...'
+        # )
+
+        # StealerLogs.objects.create(
+        #     date_detected='2024-02-18',
+        #     data_type='Bank Account Information',
+        #     source='Malware DEF',
+        #     details='Details of the stolen bank account information...'
+        # )
+
+        # StealerLogs.objects.create(
+        #     date_detected='2023-09-25',
+        #     data_type='Social Security Numbers',
+        #     source='Spyware GHI',
+        #     details='Details of the stolen SSNs...'
+        # )
+
+        # StealerLogs.objects.create(
+        #     date_detected='2024-03-10',
+        #     data_type='Email Addresses',
+        #     source='Malware JKL',
+        #     details='Details of the stolen email addresses...'
+        # )
+
         stealer_logs = StealerLogs.objects.all()
         return render(request, "stealer-logs.html",{'stealer_logs': stealer_logs})
 
@@ -126,6 +324,68 @@ class PiiExposureView(LoginRequiredMixin, View):
     login_url = "login"
 
     def get(self, request):
+
+        # PIIExposure.objects.create(
+        #     name='John Doe',
+        #     breach_date='2024-02-28',
+        #     breach_ip='203.0.113.1',
+        #     source_domain='breach-source.com',
+        #     threat_type='Data Leak',
+        #     type_of_data='Email, Phone Number',
+        #     source='Breach Report XYZ',
+        #     personal_email='john.doe@example.com',
+        #     phone='+1234567890'
+        # )
+
+        # PIIExposure.objects.create(
+        #     name='Jane Smith',
+        #     breach_date='2023-09-15',
+        #     breach_ip='198.51.100.2',
+        #     source_domain='another-breach-source.net',
+        #     threat_type='Unauthorized Access',
+        #     type_of_data='SSN, Address',
+        #     source='Breach Report ABC',
+        #     personal_email='jane.smith@example.com',
+        #     phone='+0987654321'
+        # )
+
+        # PIIExposure.objects.create(
+        #     name='Alice Johnson',
+        #     breach_date='2024-01-05',
+        #     breach_ip='192.0.2.1',
+        #     source_domain='third-breach-source.com',
+        #     threat_type='Credential Theft',
+        #     type_of_data='Username, Password',
+        #     source='Breach Report 123',
+        #     personal_email='alice.johnson@example.com',
+        #     phone='+1123456789'
+        # )
+
+        # PIIExposure.objects.create(
+        #     name='Bob Brown',
+        #     breach_date='2023-08-25',
+        #     breach_ip='198.51.100.3',
+        #     source_domain='fourth-breach-source.net',
+        #     threat_type='Phishing Attack',
+        #     type_of_data='Bank Account, Routing Number',
+        #     source='Breach Report 456',
+        #     personal_email='bob.brown@example.com',
+        #     phone='+2212345678'
+        # )
+
+        # PIIExposure.objects.create(
+        #     name='Carol White',
+        #     breach_date='2023-12-30',
+        #     breach_ip='203.0.113.2',
+        #     source_domain='fifth-breach-source.org',
+        #     threat_type='Ransomware',
+        #     type_of_data='PII, Financial Data',
+        #     source='Breach Report 789',
+        #     personal_email='carol.white@example.com',
+        #     phone='+3321234567'
+        # )
+
+
         pii_exposures = PIIExposure.objects.all()
 
         pii_exposures_length = pii_exposures.count()
@@ -233,7 +493,8 @@ class IncidentResponse(LoginRequiredMixin, View):
     login_url = "login"
 
     def get(self, request):
-        return render(request, 'incidentResponse.html')
+        tickets = Ticket.objects.all()
+        return render(request, 'incidentResponse.html', {'tickets': tickets})
 
     def post(self, request):
         ticket_title = request.POST.get('ticket_title')
@@ -371,6 +632,36 @@ class PreviewReportView(View):
 class TicketsView(View):
     def get(self, request):
         tickets = Ticket.objects.all()
+        # Ticket.objects.create(
+        #     ticket_title='Data Breach on example.com',
+        #     ticket_description='Details about the data breach on example.com...',
+        #     resolved=False
+        # )
+
+        # Ticket.objects.create(
+        #     ticket_title='Unauthorized Access on testsite.org',
+        #     ticket_description='Details about the unauthorized access on testsite.org...',
+        #     resolved=True
+        # )
+
+        # Ticket.objects.create(
+        #     ticket_title='Vulnerability found on mywebsite.net',
+        #     ticket_description='Details about the vulnerability found on mywebsite.net...',
+        #     resolved=False
+        # )
+
+        # Ticket.objects.create(
+        #     ticket_title='Suspicious login on anothersite.io',
+        #     ticket_description='Details about the suspicious login on anothersite.io...',
+        #     resolved=True
+        # )
+
+        # Ticket.objects.create(
+        #     ticket_title='Data leak report for sampledomain.edu',
+        #     ticket_description='Details about the data leak report for sampledomain.edu...',
+        #     resolved=False
+        # )
+
         return render(request, "tickets.html", {'tickets': tickets})
     
     def post(self, request, *args, **kwargs):

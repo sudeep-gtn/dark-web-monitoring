@@ -48,9 +48,8 @@ class Organization(models.Model):
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     established = models.DateField()
-    about = models.TextField()
-    vision = models.TextField()
     monitoring_since = models.DateField(auto_now_add=True)
+    total_users = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

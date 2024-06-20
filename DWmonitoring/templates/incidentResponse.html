@@ -54,7 +54,8 @@
 <div class="container mx-auto">
     <section id="raise-ticket" class="rounded-lg p-6">
         {% if user.is_staff %}
-        <a class="bg-gray-300 p-2 rounded  mb-4 hover:bg-gray-500 hover:text-white" href="{% url 'tickets' %}">View all tickets</a>
+        <a class="bg-gray-300 p-2 rounded  mb-4 hover:bg-gray-500 hover:text-white" href="{% url 'tickets' %}">View all
+            tickets</a>
         {% else %}
         <button onclick="showForm()" class="bg-gray-300 p-2 rounded  mb-4">Raise Ticket</button>
         <div id="ticketForm" class="hidden">
@@ -86,36 +87,40 @@
         </div>
         {% endif %}
 
-        <!-- {% if user.is_staff %}
-        <div class="mt-8">
-            <h2 class="text-xl font-bold text-gray-900 mb-4">Ticket Listing</h2>
-            <ul class="divide-y divide-gray-200">
+        {% if not user.is_staff %}
+        <div>
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Tickets</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {% for ticket in tickets %}
-                <li class="py-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="flex-1">
-                            <h3 class="text-lg font-medium text-gray-900">{{ ticket.ticket_title }}</h3>
-                            <p class="text-gray-500">{{ ticket.ticket_description }}</p>
-                            {% if ticket.image %}
-                            <div>
-                                <img src="{{ ticket.image.url }}" alt="Ticket Image" class="max-w-full h-auto">
-                            </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900">{{ ticket.ticket_title }}</h3>
+                        <p class="text-gray-500 mb-3">{{ ticket.ticket_description }}</p>
+                        {% if ticket.image %}
+                        <div>
+                            <img src="{{ ticket.image.url }}" alt="Ticket Image" class="rounded-md w-full h-auto object-cover">
+                        </div>
+                        {% endif %}
+                        <div class="flex justify-between items-center mt-3">
+                            {% if ticket.resolved %}
+                            <div class="text-white bg-green-500 text-xs rounded p-1">Resolved</div>
                             {% endif %}
                         </div>
                     </div>
-                </li>
+                </div>
                 {% endfor %}
-            </ul>
-        </div>
-        {% endif %} -->
-
+            </div>
+        </div>        
+        {% endif %}
 
     </section>
+    <hr class="border-t border-gray-600 my-3">
     <div>
         <h1 class="mx-6 text-lg font-semibold">Integration With Security Infrastructure - SIEM (Available On Demand)
         </h1>
         <div class="mx-6 mt-4 flex-col sm:flex sm:flex-row">
-            <p class="mb-2 mr-2 text-justify p-2">SIEM (Security Information and Event Management) is a robust
+            <p class="mb-2 mr-2 text-justify text-gray-600 pr-2">SIEM (Security Information and Event Management) is a
+                robust
                 cybersecurity solution that integrates Security Information Management (SIM) and Security Event
                 Management (SEM) functionalities into a unified platform. SIM involves the collection, normalization,
                 and analysis of security data from various sources, such as logs and events from networks, systems, and
@@ -126,7 +131,7 @@
                 providing advanced analytics capabilities, SIEM helps organizations enhance their security posture,
                 comply with regulatory requirements, and mitigate risks effectively.
             </p>
-            <img src="/static/images/siem.png" alt="SIEM Image" width="700" height="500" class="rounded shadow-lg">
+            <img src="/static/images/siem.png" alt="SIEM Image" width="300" height="300" class="rounded shadow-lg">
         </div>
         <div class="mx-6 mb-4">
             <a target="_blank" href="https://www.gkavach.com/" class="text-blue-500 text-sm hover:underline">Learn more
