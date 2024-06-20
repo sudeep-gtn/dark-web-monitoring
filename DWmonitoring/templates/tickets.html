@@ -67,9 +67,9 @@
                     </div>
                     {% endif %}
                     {% if not ticket.resolved %}
-                    <form action="{% url 'resolve_ticket' ticket.ticket_id %}" method="POST" class="mt-4">
+                    <form action="{% url 'resolve_ticket' ticket.ticket_id %}" method="POST" >
                         {% csrf_token %}
-                        <button type="submit" class="inline-block bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600">Mark as Resolved</button>
+                        <button type="submit" class="text-white bg-blue-500 w-30 text-xs rounded p-1 mt-1 hover:bg-blue-600">Mark as Resolved</button>
                     </form>  
                     {% else %}
                     <div class="text-white bg-green-500 w-14 text-xs rounded p-1 mt-1">
@@ -82,7 +82,10 @@
         {% endfor %}
     </ul>
 </div>
-
+{% else %}
+<div>
+    Not Authorized to view this page.
+</div>
 {% endif %}
 
 {% endblock content %}
