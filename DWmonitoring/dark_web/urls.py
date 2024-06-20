@@ -8,7 +8,7 @@ from .views import (
     PiiExposureView,DashboardView,
     Overview,ThreatIntelligence, ThreatActor,
     IncidentResponse,AnalyticsAndReports,
-    LiveThreatMap,generate_report,
+    LiveThreatMap,GenerateReportView,PreviewReportView,
     TicketsView
     )
 urlpatterns = [
@@ -28,7 +28,8 @@ urlpatterns = [
     path('incident-response', IncidentResponse.as_view(), name="incident-response"),
     path('analytics-and-reports', AnalyticsAndReports.as_view(), name="analytics-and-reports"),
     path('live-threatmap', LiveThreatMap.as_view(), name="live-threatmap"),
-    path('report/', generate_report, name="generate_report"),
+    path('report/',GenerateReportView.as_view() , name="generate_report"),
+    path('preview-report/',PreviewReportView.as_view(), name="preview-report"),
     path('tickets/', TicketsView.as_view(), name="tickets"),
     path('resolve/<int:ticket_id>/', TicketsView.as_view(), name='resolve_ticket'),
 
