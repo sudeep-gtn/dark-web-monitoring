@@ -267,10 +267,12 @@ class LiveThreatMap(LoginRequiredMixin, View):
     
 
 from datetime import datetime
-def generate_report(request):
 
+class GenerateReportView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'report_template.html')
 
-    if request.method == 'POST':
+    def post(self, request, *args, **kwargs):
         filters = request.POST.getlist('filters')
         date_from = request.POST.get('date_from')
         date_to = request.POST.get('date_to')
@@ -278,22 +280,23 @@ def generate_report(request):
         date_from = datetime.strptime(date_from, '%Y-%m-%d') if date_from else None
         date_to = datetime.strptime(date_to, '%Y-%m-%d') if date_to else None
 
-
         print('filters: ', filters)
-        print("date from ", date_from,"date to " , date_to)
+        print("date from ", date_from, "date to ", date_to)
+        
         domains = []
         cards = []
         pii = []
+
         # Fetch data from the database
-        if 'domain-leaks' in filters :
+        if 'domain-leaks' in filters:
             domains = Domain.objects.all()
             if date_from and date_to:
                 domains = domains.filter(breach_date__range=(date_from, date_to))
-        if 'card-leaks' in filters :
+        if 'card-leaks' in filters:
             cards = Card.objects.all()
             if date_from and date_to:
                 cards = cards.filter(breach_date__range=(date_from, date_to))
-        if 'pii-leaks' in filters :
+        if 'pii-leaks' in filters:
             pii = PIIExposure.objects.all()
             if date_from and date_to:
                 pii = pii.filter(breach_date__range=(date_from, date_to))
@@ -302,13 +305,14 @@ def generate_report(request):
         print("cards with filter: ", cards)
         print("pii with filter: ", pii)
 
-        context= {
-            'domains' : domains,
-            'cards' : cards,
-            'pii' : pii
+        context = {
+            'domains': domains,
+            'cards': cards,
+            'pii': pii
         }
+
         # Render the HTML template with the data
-        html_string = render_to_string('report_template.html', {'context': context})
+        html_string = render_to_string('report_template.html', context)
 
         # Convert the rendered HTML to PDF
         html = HTML(string=html_string)
@@ -318,8 +322,52 @@ def generate_report(request):
         response = HttpResponse(pdf, content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="report.pdf"'
         return response
-    return render('report_template.html')
+    
 
+class PreviewReportView(View):
+    def get(self, request, *args, **kwargs):
+        filters = request.GET.getlist('filters')
+        date_from = request.GET.get('date_from')
+        date_to = request.GET.get('date_to')
+
+        date_from = datetime.strptime(date_from, '%Y-%m-%d') if date_from else None
+        date_to = datetime.strptime(date_to, '%Y-%m-%d') if date_to else None
+
+        print('filters: ', filters)
+        print("date from ", date_from, "date to ", date_to)
+        
+        domains = []
+        cards = []
+        pii = []
+
+        # Fetch data from the database
+        if 'domain-leaks' in filters:
+            domains = Domain.objects.all()
+            if date_from and date_to:
+                domains = domains.filter(breach_date__range=(date_from, date_to))
+        if 'card-leaks' in filters:
+            cards = Card.objects.all()
+            if date_from and date_to:
+                cards = cards.filter(breach_date__range=(date_from, date_to))
+        if 'pii-leaks' in filters:
+            pii = PIIExposure.objects.all()
+            if date_from and date_to:
+                pii = pii.filter(breach_date__range=(date_from, date_to))
+
+        print("domain with filter: ", domains)
+        print("cards with filter: ", cards)
+        print("pii with filter: ", pii)
+
+        context = {
+            'domains': domains,
+            'cards': cards,
+            'pii': pii
+        }
+
+        # Render the template for preview
+        return render(request, 'report_template.html', context)
+    
+    
 class TicketsView(View):
     def get(self, request):
         tickets = Ticket.objects.all()
@@ -335,3 +383,4 @@ class TicketsView(View):
         ticket.resolved = True
         ticket.save()
         return redirect('tickets')
+
