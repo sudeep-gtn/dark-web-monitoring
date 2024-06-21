@@ -1,9 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import CustomUser, UserLoginHistory
-from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
+from django.contrib.auth import (
+    authenticate, login, logout, update_session_auth_hash
+)
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.contrib.auth.password_validation import validate_password
@@ -25,9 +26,12 @@ class RegisterView(View):
         email = request.POST.get("email").strip()
         password = request.POST.get("password").strip()
         c_password = request.POST.get("c_password").strip()
-
         if not re.match(r'^[A-Za-z\s]{3,}$', full_name):
-            return render(request, "register.html", {"error": "Full name must be at least 3 characters long and contain only alphabetic characters and spaces"})
+            return render(request, "register.html",
+                          {"error":
+                           '''Full name must be at least 3 characters long and co
+                           ntain only alphabetic characters and spaces'''}
+                           )
 
         if CustomUser.objects.filter(email=email).exists():
             return render(request, "register.html", {"error": "User with the provided email already exists"})
@@ -133,7 +137,7 @@ class ProfileView(LoginRequiredMixin, View):
 
 
 class SendOTPFromProfile(View):
-    def post(self,request):
+    def post(self, request):
         user = request.user
         if user:
             request.session['registered_email'] = user.email
@@ -171,14 +175,15 @@ class EditNameView(LoginRequiredMixin, View):
             messages.success(request,"Name changed successfully")
             return redirect("profile")
         else:
-            messages.error(request,"Something went wrong. Please try again.")
+            messages.error(request, "Something went wrong. Please try again.")
             return redirect("profile")
+
 
 class ChangePasswordView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "profile.html")
-    
+
     def post(self, request):
         user = request.user
         old_password = request.POST.get("old_password")
@@ -188,7 +193,7 @@ class ChangePasswordView(LoginRequiredMixin, View):
         if not user.check_password(old_password):
             messages.error(request, "Old password is incorrect.")
             return redirect("profile")
-        
+
         if new_password != c_new_password:
             messages.error(request, "New passwords do not match.")
             return render(request, "profile.html")
@@ -198,14 +203,16 @@ class ChangePasswordView(LoginRequiredMixin, View):
         except ValidationError as e:
             messages.error(request, "".join(e.messages))
             return redirect("profile")
-    
+
         user.set_password(new_password)
         user.save()
-        
+
         update_session_auth_hash(request, user)
         messages.success(request, "Password changed successfully.")
         return redirect("profile")
 
+
 class ContactPageView(View):
+
     def get(self, request):
         return render(request, "contact.html")
