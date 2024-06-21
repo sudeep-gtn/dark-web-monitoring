@@ -561,6 +561,17 @@ class GenerateReportView(View):
             pii = PIIExposure.objects.all()
             if date_from and date_to:
                 pii = pii.filter(breach_date__range=(date_from, date_to))
+            
+        if 'stealer_logs' in filters:
+            stealer_logs = StealerLogs.objects.all()
+            if date_from and date_to:
+                stealer_logs = stealer_logs.filter(breach_date__range=(date_from, date_to))
+            
+        if 'black_market' in filters:
+            black_market = BlackMarket.objects.all()
+            if date_from and date_to:
+                black_market = black_market.filter(breach_date__range=(date_from, date_to))
+            
 
         print("domain with filter: ", domains)
         print("cards with filter: ", cards)
@@ -600,7 +611,8 @@ class PreviewReportView(View):
         domains = []
         cards = []
         pii = []
-
+        black_market = []
+        stealer_log = []
         # Fetch data from the database
         if 'domain-leaks' in filters:
             domains = Domain.objects.all()
@@ -615,14 +627,29 @@ class PreviewReportView(View):
             if date_from and date_to:
                 pii = pii.filter(breach_date__range=(date_from, date_to))
 
+
+        if 'stealer_log' in filters:
+            stealer_log = StealerLogs.objects.all()
+            if date_from and date_to:
+                stealer_log = stealer_log.filter(breach_date__range=(date_from, date_to))
+            
+        if 'black_market' in filters:
+            black_market = BlackMarket.objects.all()
+            if date_from and date_to:
+                black_market = black_market.filter(breach_date__range=(date_from, date_to))
+            
+
         print("domain with filter: ", domains)
         print("cards with filter: ", cards)
         print("pii with filter: ", pii)
-
+        print("balck ", black_market )
+        print("Stealer:", stealer_log)
         context = {
             'domains': domains,
             'cards': cards,
-            'pii': pii
+            'pii': pii,
+            'black_market':black_market,
+            'stealer_log':stealer_log
         }
 
         # Render the template for preview
