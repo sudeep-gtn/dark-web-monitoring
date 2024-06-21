@@ -242,46 +242,24 @@
                         ID</th>
                     <th
                         class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
+                        Date Detected</th>
+                    <th
+                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
+                        Data Type</th>
+                    <th
+                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
                         Source</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Stealer Log Preview</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Related Assets</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Price</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Status</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Obtain Progress</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Discovery Date</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Incident</th>
                 </tr>
             </thead>
             <tbody class="block md:table-row-group">
-                {% for item in black_market %}
+                {% for item in stealer_log %}
                 <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.id }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.source }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{
-                        item.stealer_log_preview }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.related_assets }}
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.log_id }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.date_detected }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.data_type }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.source }}
                     </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.price }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.status }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.obtain_progress
-                        }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.discovery_date }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.incident }}</td>
+        
                 </tr>
                 {% endfor %}
             </tbody>
