@@ -659,35 +659,35 @@ class PreviewReportView(View):
 class TicketsView(View):
     # def get(self, request):
     #     tickets = Ticket.objects.all()
-    #     # Ticket.objects.create(
-    #     #     ticket_title='Data Breach on example.com',
-    #     #     ticket_description='Details about the data breach on example.com...',
-    #     #     resolved=False
-    #     # )
+    #     Ticket.objects.create(
+    #         ticket_title='Data Breach on example.com',
+    #         ticket_description='Details about the data breach on example.com...',
+    #         resolved=False
+    #     )
 
-    #     # Ticket.objects.create(
-    #     #     ticket_title='Unauthorized Access on testsite.org',
-    #     #     ticket_description='Details about the unauthorized access on testsite.org...',
-    #     #     resolved=True
-    #     # )
+    #     Ticket.objects.create(
+    #         ticket_title='Unauthorized Access on testsite.org',
+    #         ticket_description='Details about the unauthorized access on testsite.org...',
+    #         resolved=True
+    #     )
 
-    #     # Ticket.objects.create(
-    #     #     ticket_title='Vulnerability found on mywebsite.net',
-    #     #     ticket_description='Details about the vulnerability found on mywebsite.net...',
-    #     #     resolved=False
-    #     # )
+    #     Ticket.objects.create(
+    #         ticket_title='Vulnerability found on mywebsite.net',
+    #         ticket_description='Details about the vulnerability found on mywebsite.net...',
+    #         resolved=False
+    #     )
 
-    #     # Ticket.objects.create(
-    #     #     ticket_title='Suspicious login on anothersite.io',
-    #     #     ticket_description='Details about the suspicious login on anothersite.io...',
-    #     #     resolved=True
-    #     # )
+    #     Ticket.objects.create(
+    #         ticket_title='Suspicious login on anothersite.io',
+    #         ticket_description='Details about the suspicious login on anothersite.io...',
+    #         resolved=True
+    #     )
 
-    #     # Ticket.objects.create(
-    #     #     ticket_title='Data leak report for sampledomain.edu',
-    #     #     ticket_description='Details about the data leak report for sampledomain.edu...',
-    #     #     resolved=False
-    #     # )
+    #     Ticket.objects.create(
+    #         ticket_title='Data leak report for sampledomain.edu',
+    #         ticket_description='Details about the data leak report for sampledomain.edu...',
+    #         resolved=False
+    #     )
 
     #     return render(request, "tickets.html", {'tickets': tickets})
     
