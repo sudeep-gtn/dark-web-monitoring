@@ -53,10 +53,7 @@
 {% block content %}
 <div class="container mx-auto">
     <section id="raise-ticket" class="rounded-lg p-6">
-        {% if user.is_staff %}
-        <a class="bg-gray-300 p-2 rounded  mb-4 hover:bg-gray-500 hover:text-white" href="{% url 'tickets' %}">View all
-            tickets</a>
-        {% else %}
+        {% if not user.is_staff %}
         <button onclick="showForm()" class="bg-gray-300 p-2 rounded  mb-4">Raise Ticket</button>
         <div id="ticketForm" class="hidden">
             <form method="POST" class="space-y-4" enctype="multipart/form-data">
@@ -87,7 +84,6 @@
         </div>
         {% endif %}
 
-        {% if not user.is_staff %}
         <div>
             <h2 class="text-xl font-bold text-gray-900 mb-4">Tickets</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -102,8 +98,22 @@
                         </div>
                         {% endif %}
                         <div class="flex justify-between items-center mt-3">
-                            {% if ticket.resolved %}
-                            <div class="text-white bg-green-500 text-xs rounded p-1">Resolved</div>
+                            {% if not ticket.resolved %}
+                            <div class="text-white bg-blue-500 w-10 text-xs rounded p-1 mt-1">
+                                <p>Open</p>
+                            </div>
+                            {% if user.is_staff %}
+                            <form action="{% url 'resolve_ticket' ticket.ticket_id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit"
+                                    class="text-white bg-blue-500 w-30 text-xs rounded p-1 mt-1 hover:bg-blue-600">Mark as
+                                    Resolved</button>
+                            </form>
+                            {% endif %} 
+                            {% else %}
+                            <div class="text-white bg-green-500 w-14 text-xs rounded p-1 mt-1">
+                                <p>Resolved</p>
+                            </div>
                             {% endif %}
                         </div>
                     </div>
@@ -111,7 +121,6 @@
                 {% endfor %}
             </div>
         </div>        
-        {% endif %}
 
     </section>
     <hr class="border-t border-gray-600 my-3">
@@ -119,7 +128,7 @@
         <h1 class="mx-6 text-lg font-semibold">Integration With Security Infrastructure - SIEM (Available On Demand)
         </h1>
         <div class="mx-6 mt-4 flex-col sm:flex sm:flex-row">
-            <p class="mb-2 mr-2 text-justify text-gray-600 pr-2">SIEM (Security Information and Event Management) is a
+            <p class="mb-2 mr-2 text-justify text-gray-500 pr-2">SIEM (Security Information and Event Management) is a
                 robust
                 cybersecurity solution that integrates Security Information Management (SIM) and Security Event
                 Management (SEM) functionalities into a unified platform. SIM involves the collection, normalization,
