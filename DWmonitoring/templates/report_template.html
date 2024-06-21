@@ -54,8 +54,7 @@
                     </td>
                     <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.source_ip }}
                     </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.source_domain
-                        }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.source_domain }}</td>
                     <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.breach_date }}
                     </td>
                 </tr>
@@ -77,60 +76,33 @@
     <div class="p-4 ">
         <table class="min-w-full border-collapse block md:table">
             <thead class="block md:table-header-group">
-                <tr
-                    class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Name</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Breach Date</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Posted Date</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Breach IP</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Source Domain</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Threat Type</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Type of Data</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Source</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Personal Email</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Phone</th>
+                <tr class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Name</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Breach Date</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Posted Date</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Breach IP</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Source Domain</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Threat Type</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Type of Data</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Source</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Personal Email</th>
+                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Phone</th>
                 </tr>
             </thead>
             <tbody class="block md:table-row-group">
                 {% for exposure in pii %}
                 <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
                     <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.name }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.breach_date
-                        }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.posted_date
-                        }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.breach_date }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.posted_date }}</td>
                     <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.breach_ip }}
                     </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.source_domain
-                        }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.threat_type
-                        }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.type_of_data
-                        }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.source_domain }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.threat_type }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.type_of_data }}</td>
                     <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.source }}
                     </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{
-                        exposure.personal_email }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.personal_email }}</td>
                     <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.phone }}</td>
                 </tr>
                 {% endfor %}
@@ -273,6 +245,9 @@
 
 
 
+
+
+    {% if black_market %}
     <div class="px-8 flex justify-around items-center ">
         <h1 class="font-semibold text-lg ">Black Market </h1>
         
@@ -307,6 +282,7 @@
             {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 </body>
 
 </html>
