@@ -4,59 +4,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <link rel="stylesheet" href="/static/css/report.css"> -->
     <title>Report</title>
+    <style>
+
+        .title-header {
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .breach-count{
+            font-weight: 500px;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .table-container {
+            width: 100%;
+            border-collapse: collapse;
+            display: block;
+            
+        }
+
+        .table-header {
+            display: block;
+            width: 100%;
+            background-color: #f7fafc;
+            color: #4a5568;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .table-header-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .table-header-cell {
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            display: table-cell;
+        }
+
+        .table-body {
+            display: block;
+            width: 100%;
+        }
+
+        .table-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            background-color: #fff;
+            border: 1px solid #e2e8f0;
+        }
+
+        .table-cell {
+            width: fit-content;
+
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+            display: table-cell;
+        }
+    </style>
 </head>
 
 <body>
-    <header class="flex items-center justify-between px-8 py-4 ">
-        <div class="text-3xl font-semibold tracking-wider"> Dark Web Monitoring Report </div>
-        <div class="w-[200px]"> <img src="/static/images/logo-green1.png" alt="logo"></div>
+    <header style="display: flex; justify-content: space-between;">
+        <div style="font-weight: 700; font-size: 26px;"> Dark Web Monitoring Report </div>
+        <div> <img src="/static/images/logo-green1.png" width="140" alt="logo"></div>
     </header>
 
 
     {% if domains %}
-    <div class="px-8 flex justify-around items-center ">
-        <h1 class="font-semibold text-lg ">Domain Breaches</h1>
-        <div class="my-4 ">
-            <div class="font-semibold">Total Domain breaches : <span class="font-normal">{{ domains |length }}</span>
-            </div>
+    <div class="header-container">
+        <h1 class="title-header">Domain Breaches</h1>
+        <div>
+            <div class="breach-count">Total Domain breaches : <span>{{ domains |length }}</span> </div>
         </div>
     </div>
-    <div class="p-4 ">
-        <table class="min-w-full border-collapse block md:table">
-            <thead class="block md:table-header-group">
-                <tr
-                    class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Name</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Domain IP</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Source IP</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Source Domain</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Breach Date</th>
+    <div style="padding: 0 10px;">
+        <table class="table-container">
+            <thead class="table-header">
+                <tr class="table-header-row">
+                    <th class="table-header-cell">Name</th>
+                    <th class="table-header-cell">Domain IP</th>
+                    <th class="table-header-cell">Source IP</th>
+                    <th class="table-header-cell">Source Domain</th>
+                    <th class="table-header-cell">Breach Date</th>
                 </tr>
             </thead>
-            <tbody class="block md:table-row-group">
+            <tbody class="table-body">
                 {% for domain in domains %}
-                <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.name }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.domain_ip }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.source_ip }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.source_domain }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ domain.breach_date }}
-                    </td>
+                <tr class="table-row">
+                    <td class="table-cell">{{ domain.name }}</td>
+                    <td class="table-cell">{{ domain.domain_ip }}</td>
+                    <td class="table-cell">{{ domain.source_ip }}</td>
+                    <td class="table-cell">{{ domain.source_domain }}</td>
+                    <td class="table-cell">{{ domain.breach_date }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -66,127 +113,94 @@
 
 
     {% if pii %}
-    <div class="px-8 flex justify-around items-center ">
-        <h1 class="font-semibold text-lg ">PII Breaches</h1>
-        <div class="my-4 ">
-            <div class="font-semibold">Total PII breaches : <span class="font-normal">{{ pii |length }}</span></div>
+    <div style="margin-top: 30px;" class="header-container ">
+        <h1 class="title-header">PII Breaches</h1>
+        <div>
+            <div class="breach-count">Total PII breaches : <span class="font-normal">{{ pii |length }}</span></div>
         </div>
     </div>
 
-    <div class="p-4 ">
-        <table class="min-w-full border-collapse block md:table">
-            <thead class="block md:table-header-group">
-                <tr class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Name</th>
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Breach Date</th>
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Posted Date</th>
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Breach IP</th>
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Source Domain</th>
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Threat Type</th>
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Type of Data</th>
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Source</th>
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Personal Email</th>
-                    <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell"> Phone</th>
-                </tr>
+    <div style="padding: 0 10px;">
+        <table class="table-container">
+            <thead class="table-header">
+              <tr class="table-header-row">
+                <th class="table-header-cell">Name</th>
+                <th class="table-header-cell">Breach Date</th>
+                <th class="table-header-cell">Posted Date</th>
+                <th class="table-header-cell">Breach IP</th>
+                <th class="table-header-cell">Source Domain</th>
+                <th class="table-header-cell">Threat Type</th>
+                <th class="table-header-cell">Type of Data</th>
+                <th class="table-header-cell">Source</th>
+                <th class="table-header-cell">Personal Email</th>
+                <th class="table-header-cell">Phone</th>
+              </tr>
             </thead>
-            <tbody class="block md:table-row-group">
-                {% for exposure in pii %}
-                <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.name }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.breach_date }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.posted_date }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.breach_ip }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.source_domain }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.threat_type }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.type_of_data }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.source }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.personal_email }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ exposure.phone }}</td>
-                </tr>
-                {% endfor %}
+            <tbody class="table-body">
+              {% for exposure in pii %}
+              <tr class="table-row">
+                <td class="table-cell">{{ exposure.name }}</td>
+                <td class="table-cell">{{ exposure.breach_date }}</td>
+                <td class="table-cell">{{ exposure.posted_date }}</td>
+                <td class="table-cell">{{ exposure.breach_ip }}</td>
+                <td class="table-cell">{{ exposure.source_domain }}</td>
+                <td class="table-cell">{{ exposure.threat_type }}</td>
+                <td class="table-cell">{{ exposure.type_of_data }}</td>
+                <td class="table-cell">{{ exposure.source }}</td>
+                <td class="table-cell">{{ exposure.personal_email }}</td>
+                <td class="table-cell">{{ exposure.phone }}</td>
+              </tr>
+              {% endfor %}
             </tbody>
-        </table>
+          </table>
+          
     </div>
     {% endif %}
 
 
     {% if cards %}
-    <div class="px-8 flex justify-around items-center ">
-        <h1 class="font-semibold text-lg ">Cards Breaches</h1>
-        <div class="my-4 ">
-            <div class="font-semibold">Total Card breaches : <span class="font-normal">{{ cards |length }}</span></div>
+    <div class="header-container" >
+        <h1 class="title-header">Cards Breaches</h1>
+        <div >
+            <div class="breach-count">Total Card breaches : <span >{{ cards |length }}</span></div>
         </div>
     </div>
 
-    <div class="px-6 ">
-        <table class="min-w-full border-collapse block md:table">
-            <thead class="block md:table-header-group">
-                <tr
-                    class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Card BIN Number</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Card Type</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Expiry Date</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        CVV</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Card Holder Name</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Issuing Bank</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Breach Date</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Posted Date</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Breach Source</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Last Used Date</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Breach Source Domain</th>
-                </tr>
+    <div style="pad: 0 10px;">
+        <table class="table-container">
+            <thead class="table-header">
+              <tr class="table-header-row">
+                <th class="table-header-cell">Card BIN Number</th>
+                <th class="table-header-cell">Card Type</th>
+                <th class="table-header-cell">Expiry Date</th>
+                <th class="table-header-cell">CVV</th>
+                <th class="table-header-cell">Card Holder Name</th>
+                <th class="table-header-cell">Issuing Bank</th>
+                <th class="table-header-cell">Breach Date</th>
+                <th class="table-header-cell">Posted Date</th>
+                <th class="table-header-cell">Breach Source</th>
+                <th class="table-header-cell">Last Used Date</th>
+                <th class="table-header-cell">Breach Source Domain</th>
+              </tr>
             </thead>
-            <tbody class="block md:table-row-group">
-                {% for card in cards %}
-                <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.card_bin_number
-                        }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.card_type }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.expiry_date }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.cvv }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.card_holder_name
-                        }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.issuing_bank }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.breach_date }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.posted_date }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.breach_source }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ card.last_used_date }}
-                    </td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{
-                        card.breach_source_domain }}</td>
-                </tr>
-                {% endfor %}
+            <tbody class="table-body">
+              {% for card in cards %}
+              <tr class="table-row">
+                <td class="table-cell">{{ card.card_bin_number }}</td>
+                <td class="table-cell">{{ card.card_type }}</td>
+                <td class="table-cell">{{ card.expiry_date }}</td>
+                <td class="table-cell">{{ card.cvv }}</td>
+                <td class="table-cell">{{ card.card_holder_name }}</td>
+                <td class="table-cell">{{ card.issuing_bank }}</td>
+                <td class="table-cell">{{ card.breach_date }}</td>
+                <td class="table-cell">{{ card.posted_date }}</td>
+                <td class="table-cell">{{ card.breach_source }}</td>
+                <td class="table-cell">{{ card.last_used_date }}</td>
+                <td class="table-cell">{{ card.breach_source_domain }}</td>
+              </tr>
+              {% endfor %}
             </tbody>
-        </table>
+          </table>
     </div>
     {% endif %}
 
@@ -196,46 +210,36 @@
 
     {% if stealer_log %}
 
-    <div class="px-8 flex justify-around items-center ">
-        <h1 class="font-semibold text-lg ">Stealer Logs </h1>
-        <div class="my-4 ">
-            <div class="font-semibold">Total logs : <span class="font-normal">{{ cards |length }}</span></div>
+    <div class="header-container">
+        <h1 class="title-header">Stealer Logs </h1>
+        <div>
+            <div class="breach-count">Total logs : <span class="font-normal">{{ cards |length }}</span></div>
         </div>
     </div>
 
 
-    <div class="px-6 ">
-        <table class="min-w-full border-collapse block md:table">
-            <thead class="block md:table-header-group">
-                <tr
-                    class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        ID</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Date Detected</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Data Type</th>
-                    <th
-                        class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">
-                        Source</th>
-                </tr>
+    <div style="padding: 0 10px;">
+        <table class="table-container">
+            <thead class="table-header">
+              <tr class="table-header-row">
+                <th class="table-header-cell">ID</th>
+                <th class="table-header-cell">Date Detected</th>
+                <th class="table-header-cell">Data Type</th>
+                <th class="table-header-cell">Source</th>
+              </tr>
             </thead>
-            <tbody class="block md:table-row-group">
-                {% for item in stealer_log %}
-                <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.log_id }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.date_detected }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.data_type }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.source }}
-                    </td>
-        
-                </tr>
-                {% endfor %}
+            <tbody class="table-body">
+              {% for item in stealer_log %}
+              <tr class="table-row">
+                <td class="table-cell">{{ item.log_id }}</td>
+                <td class="table-cell">{{ item.date_detected }}</td>
+                <td class="table-cell">{{ item.data_type }}</td>
+                <td class="table-cell">{{ item.source }}</td>
+              </tr>
+              {% endfor %}
             </tbody>
-        </table>
+          </table>
+          
     </div>
 
     {% endif %}
@@ -248,40 +252,41 @@
 
 
     {% if black_market %}
-    <div class="px-8 flex justify-around items-center ">
-        <h1 class="font-semibold text-lg ">Black Market </h1>
-        
+    <div class="header-container ">
+        <h1 class="title-header ">Black Market </h1>
+
     </div>
-    <table class="min-w-full border-collapse block md:table">
-        <thead class="block md:table-header-group">
-            <tr class="border border-gray-300 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">ID</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Source</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Stealer Log Preview</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Related Assets</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Price</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Status</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Obtain Progress</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Discovery Date</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 block md:table-cell">Incident</th>
-            </tr>
+    <table class="table-container">
+        <thead class="table-header">
+          <tr class="table-header-row">
+            <th class="table-header-cell">ID</th>
+            <th class="table-header-cell">Source</th>
+            <th class="table-header-cell">Stealer Log Preview</th>
+            <th class="table-header-cell">Related Assets</th>
+            <th class="table-header-cell">Price</th>
+            <th class="table-header-cell">Status</th>
+            <th class="table-header-cell">Obtain Progress</th>
+            <th class="table-header-cell">Discovery Date</th>
+            <th class="table-header-cell">Incident</th>
+          </tr>
         </thead>
-        <tbody class="block md:table-row-group">
-            {% for item in black_market %}
-            <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
-                <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.id }}</td>
-                <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.source }}</td>
-                <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.stealer_log_preview }}</td>
-                <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.related_assets }}</td>
-                <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.price }}</td>
-                <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.status }}</td>
-                <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.obtain_progress }}</td>
-                <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.discovery_date }}</td>
-                <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ item.incident }}</td>
-            </tr>
-            {% endfor %}
+        <tbody class="table-body">
+          {% for item in black_market %}
+          <tr class="table-row">
+            <td class="table-cell">{{ item.id }}</td>
+            <td class="table-cell">{{ item.source }}</td>
+            <td class="table-cell">{{ item.stealer_log_preview }}</td>
+            <td class="table-cell">{{ item.related_assets }}</td>
+            <td class="table-cell">{{ item.price }}</td>
+            <td class="table-cell">{{ item.status }}</td>
+            <td class="table-cell">{{ item.obtain_progress }}</td>
+            <td class="table-cell">{{ item.discovery_date }}</td>
+            <td class="table-cell">{{ item.incident }}</td>
+          </tr>
+          {% endfor %}
         </tbody>
-    </table>
+      </table>
+      
     {% endif %}
 </body>
 
