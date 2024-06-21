@@ -32,6 +32,7 @@ class DashboardView(LoginRequiredMixin, View):
 
         return render(request, "dashboard.html", context)
 
+
 class DomainView(LoginRequiredMixin, View):
     login_url = "login"
     
@@ -100,6 +101,7 @@ class DomainView(LoginRequiredMixin, View):
 
         return render(request, "domain.html", {'domains': domains, 'domain_length': domain_length, 'unique_domain_length': unique_domain_length, 'unique_domains': unique_domain, 'leak_sources_json': leak_sources_json})
     
+
 class CardsView(LoginRequiredMixin, View):
     login_url = "login"
     
@@ -198,15 +200,18 @@ class CardsView(LoginRequiredMixin, View):
             'reversed_leak_sources_json': reversed_leak_sources_json
         })
 
+
 class EmailView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self,request):
         return render(request, "email.html")
     
+
 class OrganizationDetailsView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
         return render(request, "organization-details.html")
+
 
 class NotificationsAlertView(LoginRequiredMixin, View):
     login_url = "login"
@@ -279,6 +284,7 @@ class BlackMarketView(LoginRequiredMixin, View):
         black_market_datas = BlackMarket.objects.all()
         return render(request, "black_market.html",{'black_market_datas': black_market_datas})
     
+
 class StealerLogsView(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
@@ -319,6 +325,7 @@ class StealerLogsView(LoginRequiredMixin, View):
 
         stealer_logs = StealerLogs.objects.all()
         return render(request, "stealer-logs.html",{'stealer_logs': stealer_logs})
+
 
 class PiiExposureView(LoginRequiredMixin, View):
     login_url = "login"
@@ -417,6 +424,7 @@ class PiiExposureView(LoginRequiredMixin, View):
             'leak_sources_json': leak_sources_json
         })
 
+
 class Overview(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
@@ -425,7 +433,8 @@ class Overview(LoginRequiredMixin, View):
             'health_score': health_score
         }
         return render(request, "overview.html", context)
-        
+
+
 class ThreatIntelligence(LoginRequiredMixin, View):
     login_url = "login"
     def get(self, request):
@@ -470,6 +479,7 @@ class ThreatIntelligence(LoginRequiredMixin, View):
 
         return render(request, "threatIntelligence.html",{'context':context, 'news_data_sorted'  : news_data_sorted })
     
+
 class ThreatActor(LoginRequiredMixin, View):
     login_url = "login"
     
@@ -488,6 +498,7 @@ class ThreatActor(LoginRequiredMixin, View):
             context = {'data': response.json()}
 
         return render(request, "threatActorProfile.html", {'context':context})
+
 
 class IncidentResponse(LoginRequiredMixin, View):
     login_url = "login"
@@ -510,6 +521,7 @@ class IncidentResponse(LoginRequiredMixin, View):
 
         return redirect('incident-response')
     
+
 class AnalyticsAndReports(LoginRequiredMixin, View):
     login_url = "login"
 
@@ -521,6 +533,7 @@ class AnalyticsAndReports(LoginRequiredMixin, View):
             'breach_counts': breach_counts,
         }        
         return render( request,'analyticsAndReports.html', {'context':context})
+
 
 class LiveThreatMap(LoginRequiredMixin, View):
     def get(self, request):
