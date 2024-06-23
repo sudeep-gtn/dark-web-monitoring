@@ -9,7 +9,8 @@ from .views import (
     Overview,ThreatIntelligence, ThreatActor,
     IncidentResponse,AnalyticsAndReports,
     LiveThreatMap,GenerateReportView,PreviewReportView,
-    TicketsView
+    TicketsView, FetchThreatIntelligenceData, SupportAndAssistance,
+    TermsAndConditions
     )
 urlpatterns = [
     path('dark-web-monitoring/dashboard', DashboardView.as_view(), name="dashboard"),
@@ -24,6 +25,9 @@ urlpatterns = [
 
     path('overview', Overview.as_view(), name='overview'),
     path('threat-intelligence', ThreatIntelligence.as_view(), name='threat-intelligence'),
+    path('fetch-threat-intelligence-data/', FetchThreatIntelligenceData.as_view(), name='fetch_threat_intelligence_data'),
+
+
     path('threat-intelligence/actor/', ThreatActor.as_view(), name='threat-actor-profile'),
     path('incident-response', IncidentResponse.as_view(), name="incident-response"),
     path('analytics-and-reports', AnalyticsAndReports.as_view(), name="analytics-and-reports"),
@@ -31,4 +35,8 @@ urlpatterns = [
     path('report/', GenerateReportView.as_view() , name="generate_report"),
     path('preview-report/', PreviewReportView.as_view(), name="preview-report"),
     path('resolve/<int:ticket_id>/', TicketsView.as_view(), name='resolve_ticket'),
+
+    path('support-and-assistance', SupportAndAssistance.as_view(), name='support-and-assistance'),
+    path('terms-and-conditions', TermsAndConditions.as_view(), name='terms-and-conditions')
+
 ]

@@ -10,6 +10,7 @@ from dateutil import parser
 from django.http import HttpResponse, HttpResponseBadRequest
 from weasyprint import HTML
 from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 class DashboardView(LoginRequiredMixin, View):
     login_url = "login"
@@ -426,25 +427,39 @@ class Overview(LoginRequiredMixin, View):
         }
         return render(request, "overview.html", context)
         
+
+
+
+
+'''
+<------------- threat intelligenece ---------->
+'''
 class ThreatIntelligence(LoginRequiredMixin, View):
     login_url = "login"
+
     def get(self, request):
         news = CyberNews()
-        
         malware_news = news.get_news('malware')
         
-        news_data =malware_news
+        news_data = malware_news
         for news_item in news_data:
             try:
                 news_item['newsDate'] = parser.parse(news_item['newsDate']).date()
             except ValueError:
                 print("The date is not in correct date format")
                 news_item['newsDate'] = None
+        
         news_data = [item for item in news_data if item['newsDate'] is not None]
         news_data_sorted = sorted(news_data, key=lambda x: x['newsDate'], reverse=True)
-        total_news = len(news_data_sorted)
+        
+        return render(request, "threatIntelligence.html", {'news_data_sorted': news_data_sorted}) 
+    
 
-        print("malware news : ", news_data_sorted)
+
+class FetchThreatIntelligenceData(LoginRequiredMixin, View):
+    login_url = "login"
+
+    def get(self, request):
         url = 'https://api.any.run/v1/feeds/stix.json?IP=true&Domain=true&URL=true'
         token = 'WX2JCzLFjmaRXaQHFhLfbfn5EHdwxCmbBpY8tQ78'
 
@@ -455,21 +470,18 @@ class ThreatIntelligence(LoginRequiredMixin, View):
         }
 
         response = requests.get(url, headers=headers)
-
+        
         if response.status_code != 200:
-            context = {'error': 'Error fetching the API', 'details': response.text}
-        else:
-            context =  response.json()
+            return JsonResponse({'error': 'Error fetching the API', 'details': response.text}, status=response.status_code)
+
+        context = response.json()
 
         types = defaultdict(int)
         for obj in context["data"]["objects"]:
             types[obj["type"]] += 1
-         
+        
         context["types"] = sorted(types.keys())
-        print("types: ", context["types"])
-
-        return render(request, "threatIntelligence.html",{'context':context, 'news_data_sorted'  : news_data_sorted })
-    
+        return JsonResponse(context)
 class ThreatActor(LoginRequiredMixin, View):
     login_url = "login"
     
@@ -547,6 +559,8 @@ class GenerateReportView(View):
         domains = []
         cards = []
         pii = []
+        stealer_logs = []
+        black_market = []
 
         # Fetch data from the database
         if 'domain-leaks' in filters:
@@ -565,12 +579,12 @@ class GenerateReportView(View):
         if 'stealer_logs' in filters:
             stealer_logs = StealerLogs.objects.all()
             if date_from and date_to:
-                stealer_logs = stealer_logs.filter(breach_date__range=(date_from, date_to))
+                stealer_logs = stealer_logs.filter(date_detected__range=(date_from, date_to))
             
         if 'black_market' in filters:
             black_market = BlackMarket.objects.all()
             if date_from and date_to:
-                black_market = black_market.filter(breach_date__range=(date_from, date_to))
+                black_market = black_market.filter(discovery_date__range=(date_from, date_to))
             
 
         print("domain with filter: ", domains)
@@ -580,7 +594,9 @@ class GenerateReportView(View):
         context = {
             'domains': domains,
             'cards': cards,
-            'pii': pii
+            'pii': pii,
+            'stealer_log':stealer_logs,
+            'black_market': black_market
         }
 
         # Render the HTML template with the data
@@ -630,13 +646,13 @@ class PreviewReportView(View):
 
         if 'stealer_log' in filters:
             stealer_log = StealerLogs.objects.all()
-            if date_from and date_to:
-                stealer_log = stealer_log.filter(breach_date__range=(date_from, date_to))
+            # if date_from and date_to:
+            #     stealer_log = stealer_log.filter(date_detected__range=(date_from, date_to))
             
         if 'black_market' in filters:
             black_market = BlackMarket.objects.all()
-            if date_from and date_to:
-                black_market = black_market.filter(breach_date__range=(date_from, date_to))
+            # if date_from and date_to:
+            #     black_market = black_market.filter(discovery_date__range=(date_from, date_to))
             
 
         print("domain with filter: ", domains)
@@ -702,3 +718,14 @@ class TicketsView(View):
         ticket.save()
         return redirect('incident-response')
 
+
+
+
+class SupportAndAssistance(LoginRequiredMixin,View):
+    login_url = 'login'
+    def get(self, request):
+        return render(request,'support-and-assistance.html')
+    
+class TermsAndConditions(View):
+    def get(self, request):
+        return render(request, 'terms_and_conditions.html')
