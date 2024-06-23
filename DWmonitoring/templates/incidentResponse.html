@@ -53,39 +53,54 @@
 {% block content %}
 <div class="container mx-auto">
     <section id="raise-ticket" class="rounded-lg p-6">
-        {% if not user.is_staff %}
-        <button onclick="showForm()" class="bg-gray-300 p-2 rounded  mb-4">Raise Ticket</button>
-        <div id="ticketForm" class="hidden">
-            <form method="POST" class="space-y-4" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div>
-                    <label for="ticket_title" class="block text-sm font-medium text-gray-700">Ticket Title</label>
-                    <input type="text" id="ticket_title" name="ticket_title"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        required>
-                </div>
-                <div>
-                    <label for="ticket_description" class="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea id="ticket_description" name="ticket_description" rows="3"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        required></textarea>
-                </div>
-                <div>
-                    <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-                    <input type="file" id="image" name="image"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                </div>
-                <div>
-                    <button type="submit"
-                        class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Raise Ticket
-                    </button>
-                </div>
-            </form>
+        {% if user %}
+        <div class="flex items-center justify-between mb-8 bg-white p-4">
+            <div class="w-2/3 text-gray-600 font-semibold">
+                If you encounter any suspicious activities or potential threats, please raise a ticket. Our team
+                will review and address it promptly.
+            </div>
+            <button onclick="showForm()" class="bg-gray-200 border-2 border-gray-400  text-gray-800 font-semibold py-2 px-4 rounded">Raise
+                Ticket</button>
+        </div>
+
+        <div id="backgroundMask" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+
+        <div id="ticketForm" class="hidden fixed inset-0 z-50 flex items-center justify-center">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+                <form method="POST" class="space-y-4" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div>
+                        <label for="ticket_title" class="block text-sm font-medium text-gray-700">Ticket Title</label>
+                        <input type="text" id="ticket_title" name="ticket_title"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required>
+                    </div>
+                    <div>
+                        <label for="ticket_description"
+                            class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea id="ticket_description" name="ticket_description" rows="3"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required></textarea>
+                    </div>
+                    <div>
+                        <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+                        <input type="file" id="image" name="image"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button" onclick="hideForm()"
+                            class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-gray-600">Cancel</button>
+                        <button type="submit"
+                            class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Raise
+                            Ticket</button>
+                    </div>
+                </form>
+            </div>
         </div>
         {% endif %}
 
         <div>
-            <h2 class="text-xl font-bold text-gray-900 mb-4">Tickets</h2>
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Raised Tickets</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {% for ticket in tickets %}
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
@@ -93,42 +108,66 @@
                         <h3 class="text-lg font-medium text-gray-900">{{ ticket.ticket_title }}</h3>
                         <p class="text-gray-500 mb-3">{{ ticket.ticket_description }}</p>
                         {% if ticket.image %}
-                        <div>
-                            <img src="{{ ticket.image.url }}" alt="Ticket Image" class="rounded-md w-full h-auto object-cover">
+                        <div class="max-w-[200px] ">
+                            <span class="text-gray-600 ">Attachments</span>
+                            <div>
+                                <img src="{{ ticket.image.url }}" alt="Ticket Image"
+                                    class="rounded-md w-full h-auto object-cover">
+                                <a target="_blank"
+                                    class=" border-2 rounded-lg flex gap-2 mt-1 items-center w-fit bg-gray-100 border-gray-400 px-2 "
+                                    href="{{ ticket.image.url }}"> <img src="/static/images/redirect.png" width="12"
+                                        height="12" alt=""> View image </a>
+                            </div>
                         </div>
                         {% endif %}
-                        <div class="flex justify-between items-center mt-3">
-                            {% if not ticket.resolved %}
-                            <div class="text-white bg-blue-500 w-10 text-xs rounded p-1 mt-1">
-                                <p>Open</p>
+                        <div class="mt-4 ">
+                            <span class="text-gray-600 font-semibold">status:</span>
+                            <div class="flex justify-between items-center">
+                                {% if not ticket.resolved %}
+                                <div class="text-white bg-yellow-600 w-10 text-xs rounded p-1 mt-1">
+                                    <p>Open</p>
+                                </div>
+                                {% if user.is_staff %}
+                                <form action="{% url 'resolve_ticket' ticket.ticket_id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit"
+                                        class="text-white bg-blue-500 w-30 text-xs rounded p-1 mt-1 hover:bg-blue-600">Mark
+                                        as
+                                        Resolved</button>
+                                </form>
+                                {% endif %}
+                                {% else %}
+                                <div class="text-white bg-green-500 w-14 text-xs rounded p-1 mt-1">
+                                    <p>Resolved</p>
+                                </div>
+                                {% endif %}
                             </div>
-                            {% if user.is_staff %}
-                            <form action="{% url 'resolve_ticket' ticket.ticket_id %}" method="POST">
-                                {% csrf_token %}
-                                <button type="submit"
-                                    class="text-white bg-blue-500 w-30 text-xs rounded p-1 mt-1 hover:bg-blue-600">Mark as
-                                    Resolved</button>
-                            </form>
-                            {% endif %} 
-                            {% else %}
-                            <div class="text-white bg-green-500 w-14 text-xs rounded p-1 mt-1">
-                                <p>Resolved</p>
-                            </div>
-                            {% endif %}
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-        </div>        
+        </div>
 
     </section>
     <hr class="border-t border-gray-600 my-3">
     <div>
-        <h1 class="mx-6 text-lg font-semibold">Integration With Security Infrastructure - SIEM (Available On Demand)
-        </h1>
-        <div class="mx-6 mt-4 flex-col sm:flex sm:flex-row">
-            <p class="mb-2 mr-2 text-justify text-gray-500 pr-2">SIEM (Security Information and Event Management) is a
+        <div class="px-6 mt-4">
+            <div class="text-xl font-semibold">Integration With Security Infrastructure - <span
+                    class="text-red-600">SIEM</span> </div>
+            <div class="flex w-fit gap-4 font-semibold text-sm mt-2 ">
+                <span class="bg-green-500 text-white rounded  px-4 ">Available on Demand</span>
+                <a target="_blank" href="https://gkavach.com">
+                    <div class="bg-gray-400 px-3 rounded text-gray-100 "> Learn more </div>
+                </a>
+            </div>
+        </div>
+        <div class="mt-2 flex-col w-full p-4 gap-4 flex md:flex-row">
+            <div class="w-full  md:w-3/4 border-2 border-red-700 shadow-2xl rounded overflow-hidden"><img
+                    src="/static/images/siem.png" alt="SIEM Image"
+                    class="transform hover:scale-105 transition-all duration-200 ease-in-out object-cover"></div>
+            <div class="mb-2 text-center text-gray-500 w-full md:w-2/3">SIEM (Security Information and Event Management)
+                is a
                 robust
                 cybersecurity solution that integrates Security Information Management (SIM) and Security Event
                 Management (SEM) functionalities into a unified platform. SIM involves the collection, normalization,
@@ -139,8 +178,7 @@
                 facilitate effective incident response and forensic investigations. By centralizing security data and
                 providing advanced analytics capabilities, SIEM helps organizations enhance their security posture,
                 comply with regulatory requirements, and mitigate risks effectively.
-            </p>
-            <img src="/static/images/siem.png" alt="SIEM Image" width="300" height="300" class="rounded shadow-lg">
+            </div>
         </div>
         <div class="mx-6 mb-4">
             <a target="_blank" href="https://www.gkavach.com/" class="text-blue-500 text-sm hover:underline">Learn more
@@ -150,16 +188,26 @@
 </div>
 
 <script>
-    function showForm() {
-        let element = document.getElementById("ticketForm");
+    // function showForm() {
+    //     let element = document.getElementById("ticketForm");
 
-        if (element.classList.contains('hidden')) {
-            element.classList.remove('hidden');
-            element.classList.add('block');
-        } else {
-            element.classList.remove('block');
-            element.classList.add('hidden');
-        }
+    //     if (element.classList.contains('hidden')) {
+    //         element.classList.remove('hidden');
+    //         element.classList.add('block');
+    //     } else {
+    //         element.classList.remove('block');
+    //         element.classList.add('hidden');
+    //     }
+    // }
+
+    function showForm() {
+        document.getElementById('ticketForm').classList.remove('hidden');
+        document.getElementById('backgroundMask').classList.remove('hidden');
+    }
+
+    function hideForm() {
+        document.getElementById('ticketForm').classList.add('hidden');
+        document.getElementById('backgroundMask').classList.add('hidden');
     }
 </script>
 {% endblock content %}

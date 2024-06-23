@@ -1,6 +1,11 @@
 from django.utils import timezone
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin
+    )
 from django.db import models
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, full_name, password=None):
@@ -20,6 +25,7 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=100)
@@ -30,7 +36,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     otp_created_at = models.DateTimeField(blank=True, null=True)
     is_email_verified = models.BooleanField(default=False)
     is_org_admin = models.BooleanField(default=False)
-    organization = models.ForeignKey('Organization', on_delete=models.SET_NULL, null=True, blank=True, related_name='users')
+    organization = models.ForeignKey('Organization', on_delete=models.SET_NULL,
+                                      null=True, blank=True, related_name='users')
 
     objects = CustomUserManager()
 
@@ -44,6 +51,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = 'user'
         verbose_name_plural = 'users'
 
+
 class Organization(models.Model):
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
@@ -54,10 +62,11 @@ class Organization(models.Model):
     def __str__(self):
         return self.name
 
+
 class UserLoginHistory(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     ip_address = models.GenericIPAddressField()
     timestamp = models.DateTimeField(default=timezone.now)
-
+    
     def __str__(self):
         return f'{self.user.email} logged in from {self.ip_address} on {self.timestamp}'

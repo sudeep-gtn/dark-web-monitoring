@@ -43,10 +43,10 @@
 {% endblock header %}
 
 {% block content %}
-<div class="mx-6 my-2 p-2">
-    <h1 class="font-semibold text-lg mb-2">Recommendations</h1>
-    <div class="p-2 rounded bg-white shadow-md">
-        <p class="text-gray-800">
+<div class="mx-6 my-2 p-6">
+    <h1 class="font-semibold text-lg"> Recommendations</h1>
+    <div class=" rounded">
+        <p class="text-gray-600">
             Everyone has a responsibility to protect against cybersecurity threats, and that means being
             in-the-know. Ongoing Threat Alerts Provide Key visibility and awareness into the latest cybersecurity
             threats, trending attacks, cyber incidents, and published vulnerabilities that could impact your
@@ -56,16 +56,18 @@
 </div>
 
 <div class="mx-6 my-2">
-    <h1 class="font-semibold text-lg mb-2">Notifications</h1>
-    <ul>
-        {% for notification in notifications %}
-            <li class="bg-gray-100 rounded-lg shadow-md p-2 mb-2">
+    <h1 class="font-semibold text-lg text-center mb-2">Recent Notifications</h1>
+    <div class="max-h-[500px] overflow-y-auto">
+        <ul class="flex flex-col items-center justify-center mx-auto ">
+            {% for notification in notifications %}
+            <li class="bg-gray-100 border-2 bg-white border-red-200 md:w-3/4 w-full rounded-lg shadow px-4 py-2 mb-2">
                 <span class="block">{{ notification.message }}</span>
                 <span class="text-gray-600 text-sm">{{ notification.timestamp }}</span>
             </li>
-        {% empty %}
+            {% empty %}
             <li class="text-gray-600">No notifications available.</li>
-        {% endfor %}
-    </ul>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 {% endblock content %}

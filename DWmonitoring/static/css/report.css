@@ -1,0 +1,49 @@
+/* Custom CSS for Table */
+
+.table-container {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
+  }
+  
+  .table-header {
+    display: block;
+    width: 100%;
+    background-color: #f7fafc;
+    color: #4a5568;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .table-header-row {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  .table-header-cell {
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    display: table-cell;
+  }
+  
+  .table-body {
+    display: block;
+    width: 100%;
+  }
+  
+  .table-row {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .table-cell {
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+    display: table-cell;
+  }
+  

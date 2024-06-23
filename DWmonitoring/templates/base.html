@@ -137,7 +137,7 @@
 
 <body class="flex w-full bg-gray-100">
   <div id="sidebar"
-    class="hidden overflow-y-auto md:block fixed overflow-hidden md:static top-0 left-0 z-50  bg-gray-900 text-white  md:px-0 z-50 md:w-[230px] h-screen flex flex-col justify-between">
+    class="hidden overflow-y-auto md:block fixed overflow-hidden md:static top-0 left-0 z-50  bg-gray-900 text-white  md:px-0 z-50 md:w-[250px] h-screen flex flex-col justify-between">
     <div>
       <div class="h-fit w-fit mx-auto py-4 mt-2   ">
        <a href="{% url 'home' %}"> <img src="/static/images/gkavach-logo.png" class="" height="20" width="160"></a>
@@ -145,21 +145,21 @@
       <div class="px-2 text-sm">
         <a href="{% url 'overview' %}"
           class="hover:bg-gray-700  {% if request.path == '/overview' %}border-l-4 text-white border-[#92a91a] {% endif %}  flex items-center text-gray-400 mt-2  px-2 py-2 rounded gap-2">
-          <img class="" src="/static/images/overview.svg" height="14" width="14" alt="">Overview
+          <img class="" src="/static/images/overview.svg" height="10" width="12" alt="">Overview
         </a>
         <a href="{% url 'notifications' %}"
           class="hover:bg-gray-700  {% if request.path == '/notification-alerts' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400  px-2 py-2 rounded">
-          <img class="mr-2" src="/static/images/alert.svg" height="20" width="20" alt="">Notification Alerts
+          <img class="mr-2" src="/static/images/alert.svg" height="16" width="16" alt="">Notification Alerts
         </a>
 
         <a href="{% url 'threat-intelligence' %}"
           class="hover:bg-gray-700  {% if request.path == '/threat-intelligence' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-1 px-1 py-2 rounded">
-          <img class="" src="/static/images/threat-intelligence.svg" height="24" width="24" alt="">Threat Intelligence
+          <img class="" src="/static/images/threat-intelligence.svg" height="20" width="20" alt="">Threat Intelligence
         </a>
         <a href="{% url 'brand-protection' %}"
           class="hover:bg-gray-700  {% if request.path == '/brand-protection' %}border-l-4 text-white border-[#92a91a]{% endif %}  flex items-center text-gray-400 my-1 px-1 py-2 rounded">
-          <img class="mr-2 ml-2" src="/static/images/brand-protection.png" alt="brand-protection-logo" height="16px"
-            width="16px"> Brand Protection
+          <img class="mr-2 ml-2" src="/static/images/brand-protection.png" alt="brand-protection-logo" height="12"
+            width="12"> Brand Protection
         </a>
 
         <div class=" flex items-center gap-2 text-gray-400 py-2 px-2">Dark Web Monitoring
@@ -174,7 +174,7 @@
             <a class="block flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/dashboard' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'dashboard' %}">
               <span>
-                <img src="/static/images/dashboard.png" height="20" width="20" alt="">
+                <img src="/static/images/dashboard.png" height="16" width="16" alt="">
               </span>
               Dashboard
             </a>
@@ -183,7 +183,7 @@
             <a class="block flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/cards' %}border-l-4 text-white border-[#92a91a]{% endif %}"
               href="{% url 'cards' %}">
               <span class="">
-                <img src="/static/images/cards.png" height="20" width="20" alt="">
+                <img src="/static/images/cards.png" height="16" width="16" alt="">
               </span>Cards
             </a>
           </li>
@@ -202,7 +202,7 @@
                 <a href="{% url 'domain' %}"
                   class="block w-full flex items-center text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/domain' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   <span>
-                    <svg class="mr-2" width="18px" height="18px" viewBox="0 0 24 24" fill="none"
+                    <svg class="mr-2" width="14px" height="14px" viewBox="0 0 24 24" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
                       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                       <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -244,7 +244,7 @@
                 <a href="{% url 'black-market' %}"
                   class="block w-full flex items-center text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/black-market' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   <span class="mr-2">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="13" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M5 2H19C19.5523 2 20 2.44772 20 3V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2ZM18 4H6V20H18V4ZM10 14H8V16H10V14ZM16 10H8V12H16V10ZM16 14H12V16H16V14ZM12 6H8V8H12V6ZM16 6H14V8H16V6Z"
                         fill="#FFFFFF" />
@@ -255,9 +255,9 @@
               </li>
               <li>
                 <a href="{% url 'stealer-logs' %}"
-                  class="block w-full flex text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/stealer-logs' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
+                  class="block w-full flex items-center text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/stealer-logs' %}border-l-4 text-white text-white border-[#92a91a]{% endif %}">
                   <span class="mr-2">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M4 3C4 2.44772 4.44772 2 5 2H14C14.5523 2 15 2.44772 15 3V6H20C20.5523 6 21 6.44772 21 7V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2ZM5 4H13V6H5V4ZM5 20H19V8H16V12H12V8H5V20ZM11 10H7V12H11V10ZM7 14H13V16H7V14Z"
                         fill="#FFFFFF" />
@@ -270,7 +270,7 @@
                 <a href="{% url 'pii-exposure' %}"
                   class="block w-full flex gap-2 items-center text-left p-2 rounded hover:bg-gray-700 {% if request.path == '/dark-web-monitoring/compromised-data/pii-exposure' %}border-l-4 text-white border-[#92a91a]{% endif %}">
                   <span class="">
-                    <img src="/static/images/user.png" height="18" width="18" alt="">
+                    <img src="/static/images/user.png" height="14" width="14" alt="">
                   </span>
                   PII Exposure
                 </a>
@@ -283,8 +283,8 @@
               href="{% url 'org-details' %}">
               <span class="mr-2">
                 <svg version="1.1" id="XMLID_176_" xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" width="16px"
-                  height="16px">
+                  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" width="12px"
+                  height="12px">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                   <g id="SVGRepo_iconCarrier">
@@ -316,7 +316,7 @@
           <li>
             <a href="{% url 'incident-response' %}"
               class="block w-full flex items-center text-left p-2 my-1 rounded hover:bg-gray-700 {% if request.path == '/incident-response' %}border-l-4 text-white border-[#92a91a]{% endif %}">
-              <span class="mr-2"><svg fill="#ffffff" width="20px" height="20px" viewBox="0 0 24 24"
+              <span class="mr-2"><svg fill="#ffffff" width="16px" height="16px" viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -336,11 +336,20 @@
             <a href="{% url 'analytics-and-reports' %}"
               class="block w-full flex items-center text-left p-2 my-1 rounded hover:bg-gray-700 {% if request.path == '/analytics-and-reports' %}border-l-4 text-white border-[#92a91a]{% endif %}">
               <span class="mr-2">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 505 505" xml:space="preserve" width="18px" height="18px" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle style="fill:#ffffff;" cx="252.5" cy="252.5" r="252.5"></circle> <polygon style="fill:#FFFFFF;" points="325.6,86.1 325.6,139.7 379.1,139.7 379.1,418.9 125.9,418.9 125.9,86.1 "></polygon> <g> <polygon style="fill:#E6E9EE;" points="325.6,86.1 379.1,139.7 325.6,139.7 "></polygon> <rect x="155.7" y="112.9" style="fill:#E6E9EE;" width="90" height="11.4"></rect> <rect x="155.7" y="139.7" style="fill:#E6E9EE;" width="62.5" height="11.4"></rect> <path style="fill:#E6E9EE;" d="M178.4,204.8c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C182.4,205.6,180.7,204.8,178.4,204.8z M180.9,217.6c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1c0-1.7,0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C181.6,215.2,181.4,216.6,180.9,217.6z"></path> <polygon style="fill:#E6E9EE;" points="190.6,222 194.2,222 194.2,205.2 187.4,205.2 187.4,208.4 190.6,208.4 "></polygon> <path style="fill:#E6E9EE;" d="M204.7,204.8c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C208.7,205.6,207,204.8,204.7,204.8z M207.2,217.6c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1c0-1.7,0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C207.9,215.2,207.7,216.6,207.2,217.6z"></path> <polygon style="fill:#E6E9EE;" points="216.9,222 220.5,222 220.5,205.2 213.7,205.2 213.7,208.4 216.9,208.4 "></polygon> <path style="fill:#E6E9EE;" d="M231,204.8c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C235,205.6,233.3,204.8,231,204.8z M233.5,217.6c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1c0-1.7,0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C234.2,215.2,234,216.6,233.5,217.6z"></path> <polygon style="fill:#E6E9EE;" points="243.2,222 246.8,222 246.8,205.2 240,205.2 240,208.4 243.2,208.4 "></polygon> <path style="fill:#E6E9EE;" d="M257.3,222.2c2.3,0,4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3 c-1.2-1.6-2.9-2.4-5.2-2.4c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3C253.2,221.4,254.9,222.2,257.3,222.2z M254.8,209.5c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5c0.5,1,0.8,2.4,0.8,4.1c0,1.7-0.3,3-0.8,4.1c-0.5,1-1.4,1.5-2.5,1.5 s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1C254,211.8,254.3,210.5,254.8,209.5z"></path> <path style="fill:#E6E9EE;" d="M178.4,252.9c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C182.4,253.7,180.7,252.9,178.4,252.9z M180.9,265.7c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C181.6,263.3,181.4,264.7,180.9,265.7z"></path> <polygon style="fill:#E6E9EE;" points="190.6,270.1 194.2,270.1 194.2,253.3 187.4,253.3 187.4,256.5 190.6,256.5 "></polygon> <path style="fill:#E6E9EE;" d="M204.7,252.9c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C208.7,253.7,207,252.9,204.7,252.9z M207.2,265.7c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C207.9,263.3,207.7,264.7,207.2,265.7z"></path> <polygon style="fill:#E6E9EE;" points="216.9,270.1 220.5,270.1 220.5,253.3 213.7,253.3 213.7,256.5 216.9,256.5 "></polygon> <path style="fill:#E6E9EE;" d="M231,252.9c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C235,253.7,233.3,252.9,231,252.9z M233.5,265.7c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C234.2,263.3,234,264.7,233.5,265.7z"></path> <polygon style="fill:#E6E9EE;" points="243.2,270.1 246.8,270.1 246.8,253.3 240,253.3 240,256.5 243.2,256.5 "></polygon> <path style="fill:#E6E9EE;" d="M257.3,252.9c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C261.3,253.7,259.6,252.9,257.3,252.9z M259.8,265.7c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C260.5,263.3,260.3,264.7,259.8,265.7z"></path> <path style="fill:#E6E9EE;" d="M178.4,301.1c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C182.4,301.9,180.7,301.1,178.4,301.1z M180.9,313.8c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C181.6,311.5,181.4,312.8,180.9,313.8z"></path> <polygon style="fill:#E6E9EE;" points="190.6,318.3 194.2,318.3 194.2,301.4 187.4,301.4 187.4,304.6 190.6,304.6 "></polygon> <path style="fill:#E6E9EE;" d="M204.7,301.1c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C208.7,301.9,207,301.1,204.7,301.1z M207.2,313.8c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C207.9,311.5,207.7,312.8,207.2,313.8z"></path> <path style="fill:#E6E9EE;" d="M221.3,301.1c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4s1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C225.3,301.9,223.6,301.1,221.3,301.1z M223.8,313.8c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C224.5,311.5,224.3,312.8,223.8,313.8z"></path> <polygon style="fill:#E6E9EE;" points="230.3,304.6 233.5,304.6 233.5,318.3 237.1,318.3 237.1,301.4 230.3,301.4 "></polygon> <path style="fill:#E6E9EE;" d="M247.6,301.1c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C251.6,301.9,249.9,301.1,247.6,301.1z M250.1,313.8c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C250.8,311.5,250.6,312.8,250.1,313.8z"></path> <polygon style="fill:#E6E9EE;" points="256.6,304.6 259.8,304.6 259.8,318.3 263.4,318.3 263.4,301.4 256.6,301.4 "></polygon> <path style="fill:#E6E9EE;" d="M168.7,349.2c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C172.7,350,171,349.2,168.7,349.2z M171.2,362 c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1S171.7,360.9,171.2,362z"></path> <polygon style="fill:#E6E9EE;" points="177.7,352.8 180.9,352.8 180.9,366.4 184.5,366.4 184.5,349.6 177.7,349.6 "></polygon> <path style="fill:#E6E9EE;" d="M195,349.2c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C199,350,197.3,349.2,195,349.2z M197.5,362 c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C198.2,359.6,198,360.9,197.5,362z"></path> <polygon style="fill:#E6E9EE;" points="204,352.8 207.2,352.8 207.2,366.4 210.8,366.4 210.8,349.6 204,349.6 "></polygon> <path style="fill:#E6E9EE;" d="M221.3,349.2c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4s1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C225.3,350,223.6,349.2,221.3,349.2z M223.8,362 c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C224.5,359.6,224.3,360.9,223.8,362z"></path> <polygon style="fill:#E6E9EE;" points="230.3,352.8 233.5,352.8 233.5,366.4 237.1,366.4 237.1,349.6 230.3,349.6 "></polygon> <path style="fill:#E6E9EE;" d="M247.6,349.2c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C251.6,350,249.9,349.2,247.6,349.2z M250.1,362c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C250.8,359.6,250.6,360.9,250.1,362z"></path> <polygon style="fill:#E6E9EE;" points="256.6,352.8 259.8,352.8 259.8,366.4 263.4,366.4 263.4,349.6 256.6,349.6 "></polygon> </g> <path style="fill:#54C0EB;" d="M338.7,263.5c-0.9-3.9-2.4-7.5-4.4-10.7l3-6.3l-7.3-7.3l-6.3,3c-3.2-2.1-6.9-3.6-10.7-4.5l-2.3-6.6 h-10.3l-2.3,6.6c-3.9,0.9-7.5,2.4-10.7,4.5l-6.3-3l-7.3,7.3l3,6.3c-2.1,3.2-3.6,6.9-4.5,10.7l-6.6,2.3v10.3l6.6,2.3 c0.9,3.9,2.4,7.5,4.5,10.7l-3.3,6.4l7.3,7.3l6.3-3c3.3,2.1,6.9,3.6,10.7,4.5l2.3,6.6h10.3l2.3-6.6c3.9-0.9,7.5-2.4,10.7-4.5l6.3,3 l7.3-7.3l-3-6.3c2-3.3,3.6-6.9,4.4-10.7l6.6-2.3v-10.3L338.7,263.5z M305.4,286.1c-8.3,0-15.1-6.8-15.1-15.1s6.8-15.1,15.1-15.1 c8.3,0,15.1,6.8,15.1,15.1S313.8,286.1,305.4,286.1z"></path> <path style="fill:#84DBFF;" d="M295.2,316.6l5.5-14.4l-10.1-5c0.9-5.5,0.7-11.1-0.5-16.4l9.8-5.6l-6.3-14.1l-10.7,3.6 c-3.2-4.4-7.2-8.3-11.9-11.3l3-10.8l-14.4-5.5l-5,10.1c-5.5-0.9-11.1-0.7-16.4,0.5l-5.6-9.8l-14.1,6.3l3.6,10.7 c-4.4,3.2-8.3,7.2-11.3,11.9l-10.8-3l-5.5,14.4l10.1,5c-0.9,5.5-0.7,11.1,0.5,16.4l-9.8,5.6l6.3,14.1l10.7-3.6 c3.2,4.4,7.2,8.3,11.9,11.3l-3,10.8l14.4,5.5l5-10.1c5.5,0.9,11.1,0.7,16.4-0.5l5.6,9.8l14.1-6.3l-3.6-10.7 c4.4-3.2,8.3-7.2,11.3-11.9L295.2,316.6z M239.4,311.8c-11.9-4.6-17.9-17.9-13.3-29.8c4.6-11.9,17.9-17.9,29.8-13.3 c11.9,4.6,17.9,17.9,13.3,29.8C264.6,310.4,251.3,316.3,239.4,311.8z"></path> </g></svg>
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 505 505" xml:space="preserve" width="14px" height="14px" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle style="fill:#ffffff;" cx="252.5" cy="252.5" r="252.5"></circle> <polygon style="fill:#FFFFFF;" points="325.6,86.1 325.6,139.7 379.1,139.7 379.1,418.9 125.9,418.9 125.9,86.1 "></polygon> <g> <polygon style="fill:#E6E9EE;" points="325.6,86.1 379.1,139.7 325.6,139.7 "></polygon> <rect x="155.7" y="112.9" style="fill:#E6E9EE;" width="90" height="11.4"></rect> <rect x="155.7" y="139.7" style="fill:#E6E9EE;" width="62.5" height="11.4"></rect> <path style="fill:#E6E9EE;" d="M178.4,204.8c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C182.4,205.6,180.7,204.8,178.4,204.8z M180.9,217.6c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1c0-1.7,0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C181.6,215.2,181.4,216.6,180.9,217.6z"></path> <polygon style="fill:#E6E9EE;" points="190.6,222 194.2,222 194.2,205.2 187.4,205.2 187.4,208.4 190.6,208.4 "></polygon> <path style="fill:#E6E9EE;" d="M204.7,204.8c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C208.7,205.6,207,204.8,204.7,204.8z M207.2,217.6c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1c0-1.7,0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C207.9,215.2,207.7,216.6,207.2,217.6z"></path> <polygon style="fill:#E6E9EE;" points="216.9,222 220.5,222 220.5,205.2 213.7,205.2 213.7,208.4 216.9,208.4 "></polygon> <path style="fill:#E6E9EE;" d="M231,204.8c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C235,205.6,233.3,204.8,231,204.8z M233.5,217.6c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1c0-1.7,0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C234.2,215.2,234,216.6,233.5,217.6z"></path> <polygon style="fill:#E6E9EE;" points="243.2,222 246.8,222 246.8,205.2 240,205.2 240,208.4 243.2,208.4 "></polygon> <path style="fill:#E6E9EE;" d="M257.3,222.2c2.3,0,4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3 c-1.2-1.6-2.9-2.4-5.2-2.4c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3C253.2,221.4,254.9,222.2,257.3,222.2z M254.8,209.5c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5c0.5,1,0.8,2.4,0.8,4.1c0,1.7-0.3,3-0.8,4.1c-0.5,1-1.4,1.5-2.5,1.5 s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1C254,211.8,254.3,210.5,254.8,209.5z"></path> <path style="fill:#E6E9EE;" d="M178.4,252.9c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C182.4,253.7,180.7,252.9,178.4,252.9z M180.9,265.7c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C181.6,263.3,181.4,264.7,180.9,265.7z"></path> <polygon style="fill:#E6E9EE;" points="190.6,270.1 194.2,270.1 194.2,253.3 187.4,253.3 187.4,256.5 190.6,256.5 "></polygon> <path style="fill:#E6E9EE;" d="M204.7,252.9c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C208.7,253.7,207,252.9,204.7,252.9z M207.2,265.7c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C207.9,263.3,207.7,264.7,207.2,265.7z"></path> <polygon style="fill:#E6E9EE;" points="216.9,270.1 220.5,270.1 220.5,253.3 213.7,253.3 213.7,256.5 216.9,256.5 "></polygon> <path style="fill:#E6E9EE;" d="M231,252.9c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C235,253.7,233.3,252.9,231,252.9z M233.5,265.7c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C234.2,263.3,234,264.7,233.5,265.7z"></path> <polygon style="fill:#E6E9EE;" points="243.2,270.1 246.8,270.1 246.8,253.3 240,253.3 240,256.5 243.2,256.5 "></polygon> <path style="fill:#E6E9EE;" d="M257.3,252.9c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C261.3,253.7,259.6,252.9,257.3,252.9z M259.8,265.7c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C260.5,263.3,260.3,264.7,259.8,265.7z"></path> <path style="fill:#E6E9EE;" d="M178.4,301.1c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C182.4,301.9,180.7,301.1,178.4,301.1z M180.9,313.8c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C181.6,311.5,181.4,312.8,180.9,313.8z"></path> <polygon style="fill:#E6E9EE;" points="190.6,318.3 194.2,318.3 194.2,301.4 187.4,301.4 187.4,304.6 190.6,304.6 "></polygon> <path style="fill:#E6E9EE;" d="M204.7,301.1c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C208.7,301.9,207,301.1,204.7,301.1z M207.2,313.8c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C207.9,311.5,207.7,312.8,207.2,313.8z"></path> <path style="fill:#E6E9EE;" d="M221.3,301.1c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4s1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C225.3,301.9,223.6,301.1,221.3,301.1z M223.8,313.8c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C224.5,311.5,224.3,312.8,223.8,313.8z"></path> <polygon style="fill:#E6E9EE;" points="230.3,304.6 233.5,304.6 233.5,318.3 237.1,318.3 237.1,301.4 230.3,301.4 "></polygon> <path style="fill:#E6E9EE;" d="M247.6,301.1c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3c0,2.6,0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3c0-2.6-0.6-4.7-1.7-6.3C251.6,301.9,249.9,301.1,247.6,301.1z M250.1,313.8c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C250.8,311.5,250.6,312.8,250.1,313.8z"></path> <polygon style="fill:#E6E9EE;" points="256.6,304.6 259.8,304.6 259.8,318.3 263.4,318.3 263.4,301.4 256.6,301.4 "></polygon> <path style="fill:#E6E9EE;" d="M168.7,349.2c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C172.7,350,171,349.2,168.7,349.2z M171.2,362 c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1S171.7,360.9,171.2,362z"></path> <polygon style="fill:#E6E9EE;" points="177.7,352.8 180.9,352.8 180.9,366.4 184.5,366.4 184.5,349.6 177.7,349.6 "></polygon> <path style="fill:#E6E9EE;" d="M195,349.2c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C199,350,197.3,349.2,195,349.2z M197.5,362 c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C198.2,359.6,198,360.9,197.5,362z"></path> <polygon style="fill:#E6E9EE;" points="204,352.8 207.2,352.8 207.2,366.4 210.8,366.4 210.8,349.6 204,349.6 "></polygon> <path style="fill:#E6E9EE;" d="M221.3,349.2c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4s1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C225.3,350,223.6,349.2,221.3,349.2z M223.8,362 c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C224.5,359.6,224.3,360.9,223.8,362z"></path> <polygon style="fill:#E6E9EE;" points="230.3,352.8 233.5,352.8 233.5,366.4 237.1,366.4 237.1,349.6 230.3,349.6 "></polygon> <path style="fill:#E6E9EE;" d="M247.6,349.2c-2.3,0-4.1,0.8-5.2,2.4c-1.2,1.6-1.7,3.7-1.7,6.3s0.6,4.8,1.7,6.3 c1.2,1.6,2.9,2.4,5.2,2.4s4.1-0.8,5.2-2.4c1.2-1.6,1.7-3.7,1.7-6.3s-0.6-4.7-1.7-6.3C251.6,350,249.9,349.2,247.6,349.2z M250.1,362c-0.5,1-1.4,1.5-2.5,1.5s-2-0.5-2.5-1.5s-0.8-2.4-0.8-4.1s0.3-3,0.8-4.1c0.5-1,1.4-1.5,2.5-1.5s1.9,0.5,2.5,1.5 c0.5,1,0.8,2.4,0.8,4.1C250.8,359.6,250.6,360.9,250.1,362z"></path> <polygon style="fill:#E6E9EE;" points="256.6,352.8 259.8,352.8 259.8,366.4 263.4,366.4 263.4,349.6 256.6,349.6 "></polygon> </g> <path style="fill:#54C0EB;" d="M338.7,263.5c-0.9-3.9-2.4-7.5-4.4-10.7l3-6.3l-7.3-7.3l-6.3,3c-3.2-2.1-6.9-3.6-10.7-4.5l-2.3-6.6 h-10.3l-2.3,6.6c-3.9,0.9-7.5,2.4-10.7,4.5l-6.3-3l-7.3,7.3l3,6.3c-2.1,3.2-3.6,6.9-4.5,10.7l-6.6,2.3v10.3l6.6,2.3 c0.9,3.9,2.4,7.5,4.5,10.7l-3.3,6.4l7.3,7.3l6.3-3c3.3,2.1,6.9,3.6,10.7,4.5l2.3,6.6h10.3l2.3-6.6c3.9-0.9,7.5-2.4,10.7-4.5l6.3,3 l7.3-7.3l-3-6.3c2-3.3,3.6-6.9,4.4-10.7l6.6-2.3v-10.3L338.7,263.5z M305.4,286.1c-8.3,0-15.1-6.8-15.1-15.1s6.8-15.1,15.1-15.1 c8.3,0,15.1,6.8,15.1,15.1S313.8,286.1,305.4,286.1z"></path> <path style="fill:#84DBFF;" d="M295.2,316.6l5.5-14.4l-10.1-5c0.9-5.5,0.7-11.1-0.5-16.4l9.8-5.6l-6.3-14.1l-10.7,3.6 c-3.2-4.4-7.2-8.3-11.9-11.3l3-10.8l-14.4-5.5l-5,10.1c-5.5-0.9-11.1-0.7-16.4,0.5l-5.6-9.8l-14.1,6.3l3.6,10.7 c-4.4,3.2-8.3,7.2-11.3,11.9l-10.8-3l-5.5,14.4l10.1,5c-0.9,5.5-0.7,11.1,0.5,16.4l-9.8,5.6l6.3,14.1l10.7-3.6 c3.2,4.4,7.2,8.3,11.9,11.3l-3,10.8l14.4,5.5l5-10.1c5.5,0.9,11.1,0.7,16.4-0.5l5.6,9.8l14.1-6.3l-3.6-10.7 c4.4-3.2,8.3-7.2,11.3-11.9L295.2,316.6z M239.4,311.8c-11.9-4.6-17.9-17.9-13.3-29.8c4.6-11.9,17.9-17.9,29.8-13.3 c11.9,4.6,17.9,17.9,13.3,29.8C264.6,310.4,251.3,316.3,239.4,311.8z"></path> </g></svg>
               </span>
               Analytics and Reports
             </a>
           </li>          
+          <li>
+            <a href="{% url 'support-and-assistance' %}"
+              class="block w-full flex items-center text-left p-2 my-1 rounded hover:bg-gray-700 {% if request.path == '/support-and-assistance' %}border-l-4 text-white border-[#92a91a]{% endif %}">
+              <span class="mr-2">
+                <img src="/static/images/support.svg" height="20" width="20" alt="">
+              </span>
+              Support and Assistance
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -350,10 +359,9 @@
         Profile
       </a>
       <button onclick="showPopUp()"
-        class="block flex text-center w-full text-left p-2 font-bold text-red-500 hover:text-white rounded hover:bg-red-600">
-        Log out
-        <span class="ml-2 mt-1">
-          <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+        class="block flex gap-2  text-center w-full text-left p-2 font-semibold text-red-500 hover:text-white rounded hover:bg-red-600">
+        <span class="ml-2 mt-1 font-semibold flex items-center ">
+          <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
             transform="matrix(-1, 0, 0, 1, 0, 0)">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -366,12 +374,13 @@
             </g>
           </svg>
         </span>
+        Log out
+        
       </button>
     </div>
   </div>
   <!-- Main Content -->
   <div class="flex-1 w-full h-screen overflow-y-auto">
-
     <div id="confirm-popup"
       class="fixed hidden inset-0 z-50  min-h-full overflow-y-auto overflow-x-hidden flex items-center justify-center">
       <div aria-hidden="true" class="fixed inset-0 bg-black opacity-30"></div>

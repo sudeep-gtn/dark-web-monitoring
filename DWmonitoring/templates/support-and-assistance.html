@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Support and Assistance {% endblock title %}
+
+{% block header %}
+<header class="shadow-md py-2 px-4 flex justify-between items-center z-50">
+    <a href="{% url 'notifications'%}" class="text-xl font-extrabold text-gray-700">
+        <div class="flex gap-2">
+            <span><img src="/static/images/support-black.svg" height="30px" width="30px" alt=""></span>
+            <span class="text-gray-800">Support and </span> <span class="text-red-500">Assistance </span>
+        </div>
+    </a>
+    <div class="relative flex gap-4 px-4">
+        <link rel="shortcut icon" href="/static/images/monitoring.png" type="image/x-icon">
+        <button
+            class="hidden md:block border-2 border-gray-400 bg-gray-100 rounded-full p-2 {% if request.path == '/profile' %} border-red-600 {% endif %}"
+            onclick="toggleDropdown('profileDropdown')">
+            <img height="20" width="20" src="https://img.icons8.com/?size=100&id=fJ7hcfUGpKG7&format=png&color=000000"
+                alt="profile " />
+        </button>
+        <div id="profileDropdown"
+            class="hidden absolute right-0 mt-14 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1">
+            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+            <button onclick="showPopUp()"
+                class="w-full text-left block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</button>
+        </div>
+        <div class="md:hidden block  bg-gray-100 rounded-full p-2  z-50">
+            <input id="checkbox2" type="checkbox" class="hidden">
+            <label class="toggle toggle2" for="checkbox2" onclick="toggleSidebar()">
+                <div id="bar4" class="bars"></div>
+                <div id="bar5" class="bars"></div>
+                <div id="bar6" class="bars"></div>
+            </label>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block content %}
+<main>
+    <div class="flex w-5/6 flex-col md:flex-row mx-auto items-center justify-center gap-2 w-full">
+        <div class="w-full md:w-1/3">
+            <h1 class="font-semibold my-3  text-lg text-gray-900"> Contact Support </h1>
+            <p class="text-gray-600 mb-2">If you need further assistance, our support team is here to help. You can
+                reach us
+                through
+                the following options</p>
+
+            <div class="text-gray-500 gap-2  font-semibold text-sm font-medium flex flex-col ">
+                <span> Email : support@gkavach.com</span>
+                <span>Phone : +977 01-4389237 </span>
+            </div>
+        </div>
+        <div class="w-fit ">
+            <img src="/static/images/support.png" height="100" width="300" alt="support">
+        </div>
+    </div>
+
+    
+    <div class="my-8">
+        <h1 class="font-bold text-xl px-6 w-fit my-3 text-center mx-auto">FAQS</h1>
+        <div class="flex flex-col gap-4">
+            <div class="md:w-3/5 w-5/6 mx-auto p-4 rounded flex flex-col gap-1 shadow border-2 border-red-200">
+                <div class="font-semibold"> What should I do if I find suspicious activity ? </div>
+                <div class="text-gray-800"> If you encounter suspicious activity, please report it immediately by
+                    clicking the 'Report Suspicious Activity' button within the application. Provide as much detail as
+                    possible to help us investigate.</div>
+            </div>
+            <div class=" w-5/6  md:w-3/5 mx-auto p-4 rounded flex flex-col gap-1 shadow border-2 border-red-200">
+                <div class="font-semibold">How does dark web monitoring work?</div>
+                <div>Our application scans various dark web sources, forums, and marketplaces for specified keywords,
+                    such as your email address, company name, or other sensitive information. When a match is found, you
+                    receive an alert with details of the detected activity.</div>
+            </div>
+            <div class=" w-5/6  md:w-3/5 mx-auto p-4 rounded flex flex-col gap-1 shadow border-2 border-red-200">
+                <div class="font-semibold">Is my data safe with DWM application?</div>
+                <div>
+                    Absolutely. We prioritize your data security and privacy. All monitored data is encrypted and
+                    handled according to our strict privacy policy.
+                </div>
+            </div>
+            <div class=" w-5/6  md:w-3/5 mx-auto p-4 rounded flex flex-col gap-1 shadow border-2 border-red-200">
+                <div class="font-semibold"> Can I share my monitoring results with others?</div>
+                <div>
+                    Yes, you can export your monitoring results and share them with others. Go to the 'Reports' section, select the data you want to share, and click 'Export'. You can download the pdf file.
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}
